@@ -1,5 +1,6 @@
 package CapaNegocio.Gestion;
 
+import CapaNegocio.Entidades.Producto;
 import java.util.Date;
 
 /**
@@ -7,16 +8,37 @@ import java.util.Date;
  * @author PIX
  */
 public class Venta {
-    private int IDVenta;
-    private Date fecha;
-    private float monto;
 
-    public Venta(int IDVenta, Date fecha, float monto) {
+    private int IDVenta;
+    private float monto;
+    private int cantidadDeProductos;
+    private Producto productoVendido;
+    private Date fecha;
+
+    public Venta(int IDVenta, float monto, int cantidadDeProductos, Producto productoVendido, Date fecha) {
         this.IDVenta = IDVenta;
-        this.fecha = fecha;
         this.monto = monto;
+        this.cantidadDeProductos = cantidadDeProductos;
+        this.productoVendido = productoVendido;
+        this.fecha = fecha;
     }
-    
+
+    public Producto getProductoVendido() {
+        return productoVendido;
+    }
+
+    public void setProductoVendido(Producto productoVendido) {
+        this.productoVendido = productoVendido;
+    }
+
+    public int getCantidadDeProductos() {
+        return cantidadDeProductos;
+    }
+
+    public void setCantidadDeProductos(int cantidadDeProductos) {
+        this.cantidadDeProductos = cantidadDeProductos;
+    }
+
     public int getIDVenta() {
         return IDVenta;
     }
@@ -28,7 +50,5 @@ public class Venta {
     public float getMonto() {
         return monto;
     }
-    
-    
-    
+
 }
