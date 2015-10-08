@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package CapaNegocio;
+package CapaUsuario;
 
 /**
  *
  * @author Astrid Briceño
  */
-public class Reporte extends Venta{
+public class VentanaProveedores extends VentanaPuntoDeVenta{
     
 }
