@@ -5,6 +5,7 @@ package CapaNegocio.Entidades;
  * @author PIX
  */
 public class Proveedor {
+    
    private String nombre;
    private String telefono;
    private String direccion;

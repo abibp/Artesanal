@@ -13,6 +13,7 @@ import java.util.ArrayList;
  * @author Astrid Briceño
  */
 public class Reporte {
+    
     private final int IDReporte;
     private final String descripcion;
     private ArrayList<Venta> ventas;
