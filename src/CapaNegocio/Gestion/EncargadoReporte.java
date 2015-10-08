@@ -1,4 +1,4 @@
-package CapaNegocio;
+package CapaNegocio.Gestion;
 
 import CapaNegocio.Gestion.Venta;
 
