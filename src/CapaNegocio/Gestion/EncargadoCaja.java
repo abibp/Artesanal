@@ -1,7 +1,6 @@
 package CapaNegocio.Gestion;
 
 import CapaNegocio.Entidades.Reporte;
-import CapaNegocio.Caja;
 
 /**
  *
