@@ -11,11 +11,11 @@ public class Caja {
     private final float      MONTO_INICIAL_;
     
     private float            dineroActual_;
-    private ArrayList<Venta> ventas_;
+    private ArrayList<Venta> nVentas_;
 
     public Caja(float montoInicial) {
         this.MONTO_INICIAL_ = montoInicial;
-        this.ventas_        = new ArrayList();
+        this.nVentas_       = new ArrayList();
     }
 
     public float getDineroActual() {
@@ -31,10 +31,10 @@ public class Caja {
     }
 
     public ArrayList<Venta> getVentas() {
-        return ventas_;
+        return nVentas_;
     }
     
     public void agregarVenta(Venta unaVenta){
-        ventas_.add(unaVenta);
+        nVentas_.add(unaVenta);
     }
 }
