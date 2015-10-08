@@ -16,12 +16,12 @@ public class Reporte {
     private final int         ID_REPORTE_;
     private final String      DESCRIPCION_;
     
-    private ArrayList<Venta>  ventas_;
+    private ArrayList<Venta>  nVentas_;
 
     public Reporte(int IDReporte, String descripcion, ArrayList<Venta> ventas) {
         this.ID_REPORTE_  = IDReporte;
         this.DESCRIPCION_ = descripcion;
-        this.ventas_      = ventas;
+        this.nVentas_      = ventas;
     }
     
     public int getIDReporte() {
@@ -33,7 +33,7 @@ public class Reporte {
     }
 
     public ArrayList<Venta> getVentas() {
-        return ventas_;
+        return nVentas_;
     }
 
     public boolean isVentaEnReporte(int IDVentaABuscar){
@@ -44,6 +44,6 @@ public class Reporte {
     public String toString(){
         final String RETORNO_DE_CARRO = "\n";
         return this.DESCRIPCION_ + RETORNO_DE_CARRO + this.ID_REPORTE_ + 
-                RETORNO_DE_CARRO + this.ventas_.toString().replace(", ", RETORNO_DE_CARRO);
+                RETORNO_DE_CARRO + this.nVentas_.toString().replace(", ", RETORNO_DE_CARRO);
     }
 }

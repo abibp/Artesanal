@@ -11,7 +11,7 @@ public class Proveedor {
    private String                       nombre_;
    private String                       telefono_;
    private String                       direccion_;
-   private ArrayList<ProductoProveedor> productos_;
+   private ArrayList<ProductoProveedor> nProductos_;
 
     public String getNombre() {
         return nombre_;
@@ -37,6 +37,8 @@ public class Proveedor {
         this.direccion_ = direccion;
     }
    
-   
+   public void agregarProducto(ProductoProveedor unProducto){
+       this.nProductos_.add(unProducto);
+   }
    
 }
