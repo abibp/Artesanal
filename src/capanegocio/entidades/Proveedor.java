@@ -8,33 +8,33 @@ import java.util.ArrayList;
  */
 public class Proveedor {
     
-   private String nombre;
-   private String telefono;
-   private String direccion;
-   private ArrayList<ProductoProveedor> productos;
+   private String                       nombre_;
+   private String                       telefono_;
+   private String                       direccion_;
+   private ArrayList<ProductoProveedor> productos_;
 
     public String getNombre() {
-        return nombre;
+        return nombre_;
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.nombre_ = nombre;
     }
 
     public String getTelefono() {
-        return telefono;
+        return telefono_;
     }
 
     public void setTelefono(String telefono) {
-        this.telefono = telefono;
+        this.telefono_ = telefono;
     }
 
     public String getDireccion() {
-        return direccion;
+        return direccion_;
     }
 
     public void setDireccion(String direccion) {
-        this.direccion = direccion;
+        this.direccion_ = direccion;
     }
    
    

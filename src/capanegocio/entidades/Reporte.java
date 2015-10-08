@@ -5,7 +5,6 @@
  */
 package capanegocio.entidades;
 
-import capanegocio.gestion.Venta;
 import java.util.ArrayList;
 
 /**
@@ -14,26 +13,27 @@ import java.util.ArrayList;
  */
 public class Reporte {
     
-    private final int IDReporte;
-    private final String descripcion;
-    private ArrayList<Venta> ventas;
+    private final int         ID_REPORTE_;
+    private final String      DESCRIPCION_;
+    
+    private ArrayList<Venta>  ventas_;
 
     public Reporte(int IDReporte, String descripcion, ArrayList<Venta> ventas) {
-        this.IDReporte = IDReporte;
-        this.descripcion = descripcion;
-        this.ventas = ventas;
+        this.ID_REPORTE_  = IDReporte;
+        this.DESCRIPCION_ = descripcion;
+        this.ventas_      = ventas;
     }
     
     public int getIDReporte() {
-        return IDReporte;
+        return ID_REPORTE_;
     }
 
     public String getDescripcion() {
-        return descripcion;
+        return DESCRIPCION_;
     }
 
     public ArrayList<Venta> getVentas() {
-        return ventas;
+        return ventas_;
     }
 
     public boolean isVentaEnReporte(int IDVentaABuscar){
@@ -43,7 +43,7 @@ public class Reporte {
     @Override
     public String toString(){
         final String RETORNO_DE_CARRO = "\n";
-        return this.descripcion + RETORNO_DE_CARRO + this.IDReporte + 
-                RETORNO_DE_CARRO + this.ventas.toString().replace(", ", RETORNO_DE_CARRO);
+        return this.DESCRIPCION_ + RETORNO_DE_CARRO + this.ID_REPORTE_ + 
+                RETORNO_DE_CARRO + this.ventas_.toString().replace(", ", RETORNO_DE_CARRO);
     }
 }

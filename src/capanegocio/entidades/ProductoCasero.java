@@ -7,9 +7,9 @@ package capanegocio.entidades;
  */
 public class ProductoCasero extends Producto {
     
-    public ProductoCasero(String nombre, float precio, float costo, 
-            int cantidad) {
-        super(nombre, precio, costo, cantidad);
+    public ProductoCasero(int idProducto, String nombre, float precio, 
+            float costo, int cantidad) {
+        super(idProducto, nombre, precio, costo, cantidad);
     }
 
 }

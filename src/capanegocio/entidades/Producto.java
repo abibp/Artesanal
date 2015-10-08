@@ -6,62 +6,65 @@ package capanegocio.entidades;
  */
 public abstract class Producto{
     
-    private int     IDProducto;
-    private String  nombre;
-    private String  descripcion;
-    private float   precio;
-    private float   costo;
-    private int     cantidad;
+    private final int   ID_PRODUCTO_;
+    
+    private String      nombre_;
+    private String      descripcion_;
+    private float       precio_;
+    private float       costo_;
+    private int         cantidad_;
 
-    public Producto(String nombre, float precio, float costo, int cantidad) {
-        this.nombre     = nombre;
-        this.precio     = precio;
-        this.costo      = costo;
-        this.cantidad   = cantidad;
+    public Producto(int idProducto,String nombre, float precio, float costo, 
+            int cantidad) {
+        this.ID_PRODUCTO_   = idProducto;
+        this.nombre_        = nombre;
+        this.precio_        = precio;
+        this.costo_         = costo;
+        this.cantidad_      = cantidad;
     }
     
     public int getIDProducto() {
-        return IDProducto;
+        return ID_PRODUCTO_;
     }
 
     public float getCosto() {
-        return costo;
+        return costo_;
     }
 
     public void setCosto(float costo) {
-        this.costo = costo;
+        this.costo_ = costo;
     }
 
     public int getCantidad() {
-        return cantidad;   
+        return cantidad_;   
     }
 
     public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
+        this.cantidad_ = cantidad;
     }
     
     public String getNombre() {
-        return nombre;
+        return nombre_;
     }
 
     public String getDescripcion() {
-        return descripcion;
+        return descripcion_;
     }
 
     public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+        this.descripcion_ = descripcion;
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.nombre_ = nombre;
     }
 
     public float getPrecio() {
-        return precio;
+        return precio_;
     }
 
     public void setPrecio(float precio) {
-        this.precio = precio;
+        this.precio_ = precio;
     }
     
 }

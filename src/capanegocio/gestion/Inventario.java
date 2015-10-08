@@ -10,6 +10,7 @@ import java.util.ArrayList;
  */
 public class Inventario {
     
-    private ArrayList<Producto> productos;
-    private ArrayList<Insumo> insumos;
+    private ArrayList<Producto> productos_;
+    private ArrayList<Insumo> insumos_;
+    
 }

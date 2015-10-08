@@ -1,5 +1,7 @@
 package capanegocio.gestion;
 
+import capanegocio.entidades.Caja;
+import capanegocio.entidades.Venta;
 import capanegocio.entidades.Reporte;
 
 

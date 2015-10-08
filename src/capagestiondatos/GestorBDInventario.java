@@ -7,6 +7,7 @@ import capanegocio.entidades.Producto;
  * @author PIX
  */
 public class GestorBDInventario extends GestorBD{
+    
     public void agregarProducto(Producto nuevoProducto){
         
     }

@@ -1,6 +1,6 @@
 package capagestiondatos;
 
-import capanegocio.gestion.Venta;
+import capanegocio.entidades.Venta;
 
 /**
  *

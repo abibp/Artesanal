@@ -1,5 +1,7 @@
 package capanegocio.gestion;
 
+import capanegocio.entidades.Caja;
+import capanegocio.entidades.Venta;
 import capanegocio.entidades.Reporte;
 
 /**
@@ -8,7 +10,7 @@ import capanegocio.entidades.Reporte;
  */
 public class GestorCaja {
     
-    private Caja cajaHeladeria;
+    private Caja cajaHeladeria_;
     
     public void abrirCaja(float montoInicial){
         

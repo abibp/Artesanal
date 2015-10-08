@@ -6,39 +6,39 @@ package capanegocio.entidades;
  */
 public abstract class Insumo {
     
-    private int    IDInsumo;
-    private String nombre;
-    private String descripcion;
-    private float  costo;
-    private int    cantidad;
+    private int    IDInsumo_;
+    private String nombre_;
+    private String descripcion_;
+    private float  costo_;
+    private int    cantidad_;
 
     public Insumo(String nombre, float costo) {
-        this.nombre = nombre;
-        this.costo = costo;
+        this.nombre_ = nombre;
+        this.costo_ = costo;
     }
     
     public String getNombre() {
-        return nombre;
+        return nombre_;
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.nombre_ = nombre;
     }
 
     public String getDescripcion() {
-        return descripcion;
+        return descripcion_;
     }
 
     public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+        this.descripcion_ = descripcion;
     }
 
     public float getCosto() {
-        return costo;
+        return costo_;
     }
 
     public void setCosto(float costo) {
-        this.costo = costo;
+        this.costo_ = costo;
     }
     
     
