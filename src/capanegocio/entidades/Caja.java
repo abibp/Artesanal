@@ -34,4 +34,7 @@ public class Caja {
         return ventas_;
     }
     
+    public void agregarVenta(Venta unaVenta){
+        ventas_.add(unaVenta);
+    }
 }
