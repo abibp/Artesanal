@@ -39,4 +39,9 @@ public class Reporte {
     public boolean isVentaEnReporte(int IDVentaABuscar){
         return true;
     }
+    
+    public String toString(){
+        final String RETORNO_DE_CARRO = "\n";
+        return this.descripcion + RETORNO_DE_CARRO + this.IDReporte + RETORNO_DE_CARRO + this.ventas.toString().replace(", ", RETORNO_DE_CARRO);
+    }
 }

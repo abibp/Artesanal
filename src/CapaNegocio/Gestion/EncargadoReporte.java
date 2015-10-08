@@ -1,5 +1,7 @@
 package CapaNegocio.Gestion;
 
+import CapaNegocio.Entidades.Reporte;
+
 
 /**
  *
@@ -17,5 +19,8 @@ public class EncargadoReporte {
         return true;
     }
     
-    
+    public Reporte generarReporteDeVentas(){
+        
+        return null;
+    }
 }
