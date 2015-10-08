@@ -6,8 +6,14 @@ package CapaNegocio.Entidades;
  */
 public class ProductoProveedor extends Producto{
 
-    public ProductoProveedor(String nombre, float precio, float costo, int cantidad) {
+    private Proveedor proveedorDelProducto;
+    
+    public ProductoProveedor(String nombre, float precio, float costo, 
+            int cantidad, Proveedor proveedor) {
+        
         super(nombre, precio, costo, cantidad);
+        this.proveedorDelProducto = proveedor;
+        
     }
 
 }

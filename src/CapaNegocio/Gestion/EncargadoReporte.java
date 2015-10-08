@@ -1,6 +1,5 @@
 package CapaNegocio.Gestion;
 
-import CapaNegocio.Gestion.Venta;
 
 /**
  *
@@ -8,7 +7,7 @@ import CapaNegocio.Gestion.Venta;
  */
 public class EncargadoReporte {
     
-    public boolean agregarVentaAlReporte(Venta nuevaVenta){
+    public boolean agregarVentaAlReporte(Venta ventaAAgregar){
        return true;
     }
     
