@@ -5,6 +5,7 @@ package CapaNegocio.Entidades;
  * @author PIX
  */
 public abstract class Insumo {
+    
     private int    IDInsumo;
     private String nombre;
     private String descripcion;
