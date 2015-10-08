@@ -1,5 +1,6 @@
 package CapaNegocio;
 
+import CapaNegocio.Gestion.Venta;
 import java.util.ArrayList;
 
 /**
