@@ -8,11 +8,11 @@ import CapaNegocio.Gestion.Venta;
  */
 public class EncargadoReporte {
     
-    public boolean agregarVentaReporte(Venta nuevaVenta){
+    public boolean agregarVentaAlReporte(Venta nuevaVenta){
        return true;
     }
     
-    public boolean eliminarVentaReporte(Venta ventaAEliminar){
+    public boolean eliminarVentaDelReporte(Venta ventaAEliminar){
         return true;
     }
     
