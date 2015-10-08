@@ -1,13 +1,13 @@
 package CapaNegocio.Gestion;
 
 import CapaNegocio.Entidades.Producto;
-import CapaNegocio.Entidades.Producto;
-import java.util.HashMap;
+import java.util.ArrayList;
 
 /**
  *
  * @author PIX
  */
 public class Inventario {
-    HashMap<Producto, Integer> algoquenose = new HashMap();
+    
+    private ArrayList<Producto> productos;
 }

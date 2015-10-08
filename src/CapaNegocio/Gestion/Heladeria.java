@@ -8,7 +8,7 @@ import CapaNegocio.Entidades.Producto;
  */
 public abstract class Heladeria {
     
-    public Producto servirProducto(String nombreDeProducto){
+    public Producto obtenerProducto(String nombreDeProducto){
         
         switch (nombreDeProducto.toLowerCase()) {
             case "troll":

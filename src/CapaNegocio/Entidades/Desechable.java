@@ -1,7 +1,5 @@
 package CapaNegocio.Entidades;
 
-import CapaNegocio.Entidades.Insumo;
-
 /**
  *
  * @author PIX

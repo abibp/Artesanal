@@ -17,10 +17,10 @@ public class Reporte {
     private final String descripcion;
     private ArrayList<Venta> ventas;
 
-    public Reporte(int IDReporte, String descripcion) {
+    public Reporte(int IDReporte, String descripcion, ArrayList<Venta> ventas) {
         this.IDReporte = IDReporte;
         this.descripcion = descripcion;
-        this.ventas = new ArrayList();
+        this.ventas = ventas;
     }
     
     public int getIDReporte() {

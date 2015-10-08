@@ -1,6 +1,6 @@
 package CapaNegocio;
 
-import CapaNegocio.Gestion.Venta;
+import CapaNegocio.Gestion.Caja;
 
 /**
  *
@@ -8,15 +8,7 @@ import CapaNegocio.Gestion.Venta;
  */
 public class EncargadoReporte {
     
-    public boolean agregarVentaReporte(Venta nuevaVenta){
-       return true;
-    }
-    
-    public boolean eliminarVentaReporte(Venta ventaAEliminar){
-        return true;
-    }
-    
-    public void generarReporteDeVentas(){
+    public void generarReporteDeVentas(Caja caja){
         
     }
     
