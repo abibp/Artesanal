@@ -5,10 +5,12 @@
  */
 package CapaNegocio.Entidades;
 
+import CapaNegocio.Gestion.Venta;
+
 /**
  *
  * @author Astrid Briceño
  */
-public class Reporte {
+public class Reporte extends Venta{
     
 }

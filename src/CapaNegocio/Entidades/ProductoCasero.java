@@ -1,5 +1,6 @@
 package CapaNegocio.Entidades;
 
+
 /**
  *
  * @author PIX
