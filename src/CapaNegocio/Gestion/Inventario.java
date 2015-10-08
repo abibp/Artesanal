@@ -1,5 +1,7 @@
-package CapaNegocio;
+package CapaNegocio.Gestion;
 
+import CapaNegocio.Entidades.Producto;
+import CapaNegocio.Entidades.Producto;
 import java.util.HashMap;
 
 /**

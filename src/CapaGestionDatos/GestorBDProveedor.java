@@ -1,6 +1,6 @@
 package CapaGestionDatos;
 
-import CapaNegocio.Proveedor;
+import CapaNegocio.Entidades.Proveedor;
 
 /**
  *

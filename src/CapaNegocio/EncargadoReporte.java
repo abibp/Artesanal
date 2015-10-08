@@ -1,20 +1,23 @@
 package CapaNegocio;
 
+import CapaNegocio.Gestion.Venta;
+
 /**
  *
  * @author PIX
  */
 public class EncargadoReporte {
     
-    public boolean agregarVentaAReporte(Venta nuevaVenta){
+    public boolean agregarVentaReporte(Venta nuevaVenta){
        return true;
     }
     
-    public boolean eliminarVentaDeReporte(Venta ventaAEliminar){
+    public boolean eliminarVentaReporte(Venta ventaAEliminar){
         return true;
     }
     
     public void generarReporteDeVentas(){
         
     }
+    
 }

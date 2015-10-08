@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package CapaNegocio;
+package CapaNegocio.Entidades;
 
+import CapaNegocio.Gestion.Venta;
 import java.util.ArrayList;
 
 /**
@@ -36,9 +37,5 @@ public class Reporte {
 
     public boolean isVentaEnReporte(int IDVentaABuscar){
         return true;
-    }
-    
-    public void setVentas(ArrayList<Venta> ventas) {
-        this.ventas = ventas;
     }
 }
