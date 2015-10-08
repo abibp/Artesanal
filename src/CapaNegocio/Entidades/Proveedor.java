@@ -1,5 +1,7 @@
 package CapaNegocio.Entidades;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author PIX
@@ -9,6 +11,7 @@ public class Proveedor {
    private String nombre;
    private String telefono;
    private String direccion;
+   private ArrayList<ProductoProveedor> productos;
 
     public String getNombre() {
         return nombre;

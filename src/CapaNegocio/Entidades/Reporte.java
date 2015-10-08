@@ -40,8 +40,10 @@ public class Reporte {
         return true;
     }
     
+    @Override
     public String toString(){
         final String RETORNO_DE_CARRO = "\n";
-        return this.descripcion + RETORNO_DE_CARRO + this.IDReporte + RETORNO_DE_CARRO + this.ventas.toString().replace(", ", RETORNO_DE_CARRO);
+        return this.descripcion + RETORNO_DE_CARRO + this.IDReporte + 
+                RETORNO_DE_CARRO + this.ventas.toString().replace(", ", RETORNO_DE_CARRO);
     }
 }
