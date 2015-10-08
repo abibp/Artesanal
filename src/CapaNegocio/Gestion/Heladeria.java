@@ -1,4 +1,6 @@
-package CapaNegocio;
+package CapaNegocio.Gestion;
+
+import CapaNegocio.Entidades.Producto;
 
 /**
  *
