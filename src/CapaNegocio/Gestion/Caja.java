@@ -31,6 +31,6 @@ public class Caja {
 
     public ArrayList<Venta> getVentas() {
         return ventas;
-    }    
+    }
     
 }

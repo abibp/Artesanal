@@ -6,7 +6,7 @@ import CapaNegocio.Entidades.Reporte;
  *
  * @author PIX
  */
-public class EncargadoCaja {
+public class GestorCaja {
     
     private Caja cajaHeladeria;
     
@@ -25,6 +25,9 @@ public class EncargadoCaja {
     public boolean cancelarVenta(int IDVenta){
         return true;
     }
+    
+    public Venta obtenerPrimeraVenta(){return null;}
+    public Venta obtenerUltimaVenta(){return null;}
     
     private Reporte realizarCorteCaja(){
         return null;

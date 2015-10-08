@@ -7,7 +7,7 @@ import CapaNegocio.Entidades.Reporte;
  *
  * @author PIX
  */
-public class EncargadoReporte {
+public class GestorReporte {
     
     public void generarReporteDeVentas(Caja caja){
 }
