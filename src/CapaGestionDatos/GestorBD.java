@@ -8,7 +8,6 @@ import java.sql.Connection;
  */
 public class GestorBD {
 
-    private GestorBD instancia;
     private Connection conexion;
 
     public GestorBD() {}
@@ -17,11 +16,11 @@ public class GestorBD {
         return null;
     }
     
-    private void inicializarConexion(){
+    private void iniciarConexion(){
         
     }
     
-    public void cerrarConexion(){
+    public void finalizarConexion(){
         
     }
 }

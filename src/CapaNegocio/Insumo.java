@@ -9,6 +9,7 @@ public abstract class Insumo {
     private String nombre;
     private String descripcion;
     private float  costo;
+    private int    cantidad;
 
     public Insumo(String nombre, float costo) {
         this.nombre = nombre;
