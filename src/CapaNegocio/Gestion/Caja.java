@@ -1,4 +1,4 @@
-package CapaNegocio.Gestion;
+package CapaNegocio;
 
 import java.util.ArrayList;
 
