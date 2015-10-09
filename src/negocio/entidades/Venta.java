@@ -8,19 +8,19 @@ import java.util.Date;
  */
 public class Venta {
 
-    private final int ID_VENTA_;
+    private final int       ID_VENTA_;
+    private final float     MONTO_;
+    private final Date      FECHA_;
     
-    private float     monto_;
-    private int       cantidadDeProductos_;
-    private Producto  productoVendido_;
-    private Date      fecha_;
+    private int             cantidadDeProductos_;
+    private Producto        productoVendido_;
 
     public Venta(int IDVenta, float monto, int cantidadDeProductos, Producto productoVendido, Date fecha) {
         this.ID_VENTA_            = IDVenta;
-        this.monto_               = monto;
+        this.MONTO_               = monto;
+        this.FECHA_               = fecha;
         this.cantidadDeProductos_ = cantidadDeProductos;
         this.productoVendido_     = productoVendido;
-        this.fecha_               = fecha;
     }
 
     public Producto obtenerProductoVendido() {
@@ -44,11 +44,11 @@ public class Venta {
     }
 
     public Date obtenerFecha() {
-        return fecha_;
+        return FECHA_;
     }
 
     public float obtenerMonto() {
-        return monto_;
+        return MONTO_;
     }
 
 }
