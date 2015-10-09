@@ -18,13 +18,9 @@ public abstract class Producto{
             int cantidad) {
         this.ID_PRODUCTO_   = idProducto;
         this.nombre_        = nombre;
-        this.precioVenta_        = precio;
-        this.precioCompra_         = costo;
+        this.precioVenta_   = precio;
+        this.precioCompra_  = costo;
         this.cantidad_      = cantidad;
-    }
-    
-    public int obtenerIDProducto() {
-        return ID_PRODUCTO_;
     }
 
     public float obtenerCosto() {
@@ -47,6 +43,10 @@ public abstract class Producto{
         return nombre_;
     }
 
+    public void establecerNombre(String nombre) {
+        this.nombre_ = nombre;
+    }
+        
     public String obtenerDescripcion() {
         return descripcion_;
     }
@@ -55,16 +55,16 @@ public abstract class Producto{
         this.descripcion_ = descripcion;
     }
 
-    public void establecerNombre(String nombre) {
-        this.nombre_ = nombre;
-    }
-
     public float obtenerPrecio() {
         return precioVenta_;
     }
 
     public void establecerPrecio(float precio) {
         this.precioVenta_ = precio;
+    }
+        
+    public int obtenerIDProducto() {
+        return ID_PRODUCTO_;
     }
     
 }
