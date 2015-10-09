@@ -10,16 +10,16 @@ public abstract class Producto{
     
     private String      nombre_;
     private String      descripcion_;
-    private float       precio_;
-    private float       costo_;
+    private float       precioVenta_;
+    private float       precioCompra_;
     private int         cantidad_;
 
     public Producto(int idProducto,String nombre, float precio, float costo, 
             int cantidad) {
         this.ID_PRODUCTO_   = idProducto;
         this.nombre_        = nombre;
-        this.precio_        = precio;
-        this.costo_         = costo;
+        this.precioVenta_        = precio;
+        this.precioCompra_         = costo;
         this.cantidad_      = cantidad;
     }
     
@@ -28,11 +28,11 @@ public abstract class Producto{
     }
 
     public float obtenerCosto() {
-        return costo_;
+        return precioCompra_;
     }
 
     public void establecerCosto(float costo) {
-        this.costo_ = costo;
+        this.precioCompra_ = costo;
     }
 
     public int obtenerCantidad() {
@@ -60,11 +60,11 @@ public abstract class Producto{
     }
 
     public float obtenerPrecio() {
-        return precio_;
+        return precioVenta_;
     }
 
     public void establecerPrecio(float precio) {
-        this.precio_ = precio;
+        this.precioVenta_ = precio;
     }
     
 }
