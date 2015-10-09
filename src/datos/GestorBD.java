@@ -29,7 +29,7 @@ public class GestorBD {
         return null;
     }
 
-    public ResultSet ejecutarInstruccion(String instruccionAEjecutar) {
+    public ResultSet ejecutarInstruccion(String instruccionAEjecutar) {//Revisar nombre del metodo
         return null;
     }
 
