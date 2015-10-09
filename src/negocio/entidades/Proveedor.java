@@ -13,7 +13,7 @@ public class Proveedor {
    private String                       direccion_;
    private ArrayList<ProductoProveedor> nProductos_;
 
-    public String getNombre() {
+    public String obtenerNombre() {
         return nombre_;
     }
 
@@ -21,7 +21,7 @@ public class Proveedor {
         this.nombre_ = nombre;
     }
 
-    public String getTelefono() {
+    public String obtenerTelefono() {
         return telefono_;
     }
 
@@ -29,7 +29,7 @@ public class Proveedor {
         this.telefono_ = telefono;
     }
 
-    public String getDireccion() {
+    public String obtenerDireccion() {
         return direccion_;
     }
 

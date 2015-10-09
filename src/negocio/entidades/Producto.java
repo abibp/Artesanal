@@ -23,11 +23,11 @@ public abstract class Producto{
         this.cantidad_      = cantidad;
     }
     
-    public int getIDProducto() {
+    public int obtenerIDProducto() {
         return ID_PRODUCTO_;
     }
 
-    public float getCosto() {
+    public float obtenerCosto() {
         return costo_;
     }
 
@@ -35,7 +35,7 @@ public abstract class Producto{
         this.costo_ = costo;
     }
 
-    public int getCantidad() {
+    public int obtenerCantidad() {
         return cantidad_;   
     }
 
@@ -43,11 +43,11 @@ public abstract class Producto{
         this.cantidad_ = cantidad;
     }
     
-    public String getNombre() {
+    public String obtenerNombre() {
         return nombre_;
     }
 
-    public String getDescripcion() {
+    public String obtenerDescripcion() {
         return descripcion_;
     }
 
@@ -59,7 +59,7 @@ public abstract class Producto{
         this.nombre_ = nombre;
     }
 
-    public float getPrecio() {
+    public float obtenerPrecio() {
         return precio_;
     }
 

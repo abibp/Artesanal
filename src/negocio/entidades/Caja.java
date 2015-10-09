@@ -18,7 +18,7 @@ public class Caja {
         this.nVentas_       = new ArrayList();
     }
 
-    public float getDineroActual() {
+    public float obtenerDineroActual() {
         return dineroActual_;
     }
 
@@ -26,11 +26,11 @@ public class Caja {
         this.dineroActual_ = dineroActual;
     }
 
-    public float getMontoInicial() {
+    public float obtenerMontoInicial() {
         return MONTO_INICIAL_;
     }
 
-    public ArrayList<Venta> getVentas() {
+    public ArrayList<Venta> obtenerVentas() {
         return nVentas_;
     }
     

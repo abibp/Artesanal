@@ -17,7 +17,7 @@ public abstract class Insumo {
         this.costo_ = costo;
     }
     
-    public String getNombre() {
+    public String obtenerNombre() {
         return nombre_;
     }
 
@@ -25,7 +25,7 @@ public abstract class Insumo {
         this.nombre_ = nombre;
     }
 
-    public String getDescripcion() {
+    public String obtenerDescripcion() {
         return descripcion_;
     }
 
@@ -33,7 +33,7 @@ public abstract class Insumo {
         this.descripcion_ = descripcion;
     }
 
-    public float getCosto() {
+    public float obtenerCosto() {
         return costo_;
     }
 

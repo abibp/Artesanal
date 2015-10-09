@@ -23,7 +23,7 @@ public class Venta {
         this.fecha_               = fecha;
     }
 
-    public Producto getProductoVendido() {
+    public Producto obtenerProductoVendido() {
         return productoVendido_;
     }
 
@@ -31,7 +31,7 @@ public class Venta {
         this.productoVendido_ = productoVendido;
     }
 
-    public int getCantidadDeProductos() {
+    public int obtenerCantidadDeProductos() {
         return cantidadDeProductos_;
     }
 
@@ -39,15 +39,15 @@ public class Venta {
         this.cantidadDeProductos_ = cantidadDeProductos;
     }
 
-    public int getIDVenta() {
+    public int obtenerIDVenta() {
         return ID_VENTA_;
     }
 
-    public Date getFecha() {
+    public Date obtenerFecha() {
         return fecha_;
     }
 
-    public float getMonto() {
+    public float obtenerMonto() {
         return monto_;
     }
 
