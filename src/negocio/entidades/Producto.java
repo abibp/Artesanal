@@ -12,15 +12,12 @@ public abstract class Producto{
     private String      descripcion_;
     private float       precioVenta_;
     private float       precioCompra_;
-    private int         cantidad_;
 
-    public Producto(int idProducto, String nombre, float precio, float costo, 
-            int cantidad) {
+    public Producto(int idProducto, String nombre, float precio, float costo) {
         this.ID_PRODUCTO_   = idProducto;
         this.NOMBRE_        = nombre;
         this.precioVenta_   = precio;
         this.precioCompra_  = costo;
-        this.cantidad_      = cantidad;
     }
 
     public float obtenerCosto() {
@@ -31,14 +28,6 @@ public abstract class Producto{
         this.precioCompra_ = costo;
     }
 
-    public int obtenerCantidad() {
-        return cantidad_;   
-    }
-
-    public void establecerCantidad(int cantidad) {
-        this.cantidad_ = cantidad;
-    }
-        
     public String obtenerDescripcion() {
         return descripcion_;
     }
