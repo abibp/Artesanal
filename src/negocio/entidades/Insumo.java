@@ -10,13 +10,13 @@ public abstract class Insumo {
     private final String NOMBRE_;
     
     private String descripcion_;
-    private float  costo_;
+    private float  precioCompra_;
     private int    cantidad_;
 
     public Insumo(int idInsumo, String nombre, float costo) {
         this.ID_INSUMO_ = idInsumo;
         this.NOMBRE_ = nombre;
-        this.costo_ = costo;
+        this.precioCompra_ = costo;
     }
 
     public String obtenerDescripcion() {
@@ -28,11 +28,11 @@ public abstract class Insumo {
     }
 
     public float obtenerCosto_() {
-        return costo_;
+        return precioCompra_;
     }
 
     public void establecerCosto(float costo) {
-        this.costo_ = costo;
+        this.precioCompra_ = costo;
     }
 
     public int obtenerIDInsumo() {
