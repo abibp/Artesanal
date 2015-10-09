@@ -6,8 +6,8 @@ package negocio.entidades;
  */
 public class MateriaPrima extends Insumo{
 
-    public MateriaPrima(String nombre, float costo) {  
-        super(nombre, costo);
+    public MateriaPrima(int IDInsumo, String nombre, float costo) {  
+        super(IDInsumo, nombre, costo);
     }
     
 }
