@@ -6,8 +6,8 @@ package negocio.entidades;
  */
 public class Desechable extends Insumo{
 
-    public Desechable(int IDInsumo, String nombre, float costo) {
-        super(IDInsumo, nombre, costo);
+    public Desechable(int idInsumo, String nombre, float costo) {
+        super(idInsumo, nombre, costo);
     }
     
 }

@@ -13,8 +13,8 @@ public abstract class Insumo {
     private float  costo_;
     private int    cantidad_;
 
-    public Insumo(int IDInsumo, String nombre, float costo) {
-        this.ID_INSUMO_ = IDInsumo;
+    public Insumo(int idInsumo, String nombre, float costo) {
+        this.ID_INSUMO_ = idInsumo;
         this.nombre_ = nombre;
         this.costo_ = costo;
     }
