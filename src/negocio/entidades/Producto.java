@@ -31,7 +31,7 @@ public abstract class Producto{
         return costo_;
     }
 
-    public void setCosto(float costo) {
+    public void establecerCosto(float costo) {
         this.costo_ = costo;
     }
 
@@ -39,7 +39,7 @@ public abstract class Producto{
         return cantidad_;   
     }
 
-    public void setCantidad(int cantidad) {
+    public void establecerCantidad(int cantidad) {
         this.cantidad_ = cantidad;
     }
     
@@ -51,11 +51,11 @@ public abstract class Producto{
         return descripcion_;
     }
 
-    public void setDescripcion(String descripcion) {
+    public void establecerDescripcion(String descripcion) {
         this.descripcion_ = descripcion;
     }
 
-    public void setNombre(String nombre) {
+    public void establecerNombre(String nombre) {
         this.nombre_ = nombre;
     }
 
@@ -63,7 +63,7 @@ public abstract class Producto{
         return precio_;
     }
 
-    public void setPrecio(float precio) {
+    public void establecerPrecio(float precio) {
         this.precio_ = precio;
     }
     

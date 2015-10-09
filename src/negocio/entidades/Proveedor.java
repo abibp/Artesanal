@@ -17,7 +17,7 @@ public class Proveedor {
         return nombre_;
     }
 
-    public void setNombre(String nombre) {
+    public void establecerNombre(String nombre) {
         this.nombre_ = nombre;
     }
 
@@ -25,7 +25,7 @@ public class Proveedor {
         return telefono_;
     }
 
-    public void setTelefono(String telefono) {
+    public void establecerTelefono(String telefono) {
         this.telefono_ = telefono;
     }
 
@@ -33,7 +33,7 @@ public class Proveedor {
         return direccion_;
     }
 
-    public void setDireccion(String direccion) {
+    public void establecerDireccion(String direccion) {
         this.direccion_ = direccion;
     }
    

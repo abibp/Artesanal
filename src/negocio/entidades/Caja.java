@@ -22,7 +22,7 @@ public class Caja {
         return dineroActual_;
     }
 
-    public void setDineroActual(float dineroActual) {
+    public void establecerDineroActual(float dineroActual) {
         this.dineroActual_ = dineroActual;
     }
 

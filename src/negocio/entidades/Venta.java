@@ -27,7 +27,7 @@ public class Venta {
         return productoVendido_;
     }
 
-    public void setProductoVendido(Producto productoVendido) {
+    public void establecerProductoVendido(Producto productoVendido) {
         this.productoVendido_ = productoVendido;
     }
 
@@ -35,7 +35,7 @@ public class Venta {
         return cantidadDeProductos_;
     }
 
-    public void setCantidadDeProductos(int cantidadDeProductos) {
+    public void establecerCantidadDeProductos(int cantidadDeProductos) {
         this.cantidadDeProductos_ = cantidadDeProductos;
     }
 
