@@ -6,18 +6,18 @@ package negocio.entidades;
  */
 public abstract class Producto{
     
-    private final int   ID_PRODUCTO_;
+    private final int   ID_PRODUCTO_;    
+    private String      NOMBRE_;
     
-    private String      nombre_;
     private String      descripcion_;
     private float       precioVenta_;
     private float       precioCompra_;
     private int         cantidad_;
 
-    public Producto(int idProducto,String nombre, float precio, float costo, 
+    public Producto(int idProducto, String nombre, float precio, float costo, 
             int cantidad) {
         this.ID_PRODUCTO_   = idProducto;
-        this.nombre_        = nombre;
+        this.NOMBRE_        = nombre;
         this.precioVenta_   = precio;
         this.precioCompra_  = costo;
         this.cantidad_      = cantidad;
@@ -37,14 +37,6 @@ public abstract class Producto{
 
     public void establecerCantidad(int cantidad) {
         this.cantidad_ = cantidad;
-    }
-    
-    public String obtenerNombre() {
-        return nombre_;
-    }
-
-    public void establecerNombre(String nombre) {
-        this.nombre_ = nombre;
     }
         
     public String obtenerDescripcion() {
@@ -66,5 +58,8 @@ public abstract class Producto{
     public int obtenerIDProducto() {
         return ID_PRODUCTO_;
     }
-    
+
+    public String obtenerNombre() {
+        return NOMBRE_;
+    }
 }
