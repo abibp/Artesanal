@@ -13,27 +13,27 @@ public class Proveedor {
    private String                       direccion_;
    private ArrayList<ProductoProveedor> nProductos_;
 
-    public String getNombre() {
+    public String obtenerNombre() {
         return nombre_;
     }
 
-    public void setNombre(String nombre) {
+    public void establecerNombre(String nombre) {
         this.nombre_ = nombre;
     }
 
-    public String getTelefono() {
+    public String obtenerTelefono() {
         return telefono_;
     }
 
-    public void setTelefono(String telefono) {
+    public void establecerTelefono(String telefono) {
         this.telefono_ = telefono;
     }
 
-    public String getDireccion() {
+    public String obtenerDireccion() {
         return direccion_;
     }
 
-    public void setDireccion(String direccion) {
+    public void establecerDireccion(String direccion) {
         this.direccion_ = direccion;
     }
    

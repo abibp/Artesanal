@@ -9,7 +9,6 @@ import negocio.entidades.Proveedor;
 public class GestorBDProveedor extends GestorBD {
 
     public void agregarProveedor(Proveedor nuevoProveedor) {
-
     }
 
     public void eliminarProveedor(int IDProveedor) {

@@ -24,15 +24,15 @@ public class Reporte {
         this.nVentas_      = ventas;
     }
     
-    public int getIDReporte() {
+    public int obtenerIDReporte() {
         return ID_REPORTE_;
     }
 
-    public String getDescripcion() {
+    public String obtenerDescripcion() {
         return DESCRIPCION_;
     }
 
-    public ArrayList<Venta> getVentas() {
+    public ArrayList<Venta> obtenerVentas() {
         return nVentas_;
     }
 

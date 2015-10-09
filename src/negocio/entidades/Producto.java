@@ -23,47 +23,47 @@ public abstract class Producto{
         this.cantidad_      = cantidad;
     }
     
-    public int getIDProducto() {
+    public int obtenerIDProducto() {
         return ID_PRODUCTO_;
     }
 
-    public float getCosto() {
+    public float obtenerCosto() {
         return costo_;
     }
 
-    public void setCosto(float costo) {
+    public void establecerCosto(float costo) {
         this.costo_ = costo;
     }
 
-    public int getCantidad() {
+    public int obtenerCantidad() {
         return cantidad_;   
     }
 
-    public void setCantidad(int cantidad) {
+    public void establecerCantidad(int cantidad) {
         this.cantidad_ = cantidad;
     }
     
-    public String getNombre() {
+    public String obtenerNombre() {
         return nombre_;
     }
 
-    public String getDescripcion() {
+    public String obtenerDescripcion() {
         return descripcion_;
     }
 
-    public void setDescripcion(String descripcion) {
+    public void establecerDescripcion(String descripcion) {
         this.descripcion_ = descripcion;
     }
 
-    public void setNombre(String nombre) {
+    public void establecerNombre(String nombre) {
         this.nombre_ = nombre;
     }
 
-    public float getPrecio() {
+    public float obtenerPrecio() {
         return precio_;
     }
 
-    public void setPrecio(float precio) {
+    public void establecerPrecio(float precio) {
         this.precio_ = precio;
     }
     
