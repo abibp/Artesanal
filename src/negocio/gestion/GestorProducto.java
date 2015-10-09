@@ -6,7 +6,7 @@ import negocio.entidades.Producto;
  *
  * @author PIX
  */
-public class GestorHeladeria {
+public class GestorProducto {
     
     public Producto crearProducto(String nombreDeProducto){
         
@@ -25,5 +25,19 @@ public class GestorHeladeria {
         
         return null;
         
+    }
+    
+   public void agregarProducto(Producto nuevoProducto){
+        
+    }
+    public void eliminarProducto(int IDProductoAEliminar){
+        
+    }
+    public void editarInformacionProducto(int IDProducto, Producto productoActualizado){
+        
+    }
+    
+    public Producto obtenerProducto(int IDProductoAObtener){
+        return null;
     }
 }

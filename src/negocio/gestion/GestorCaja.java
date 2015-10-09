@@ -12,8 +12,8 @@ public class GestorCaja {
     
     private Caja cajaHeladeria_;
     
-    public void abrirCaja(float montoInicial){
-        
+    public Caja abrirCaja(float montoInicial){
+        return null;
     }
     
     public void cerrarCaja(){
@@ -24,8 +24,7 @@ public class GestorCaja {
         return true;
     }
     
-    public boolean cancelarVenta(int IDVenta){
-        return true;
+    public void cancelarVenta(int IDVenta){
     }
     
     public Venta obtenerPrimeraVenta(){return null;}
@@ -33,5 +32,9 @@ public class GestorCaja {
     
     private Reporte realizarCorteCaja(){
         return null;
+    }
+    
+    public float calcularPromedioDeVentas(){
+        return 0.0f;
     }
 }
