@@ -2,7 +2,7 @@ package negocio.gestion;
 
 import negocio.entidades.Caja;
 import negocio.entidades.Venta;
-import negocio.entidades.Reporte;
+import negocio.entidades.ReporteDeVenta;
 
 
 /**
@@ -21,7 +21,7 @@ public class GestorReporte {
         return true;
     }
     
-    public Reporte generarReporteDeVentas(){
+    public ReporteDeVenta generarReporteDeVentas(){
         
         return null;
     }

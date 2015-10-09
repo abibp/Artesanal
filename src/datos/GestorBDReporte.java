@@ -1,6 +1,6 @@
 package datos;
 
-import negocio.entidades.Reporte;
+import negocio.entidades.ReporteDeVenta;
 
 /**
  *
@@ -8,16 +8,16 @@ import negocio.entidades.Reporte;
  */
 public class GestorBDReporte extends GestorBD {
 
-    public void agregarReporte(Reporte nuevoReporte) {
+    public void agregarReporte(ReporteDeVenta nuevoReporte) {
     }
 
     public void eliminarReporte(int IDReporteAEliminar) {
     }
 
-    public void editarInformacionReporte(int IDReporteAActualizar, Reporte reporteActualizado) {
+    public void editarInformacionReporte(int IDReporteAActualizar, ReporteDeVenta reporteActualizado) {
     }
 
-    public Reporte obtenerReporte(int IDReporteAObtener) {
+    public ReporteDeVenta obtenerReporte(int IDReporteAObtener) {
         return null;
     }
 }

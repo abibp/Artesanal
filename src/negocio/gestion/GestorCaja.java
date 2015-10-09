@@ -2,7 +2,7 @@ package negocio.gestion;
 
 import negocio.entidades.Caja;
 import negocio.entidades.Venta;
-import negocio.entidades.Reporte;
+import negocio.entidades.ReporteDeVenta;
 
 /**
  *
@@ -31,7 +31,7 @@ public class GestorCaja {
     public Venta obtenerPrimeraVenta(){return null;}
     public Venta obtenerUltimaVenta(){return null;}
     
-    private Reporte realizarCorteCaja(){
+    private ReporteDeVenta realizarCorteCaja(){
         return null;
     }
 }
