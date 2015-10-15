@@ -40,6 +40,15 @@ public class ReporteDeVenta {
         return true;
     }
     
+    public void agregarVenta(Venta unaVenta) {
+        this.nVentas_.add(unaVenta);
+    }
+    
+    public void eliminarVenta(Venta unaVenta) {
+        Venta ventaAEliminar = unaVenta;
+        this.nVentas_.remove(ventaAEliminar);
+    }
+    
     @Override
     public String toString(){
         final String RETORNO_DE_CARRO = "\n";

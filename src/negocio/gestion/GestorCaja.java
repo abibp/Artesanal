@@ -13,6 +13,7 @@ import negocio.entidades.ReporteDeVenta;
 public class GestorCaja {
     
     private Caja cajaHeladeria_;
+    private GestorReporte reporte_;
     
     public void abrirCaja(float montoInicial){
         

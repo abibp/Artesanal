@@ -11,13 +11,19 @@ import negocio.entidades.ReporteDeVenta;
  */
 public class GestorReporte {
     
+    private ReporteDeVenta reporteDeVentas;
+    
     public void generarReporteDeVentas(Caja caja){
-}
-    public boolean agregarVentaAlReporte(Venta ventaAAgregar){
+    
+    }
+    
+    public boolean agregarVentaAlReporte(Venta ventaPorAgregar){
+       reporteDeVentas.agregarVenta(ventaPorAgregar);
        return true;
     }
     
     public boolean eliminarVentaDelReporte(Venta ventaAEliminar){
+        reporteDeVentas.eliminarVenta(ventaAEliminar);
         return true;
     }
     
