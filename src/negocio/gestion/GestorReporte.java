@@ -29,6 +29,6 @@ public class GestorReporte {
     
     public ReporteDeVenta generarReporteDeVentas(){
         
-        return null;
+        return this.reporteDeVentas;
     }
 }

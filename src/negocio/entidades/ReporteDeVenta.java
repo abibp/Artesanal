@@ -53,6 +53,7 @@ public class ReporteDeVenta {
     public String toString(){
         final String RETORNO_DE_CARRO = "\n";
         return this.DESCRIPCION_ + RETORNO_DE_CARRO + this.ID_REPORTE_ + 
-                RETORNO_DE_CARRO + this.nVentas_.toString().replace(", ", RETORNO_DE_CARRO).replace("[", "").replace("]", "");
+                RETORNO_DE_CARRO + this.nVentas_.toString().replace(", ", 
+                        RETORNO_DE_CARRO).replace("[", "").replace("]", "");
     }
 }
