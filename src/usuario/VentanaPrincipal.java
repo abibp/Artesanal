@@ -13,4 +13,7 @@ public class VentanaPrincipal {
     private JSpinner spinner1;
     private JButton buscarButton;
     private JButton salirButton;
+    private JTabbedPane tabbedPane2;
+    private JTabbedPane tabbedPane3;
+    private JTable table2;
 }
