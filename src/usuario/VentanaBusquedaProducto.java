@@ -7,8 +7,8 @@ import javax.swing.*;
  */
 public class VentanaBusquedaProducto {
     private JTextField textField1;
-    private JTextField textField2;
-    private JTextField textField3;
     private JTable table1;
-    private JButton ventaButton;
+    private JButton aceptarButton;
+    private JSpinner spinner1;
+    private JButton cancelarButton;
 }
