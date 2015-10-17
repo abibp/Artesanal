@@ -22,7 +22,7 @@
         </constraints>
         <properties>
           <hideActionText value="true"/>
-          <icon value="cash-stack-24.png"/>
+          <icon value="imagenes/cash-stack-24.png"/>
           <text value="Registrar "/>
         </properties>
       </component>

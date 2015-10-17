@@ -41,7 +41,7 @@
           <component id="b5996" class="javax.swing.JButton" binding="hacerCorteButton" default-binding="true">
             <constraints/>
             <properties>
-              <icon value="cash-stack-24.png"/>
+              <icon value="imagenes/cash-stack-24.png"/>
               <text value="Hacer corte"/>
             </properties>
           </component>
