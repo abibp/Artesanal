@@ -7,5 +7,5 @@ import javax.swing.*;
  */
 public class VentanaCaja {
     private JTextField textField1;
-    private JButton button1;
+    private JButton registrarButton;
 }
