@@ -15,8 +15,8 @@ public class GestorCaja {
     private Caja cajaHeladeria_;
     private GestorReporte reporte_;
     
-    public void abrirCaja(float montoInicial){
-        
+    public Caja abrirCaja(float montoInicial){
+        return null;
     }
     
     public void cerrarCaja(){
@@ -48,5 +48,9 @@ public class GestorCaja {
     
     private ReporteDeVenta realizarCorteCaja(){
         return null;
+    }
+    
+    public float calcularPromedioDeVentas(){
+        return 0.0f;
     }
 }
