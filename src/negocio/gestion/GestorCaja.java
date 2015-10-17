@@ -1,8 +1,10 @@
 package negocio.gestion;
 
+import Excepciones.ExcepcionVentaNoEncontrada;
+import datos.GestorBDVenta;
 import negocio.entidades.Caja;
 import negocio.entidades.Venta;
-import negocio.entidades.Reporte;
+import negocio.entidades.ReporteDeVenta;
 
 /**
  *
@@ -11,6 +13,7 @@ import negocio.entidades.Reporte;
 public class GestorCaja {
     
     private Caja cajaHeladeria_;
+    private GestorReporte reporte_;
     
     public Caja abrirCaja(float montoInicial){
         return null;
@@ -20,17 +23,29 @@ public class GestorCaja {
         
     }
     
-    public boolean agregarVenta(Venta nuevaVenta){
-        return true;
+    public void agregarVenta(Venta nuevaVenta){
+        
+        GestorBDVenta.agregarVenta(nuevaVenta);
     }
     
-    public void cancelarVenta(int IDVenta){
+    public void cancelarVenta(int IDVenta) throws ExcepcionVentaNoEncontrada{
+        boolean esEliminada = GestorBDVenta.eliminarVenta(IDVenta);
+        
+        if(!(esEliminada)){
+            throw new ExcepcionVentaNoEncontrada();
+        }
     }
     
-    public Venta obtenerPrimeraVenta(){return null;}
-    public Venta obtenerUltimaVenta(){return null;}
+    public Venta obtenerPrimeraVenta(){
+        return GestorBDVenta.obtenerVenta(1);
+    }
     
-    private Reporte realizarCorteCaja(){
+    public Venta obtenerUltimaVenta(){
+        int numeroUltimaVenta = GestorBDVenta.obtenerNumeroDeVentas();
+        return GestorBDVenta.obtenerVenta(numeroUltimaVenta);
+    }
+    
+    private ReporteDeVenta realizarCorteCaja(){
         return null;
     }
     

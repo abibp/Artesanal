@@ -1,7 +1,8 @@
 package negocio.gestion;
 
 import negocio.entidades.Caja;
-import negocio.entidades.Reporte;
+import negocio.entidades.Venta;
+import negocio.entidades.ReporteDeVenta;
 
 /**
  *
@@ -9,11 +10,27 @@ import negocio.entidades.Reporte;
  */
 public class GestorReporte {
 
-    public Reporte generarReporteDeVentas(Caja caja) {
+    private ReporteDeVenta reporteDeVentas;
+
+    public ReporteDeVenta generarReporteDeVentas(Caja caja) {
         return null;
     }
 
-    public Reporte generarReporteDeInventario(Inventario inventario){
+    public ReporteDeVenta generarReporteDeInventario(Inventario inventario) {
         return null;
+    }
+
+    public boolean agregarVentaAlReporte(Venta ventaPorAgregar) {
+        reporteDeVentas.agregarVenta(ventaPorAgregar);
+        return true;
+    }
+
+    public boolean eliminarVentaDelReporte(Venta ventaAEliminar) {
+        reporteDeVentas.eliminarVenta(ventaAEliminar);
+        return true;
+    }
+
+    public ReporteDeVenta generarReporteDeVentas() {
+        return this.reporteDeVentas;
     }
 }

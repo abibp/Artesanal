@@ -8,16 +8,24 @@ import negocio.entidades.Venta;
  */
 public class GestorBDVenta extends GestorBD{
     
-    public void agregarVenta(Venta nuevaVenta){
+    private GestorBDVenta() {
+    }   
+    
+    public static void agregarVenta(Venta nuevaVenta){
     }
     
-    public void eliminarVenta(int IDVenta){
+    public static boolean eliminarVenta(int IDVenta){
+        return false;
     }
     
-    public void editarInformacionProducto(int IDVenta, Venta ventaActualizada){    
+    public static void editarInformacionProducto(int IDVenta, Venta ventaActualizada){    
     }
     
-    public Venta obtenerVenta(int IDVentaAObtener){
+    public static Venta obtenerVenta(int IDVentaAObtener){
         return null;
+    }
+    
+    public static int obtenerNumeroDeVentas(){
+        return 0;
     }
 }

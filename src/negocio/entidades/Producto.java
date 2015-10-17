@@ -6,45 +6,26 @@ package negocio.entidades;
  */
 public abstract class Producto{
     
-    private final int   ID_PRODUCTO_;
+    private final int   ID_PRODUCTO_;    
+    private String      NOMBRE_;
     
-    private String      nombre_;
     private String      descripcion_;
-    private float       precio_;
-    private float       costo_;
-    private int         cantidad_;
+    private float       precioVenta_;
+    private float       precioCompra_;
 
-    public Producto(int idProducto,String nombre, float precio, float costo, 
-            int cantidad) {
+    public Producto(int idProducto, String nombre, float precio, float costo) {
         this.ID_PRODUCTO_   = idProducto;
-        this.nombre_        = nombre;
-        this.precio_        = precio;
-        this.costo_         = costo;
-        this.cantidad_      = cantidad;
-    }
-    
-    public int obtenerIDProducto() {
-        return ID_PRODUCTO_;
+        this.NOMBRE_        = nombre;
+        this.precioVenta_   = precio;
+        this.precioCompra_  = costo;
     }
 
     public float obtenerCosto() {
-        return costo_;
+        return precioCompra_;
     }
 
     public void establecerCosto(float costo) {
-        this.costo_ = costo;
-    }
-
-    public int obtenerCantidad() {
-        return cantidad_;   
-    }
-
-    public void establecerCantidad(int cantidad) {
-        this.cantidad_ = cantidad;
-    }
-    
-    public String obtenerNombre() {
-        return nombre_;
+        this.precioCompra_ = costo;
     }
 
     public String obtenerDescripcion() {
@@ -55,16 +36,19 @@ public abstract class Producto{
         this.descripcion_ = descripcion;
     }
 
-    public void establecerNombre(String nombre) {
-        this.nombre_ = nombre;
-    }
-
     public float obtenerPrecio() {
-        return precio_;
+        return precioVenta_;
     }
 
     public void establecerPrecio(float precio) {
-        this.precio_ = precio;
+        this.precioVenta_ = precio;
     }
-    
+        
+    public int obtenerIDProducto() {
+        return ID_PRODUCTO_;
+    }
+
+    public String obtenerNombre() {
+        return NOMBRE_;
+    }
 }

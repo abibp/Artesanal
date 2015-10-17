@@ -6,25 +6,16 @@ package negocio.entidades;
  */
 public abstract class Insumo {
     
-    private final int ID_INSUMO_;
+    private final int ID_INSUMO_;   
+    private final String NOMBRE_;
     
-    private String nombre_;
     private String descripcion_;
-    private float  costo_;
-    private int    cantidad_;
+    private float  precioCompra_;
 
     public Insumo(int idInsumo, String nombre, float costo) {
         this.ID_INSUMO_ = idInsumo;
-        this.nombre_ = nombre;
-        this.costo_ = costo;
-    }
-    
-    public String obtenerNombre() {
-        return nombre_;
-    }
-
-    public void establecerNombre(String nombre) {
-        this.nombre_ = nombre;
+        this.NOMBRE_ = nombre;
+        this.precioCompra_ = costo;
     }
 
     public String obtenerDescripcion() {
@@ -35,12 +26,20 @@ public abstract class Insumo {
         this.descripcion_ = descripcion;
     }
 
-    public float obtenerCosto() {
-        return costo_;
+    public float obtenerPrecioCompra() {
+        return precioCompra_;
     }
 
-    public void establecerCosto(float costo) {
-        this.costo_ = costo;
+    public void establecerPrecioCompra(float costo) {
+        this.precioCompra_ = costo;
+    }
+
+    public int obtenerIDInsumo() {
+        return ID_INSUMO_;
+    }
+
+    public String obtenerNombre() {
+        return NOMBRE_;
     }
     
 }
