@@ -1,14 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package usuario;
 
+import javax.swing.*;
+
 /**
- *
- * @author Astrid Briceño
+ * Created by MiguelAngel on 17/10/2015.
  */
 public class VentanaCorteCaja {
-    
+    private JButton corteGeneralButton;
+    private JButton herramientasButton;
+    private JTextField textField1;
+    private JButton button3;
+    private JButton hacerCorteButton;
+    private JButton generarReporteButton;
+
 }
