@@ -10,5 +10,5 @@ public class VentanaBusquedaProducto {
     private JTextField textField2;
     private JTextField textField3;
     private JTable table1;
-    private JButton button1;
+    private JButton ventaButton;
 }
