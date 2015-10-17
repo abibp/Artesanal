@@ -16,4 +16,5 @@ public class VentanaPrincipal {
     private JTabbedPane tabbedPane2;
     private JTabbedPane tabbedPane3;
     private JTable table2;
+    private JButton exportarExcelButton;
 }
