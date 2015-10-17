@@ -1,9 +1,7 @@
 package usuario;
 
 /**
- *
- * @author PIX
+ * Created by MiguelAngel on 17/10/2015.
  */
 public class VentanaInventario {
-    
 }
