@@ -1,9 +1,6 @@
 nbproject/
 build/
 build.*
-<<<<<<< HEAD
-manifest.*
-=======
 manifest.*
 
 *.class
@@ -25,4 +22,3 @@ hs_err_pid*
 *.iws
 out/
 .idea_modules/
->>>>>>> 4654270aedcd1c8da652cd5c5d4848ed2919fcf1
