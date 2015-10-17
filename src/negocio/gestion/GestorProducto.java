@@ -1,6 +1,7 @@
 package negocio.gestion;
 
 import negocio.entidades.Producto;
+import negocio.entidades.ProductoProveedor;
 
 /**
  *
@@ -8,8 +9,13 @@ import negocio.entidades.Producto;
  */
 public class GestorProducto {
     
-    public Producto crearProducto(String nombreDeProducto){
-        
+    /**
+     * Funcion que recibe un nombre de producto y apartir de devuelve un objeto de tipo Producto
+     * @param nombreDeProducto
+     * @return Producto
+     */
+    public Producto crearProducto( String nombreDeProducto ){
+        //Faltan más productos.
         switch (nombreDeProducto.toLowerCase()) {
             case "troll":
                 break;
