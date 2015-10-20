@@ -121,6 +121,7 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -130,22 +131,20 @@ public class ventanaPrincipal extends javax.swing.JFrame {
 
         labelTask1.setForeground(new java.awt.Color(255, 255, 255));
         labelTask1.setText("Agrega un producto");
-        panelReflect1.add(labelTask1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 265, -1));
-
-        jTextField1.setText("jTextField1");
-        panelReflect1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(329, 110, 167, 30));
-        panelReflect1.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(542, 115, 43, -1));
+        panelReflect1.add(labelTask1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 265, -1));
+        panelReflect1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, 167, 30));
+        panelReflect1.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 112, 43, 30));
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Agregar por Codigo");
-        panelReflect1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(339, 11, 144, 90));
+        panelReflect1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, 144, 90));
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Cantidad");
-        panelReflect1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(542, 11, 54, 90));
+        panelReflect1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 40, 54, 90));
 
         buttonSeven1.setText("Agregar");
-        panelReflect1.add(buttonSeven1, new org.netbeans.lib.awtextra.AbsoluteConstraints(629, 107, -1, -1));
+        panelReflect1.add(buttonSeven1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 110, -1, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -160,64 +159,66 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        panelReflect1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 217, 860, 274));
+        panelReflect1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, 860, 274));
 
         buttonAction1.setText("Agregar Efectivo");
-        panelReflect1.add(buttonAction1, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 164, 126, -1));
+        panelReflect1.add(buttonAction1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, 126, -1));
 
         buttonAction2.setText("Quitar Efectivo");
-        panelReflect1.add(buttonAction2, new org.netbeans.lib.awtextra.AbsoluteConstraints(177, 164, -1, -1));
+        panelReflect1.add(buttonAction2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 170, -1, -1));
 
         buttonAction3.setText("Buscar");
-        panelReflect1.add(buttonAction3, new org.netbeans.lib.awtextra.AbsoluteConstraints(308, 164, -1, -1));
+        panelReflect1.add(buttonAction3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 170, -1, -1));
 
         labelRect1.setText("Total");
-        panelReflect1.add(labelRect1, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 509, 129, 53));
+        panelReflect1.add(labelRect1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 530, 129, 53));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("0.0");
-        panelReflect1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 580, -1, -1));
+        panelReflect1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 600, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("0.0");
-        panelReflect1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 580, -1, -1));
+        panelReflect1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 600, -1, -1));
 
         labelRect2.setText("Pago con");
-        panelReflect1.add(labelRect2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 510, 178, 56));
+        panelReflect1.add(labelRect2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 530, 178, 56));
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("0.0");
-        panelReflect1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 580, -1, -1));
+        panelReflect1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 600, -1, -1));
 
         labelRect3.setText("Cambio");
-        panelReflect1.add(labelRect3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 510, 109, 56));
+        panelReflect1.add(labelRect3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 530, 109, 56));
 
         buttonAction4.setText("Cobrar");
         buttonAction4.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
-        panelReflect1.add(buttonAction4, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 530, 165, 118));
+        panelReflect1.add(buttonAction4, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 530, 165, 118));
 
         labelRound2.setText("$");
         labelRound2.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
-        panelReflect1.add(labelRound2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 550, 62, 82));
+        panelReflect1.add(labelRound2, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 550, 62, 82));
 
         labelRound1.setText("O.O");
         labelRound1.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
-        panelReflect1.add(labelRound1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 540, 220, 96));
+        panelReflect1.add(labelRound1, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 540, 220, 96));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(panelReflect1, javax.swing.GroupLayout.PREFERRED_SIZE, 1288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 146, Short.MAX_VALUE))
+                .addComponent(panelReflect1, javax.swing.GroupLayout.PREFERRED_SIZE, 1179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelReflect1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 801, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(panelReflect1, javax.swing.GroupLayout.PREFERRED_SIZE, 697, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 112, Short.MAX_VALUE))
         );
 
         tabVentas.addTab("Ventas", jPanel2);
@@ -228,11 +229,11 @@ public class ventanaPrincipal extends javax.swing.JFrame {
 
         labelRect5.setText("Descripcion");
 
-        jTextField2.setText("jTextField2");
-
-        jTextField3.setText("jTextField3");
-
-        jTextField4.setText("jTextField4");
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField4ActionPerformed(evt);
+            }
+        });
 
         labelRect6.setText("Precio Costo");
 
@@ -248,8 +249,6 @@ public class ventanaPrincipal extends javax.swing.JFrame {
 
         labelRound3.setText("%");
         labelRound3.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
-
-        jTextField5.setText("jTextField5");
 
         labelRect10.setText("Cantidad Actual");
 
@@ -347,7 +346,7 @@ public class ventanaPrincipal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelRect11, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinner4, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE))
+                    .addComponent(jSpinner4))
                 .addGap(268, 268, 268))
         );
 
@@ -358,12 +357,6 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         labelRect12.setText("Codigo");
 
         labelRect13.setText("Descripcion");
-
-        jTextField6.setText("jTextField2");
-
-        jTextField7.setText("jTextField3");
-
-        jTextField8.setText("jTextField4");
 
         labelRect14.setText("Precio Costo");
 
@@ -379,8 +372,6 @@ public class ventanaPrincipal extends javax.swing.JFrame {
 
         labelRound4.setText("%");
         labelRound4.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
-
-        jTextField9.setText("jTextField5");
 
         labelRect18.setText("Cantidad Actual");
 
@@ -478,7 +469,7 @@ public class ventanaPrincipal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelRect19, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinner7, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE))
+                    .addComponent(jSpinner7))
                 .addGap(268, 268, 268))
         );
 
@@ -503,12 +494,6 @@ public class ventanaPrincipal extends javax.swing.JFrame {
 
         labelRect21.setText("Descripcion");
 
-        jTextField10.setText("jTextField2");
-
-        jTextField11.setText("jTextField3");
-
-        jTextField12.setText("jTextField4");
-
         labelRect22.setText("Precio Costo");
 
         labelRect23.setText("Ganancia");
@@ -523,8 +508,6 @@ public class ventanaPrincipal extends javax.swing.JFrame {
 
         labelRound5.setText("%");
         labelRound5.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
-
-        jTextField13.setText("jTextField5");
 
         labelRect26.setText("Cantidad Actual");
 
@@ -622,7 +605,7 @@ public class ventanaPrincipal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelRect27, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinner10, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE))
+                    .addComponent(jSpinner10))
                 .addGap(268, 268, 268))
         );
 
@@ -632,7 +615,7 @@ public class ventanaPrincipal extends javax.swing.JFrame {
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1044, Short.MAX_VALUE))
+                .addGap(0, 787, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -660,11 +643,11 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1434, Short.MAX_VALUE)
+            .addGap(0, 1179, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 801, Short.MAX_VALUE)
+            .addGap(0, 809, Short.MAX_VALUE)
         );
 
         tabVentas.addTab("tab3", jPanel4);
@@ -673,11 +656,11 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1434, Short.MAX_VALUE)
+            .addGap(0, 1179, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 801, Short.MAX_VALUE)
+            .addGap(0, 809, Short.MAX_VALUE)
         );
 
         tabVentas.addTab("tab4", jPanel5);
@@ -686,11 +669,11 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1434, Short.MAX_VALUE)
+            .addGap(0, 1179, Short.MAX_VALUE)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 801, Short.MAX_VALUE)
+            .addGap(0, 809, Short.MAX_VALUE)
         );
 
         tabVentas.addTab("tab5", jPanel6);
@@ -699,11 +682,11 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1434, Short.MAX_VALUE)
+            .addGap(0, 1179, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 801, Short.MAX_VALUE)
+            .addGap(0, 809, Short.MAX_VALUE)
         );
 
         tabVentas.addTab("tab6", jPanel7);
@@ -720,7 +703,12 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField4ActionPerformed
 
     /**
      * @param args the command line arguments
