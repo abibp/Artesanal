@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 /**
  *
  * @author PIX
+ * corregir numeros maxicos esafdhfhf
  */
 public class InicialVentana implements ActionListener{
     
@@ -59,12 +60,14 @@ public class InicialVentana implements ActionListener{
                 .addComponent(adornoPanelContenedor, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(30, Short.MAX_VALUE))
         );
+        
         registrarCajaBoton.addActionListener(this);
         dineroEnCajaCampo.addKeyListener(new FiltroNumericoCampo());
         ventana = new JFrame();
         ventana.setContentPane(panelContenedor);
         ventana.pack();
         ventana.setLocationRelativeTo(null);
+        ventana.setResizable(false);
         ventana.setVisible(true);
     }
     

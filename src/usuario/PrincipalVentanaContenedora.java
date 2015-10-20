@@ -52,6 +52,8 @@ public class PrincipalVentanaContenedora extends MenuVentana{
         ventanaPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventanaPrincipal.setExtendedState(MAXIMIZED_BOTH);
         ventanaPrincipal.pack();
+        ventanaPrincipal.setLocationRelativeTo(null);
+        ventanaPrincipal.setResizable(false);
         ventanaPrincipal.setVisible(true);
     }
     
