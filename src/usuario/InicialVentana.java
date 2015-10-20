@@ -29,7 +29,6 @@ public class InicialVentana implements ActionListener{
 
         adornoPanelContenedor.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        dineroEnCajaCampo.setText(" ");
         dineroEnCajaCampo.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
         
         adornoPanelContenedor.add(dineroEnCajaCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, 220, 60));
@@ -61,6 +60,7 @@ public class InicialVentana implements ActionListener{
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         registrarCajaBoton.addActionListener(this);
+        dineroEnCajaCampo.addKeyListener(new FiltroNumericoCampo());
         ventana = new JFrame();
         ventana.setContentPane(panelContenedor);
         ventana.pack();
