@@ -1,6 +1,6 @@
 package negocio.gestion;
 
-import Excepciones.ExcepcionVentaNoEncontrada;
+import negocio.excepcion.ExcepcionVentaNoEncontrada;
 import datos.GestorBDVenta;
 import negocio.entidades.Caja;
 import negocio.entidades.Venta;
