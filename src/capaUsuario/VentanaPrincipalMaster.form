@@ -508,9 +508,9 @@
                                       <Component id="nombreProductoAgregarInstruccionLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="nombreProductoAgregarCampo" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                                   </Group>
+                                  <EmptySpace max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="36" max="32767" attributes="0"/>
+                                      <Group type="102" alignment="1" attributes="0">
                                           <Group type="103" groupAlignment="3" attributes="0">
                                               <Component id="precioCostoProductoAgregarInstruccionLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="precioVentaProductoAgregarInstruccionLabel" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -525,7 +525,6 @@
                                           <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="1" attributes="0">
-                                          <EmptySpace max="32767" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
                                               <Component id="descripcionProductoAgregarCampo" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                                               <Component id="descripcionProductoAgregarInstruccionLabel" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1307,9 +1306,9 @@
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="panelRound6" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Group type="102" alignment="0" attributes="0">
-                                              <Component id="buttonAqua8" min="-2" max="-2" attributes="0"/>
+                                              <Component id="agregarProductoInventarioAgregarBoton" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace pref="802" max="32767" attributes="0"/>
-                                              <Component id="buttonAqua7" min="-2" max="-2" attributes="0"/>
+                                              <Component id="cancelarInventarioAgregarBoton" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -1326,8 +1325,8 @@
                               <Component id="panelRound6" min="-2" max="-2" attributes="0"/>
                               <EmptySpace pref="214" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="buttonAqua8" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="buttonAqua7" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="agregarProductoInventarioAgregarBoton" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cancelarInventarioAgregarBoton" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                           </Group>
@@ -1343,25 +1342,25 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="labelMetric25" alignment="0" min="-2" pref="128" max="-2" attributes="0"/>
-                                      <Component id="labelMetric26" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="labelMetric27" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="codigoProductoInventarioAgregarLabel" alignment="0" min="-2" pref="128" max="-2" attributes="0"/>
+                                      <Component id="nombreProductoInventarioAgregarLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="descripcionProductoInventarioAgregarLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="labelRound10" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="textFieldRound16" alignment="0" pref="218" max="32767" attributes="0"/>
-                                      <Component id="labelRound11" max="32767" attributes="0"/>
+                                      <Component id="nombreProductoInventarioAgregarCampo" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="codigoProductoInventarioAgregarCampo" alignment="0" pref="218" max="32767" attributes="0"/>
+                                      <Component id="descripcionProductoInventarioAgregarCampo" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="buttonAction9" min="-2" max="-2" attributes="0"/>
+                                  <Component id="buscarInventarioAgregarBoton" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace pref="27" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="labelMetric31" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cantidadProductoInventarioAgregarLabel" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                                  <Component id="textFieldRound22" min="-2" pref="87" max="-2" attributes="0"/>
+                                  <Component id="cantidadProductoInventarioAgregarCampo" min="-2" pref="87" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="231" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -1371,24 +1370,24 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="labelMetric25" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                                      <Component id="textFieldRound16" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                                      <Component id="buttonAction9" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="codigoProductoInventarioAgregarLabel" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                                      <Component id="codigoProductoInventarioAgregarCampo" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                                      <Component id="buscarInventarioAgregarBoton" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="labelMetric26" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="labelRound10" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                                      <Component id="nombreProductoInventarioAgregarLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="nombreProductoInventarioAgregarCampo" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="labelMetric27" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="labelRound11" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Component id="descripcionProductoInventarioAgregarLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="descripcionProductoInventarioAgregarCampo" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="textFieldRound22" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                      <Component id="labelMetric31" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cantidadProductoInventarioAgregarCampo" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Component id="cantidadProductoInventarioAgregarLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                               </Group>
@@ -1396,41 +1395,41 @@
                         </DimensionLayout>
                       </Layout>
                       <SubComponents>
-                        <Component class="org.edisoncor.gui.label.LabelMetric" name="labelMetric25">
+                        <Component class="org.edisoncor.gui.label.LabelMetric" name="codigoProductoInventarioAgregarLabel">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Codigo :"/>
                           </Properties>
                         </Component>
-                        <Component class="org.edisoncor.gui.textField.TextFieldRound" name="textFieldRound16">
+                        <Component class="org.edisoncor.gui.textField.TextFieldRound" name="codigoProductoInventarioAgregarCampo">
                         </Component>
-                        <Component class="org.edisoncor.gui.label.LabelMetric" name="labelMetric26">
+                        <Component class="org.edisoncor.gui.label.LabelMetric" name="nombreProductoInventarioAgregarLabel">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Nombre :"/>
                           </Properties>
                         </Component>
-                        <Component class="org.edisoncor.gui.label.LabelMetric" name="labelMetric27">
+                        <Component class="org.edisoncor.gui.label.LabelMetric" name="descripcionProductoInventarioAgregarLabel">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Descripcion :"/>
                           </Properties>
                         </Component>
-                        <Component class="org.edisoncor.gui.label.LabelMetric" name="labelMetric31">
+                        <Component class="org.edisoncor.gui.label.LabelMetric" name="cantidadProductoInventarioAgregarLabel">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Cantidad :"/>
                           </Properties>
                         </Component>
-                        <Component class="org.edisoncor.gui.textField.TextFieldRound" name="textFieldRound22">
+                        <Component class="org.edisoncor.gui.textField.TextFieldRound" name="cantidadProductoInventarioAgregarCampo">
                         </Component>
-                        <Component class="org.edisoncor.gui.button.ButtonAction" name="buttonAction9">
+                        <Component class="org.edisoncor.gui.button.ButtonAction" name="buscarInventarioAgregarBoton">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Buscar"/>
                           </Properties>
                         </Component>
-                        <Component class="org.edisoncor.gui.label.LabelRound" name="labelRound10">
+                        <Component class="org.edisoncor.gui.label.LabelRound" name="nombreProductoInventarioAgregarCampo">
                           <Properties>
                             <Property name="text" type="java.lang.String" value=" "/>
                           </Properties>
                         </Component>
-                        <Component class="org.edisoncor.gui.label.LabelRound" name="labelRound11">
+                        <Component class="org.edisoncor.gui.label.LabelRound" name="descripcionProductoInventarioAgregarCampo">
                           <Properties>
                             <Property name="text" type="java.lang.String" value=" "/>
                           </Properties>
@@ -1445,7 +1444,7 @@
                         <Property name="text" type="java.lang.String" value="Agregar a Inventario"/>
                       </Properties>
                     </Component>
-                    <Component class="org.edisoncor.gui.button.ButtonAqua" name="buttonAqua7">
+                    <Component class="org.edisoncor.gui.button.ButtonAqua" name="cancelarInventarioAgregarBoton">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="33" green="0" red="ff" type="rgb"/>
@@ -1453,7 +1452,7 @@
                         <Property name="text" type="java.lang.String" value="Cancelar"/>
                       </Properties>
                     </Component>
-                    <Component class="org.edisoncor.gui.button.ButtonAqua" name="buttonAqua8">
+                    <Component class="org.edisoncor.gui.button.ButtonAqua" name="agregarProductoInventarioAgregarBoton">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="66" green="cc" red="0" type="rgb"/>
@@ -1488,9 +1487,9 @@
                                       <EmptySpace pref="839" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="buttonAqua9" min="-2" max="-2" attributes="0"/>
+                                      <Component id="guardarProductoInventarioModificarBoton" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="buttonAqua10" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cancelarInventarioModificarBoton" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -1505,8 +1504,8 @@
                               <Component id="panelRound8" min="-2" max="-2" attributes="0"/>
                               <EmptySpace pref="213" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="buttonAqua9" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="buttonAqua10" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="guardarProductoInventarioModificarBoton" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cancelarInventarioModificarBoton" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                           </Group>
@@ -1522,7 +1521,7 @@
                         <Property name="text" type="java.lang.String" value="Modificar en Inventario"/>
                       </Properties>
                     </Component>
-                    <Component class="org.edisoncor.gui.button.ButtonAqua" name="buttonAqua9">
+                    <Component class="org.edisoncor.gui.button.ButtonAqua" name="guardarProductoInventarioModificarBoton">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="66" green="cc" red="0" type="rgb"/>
@@ -1530,7 +1529,7 @@
                         <Property name="text" type="java.lang.String" value="Guardar Producto"/>
                       </Properties>
                     </Component>
-                    <Component class="org.edisoncor.gui.button.ButtonAqua" name="buttonAqua10">
+                    <Component class="org.edisoncor.gui.button.ButtonAqua" name="cancelarInventarioModificarBoton">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="33" green="0" red="ff" type="rgb"/>
@@ -1547,24 +1546,24 @@
                                   <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="labelMetric28" alignment="0" min="-2" pref="128" max="-2" attributes="0"/>
-                                      <Component id="labelMetric29" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="labelMetric30" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="nombreProductoInventarioModificarLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="descripcionProductoInventarioModificarLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="labelRound12" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="textFieldRound17" alignment="0" pref="218" max="32767" attributes="0"/>
-                                      <Component id="labelRound13" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="nombreProductoInventarioModificarCampo" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="codigoProductoInventarioModificarCampo" alignment="0" pref="218" max="32767" attributes="0"/>
+                                      <Component id="descripcionProductoInventarioModificarCampo" alignment="1" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="buttonAction10" min="-2" max="-2" attributes="0"/>
+                                  <Component id="buscarInventarioModificarBoton" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace pref="27" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="labelMetric32" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cantidadNuevaProductoInventarioModificarLabel" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                                  <Component id="textFieldRound30" min="-2" pref="87" max="-2" attributes="0"/>
+                                  <Component id="cantidadNuevaProductoInventarioModificarCampo" min="-2" pref="87" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="231" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -1575,23 +1574,23 @@
                                   <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="labelMetric28" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                                      <Component id="textFieldRound17" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                                      <Component id="buttonAction10" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="codigoProductoInventarioModificarCampo" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                                      <Component id="buscarInventarioModificarBoton" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="labelMetric29" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="labelRound12" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                                      <Component id="nombreProductoInventarioModificarLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="nombreProductoInventarioModificarCampo" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="labelMetric30" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="labelRound13" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Component id="descripcionProductoInventarioModificarLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="descripcionProductoInventarioModificarCampo" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="textFieldRound30" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                      <Component id="labelMetric32" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cantidadNuevaProductoInventarioModificarCampo" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Component id="cantidadNuevaProductoInventarioModificarLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                               </Group>
@@ -1604,36 +1603,36 @@
                             <Property name="text" type="java.lang.String" value="Codigo :"/>
                           </Properties>
                         </Component>
-                        <Component class="org.edisoncor.gui.textField.TextFieldRound" name="textFieldRound17">
+                        <Component class="org.edisoncor.gui.textField.TextFieldRound" name="codigoProductoInventarioModificarCampo">
                         </Component>
-                        <Component class="org.edisoncor.gui.label.LabelMetric" name="labelMetric29">
+                        <Component class="org.edisoncor.gui.label.LabelMetric" name="nombreProductoInventarioModificarLabel">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Nombre :"/>
                           </Properties>
                         </Component>
-                        <Component class="org.edisoncor.gui.label.LabelMetric" name="labelMetric30">
+                        <Component class="org.edisoncor.gui.label.LabelMetric" name="descripcionProductoInventarioModificarLabel">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Descripcion :"/>
                           </Properties>
                         </Component>
-                        <Component class="org.edisoncor.gui.label.LabelMetric" name="labelMetric32">
+                        <Component class="org.edisoncor.gui.label.LabelMetric" name="cantidadNuevaProductoInventarioModificarLabel">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Cantidad Nueva :"/>
                           </Properties>
                         </Component>
-                        <Component class="org.edisoncor.gui.textField.TextFieldRound" name="textFieldRound30">
+                        <Component class="org.edisoncor.gui.textField.TextFieldRound" name="cantidadNuevaProductoInventarioModificarCampo">
                         </Component>
-                        <Component class="org.edisoncor.gui.button.ButtonAction" name="buttonAction10">
+                        <Component class="org.edisoncor.gui.button.ButtonAction" name="buscarInventarioModificarBoton">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Buscar"/>
                           </Properties>
                         </Component>
-                        <Component class="org.edisoncor.gui.label.LabelRound" name="labelRound12">
+                        <Component class="org.edisoncor.gui.label.LabelRound" name="nombreProductoInventarioModificarCampo">
                           <Properties>
                             <Property name="text" type="java.lang.String" value=" "/>
                           </Properties>
                         </Component>
-                        <Component class="org.edisoncor.gui.label.LabelRound" name="labelRound13">
+                        <Component class="org.edisoncor.gui.label.LabelRound" name="descripcionProductoInventarioModificarCampo">
                           <Properties>
                             <Property name="text" type="java.lang.String" value=" "/>
                           </Properties>
@@ -1691,11 +1690,11 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
                                           <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                                          <Component id="labelMetric41" min="-2" pref="77" max="-2" attributes="0"/>
+                                          <Component id="articuloInventarioConsultaLabel" min="-2" pref="77" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                                          <Component id="textFieldRectImage1" min="-2" pref="159" max="-2" attributes="0"/>
+                                          <Component id="articuloInventarioConsultaCampo" min="-2" pref="159" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                                          <Component id="buttonAction5" min="-2" max="-2" attributes="0"/>
+                                          <Component id="buscarInventarioConsultaBoton" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Component id="jScrollPane4" min="-2" pref="1156" max="-2" attributes="0"/>
                                   </Group>
@@ -1708,10 +1707,10 @@
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace pref="22" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="buttonAction5" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="buscarInventarioConsultaBoton" alignment="1" min="-2" max="-2" attributes="0"/>
                                       <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                                          <Component id="textFieldRectImage1" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                                          <Component id="labelMetric41" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                                          <Component id="articuloInventarioConsultaCampo" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                                          <Component id="articuloInventarioConsultaLabel" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -1729,7 +1728,7 @@
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                           <SubComponents>
-                            <Component class="javax.swing.JTable" name="jTable4">
+                            <Component class="javax.swing.JTable" name="articulosInventarioConsultaTabla">
                               <Properties>
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                                   <Table columnCount="4" rowCount="4">
@@ -1743,17 +1742,17 @@
                             </Component>
                           </SubComponents>
                         </Container>
-                        <Component class="org.edisoncor.gui.label.LabelMetric" name="labelMetric41">
+                        <Component class="org.edisoncor.gui.label.LabelMetric" name="articuloInventarioConsultaLabel">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Articulo :"/>
                           </Properties>
                         </Component>
-                        <Component class="org.edisoncor.gui.textField.TextFieldRectImage" name="textFieldRectImage1">
+                        <Component class="org.edisoncor.gui.textField.TextFieldRectImage" name="articuloInventarioConsultaCampo">
                           <Properties>
                             <Property name="text" type="java.lang.String" value=" "/>
                           </Properties>
                         </Component>
-                        <Component class="org.edisoncor.gui.button.ButtonAction" name="buttonAction5">
+                        <Component class="org.edisoncor.gui.button.ButtonAction" name="buscarInventarioConsultaBoton">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Buscar"/>
                           </Properties>
@@ -1853,7 +1852,7 @@
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                           <SubComponents>
-                            <Component class="javax.swing.JTable" name="jTable5">
+                            <Component class="javax.swing.JTable" name="reservaInventarioReservaTabla">
                               <Properties>
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                                   <Table columnCount="4" rowCount="4">
