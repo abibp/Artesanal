@@ -652,7 +652,7 @@
                                           <Component id="modificarFormularioPanel" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Group type="102" alignment="0" attributes="0">
                                               <EmptySpace min="-2" pref="154" max="-2" attributes="0"/>
-                                              <Component id="instruccionModificarProductoLabel" min="-2" pref="315" max="-2" attributes="0"/>
+                                              <Component id="instruccionProductoModificarLabel" min="-2" pref="315" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <EmptySpace pref="696" max="32767" attributes="0"/>
@@ -670,7 +670,7 @@
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="instruccionModificarProductoLabel" min="-2" max="-2" attributes="0"/>
+                              <Component id="instruccionProductoModificarLabel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                               <Component id="modificarFormularioPanel" min="-2" pref="379" max="-2" attributes="0"/>
                               <EmptySpace pref="82" max="32767" attributes="0"/>
@@ -684,7 +684,7 @@
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="org.edisoncor.gui.label.LabelTask" name="instruccionModificarProductoLabel">
+                    <Component class="org.edisoncor.gui.label.LabelTask" name="instruccionProductoModificarLabel">
                       <Properties>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -701,9 +701,9 @@
                                   <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Component id="labelMetric13" min="-2" max="-2" attributes="0"/>
+                                          <Component id="gananciaProductoModificarInstruccionLabel" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="jSpinner3" min="-2" pref="52" max="-2" attributes="0"/>
+                                          <Component id="gananciaProductoModificarSpinner" min="-2" pref="52" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
@@ -713,35 +713,35 @@
                                           </Group>
                                           <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="textFieldRound10" alignment="0" pref="263" max="32767" attributes="0"/>
-                                              <Component id="textFieldRound9" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="textFieldRound8" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="descripcionProductoModificarCampo" alignment="0" pref="263" max="32767" attributes="0"/>
+                                              <Component id="nombreProductoModificarCampo" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="codigoProductoModificarCampo" alignment="0" max="32767" attributes="0"/>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="buttonAction6" min="-2" pref="86" max="-2" attributes="0"/>
+                                          <Component id="buscarProductoModificarBoton" min="-2" pref="86" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                               <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="labelMetric15" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="cantidadProductoModificarInstruccionLabel" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace max="32767" attributes="0"/>
-                                                  <Component id="textFieldRound14" min="-2" pref="87" max="-2" attributes="0"/>
+                                                  <Component id="cantidadProductoModificarCampo" min="-2" pref="87" max="-2" attributes="0"/>
                                               </Group>
                                               <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="labelMetric12" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="precioCostoProductoModificarInstruccionLabel" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="textFieldRound12" min="-2" pref="89" max="-2" attributes="0"/>
+                                                  <Component id="precioCostoProductoModificarCampo" min="-2" pref="89" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="labelMetric14" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="labelMetric16" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="precioVentaProductoModificarInstruccionLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="cantidadMinimaProductoModificarInstruccionLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="textFieldRound13" alignment="0" pref="93" max="32767" attributes="0"/>
-                                              <Component id="textFieldRound11" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="cantidadMinimaProductoModificarCampo" alignment="0" pref="93" max="32767" attributes="0"/>
+                                              <Component id="precioVentaProductoModificarCampo" alignment="0" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -755,43 +755,43 @@
                                   <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="codigoProductoModificarInstruccionLabel" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                                      <Component id="textFieldRound8" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                                      <Component id="buttonAction6" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="codigoProductoModificarCampo" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                                      <Component id="buscarProductoModificarBoton" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="nombreProductoModificarInstruccionLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="textFieldRound9" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                                      <Component id="nombreProductoModificarCampo" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="1" attributes="0">
                                           <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="labelMetric12" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="labelMetric14" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="textFieldRound11" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                                              <Component id="textFieldRound12" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                                              <Component id="precioCostoProductoModificarInstruccionLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="precioVentaProductoModificarInstruccionLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="precioVentaProductoModificarCampo" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                                              <Component id="precioCostoProductoModificarCampo" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="labelMetric13" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jSpinner3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="gananciaProductoModificarInstruccionLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="gananciaProductoModificarSpinner" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="1" attributes="0">
                                           <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="textFieldRound10" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                                              <Component id="descripcionProductoModificarCampo" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                                               <Component id="descripcionProductoModificarInstruccionLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="-2" pref="156" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="labelMetric16" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="labelMetric15" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="textFieldRound14" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                      <Component id="textFieldRound13" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Component id="cantidadMinimaProductoModificarInstruccionLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cantidadProductoModificarInstruccionLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cantidadProductoModificarCampo" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Component id="cantidadMinimaProductoModificarCampo" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="106" max="-2" attributes="0"/>
                               </Group>
@@ -804,7 +804,7 @@
                             <Property name="text" type="java.lang.String" value="Codigo :"/>
                           </Properties>
                         </Component>
-                        <Component class="org.edisoncor.gui.textField.TextFieldRound" name="textFieldRound8">
+                        <Component class="org.edisoncor.gui.textField.TextFieldRound" name="codigoProductoModificarCampo">
                         </Component>
                         <Component class="org.edisoncor.gui.label.LabelMetric" name="nombreProductoModificarInstruccionLabel">
                           <Properties>
@@ -816,49 +816,49 @@
                             <Property name="text" type="java.lang.String" value="Descripcion :"/>
                           </Properties>
                         </Component>
-                        <Component class="org.edisoncor.gui.label.LabelMetric" name="labelMetric12">
+                        <Component class="org.edisoncor.gui.label.LabelMetric" name="precioCostoProductoModificarInstruccionLabel">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Precio Costo :"/>
                           </Properties>
                         </Component>
-                        <Component class="org.edisoncor.gui.label.LabelMetric" name="labelMetric13">
+                        <Component class="org.edisoncor.gui.label.LabelMetric" name="gananciaProductoModificarInstruccionLabel">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Ganancia :"/>
                           </Properties>
                         </Component>
-                        <Component class="org.edisoncor.gui.label.LabelMetric" name="labelMetric14">
+                        <Component class="org.edisoncor.gui.label.LabelMetric" name="precioVentaProductoModificarInstruccionLabel">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Precio venta : "/>
                           </Properties>
                         </Component>
-                        <Component class="org.edisoncor.gui.label.LabelMetric" name="labelMetric15">
+                        <Component class="org.edisoncor.gui.label.LabelMetric" name="cantidadProductoModificarInstruccionLabel">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Cantidad :"/>
                           </Properties>
                         </Component>
-                        <Component class="org.edisoncor.gui.label.LabelMetric" name="labelMetric16">
+                        <Component class="org.edisoncor.gui.label.LabelMetric" name="cantidadMinimaProductoModificarInstruccionLabel">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Cantidad Minima :"/>
                           </Properties>
                         </Component>
-                        <Component class="org.edisoncor.gui.textField.TextFieldRound" name="textFieldRound9">
+                        <Component class="org.edisoncor.gui.textField.TextFieldRound" name="nombreProductoModificarCampo">
                         </Component>
-                        <Component class="org.edisoncor.gui.textField.TextFieldRound" name="textFieldRound10">
+                        <Component class="org.edisoncor.gui.textField.TextFieldRound" name="descripcionProductoModificarCampo">
                         </Component>
-                        <Component class="org.edisoncor.gui.textField.TextFieldRound" name="textFieldRound11">
+                        <Component class="org.edisoncor.gui.textField.TextFieldRound" name="precioVentaProductoModificarCampo">
                         </Component>
-                        <Component class="org.edisoncor.gui.textField.TextFieldRound" name="textFieldRound12">
+                        <Component class="org.edisoncor.gui.textField.TextFieldRound" name="precioCostoProductoModificarCampo">
                         </Component>
-                        <Component class="org.edisoncor.gui.textField.TextFieldRound" name="textFieldRound13">
+                        <Component class="org.edisoncor.gui.textField.TextFieldRound" name="cantidadMinimaProductoModificarCampo">
                           <Properties>
                             <Property name="text" type="java.lang.String" value=" "/>
                           </Properties>
                         </Component>
-                        <Component class="org.edisoncor.gui.textField.TextFieldRound" name="textFieldRound14">
+                        <Component class="org.edisoncor.gui.textField.TextFieldRound" name="cantidadProductoModificarCampo">
                         </Component>
-                        <Component class="javax.swing.JSpinner" name="jSpinner3">
+                        <Component class="javax.swing.JSpinner" name="gananciaProductoModificarSpinner">
                         </Component>
-                        <Component class="org.edisoncor.gui.button.ButtonAction" name="buttonAction6">
+                        <Component class="org.edisoncor.gui.button.ButtonAction" name="buscarProductoModificarBoton">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Buscar"/>
                           </Properties>
@@ -900,18 +900,18 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="panelRound5" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="eliminarFormularioPanel" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Group type="102" alignment="0" attributes="0">
                                               <EmptySpace min="-2" pref="154" max="-2" attributes="0"/>
-                                              <Component id="labelTask6" min="-2" pref="315" max="-2" attributes="0"/>
+                                              <Component id="instruccionProductoEliminarLabel" min="-2" pref="315" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <EmptySpace pref="696" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="buttonAqua5" min="-2" max="-2" attributes="0"/>
+                                      <Component id="eliminarProductoEliminarBoton" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="buttonAqua6" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cancelarProductoEliminarBoton" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -921,13 +921,13 @@
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="labelTask6" min="-2" max="-2" attributes="0"/>
+                              <Component id="instruccionProductoEliminarLabel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                              <Component id="panelRound5" min="-2" pref="379" max="-2" attributes="0"/>
+                              <Component id="eliminarFormularioPanel" min="-2" pref="379" max="-2" attributes="0"/>
                               <EmptySpace pref="82" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="buttonAqua5" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="buttonAqua6" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="eliminarProductoEliminarBoton" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cancelarProductoEliminarBoton" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                           </Group>
@@ -935,7 +935,7 @@
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="org.edisoncor.gui.label.LabelTask" name="labelTask6">
+                    <Component class="org.edisoncor.gui.label.LabelTask" name="instruccionProductoEliminarLabel">
                       <Properties>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -943,7 +943,7 @@
                         <Property name="text" type="java.lang.String" value="Eliminar Producto"/>
                       </Properties>
                     </Component>
-                    <Container class="org.edisoncor.gui.panel.PanelRound" name="panelRound5">
+                    <Container class="org.edisoncor.gui.panel.PanelRound" name="eliminarFormularioPanel">
 
                       <Layout>
                         <DimensionLayout dim="0">
@@ -953,48 +953,48 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="labelMetric17" alignment="0" min="-2" pref="128" max="-2" attributes="0"/>
-                                              <Component id="labelMetric18" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="labelMetric19" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="codigoProductoEliminarInstruccionLabel" alignment="0" min="-2" pref="128" max="-2" attributes="0"/>
+                                              <Component id="nombreProductoEliminarInstruccionLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="descripcionProductoEliminarInstruccionLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="labelRound3" max="32767" attributes="0"/>
-                                              <Component id="textFieldRound15" pref="263" max="32767" attributes="0"/>
-                                              <Component id="labelRound4" max="32767" attributes="0"/>
+                                              <Component id="nombreProductoEliminarValorLabel" max="32767" attributes="0"/>
+                                              <Component id="codigoProductoEliminarCampo" pref="263" max="32767" attributes="0"/>
+                                              <Component id="descripcionProductoEliminarValorLabel" max="32767" attributes="0"/>
                                           </Group>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="buttonAction7" min="-2" pref="86" max="-2" attributes="0"/>
+                                          <Component id="buscarProductoEliminarBoton" min="-2" pref="86" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                                   <Group type="102" alignment="0" attributes="0">
-                                                      <Component id="labelMetric21" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="gananciaProductoEliminarInstruccionLabel" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                                                      <Component id="labelRound5" min="-2" pref="88" max="-2" attributes="0"/>
+                                                      <Component id="gananciaProductoEliminarValorLabel" min="-2" pref="88" max="-2" attributes="0"/>
                                                   </Group>
                                                   <Group type="102" alignment="0" attributes="0">
-                                                      <Component id="labelMetric23" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="cantidadProductoEliminarInstruccionLabel" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace max="32767" attributes="0"/>
-                                                      <Component id="labelRound9" min="-2" pref="88" max="-2" attributes="0"/>
+                                                      <Component id="cantidadProductoEliminarValorLabel" min="-2" pref="88" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
                                               <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="labelMetric20" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="precioCostoProductoEliminarInstruccionLabel" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="labelRound6" min="-2" pref="88" max="-2" attributes="0"/>
+                                                  <Component id="precioCostoProductoEliminarValorLabel" min="-2" pref="88" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="labelMetric22" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="labelMetric24" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="precioVentaProductoEliminarInstruccionLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="cantidadMinimaProductoEliminarInstruccionLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="labelRound7" min="-2" pref="88" max="-2" attributes="0"/>
-                                              <Component id="labelRound8" min="-2" pref="88" max="-2" attributes="0"/>
+                                              <Component id="precioVentaProductoEliminarValorLabel" min="-2" pref="88" max="-2" attributes="0"/>
+                                              <Component id="cantidadMinimaProductoEliminarValorLabel" min="-2" pref="88" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -1007,43 +1007,43 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="labelMetric17" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                                      <Component id="textFieldRound15" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                                      <Component id="buttonAction7" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="codigoProductoEliminarInstruccionLabel" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                                      <Component id="codigoProductoEliminarCampo" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                                      <Component id="buscarProductoEliminarBoton" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="labelMetric18" min="-2" max="-2" attributes="0"/>
-                                      <Component id="labelRound3" min="-2" pref="27" max="-2" attributes="0"/>
+                                      <Component id="nombreProductoEliminarInstruccionLabel" min="-2" max="-2" attributes="0"/>
+                                      <Component id="nombreProductoEliminarValorLabel" min="-2" pref="27" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="labelRound4" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                                      <Component id="labelMetric19" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="descripcionProductoEliminarValorLabel" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                                      <Component id="descripcionProductoEliminarInstruccionLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="labelMetric20" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="labelMetric22" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="labelRound6" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
-                                      <Component id="labelRound7" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                                      <Component id="precioCostoProductoEliminarInstruccionLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="precioVentaProductoEliminarInstruccionLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="precioCostoProductoEliminarValorLabel" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                                      <Component id="precioVentaProductoEliminarValorLabel" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
                                           <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                                          <Component id="labelMetric21" min="-2" max="-2" attributes="0"/>
+                                          <Component id="gananciaProductoEliminarInstruccionLabel" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="1" attributes="0">
                                           <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                                          <Component id="labelRound5" min="-2" pref="28" max="-2" attributes="0"/>
+                                          <Component id="gananciaProductoEliminarValorLabel" min="-2" pref="28" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="labelMetric24" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="labelMetric23" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="labelRound8" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
-                                      <Component id="labelRound9" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                                      <Component id="cantidadMinimaProductoEliminarInstruccionLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cantidadProductoEliminarInstruccionLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cantidadMinimaProductoEliminarValorLabel" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                                      <Component id="cantidadProductoEliminarValorLabel" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="108" max="-2" attributes="0"/>
                               </Group>
@@ -1051,91 +1051,91 @@
                         </DimensionLayout>
                       </Layout>
                       <SubComponents>
-                        <Component class="org.edisoncor.gui.label.LabelMetric" name="labelMetric17">
+                        <Component class="org.edisoncor.gui.label.LabelMetric" name="codigoProductoEliminarInstruccionLabel">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Codigo :"/>
                           </Properties>
                         </Component>
-                        <Component class="org.edisoncor.gui.textField.TextFieldRound" name="textFieldRound15">
+                        <Component class="org.edisoncor.gui.textField.TextFieldRound" name="codigoProductoEliminarCampo">
                         </Component>
-                        <Component class="org.edisoncor.gui.label.LabelMetric" name="labelMetric18">
+                        <Component class="org.edisoncor.gui.label.LabelMetric" name="nombreProductoEliminarInstruccionLabel">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Nombre :"/>
                           </Properties>
                         </Component>
-                        <Component class="org.edisoncor.gui.label.LabelMetric" name="labelMetric19">
+                        <Component class="org.edisoncor.gui.label.LabelMetric" name="descripcionProductoEliminarInstruccionLabel">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Descripcion :"/>
                           </Properties>
                         </Component>
-                        <Component class="org.edisoncor.gui.label.LabelMetric" name="labelMetric20">
+                        <Component class="org.edisoncor.gui.label.LabelMetric" name="precioCostoProductoEliminarInstruccionLabel">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Precio Costo :"/>
                           </Properties>
                         </Component>
-                        <Component class="org.edisoncor.gui.label.LabelMetric" name="labelMetric21">
+                        <Component class="org.edisoncor.gui.label.LabelMetric" name="gananciaProductoEliminarInstruccionLabel">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Ganancia :"/>
                           </Properties>
                         </Component>
-                        <Component class="org.edisoncor.gui.label.LabelMetric" name="labelMetric22">
+                        <Component class="org.edisoncor.gui.label.LabelMetric" name="precioVentaProductoEliminarInstruccionLabel">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Precio venta : "/>
                           </Properties>
                         </Component>
-                        <Component class="org.edisoncor.gui.label.LabelMetric" name="labelMetric23">
+                        <Component class="org.edisoncor.gui.label.LabelMetric" name="cantidadProductoEliminarInstruccionLabel">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Cantidad :"/>
                           </Properties>
                         </Component>
-                        <Component class="org.edisoncor.gui.label.LabelMetric" name="labelMetric24">
+                        <Component class="org.edisoncor.gui.label.LabelMetric" name="cantidadMinimaProductoEliminarInstruccionLabel">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Cantidad Minima :"/>
                           </Properties>
                         </Component>
-                        <Component class="org.edisoncor.gui.button.ButtonAction" name="buttonAction7">
+                        <Component class="org.edisoncor.gui.button.ButtonAction" name="buscarProductoEliminarBoton">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Buscar"/>
                           </Properties>
                         </Component>
-                        <Component class="org.edisoncor.gui.label.LabelRound" name="labelRound3">
+                        <Component class="org.edisoncor.gui.label.LabelRound" name="nombreProductoEliminarValorLabel">
                           <Properties>
                             <Property name="text" type="java.lang.String" value=" "/>
                           </Properties>
                         </Component>
-                        <Component class="org.edisoncor.gui.label.LabelRound" name="labelRound4">
+                        <Component class="org.edisoncor.gui.label.LabelRound" name="descripcionProductoEliminarValorLabel">
                           <Properties>
                             <Property name="text" type="java.lang.String" value=" "/>
                           </Properties>
                         </Component>
-                        <Component class="org.edisoncor.gui.label.LabelRound" name="labelRound5">
+                        <Component class="org.edisoncor.gui.label.LabelRound" name="gananciaProductoEliminarValorLabel">
                           <Properties>
                             <Property name="text" type="java.lang.String" value=" "/>
                           </Properties>
                         </Component>
-                        <Component class="org.edisoncor.gui.label.LabelRound" name="labelRound6">
+                        <Component class="org.edisoncor.gui.label.LabelRound" name="precioCostoProductoEliminarValorLabel">
                           <Properties>
                             <Property name="text" type="java.lang.String" value=" "/>
                           </Properties>
                         </Component>
-                        <Component class="org.edisoncor.gui.label.LabelRound" name="labelRound7">
+                        <Component class="org.edisoncor.gui.label.LabelRound" name="precioVentaProductoEliminarValorLabel">
                           <Properties>
                             <Property name="text" type="java.lang.String" value=" "/>
                           </Properties>
                         </Component>
-                        <Component class="org.edisoncor.gui.label.LabelRound" name="labelRound8">
+                        <Component class="org.edisoncor.gui.label.LabelRound" name="cantidadMinimaProductoEliminarValorLabel">
                           <Properties>
                             <Property name="text" type="java.lang.String" value=" "/>
                           </Properties>
                         </Component>
-                        <Component class="org.edisoncor.gui.label.LabelRound" name="labelRound9">
+                        <Component class="org.edisoncor.gui.label.LabelRound" name="cantidadProductoEliminarValorLabel">
                           <Properties>
                             <Property name="text" type="java.lang.String" value=" "/>
                           </Properties>
                         </Component>
                       </SubComponents>
                     </Container>
-                    <Component class="org.edisoncor.gui.button.ButtonAqua" name="buttonAqua5">
+                    <Component class="org.edisoncor.gui.button.ButtonAqua" name="eliminarProductoEliminarBoton">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="66" green="cc" red="0" type="rgb"/>
@@ -1143,7 +1143,7 @@
                         <Property name="text" type="java.lang.String" value="Eliminar Producto"/>
                       </Properties>
                     </Component>
-                    <Component class="org.edisoncor.gui.button.ButtonAqua" name="buttonAqua6">
+                    <Component class="org.edisoncor.gui.button.ButtonAqua" name="cancelarProductoEliminarBoton">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="33" green="0" red="ff" type="rgb"/>
@@ -1169,11 +1169,11 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
                                       <EmptySpace min="-2" pref="216" max="-2" attributes="0"/>
-                                      <Component id="labelTask3" min="-2" pref="336" max="-2" attributes="0"/>
+                                      <Component id="productosPopularesInstruccionLabel" min="-2" pref="336" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                                      <Component id="panelRound2" min="-2" max="-2" attributes="0"/>
+                                      <Component id="contenedorProductoPopularesPanel" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace pref="622" max="32767" attributes="0"/>
@@ -1183,23 +1183,23 @@
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="labelTask3" min="-2" max="-2" attributes="0"/>
+                              <Component id="productosPopularesInstruccionLabel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                              <Component id="panelRound2" min="-2" max="-2" attributes="0"/>
+                              <Component id="contenedorProductoPopularesPanel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace pref="37" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Container class="org.edisoncor.gui.panel.PanelRound" name="panelRound2">
+                    <Container class="org.edisoncor.gui.panel.PanelRound" name="contenedorProductoPopularesPanel">
 
                       <Layout>
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
-                                  <Component id="jScrollPane2" min="-2" pref="554" max="-2" attributes="0"/>
+                                  <Component id="productosPopularesTablaBarraDesplazamiento" min="-2" pref="554" max="-2" attributes="0"/>
                                   <EmptySpace pref="73" max="32767" attributes="0"/>
                               </Group>
                           </Group>
@@ -1208,21 +1208,21 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace pref="80" max="32767" attributes="0"/>
-                                  <Component id="jScrollPane2" min="-2" pref="393" max="-2" attributes="0"/>
+                                  <Component id="productosPopularesTablaBarraDesplazamiento" min="-2" pref="393" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
                       </Layout>
                       <SubComponents>
-                        <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+                        <Container class="javax.swing.JScrollPane" name="productosPopularesTablaBarraDesplazamiento">
                           <AuxValues>
                             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
                           </AuxValues>
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                           <SubComponents>
-                            <Component class="javax.swing.JTable" name="jTable2">
+                            <Component class="javax.swing.JTable" name="productosPopularesTabla">
                               <Properties>
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                                   <Table columnCount="4" rowCount="4">
@@ -1238,7 +1238,7 @@
                         </Container>
                       </SubComponents>
                     </Container>
-                    <Component class="org.edisoncor.gui.label.LabelTask" name="labelTask3">
+                    <Component class="org.edisoncor.gui.label.LabelTask" name="productosPopularesInstruccionLabel">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1343,7 +1343,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="labelMetric25" alignment="0" min="-2" pref="128" max="-2" attributes="0"/>
+                                      <Component id="codigoProductoInventarioAgregarLabel" alignment="0" min="-2" pref="128" max="-2" attributes="0"/>
                                       <Component id="labelMetric26" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="labelMetric27" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
@@ -1371,7 +1371,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="labelMetric25" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                                      <Component id="codigoProductoInventarioAgregarLabel" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                                       <Component id="textFieldRound16" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                                       <Component id="buttonAction9" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
@@ -1396,7 +1396,7 @@
                         </DimensionLayout>
                       </Layout>
                       <SubComponents>
-                        <Component class="org.edisoncor.gui.label.LabelMetric" name="labelMetric25">
+                        <Component class="org.edisoncor.gui.label.LabelMetric" name="codigoProductoInventarioAgregarLabel">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Codigo :"/>
                           </Properties>
@@ -1891,11 +1891,11 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                              <Component id="panelRound3" min="-2" max="-2" attributes="0"/>
+                              <Component id="detallesCorteCajaPanel" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="224" max="-2" attributes="0"/>
-                              <Component id="labelTask4" min="-2" pref="267" max="-2" attributes="0"/>
+                              <Component id="detallesCorteCajaInstruccionLabel" min="-2" pref="267" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace pref="737" max="32767" attributes="0"/>
@@ -1906,16 +1906,16 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                      <Component id="labelTask4" min="-2" max="-2" attributes="0"/>
+                      <Component id="detallesCorteCajaInstruccionLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="panelRound3" min="-2" max="-2" attributes="0"/>
+                      <Component id="detallesCorteCajaPanel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="20" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="org.edisoncor.gui.panel.PanelRound" name="panelRound3">
+            <Container class="org.edisoncor.gui.panel.PanelRound" name="detallesCorteCajaPanel">
 
               <Layout>
                 <DimensionLayout dim="0">
@@ -1925,37 +1925,37 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="labelMetric39" min="-2" max="-2" attributes="0"/>
-                                      <Component id="buttonAqua11" min="-2" pref="180" max="-2" attributes="0"/>
+                                      <Component id="dineroEnCajaCorteInstruccionLabel" min="-2" max="-2" attributes="0"/>
+                                      <Component id="hacerCorteCorteBoton" min="-2" pref="180" max="-2" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                               <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="labelMetric33" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="usuarioNombreCorteInstruccionLabel" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                                                  <Component id="labelRect4" min="-2" pref="153" max="-2" attributes="0"/>
+                                                  <Component id="nombreUsuarioValorCorteLabel" min="-2" pref="153" max="-2" attributes="0"/>
                                                   <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                                               </Group>
                                               <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="labelMetric35" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="ventasTotalesCorteIntruccionLabel" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace max="32767" attributes="0"/>
-                                                  <Component id="labelMetric37" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="simboloPesoVentasTotalesCorteLabel" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="labelRect7" min="-2" pref="109" max="-2" attributes="0"/>
+                                                  <Component id="ventasTotalesCorteValorLabel" min="-2" pref="109" max="-2" attributes="0"/>
                                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="102" attributes="0">
-                                                  <Component id="labelMetric36" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="ganaciaCorteIntruccionLabel" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="labelMetric38" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="simboloPesoGananciaCorteLabel" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                                                  <Component id="labelRect6" min="-2" pref="128" max="-2" attributes="0"/>
+                                                  <Component id="gananciaCorteValorLabel" min="-2" pref="128" max="-2" attributes="0"/>
                                               </Group>
                                               <Group type="102" attributes="0">
-                                                  <Component id="labelMetric34" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="fechaCorteInstruccionLabel" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                                                  <Component id="labelRect5" min="-2" pref="180" max="-2" attributes="0"/>
+                                                  <Component id="fechaDiaValorCorteLabel" min="-2" pref="180" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
@@ -1965,42 +1965,42 @@
                                   <EmptySpace min="-2" pref="252" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Group type="102" attributes="0">
-                                          <Component id="labelMetric47" min="-2" max="-2" attributes="0"/>
+                                          <Component id="salidasCorteInstruccionLabel" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="labelMetric51" min="-2" max="-2" attributes="0"/>
+                                          <Component id="simboloPesoSalidasCorteLabel" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="labelRect11" min="-2" pref="103" max="-2" attributes="0"/>
+                                          <Component id="salidasCorteValorLabel" min="-2" pref="103" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Component id="labelMetric45" min="-2" max="-2" attributes="0"/>
+                                          <Component id="entradasCorteInstruccionLabel" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="labelMetric50" min="-2" max="-2" attributes="0"/>
+                                          <Component id="simboloPesoEntradasCorteLabel" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="labelRect10" min="-2" pref="103" max="-2" attributes="0"/>
+                                          <Component id="entradasCorteValorLabel" min="-2" pref="103" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="1" attributes="0">
-                                          <Component id="labelMetric46" min="-2" max="-2" attributes="0"/>
+                                          <Component id="ventasCorteInstruccionLabel" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="labelMetric49" min="-2" max="-2" attributes="0"/>
+                                          <Component id="simboloPesoVentasCorteLabel" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="labelRect9" min="-2" pref="103" max="-2" attributes="0"/>
+                                          <Component id="ventasCorteValorLabel" min="-2" pref="103" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="1" attributes="0">
-                                          <Component id="labelMetric40" min="-2" max="-2" attributes="0"/>
+                                          <Component id="fondoCajaCorteInstruccionLabel" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                                          <Component id="labelMetric48" min="-2" max="-2" attributes="0"/>
+                                          <Component id="simboloPesoFondoCajaCorteLabel" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="labelRect8" min="-2" pref="103" max="-2" attributes="0"/>
+                                          <Component id="fondoCajaCorteValorLabel" min="-2" pref="103" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="labelMetric52" min="-2" max="-2" attributes="0"/>
+                                  <Component id="totalCorteInstruccionLabel" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="labelMetric53" min="-2" max="-2" attributes="0"/>
+                                  <Component id="simboloPesoTotalCorteLabel" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="labelRect12" min="-2" pref="207" max="-2" attributes="0"/>
+                                  <Component id="totalCorteValorLabel" min="-2" pref="207" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -2014,70 +2014,70 @@
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                                  <Component id="buttonAqua11" min="-2" pref="44" max="-2" attributes="0"/>
+                                  <Component id="hacerCorteCorteBoton" min="-2" pref="44" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="labelMetric33" min="-2" max="-2" attributes="0"/>
+                                      <Component id="usuarioNombreCorteInstruccionLabel" min="-2" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="labelRect4" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                                          <Component id="labelMetric34" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="labelRect5" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                                          <Component id="nombreUsuarioValorCorteLabel" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                                          <Component id="fechaCorteInstruccionLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="fechaDiaValorCorteLabel" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
                                           <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="labelMetric35" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="labelMetric36" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="labelMetric37" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                                              <Component id="ventasTotalesCorteIntruccionLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="ganaciaCorteIntruccionLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="simboloPesoVentasTotalesCorteLabel" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Group type="102" alignment="1" attributes="0">
                                           <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                                          <Component id="labelRect7" min="-2" pref="27" max="-2" attributes="0"/>
+                                          <Component id="ventasTotalesCorteValorLabel" min="-2" pref="27" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
                               <Group type="102" attributes="0">
                                   <EmptySpace min="-2" pref="154" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="labelRect6" min="-2" pref="27" max="-2" attributes="0"/>
-                                      <Component id="labelMetric38" min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Component id="gananciaCorteValorLabel" min="-2" pref="27" max="-2" attributes="0"/>
+                                      <Component id="simboloPesoGananciaCorteLabel" min="-2" pref="30" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
                           <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
-                          <Component id="labelMetric39" min="-2" max="-2" attributes="0"/>
+                          <Component id="dineroEnCajaCorteInstruccionLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="labelMetric40" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="labelRect8" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
-                              <Component id="labelMetric48" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                              <Component id="fondoCajaCorteInstruccionLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="fondoCajaCorteValorLabel" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                              <Component id="simboloPesoFondoCajaCorteLabel" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="labelMetric46" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="labelRect9" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
-                              <Component id="labelMetric49" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                              <Component id="ventasCorteInstruccionLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="ventasCorteValorLabel" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                              <Component id="simboloPesoVentasCorteLabel" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="labelMetric45" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="labelRect10" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
-                              <Component id="labelMetric50" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                              <Component id="entradasCorteInstruccionLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="entradasCorteValorLabel" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                              <Component id="simboloPesoEntradasCorteLabel" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="labelMetric47" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="labelRect11" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
-                              <Component id="labelMetric51" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                              <Component id="salidasCorteInstruccionLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="salidasCorteValorLabel" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                              <Component id="simboloPesoSalidasCorteLabel" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="labelMetric53" min="-2" pref="26" max="-2" attributes="0"/>
-                              <Component id="labelMetric52" min="-2" max="-2" attributes="0"/>
-                              <Component id="labelRect12" min="-2" pref="32" max="-2" attributes="0"/>
+                              <Component id="simboloPesoTotalCorteLabel" min="-2" pref="26" max="-2" attributes="0"/>
+                              <Component id="totalCorteInstruccionLabel" min="-2" max="-2" attributes="0"/>
+                              <Component id="totalCorteValorLabel" min="-2" pref="32" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="34" max="32767" attributes="0"/>
                       </Group>
@@ -2085,7 +2085,7 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="org.edisoncor.gui.button.ButtonAqua" name="buttonAqua11">
+                <Component class="org.edisoncor.gui.button.ButtonAqua" name="hacerCorteCorteBoton">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="66" green="cc" red="0" type="rgb"/>
@@ -2093,47 +2093,47 @@
                     <Property name="text" type="java.lang.String" value="Hacer Corte"/>
                   </Properties>
                 </Component>
-                <Component class="org.edisoncor.gui.label.LabelMetric" name="labelMetric33">
+                <Component class="org.edisoncor.gui.label.LabelMetric" name="usuarioNombreCorteInstruccionLabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Corte del"/>
                   </Properties>
                 </Component>
-                <Component class="org.edisoncor.gui.label.LabelRect" name="labelRect4">
+                <Component class="org.edisoncor.gui.label.LabelRect" name="nombreUsuarioValorCorteLabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="ADMIN"/>
                   </Properties>
                 </Component>
-                <Component class="org.edisoncor.gui.label.LabelMetric" name="labelMetric34">
+                <Component class="org.edisoncor.gui.label.LabelMetric" name="fechaCorteInstruccionLabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="del"/>
                   </Properties>
                 </Component>
-                <Component class="org.edisoncor.gui.label.LabelRect" name="labelRect5">
+                <Component class="org.edisoncor.gui.label.LabelRect" name="fechaDiaValorCorteLabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="FECHA DEL DIA"/>
                   </Properties>
                 </Component>
-                <Component class="org.edisoncor.gui.label.LabelMetric" name="labelMetric35">
+                <Component class="org.edisoncor.gui.label.LabelMetric" name="ventasTotalesCorteIntruccionLabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Ventas Totales : "/>
                   </Properties>
                 </Component>
-                <Component class="org.edisoncor.gui.label.LabelMetric" name="labelMetric36">
+                <Component class="org.edisoncor.gui.label.LabelMetric" name="ganaciaCorteIntruccionLabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Ganancia : "/>
                   </Properties>
                 </Component>
-                <Component class="org.edisoncor.gui.label.LabelRect" name="labelRect6">
+                <Component class="org.edisoncor.gui.label.LabelRect" name="gananciaCorteValorLabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="0.0"/>
                   </Properties>
                 </Component>
-                <Component class="org.edisoncor.gui.label.LabelRect" name="labelRect7">
+                <Component class="org.edisoncor.gui.label.LabelRect" name="ventasTotalesCorteValorLabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="0.0"/>
                   </Properties>
                 </Component>
-                <Component class="org.edisoncor.gui.label.LabelMetric" name="labelMetric37">
+                <Component class="org.edisoncor.gui.label.LabelMetric" name="simboloPesoVentasTotalesCorteLabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="$"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -2141,7 +2141,7 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="org.edisoncor.gui.label.LabelMetric" name="labelMetric38">
+                <Component class="org.edisoncor.gui.label.LabelMetric" name="simboloPesoGananciaCorteLabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="$"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -2149,7 +2149,7 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="org.edisoncor.gui.label.LabelMetric" name="labelMetric39">
+                <Component class="org.edisoncor.gui.label.LabelMetric" name="dineroEnCajaCorteInstruccionLabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Dinero en Caja ( Resumen ):"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -2157,27 +2157,27 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="org.edisoncor.gui.label.LabelMetric" name="labelMetric40">
+                <Component class="org.edisoncor.gui.label.LabelMetric" name="fondoCajaCorteInstruccionLabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Fondo de Caja : "/>
                   </Properties>
                 </Component>
-                <Component class="org.edisoncor.gui.label.LabelMetric" name="labelMetric45">
+                <Component class="org.edisoncor.gui.label.LabelMetric" name="entradasCorteInstruccionLabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Entradas :"/>
                   </Properties>
                 </Component>
-                <Component class="org.edisoncor.gui.label.LabelMetric" name="labelMetric46">
+                <Component class="org.edisoncor.gui.label.LabelMetric" name="ventasCorteInstruccionLabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Ventas :"/>
                   </Properties>
                 </Component>
-                <Component class="org.edisoncor.gui.label.LabelMetric" name="labelMetric47">
+                <Component class="org.edisoncor.gui.label.LabelMetric" name="salidasCorteInstruccionLabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Salidas : "/>
                   </Properties>
                 </Component>
-                <Component class="org.edisoncor.gui.label.LabelRect" name="labelRect8">
+                <Component class="org.edisoncor.gui.label.LabelRect" name="fondoCajaCorteValorLabel">
                   <Properties>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="66" green="cc" red="0" type="rgb"/>
@@ -2185,7 +2185,7 @@
                     <Property name="text" type="java.lang.String" value="0.0"/>
                   </Properties>
                 </Component>
-                <Component class="org.edisoncor.gui.label.LabelMetric" name="labelMetric48">
+                <Component class="org.edisoncor.gui.label.LabelMetric" name="simboloPesoFondoCajaCorteLabel">
                   <Properties>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="66" green="cc" red="0" type="rgb"/>
@@ -2196,7 +2196,7 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="org.edisoncor.gui.label.LabelMetric" name="labelMetric49">
+                <Component class="org.edisoncor.gui.label.LabelMetric" name="simboloPesoVentasCorteLabel">
                   <Properties>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="66" green="cc" red="0" type="rgb"/>
@@ -2207,7 +2207,7 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="org.edisoncor.gui.label.LabelRect" name="labelRect9">
+                <Component class="org.edisoncor.gui.label.LabelRect" name="ventasCorteValorLabel">
                   <Properties>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="66" green="cc" red="0" type="rgb"/>
@@ -2215,7 +2215,7 @@
                     <Property name="text" type="java.lang.String" value="0.0"/>
                   </Properties>
                 </Component>
-                <Component class="org.edisoncor.gui.label.LabelMetric" name="labelMetric50">
+                <Component class="org.edisoncor.gui.label.LabelMetric" name="simboloPesoEntradasCorteLabel">
                   <Properties>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="66" green="cc" red="0" type="rgb"/>
@@ -2226,7 +2226,7 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="org.edisoncor.gui.label.LabelRect" name="labelRect10">
+                <Component class="org.edisoncor.gui.label.LabelRect" name="entradasCorteValorLabel">
                   <Properties>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="66" green="cc" red="0" type="rgb"/>
@@ -2234,7 +2234,7 @@
                     <Property name="text" type="java.lang.String" value="0.0"/>
                   </Properties>
                 </Component>
-                <Component class="org.edisoncor.gui.label.LabelMetric" name="labelMetric51">
+                <Component class="org.edisoncor.gui.label.LabelMetric" name="simboloPesoSalidasCorteLabel">
                   <Properties>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="33" green="33" red="ff" type="rgb"/>
@@ -2245,7 +2245,7 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="org.edisoncor.gui.label.LabelRect" name="labelRect11">
+                <Component class="org.edisoncor.gui.label.LabelRect" name="salidasCorteValorLabel">
                   <Properties>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="33" green="33" red="ff" type="rgb"/>
@@ -2253,7 +2253,7 @@
                     <Property name="text" type="java.lang.String" value="0.0"/>
                   </Properties>
                 </Component>
-                <Component class="org.edisoncor.gui.label.LabelMetric" name="labelMetric52">
+                <Component class="org.edisoncor.gui.label.LabelMetric" name="totalCorteInstruccionLabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Total :"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -2261,7 +2261,7 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="org.edisoncor.gui.label.LabelMetric" name="labelMetric53">
+                <Component class="org.edisoncor.gui.label.LabelMetric" name="simboloPesoTotalCorteLabel">
                   <Properties>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="99" green="99" red="0" type="rgb"/>
@@ -2272,7 +2272,7 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="org.edisoncor.gui.label.LabelRect" name="labelRect12">
+                <Component class="org.edisoncor.gui.label.LabelRect" name="totalCorteValorLabel">
                   <Properties>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="99" green="99" red="0" type="rgb"/>
@@ -2282,7 +2282,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="org.edisoncor.gui.label.LabelTask" name="labelTask4">
+            <Component class="org.edisoncor.gui.label.LabelTask" name="detallesCorteCajaInstruccionLabel">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
