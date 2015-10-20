@@ -2346,18 +2346,18 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                          <Component id="labelMetric54" min="-2" max="-2" attributes="0"/>
+                          <Component id="desdeFechaReporteLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                          <Component id="jDateChooser2" pref="139" max="32767" attributes="0"/>
+                          <Component id="desdeFechaReporteCalendario" pref="139" max="32767" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="labelMetric55" min="-2" max="-2" attributes="0"/>
+                          <Component id="hastaFechaReporteLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jDateChooser1" min="-2" pref="135" max="-2" attributes="0"/>
+                          <Component id="hastaFechaReporteCalendario" min="-2" pref="135" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="buttonAqua12" min="-2" max="-2" attributes="0"/>
+                          <Component id="generarReporteBoton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="134" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -2367,36 +2367,36 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="labelMetric55" min="-2" max="-2" attributes="0"/>
-                              <Component id="labelMetric54" min="-2" max="-2" attributes="0"/>
+                              <Component id="hastaFechaReporteLabel" min="-2" max="-2" attributes="0"/>
+                              <Component id="desdeFechaReporteLabel" min="-2" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jDateChooser1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jDateChooser2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="hastaFechaReporteCalendario" min="-2" max="-2" attributes="0"/>
+                                  <Component id="desdeFechaReporteCalendario" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace pref="169" max="32767" attributes="0"/>
-                          <Component id="buttonAqua12" min="-2" max="-2" attributes="0"/>
+                          <Component id="generarReporteBoton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="org.edisoncor.gui.label.LabelMetric" name="labelMetric54">
+                <Component class="org.edisoncor.gui.label.LabelMetric" name="desdeFechaReporteLabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Desde :"/>
                   </Properties>
                 </Component>
-                <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser1">
+                <Component class="com.toedter.calendar.JDateChooser" name="hastaFechaReporteCalendario">
                 </Component>
-                <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser2">
+                <Component class="com.toedter.calendar.JDateChooser" name="desdeFechaReporteCalendario">
                 </Component>
-                <Component class="org.edisoncor.gui.label.LabelMetric" name="labelMetric55">
+                <Component class="org.edisoncor.gui.label.LabelMetric" name="hastaFechaReporteLabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Hasta :"/>
                   </Properties>
                 </Component>
-                <Component class="org.edisoncor.gui.button.ButtonAqua" name="buttonAqua12">
+                <Component class="org.edisoncor.gui.button.ButtonAqua" name="generarReporteBoton">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="66" green="cc" red="0" type="rgb"/>

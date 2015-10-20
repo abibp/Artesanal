@@ -200,11 +200,11 @@ public class VentanaPrincipalMaster extends javax.swing.JFrame {
         reportePanel = new org.edisoncor.gui.panel.Panel();
         labelTask9 = new org.edisoncor.gui.label.LabelTask();
         panelRound7 = new org.edisoncor.gui.panel.PanelRound();
-        labelMetric54 = new org.edisoncor.gui.label.LabelMetric();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
-        labelMetric55 = new org.edisoncor.gui.label.LabelMetric();
-        buttonAqua12 = new org.edisoncor.gui.button.ButtonAqua();
+        desdeFechaReporteLabel = new org.edisoncor.gui.label.LabelMetric();
+        hastaFechaReporteCalendario = new com.toedter.calendar.JDateChooser();
+        desdeFechaReporteCalendario = new com.toedter.calendar.JDateChooser();
+        hastaFechaReporteLabel = new org.edisoncor.gui.label.LabelMetric();
+        generarReporteBoton = new org.edisoncor.gui.button.ButtonAqua();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -1511,12 +1511,12 @@ public class VentanaPrincipalMaster extends javax.swing.JFrame {
         labelTask9.setForeground(new java.awt.Color(255, 255, 255));
         labelTask9.setText("Hacer Reporte");
 
-        labelMetric54.setText("Desde :");
+        desdeFechaReporteLabel.setText("Desde :");
 
-        labelMetric55.setText("Hasta :");
+        hastaFechaReporteLabel.setText("Hasta :");
 
-        buttonAqua12.setBackground(new java.awt.Color(0, 204, 102));
-        buttonAqua12.setText("Generar");
+        generarReporteBoton.setBackground(new java.awt.Color(0, 204, 102));
+        generarReporteBoton.setText("Generar");
 
         javax.swing.GroupLayout panelRound7Layout = new javax.swing.GroupLayout(panelRound7);
         panelRound7.setLayout(panelRound7Layout);
@@ -1524,17 +1524,17 @@ public class VentanaPrincipalMaster extends javax.swing.JFrame {
             panelRound7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRound7Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
-                .addComponent(labelMetric54, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(desdeFechaReporteLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
-                .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+                .addComponent(desdeFechaReporteCalendario, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(labelMetric55, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(hastaFechaReporteLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(hastaFechaReporteCalendario, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(61, 61, 61))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound7Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(buttonAqua12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(generarReporteBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(134, 134, 134))
         );
         panelRound7Layout.setVerticalGroup(
@@ -1542,13 +1542,13 @@ public class VentanaPrincipalMaster extends javax.swing.JFrame {
             .addGroup(panelRound7Layout.createSequentialGroup()
                 .addGap(49, 49, 49)
                 .addGroup(panelRound7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(labelMetric55, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelMetric54, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(hastaFechaReporteLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(desdeFechaReporteLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelRound7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(hastaFechaReporteCalendario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(desdeFechaReporteCalendario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 169, Short.MAX_VALUE)
-                .addComponent(buttonAqua12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(generarReporteBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(71, 71, 71))
         );
 
@@ -1647,7 +1647,6 @@ public class VentanaPrincipalMaster extends javax.swing.JFrame {
     private org.edisoncor.gui.button.ButtonAction buttonAction6;
     private org.edisoncor.gui.button.ButtonAction buttonAction7;
     private org.edisoncor.gui.button.ButtonAqua buttonAqua11;
-    private org.edisoncor.gui.button.ButtonAqua buttonAqua12;
     private org.edisoncor.gui.button.ButtonAqua buttonAqua5;
     private org.edisoncor.gui.button.ButtonAqua buttonAqua6;
     private javax.swing.JLabel cambioVentaLabel;
@@ -1680,11 +1679,16 @@ public class VentanaPrincipalMaster extends javax.swing.JFrame {
     private org.edisoncor.gui.label.LabelRound descripcionProductoInventarioModificarCampo;
     private org.edisoncor.gui.label.LabelMetric descripcionProductoInventarioModificarLabel;
     private org.edisoncor.gui.label.LabelMetric descripcionProductoModificarInstruccionLabel;
+    private com.toedter.calendar.JDateChooser desdeFechaReporteCalendario;
+    private org.edisoncor.gui.label.LabelMetric desdeFechaReporteLabel;
     private org.edisoncor.gui.label.LabelMetric gananciaProductoAgregarInstruccionLabel;
     private javax.swing.JSpinner gananciaProductoAgregarSpinner;
+    private org.edisoncor.gui.button.ButtonAqua generarReporteBoton;
     private org.edisoncor.gui.button.ButtonAqua guardarProductoAgregarBoton;
     private org.edisoncor.gui.button.ButtonAqua guardarProductoInventarioModificarBoton;
     private org.edisoncor.gui.button.ButtonAqua guardarProductoModificarBoton;
+    private com.toedter.calendar.JDateChooser hastaFechaReporteCalendario;
+    private org.edisoncor.gui.label.LabelMetric hastaFechaReporteLabel;
     private org.edisoncor.gui.label.LabelTask instruccionAgregarProductoLabel;
     private org.edisoncor.gui.label.LabelTask instruccionAgregarProductoVentaLabel;
     private org.edisoncor.gui.label.LabelRect instruccionCambioVentaLabel;
@@ -1695,8 +1699,6 @@ public class VentanaPrincipalMaster extends javax.swing.JFrame {
     private org.edisoncor.gui.label.LabelMetric instruccionTotalImporteVentaLabel;
     private org.edisoncor.gui.label.LabelRect instruccionTotalVentaLabel;
     private org.edisoncor.gui.panel.Panel inventarioPanel;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
@@ -1733,8 +1735,6 @@ public class VentanaPrincipalMaster extends javax.swing.JFrame {
     private org.edisoncor.gui.label.LabelMetric labelMetric51;
     private org.edisoncor.gui.label.LabelMetric labelMetric52;
     private org.edisoncor.gui.label.LabelMetric labelMetric53;
-    private org.edisoncor.gui.label.LabelMetric labelMetric54;
-    private org.edisoncor.gui.label.LabelMetric labelMetric55;
     private org.edisoncor.gui.label.LabelRect labelRect10;
     private org.edisoncor.gui.label.LabelRect labelRect11;
     private org.edisoncor.gui.label.LabelRect labelRect12;
