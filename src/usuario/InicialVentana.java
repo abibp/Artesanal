@@ -3,6 +3,12 @@ package usuario;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
+import org.edisoncor.gui.button.ButtonAction;
+import org.edisoncor.gui.label.LabelMetric;
+import org.edisoncor.gui.label.LabelRect;
+import org.edisoncor.gui.panel.Panel;
+import org.edisoncor.gui.panel.PanelCurves;
+import org.edisoncor.gui.textField.TextField;
 
 /**
  *
@@ -11,12 +17,12 @@ import javax.swing.JFrame;
 public class InicialVentana implements ActionListener{
     
     private JFrame ventana;
-    private org.edisoncor.gui.button.ButtonAction registrarCajaBoton;
-    private org.edisoncor.gui.label.LabelMetric dineroEnCajaInstruccionLabel;
-    private org.edisoncor.gui.label.LabelRect simboloPesoCantidadLabel;
-    private org.edisoncor.gui.panel.Panel panelContenedor;
-    private org.edisoncor.gui.panel.PanelCurves adornoPanelContenedor;
-    private org.edisoncor.gui.textField.TextField dineroEnCajaCampo;
+    private ButtonAction registrarCajaBoton;
+    private LabelMetric dineroEnCajaInstruccionLabel;
+    private LabelRect simboloPesoCantidadLabel;
+    private Panel panelContenedor;
+    private PanelCurves adornoPanelContenedor;
+    private TextField dineroEnCajaCampo;
     
     
     public void mostrarEnPantalla(){

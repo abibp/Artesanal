@@ -1,6 +1,13 @@
 package usuario.submenu;
 
+import org.edisoncor.gui.button.ButtonAction;
+import org.edisoncor.gui.button.ButtonAqua;
+import org.edisoncor.gui.label.LabelMetric;
+import org.edisoncor.gui.label.LabelRound;
+import org.edisoncor.gui.label.LabelTask;
 import org.edisoncor.gui.panel.Panel;
+import org.edisoncor.gui.panel.PanelRound;
+import org.edisoncor.gui.textField.TextFieldRound;
 import usuario.MenuVentana;
 
 /**
@@ -9,34 +16,34 @@ import usuario.MenuVentana;
  */
 public class ModificarInventarioSubmenuVentana extends MenuVentana{
 
-    private org.edisoncor.gui.button.ButtonAction buscarInventarioModificarBoton;
-    private org.edisoncor.gui.button.ButtonAqua cancelarInventarioModificarBoton;
-    private org.edisoncor.gui.textField.TextFieldRound cantidadNuevaProductoInventarioModificarCampo;
-    private org.edisoncor.gui.label.LabelMetric cantidadNuevaProductoInventarioModificarLabel;
-    private org.edisoncor.gui.textField.TextFieldRound codigoProductoInventarioModificarCampo;
-    private org.edisoncor.gui.label.LabelRound descripcionProductoInventarioModificarCampo;
-    private org.edisoncor.gui.label.LabelMetric descripcionProductoInventarioModificarLabel;
-    private org.edisoncor.gui.button.ButtonAqua guardarProductoInventarioModificarBoton;
-    private org.edisoncor.gui.label.LabelMetric labelMetric28;
-    private org.edisoncor.gui.label.LabelTask labelTask8;
-    private org.edisoncor.gui.label.LabelRound nombreProductoInventarioModificarCampo;
-    private org.edisoncor.gui.label.LabelMetric nombreProductoInventarioModificarLabel;
-    private org.edisoncor.gui.panel.Panel panel13;
-    private org.edisoncor.gui.panel.PanelRound panelRound8;
+    private ButtonAction buscarInventarioModificarBoton;
+    private ButtonAqua cancelarInventarioModificarBoton;
+    private TextFieldRound cantidadNuevaProductoInventarioModificarCampo;
+    private LabelMetric cantidadNuevaProductoInventarioModificarLabel;
+    private TextFieldRound codigoProductoInventarioModificarCampo;
+    private LabelRound descripcionProductoInventarioModificarCampo;
+    private LabelMetric descripcionProductoInventarioModificarLabel;
+    private ButtonAqua guardarProductoInventarioModificarBoton;
+    private LabelMetric codigoModificarInventarioLabel;
+    private LabelTask tituloMenuLabel;
+    private LabelRound nombreProductoInventarioModificarCampo;
+    private LabelMetric nombreProductoInventarioModificarLabel;
+    private Panel panelContenedor;
+    private PanelRound formularioModificacionProductoPanel;
     
     @Override
     public Panel obtenerPanelContenedor() {
-        return panel13;
+        return panelContenedor;
     }
 
     @Override
     public void inicializarComponentes() {
-        panel13 = new org.edisoncor.gui.panel.Panel();
-        labelTask8 = new org.edisoncor.gui.label.LabelTask();
+        panelContenedor = new org.edisoncor.gui.panel.Panel();
+        tituloMenuLabel = new org.edisoncor.gui.label.LabelTask();
         guardarProductoInventarioModificarBoton = new org.edisoncor.gui.button.ButtonAqua();
         cancelarInventarioModificarBoton = new org.edisoncor.gui.button.ButtonAqua();
-        panelRound8 = new org.edisoncor.gui.panel.PanelRound();
-        labelMetric28 = new org.edisoncor.gui.label.LabelMetric();
+        formularioModificacionProductoPanel = new org.edisoncor.gui.panel.PanelRound();
+        codigoModificarInventarioLabel = new org.edisoncor.gui.label.LabelMetric();
         codigoProductoInventarioModificarCampo = new org.edisoncor.gui.textField.TextFieldRound();
         nombreProductoInventarioModificarLabel = new org.edisoncor.gui.label.LabelMetric();
         descripcionProductoInventarioModificarLabel = new org.edisoncor.gui.label.LabelMetric();
@@ -52,8 +59,8 @@ public class ModificarInventarioSubmenuVentana extends MenuVentana{
     public void establecerLayoutComponentes() {
         
 
-        labelTask8.setForeground(new java.awt.Color(255, 255, 255));
-        labelTask8.setText("Modificar en Inventario");
+        tituloMenuLabel.setForeground(new java.awt.Color(255, 255, 255));
+        tituloMenuLabel.setText("Modificar en Inventario");
 
         guardarProductoInventarioModificarBoton.setBackground(new java.awt.Color(0, 204, 102));
         guardarProductoInventarioModificarBoton.setText("Guardar Producto");
@@ -61,7 +68,7 @@ public class ModificarInventarioSubmenuVentana extends MenuVentana{
         cancelarInventarioModificarBoton.setBackground(new java.awt.Color(255, 0, 51));
         cancelarInventarioModificarBoton.setText("Cancelar");
 
-        labelMetric28.setText("Codigo :");
+        codigoModificarInventarioLabel.setText("Codigo :");
 
         nombreProductoInventarioModificarLabel.setText("Nombre :");
 
@@ -75,14 +82,13 @@ public class ModificarInventarioSubmenuVentana extends MenuVentana{
 
         descripcionProductoInventarioModificarCampo.setText(" ");
 
-        javax.swing.GroupLayout panelRound8Layout = new javax.swing.GroupLayout(panelRound8);
-        panelRound8.setLayout(panelRound8Layout);
-        panelRound8Layout.setHorizontalGroup(
-            panelRound8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panelRound8Layout = new javax.swing.GroupLayout(formularioModificacionProductoPanel);
+        formularioModificacionProductoPanel.setLayout(panelRound8Layout);
+        panelRound8Layout.setHorizontalGroup(panelRound8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRound8Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addGroup(panelRound8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelMetric28, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(codigoModificarInventarioLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nombreProductoInventarioModificarLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(descripcionProductoInventarioModificarLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(55, 55, 55)
@@ -100,12 +106,11 @@ public class ModificarInventarioSubmenuVentana extends MenuVentana{
                 .addComponent(cantidadNuevaProductoInventarioModificarCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(231, 231, 231))
         );
-        panelRound8Layout.setVerticalGroup(
-            panelRound8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelRound8Layout.setVerticalGroup(panelRound8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRound8Layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addGroup(panelRound8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelMetric28, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(codigoModificarInventarioLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(codigoProductoInventarioModificarCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buscarInventarioModificarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -123,19 +128,18 @@ public class ModificarInventarioSubmenuVentana extends MenuVentana{
                 .addGap(48, 48, 48))
         );
 
-        javax.swing.GroupLayout panel13Layout = new javax.swing.GroupLayout(panel13);
-        panel13.setLayout(panel13Layout);
-        panel13Layout.setHorizontalGroup(
-            panel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panel13Layout = new javax.swing.GroupLayout(panelContenedor);
+        panelContenedor.setLayout(panel13Layout);
+        panel13Layout.setHorizontalGroup(panel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel13Layout.createSequentialGroup()
                 .addGap(64, 64, 64)
                 .addGroup(panel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel13Layout.createSequentialGroup()
-                        .addComponent(panelRound8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(formularioModificacionProductoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(panel13Layout.createSequentialGroup()
                         .addGap(154, 154, 154)
-                        .addComponent(labelTask8, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tituloMenuLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(839, Short.MAX_VALUE))
                     .addGroup(panel13Layout.createSequentialGroup()
                         .addComponent(guardarProductoInventarioModificarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -143,12 +147,11 @@ public class ModificarInventarioSubmenuVentana extends MenuVentana{
                         .addComponent(cancelarInventarioModificarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(21, 21, 21))))
         );
-        panel13Layout.setVerticalGroup(
-            panel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panel13Layout.setVerticalGroup(panel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel13Layout.createSequentialGroup()
-                .addComponent(labelTask8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tituloMenuLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
-                .addComponent(panelRound8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(formularioModificacionProductoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 213, Short.MAX_VALUE)
                 .addGroup(panel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(guardarProductoInventarioModificarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)

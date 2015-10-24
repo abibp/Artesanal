@@ -1,6 +1,7 @@
 package usuario.menu;
 
 import org.edisoncor.gui.panel.Panel;
+import org.edisoncor.gui.tabbedPane.TabbedPaneHeader;
 import usuario.MenuVentana;
 import usuario.submenu.AgregarInventarioSubmenuVentana;
 import usuario.submenu.ConsultaInventarioSubmenuVentana;
@@ -13,8 +14,8 @@ import usuario.submenu.ReservaInventarioSubmenuVentana;
  */
 public class InventarioMenuVentana extends MenuVentana{
 
-    private org.edisoncor.gui.panel.Panel inventarioPanel;
-    private org.edisoncor.gui.tabbedPane.TabbedPaneHeader submenuInventarioPanelSecciones;
+    private Panel inventarioPanel;
+    private TabbedPaneHeader submenuInventarioPanelSecciones;
     
     @Override
     public Panel obtenerPanelContenedor() {

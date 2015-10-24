@@ -1,6 +1,7 @@
 package usuario.menu;
 
 import org.edisoncor.gui.panel.Panel;
+import org.edisoncor.gui.tabbedPane.TabbedPaneHeader;
 import usuario.MenuVentana;
 import usuario.submenu.AgregarProductoSubmenuVentana;
 import usuario.submenu.EliminarProductoSubmenuVentana;
@@ -13,8 +14,8 @@ import usuario.submenu.PopularesProductoSubmenuVentana;
  */
 public class ProductoMenuVentana extends MenuVentana{
 
-    private org.edisoncor.gui.panel.Panel productoPanel;
-    private org.edisoncor.gui.tabbedPane.TabbedPaneHeader submenuProductosPanelSecciones;
+    private Panel productoPanel;
+    private TabbedPaneHeader submenuProductosPanelSecciones;
     
     @Override
     public Panel obtenerPanelContenedor() {

@@ -3,6 +3,7 @@ package usuario;
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import javax.swing.JFrame;
 import org.edisoncor.gui.panel.Panel;
+import org.edisoncor.gui.tabbedPane.TabbedPaneHeader;
 import usuario.menu.CorteMenuVentana;
 import usuario.menu.InventarioMenuVentana;
 import usuario.menu.ProductoMenuVentana;
@@ -15,7 +16,7 @@ import usuario.menu.VentaMenuVentana;
  */
 public class PrincipalVentanaContenedora extends MenuVentana{
     
-    private org.edisoncor.gui.tabbedPane.TabbedPaneHeader menuPrincipalPanelSecciones;
+    private TabbedPaneHeader menuPrincipalPanelSecciones;
     private JFrame ventanaPrincipal;
     private Panel panelPrincipal;
 

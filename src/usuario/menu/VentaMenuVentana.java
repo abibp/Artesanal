@@ -1,5 +1,16 @@
 package usuario.menu;
 
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JSpinner;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import org.edisoncor.gui.button.ButtonAction;
+import org.edisoncor.gui.button.ButtonSeven;
+import org.edisoncor.gui.label.LabelMetric;
+import org.edisoncor.gui.label.LabelRect;
+import org.edisoncor.gui.label.LabelRound;
+import org.edisoncor.gui.label.LabelTask;
 import org.edisoncor.gui.panel.Panel;
 import usuario.MenuVentana;
 
@@ -9,28 +20,28 @@ import usuario.MenuVentana;
  */
 public class VentaMenuVentana extends MenuVentana{
 
-    private org.edisoncor.gui.button.ButtonAction agregarEfectivoBoton;
-    private org.edisoncor.gui.button.ButtonSeven agregarProductoVentaBoton;
-    private org.edisoncor.gui.button.ButtonAction buscarProductoVentaBoton;
-    private javax.swing.JLabel cambioVentaLabel;
-    private javax.swing.JSpinner cantidadVentaSpinner;
-    private org.edisoncor.gui.button.ButtonAction cobrarImporteVentaBoton;
-    private javax.swing.JTextField codigoVentaCampo;
-    private org.edisoncor.gui.label.LabelTask instruccionAgregarProductoVentaLabel;
-    private org.edisoncor.gui.label.LabelRect instruccionCambioVentaLabel;
-    private org.edisoncor.gui.label.LabelMetric instruccionCantidadVentaLabel;
-    private org.edisoncor.gui.label.LabelMetric instruccionCodigoProductoVentaLabel;
-    private org.edisoncor.gui.label.LabelRect instruccionPagoVentaLabel;
-    private org.edisoncor.gui.label.LabelMetric instruccionTotalImporteVentaLabel;
-    private org.edisoncor.gui.label.LabelRect instruccionTotalVentaLabel;
-    private javax.swing.JLabel pagoConVentaLabel;
-    private javax.swing.JTable productosEnVentaTabla;
-    private javax.swing.JScrollPane productosEnVentaTablaBarraDesplazamiento;
-    private org.edisoncor.gui.button.ButtonAction quitarEfectivoBoton;
-    private org.edisoncor.gui.label.LabelRound simboloPesoLabel;
-    private org.edisoncor.gui.label.LabelRound totalImporteVentaLabel;
-    private javax.swing.JLabel totalVentalLabel;
-    private org.edisoncor.gui.panel.Panel ventaPanel;
+    private ButtonAction agregarEfectivoBoton;
+    private ButtonSeven agregarProductoVentaBoton;
+    private ButtonAction buscarProductoVentaBoton;
+    private JLabel cambioVentaLabel;
+    private JSpinner cantidadVentaSpinner;
+    private ButtonAction cobrarImporteVentaBoton;
+    private JTextField codigoVentaCampo;
+    private LabelTask instruccionAgregarProductoVentaLabel;
+    private LabelRect instruccionCambioVentaLabel;
+    private LabelMetric instruccionCantidadVentaLabel;
+    private LabelMetric instruccionCodigoProductoVentaLabel;
+    private LabelRect instruccionPagoVentaLabel;
+    private LabelMetric instruccionTotalImporteVentaLabel;
+    private LabelRect instruccionTotalVentaLabel;
+    private JLabel pagoConVentaLabel;
+    private JTable productosEnVentaTabla;
+    private JScrollPane productosEnVentaTablaBarraDesplazamiento;
+    private ButtonAction quitarEfectivoBoton;
+    private LabelRound simboloPesoLabel;
+    private LabelRound totalImporteVentaLabel;
+    private JLabel totalVentalLabel;
+    private Panel ventaPanel;
 
     @Override
     public Panel obtenerPanelContenedor(){

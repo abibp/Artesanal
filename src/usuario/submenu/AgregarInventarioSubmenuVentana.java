@@ -1,6 +1,13 @@
 package usuario.submenu;
 
+import org.edisoncor.gui.button.ButtonAction;
+import org.edisoncor.gui.button.ButtonAqua;
+import org.edisoncor.gui.label.LabelMetric;
+import org.edisoncor.gui.label.LabelRound;
+import org.edisoncor.gui.label.LabelTask;
 import org.edisoncor.gui.panel.Panel;
+import org.edisoncor.gui.panel.PanelRound;
+import org.edisoncor.gui.textField.TextFieldRound;
 import usuario.MenuVentana;
 
 /**
@@ -9,30 +16,30 @@ import usuario.MenuVentana;
  */
 public class AgregarInventarioSubmenuVentana extends MenuVentana{
 
-    private org.edisoncor.gui.button.ButtonAqua agregarProductoInventarioAgregarBoton;
-    private org.edisoncor.gui.button.ButtonAction buscarInventarioAgregarBoton;
-    private org.edisoncor.gui.button.ButtonAqua cancelarInventarioAgregarBoton;
-    private org.edisoncor.gui.textField.TextFieldRound cantidadProductoInventarioAgregarCampo;
-    private org.edisoncor.gui.label.LabelMetric cantidadProductoInventarioAgregarLabel;
-    private org.edisoncor.gui.textField.TextFieldRound codigoProductoInventarioAgregarCampo;
-    private org.edisoncor.gui.label.LabelMetric codigoProductoInventarioAgregarLabel;
-    private org.edisoncor.gui.label.LabelRound descripcionProductoInventarioAgregarCampo;
-    private org.edisoncor.gui.label.LabelMetric descripcionProductoInventarioAgregarLabel;
-    private org.edisoncor.gui.label.LabelTask labelTask7;
-    private org.edisoncor.gui.label.LabelRound nombreProductoInventarioAgregarCampo;
-    private org.edisoncor.gui.label.LabelMetric nombreProductoInventarioAgregarLabel;
-    private org.edisoncor.gui.panel.Panel panel8;
-    private org.edisoncor.gui.panel.PanelRound panelRound6;
+    private ButtonAqua agregarProductoInventarioAgregarBoton;
+    private ButtonAction buscarInventarioAgregarBoton;
+    private ButtonAqua cancelarInventarioAgregarBoton;
+    private TextFieldRound cantidadProductoInventarioAgregarCampo;
+    private LabelMetric cantidadProductoInventarioAgregarLabel;
+    private TextFieldRound codigoProductoInventarioAgregarCampo;
+    private LabelMetric codigoProductoInventarioAgregarLabel;
+    private LabelRound descripcionProductoInventarioAgregarCampo;
+    private LabelMetric descripcionProductoInventarioAgregarLabel;
+    private LabelTask tituloInstruccionLabel;
+    private LabelRound nombreProductoInventarioAgregarCampo;
+    private LabelMetric nombreProductoInventarioAgregarLabel;
+    private Panel panelContenedor;
+    private PanelRound panelAgregarInventario;
     
     @Override
     public Panel obtenerPanelContenedor() {
-        return panel8;
+        return panelContenedor;
     }
 
     @Override
     public void inicializarComponentes() {
-        panel8 = new org.edisoncor.gui.panel.Panel();
-        panelRound6 = new org.edisoncor.gui.panel.PanelRound();
+        panelContenedor = new org.edisoncor.gui.panel.Panel();
+        panelAgregarInventario = new org.edisoncor.gui.panel.PanelRound();
         codigoProductoInventarioAgregarLabel = new org.edisoncor.gui.label.LabelMetric();
         codigoProductoInventarioAgregarCampo = new org.edisoncor.gui.textField.TextFieldRound();
         nombreProductoInventarioAgregarLabel = new org.edisoncor.gui.label.LabelMetric();
@@ -42,7 +49,7 @@ public class AgregarInventarioSubmenuVentana extends MenuVentana{
         buscarInventarioAgregarBoton = new org.edisoncor.gui.button.ButtonAction();
         nombreProductoInventarioAgregarCampo = new org.edisoncor.gui.label.LabelRound();
         descripcionProductoInventarioAgregarCampo = new org.edisoncor.gui.label.LabelRound();
-        labelTask7 = new org.edisoncor.gui.label.LabelTask();
+        tituloInstruccionLabel = new org.edisoncor.gui.label.LabelTask();
         cancelarInventarioAgregarBoton = new org.edisoncor.gui.button.ButtonAqua();
         agregarProductoInventarioAgregarBoton = new org.edisoncor.gui.button.ButtonAqua();
 
@@ -66,8 +73,8 @@ public class AgregarInventarioSubmenuVentana extends MenuVentana{
 
         descripcionProductoInventarioAgregarCampo.setText(" ");
 
-        javax.swing.GroupLayout panelRound6Layout = new javax.swing.GroupLayout(panelRound6);
-        panelRound6.setLayout(panelRound6Layout);
+        javax.swing.GroupLayout panelRound6Layout = new javax.swing.GroupLayout(panelAgregarInventario);
+        panelAgregarInventario.setLayout(panelRound6Layout);
         panelRound6Layout.setHorizontalGroup(
             panelRound6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRound6Layout.createSequentialGroup()
@@ -114,8 +121,8 @@ public class AgregarInventarioSubmenuVentana extends MenuVentana{
                 .addGap(48, 48, 48))
         );
 
-        labelTask7.setForeground(new java.awt.Color(255, 255, 255));
-        labelTask7.setText("Agregar a Inventario");
+        tituloInstruccionLabel.setForeground(new java.awt.Color(255, 255, 255));
+        tituloInstruccionLabel.setText("Agregar a Inventario");
 
         cancelarInventarioAgregarBoton.setBackground(new java.awt.Color(255, 0, 51));
         cancelarInventarioAgregarBoton.setText("Cancelar");
@@ -123,31 +130,29 @@ public class AgregarInventarioSubmenuVentana extends MenuVentana{
         agregarProductoInventarioAgregarBoton.setBackground(new java.awt.Color(0, 204, 102));
         agregarProductoInventarioAgregarBoton.setText("Agregar Cantidad a Inventario");
 
-        javax.swing.GroupLayout panel8Layout = new javax.swing.GroupLayout(panel8);
-        panel8.setLayout(panel8Layout);
-        panel8Layout.setHorizontalGroup(
-            panel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panel8Layout = new javax.swing.GroupLayout(panelContenedor);
+        panelContenedor.setLayout(panel8Layout);
+        panel8Layout.setHorizontalGroup(panel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel8Layout.createSequentialGroup()
                 .addGroup(panel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel8Layout.createSequentialGroup()
                         .addGap(216, 216, 216)
-                        .addComponent(labelTask7, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(tituloInstruccionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panel8Layout.createSequentialGroup()
                         .addGap(62, 62, 62)
                         .addGroup(panel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(panelRound6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(panelAgregarInventario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(panel8Layout.createSequentialGroup()
                                 .addComponent(agregarProductoInventarioAgregarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 802, Short.MAX_VALUE)
                                 .addComponent(cancelarInventarioAgregarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(24, 24, 24))
         );
-        panel8Layout.setVerticalGroup(
-            panel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panel8Layout.setVerticalGroup(panel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel8Layout.createSequentialGroup()
-                .addComponent(labelTask7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tituloInstruccionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
-                .addComponent(panelRound6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelAgregarInventario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 214, Short.MAX_VALUE)
                 .addGroup(panel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(agregarProductoInventarioAgregarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)

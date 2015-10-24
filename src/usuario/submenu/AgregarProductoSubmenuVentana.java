@@ -1,6 +1,12 @@
 package usuario.submenu;
 
+import javax.swing.JSpinner;
+import org.edisoncor.gui.button.ButtonAqua;
+import org.edisoncor.gui.label.LabelMetric;
+import org.edisoncor.gui.label.LabelTask;
 import org.edisoncor.gui.panel.Panel;
+import org.edisoncor.gui.panel.PanelRound;
+import org.edisoncor.gui.textField.TextFieldRound;
 import usuario.MenuVentana;
 
 /**
@@ -9,27 +15,27 @@ import usuario.MenuVentana;
  */
 public class AgregarProductoSubmenuVentana extends MenuVentana{
 
-    private org.edisoncor.gui.panel.PanelRound agregarFormularioPanel;
-    private org.edisoncor.gui.button.ButtonAqua cancelarProductoAgregarBoton;
-    private org.edisoncor.gui.textField.TextFieldRound cantidadMinimaProductoAgregarCampo;
-    private org.edisoncor.gui.label.LabelMetric cantidadMinimaProductoAgregarInstruccionLabel;
-    private org.edisoncor.gui.textField.TextFieldRound cantidadProductoAgregarCampo;
-    private org.edisoncor.gui.label.LabelMetric cantidadProductoAgregarInstruccionLabel;
-    private org.edisoncor.gui.textField.TextFieldRound codigoProductoAgregarCampo;
-    private org.edisoncor.gui.label.LabelMetric codigoProductoAgregarInstruccionLabel;
-    private org.edisoncor.gui.textField.TextFieldRound descripcionProductoAgregarCampo;
-    private org.edisoncor.gui.label.LabelMetric descripcionProductoAgregarInstruccionLabel;
-    private org.edisoncor.gui.label.LabelMetric gananciaProductoAgregarInstruccionLabel;
-    private javax.swing.JSpinner gananciaProductoAgregarSpinner;
-    private org.edisoncor.gui.button.ButtonAqua guardarProductoAgregarBoton;
-    private org.edisoncor.gui.label.LabelTask instruccionAgregarProductoLabel;
-    private org.edisoncor.gui.textField.TextFieldRound nombreProductoAgregarCampo;
-    private org.edisoncor.gui.label.LabelMetric nombreProductoAgregarInstruccionLabel;
-    private org.edisoncor.gui.textField.TextFieldRound precioCostoProductoAgregarBoton;
-    private org.edisoncor.gui.label.LabelMetric precioCostoProductoAgregarInstruccionLabel;
-    private org.edisoncor.gui.textField.TextFieldRound precioVentaProductoAgregarCampo;
-    private org.edisoncor.gui.label.LabelMetric precioVentaProductoAgregarInstruccionLabel;
-    private org.edisoncor.gui.panel.Panel submenuAgregarPanel;
+    private PanelRound agregarFormularioPanel;
+    private ButtonAqua cancelarProductoAgregarBoton;
+    private TextFieldRound cantidadMinimaProductoAgregarCampo;
+    private LabelMetric cantidadMinimaProductoAgregarInstruccionLabel;
+    private TextFieldRound cantidadProductoAgregarCampo;
+    private LabelMetric cantidadProductoAgregarInstruccionLabel;
+    private TextFieldRound codigoProductoAgregarCampo;
+    private LabelMetric codigoProductoAgregarInstruccionLabel;
+    private TextFieldRound descripcionProductoAgregarCampo;
+    private LabelMetric descripcionProductoAgregarInstruccionLabel;
+    private LabelMetric gananciaProductoAgregarInstruccionLabel;
+    private JSpinner gananciaProductoAgregarSpinner;
+    private ButtonAqua guardarProductoAgregarBoton;
+    private LabelTask instruccionAgregarProductoLabel;
+    private TextFieldRound nombreProductoAgregarCampo;
+    private LabelMetric nombreProductoAgregarInstruccionLabel;
+    private TextFieldRound precioCostoProductoAgregarBoton;
+    private LabelMetric precioCostoProductoAgregarInstruccionLabel;
+    private TextFieldRound precioVentaProductoAgregarCampo;
+    private LabelMetric precioVentaProductoAgregarInstruccionLabel;
+    private Panel submenuAgregarPanel;
     
     @Override
     public Panel obtenerPanelContenedor() {
