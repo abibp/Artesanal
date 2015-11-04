@@ -27,13 +27,9 @@ public class InicialVentana implements ActionListener{
     
     
     public void mostrarEnPantalla(){
-        panelContenedor = new org.edisoncor.gui.panel.Panel();
-        adornoPanelContenedor = new org.edisoncor.gui.panel.PanelCurves();
-        dineroEnCajaCampo = new org.edisoncor.gui.textField.TextField();
-        simboloPesoCantidadLabel = new org.edisoncor.gui.label.LabelRect();
-        dineroEnCajaInstruccionLabel = new org.edisoncor.gui.label.LabelMetric();
-        registrarCajaBoton = new org.edisoncor.gui.button.ButtonAction();
-
+        
+        inicializarComponentesVentana();
+        
         adornoPanelContenedor.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         dineroEnCajaCampo.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
@@ -85,5 +81,14 @@ public class InicialVentana implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         new PrincipalVentanaContenedora();
         ventana.dispose();
+    }
+    
+    private void inicializarComponentesVentana(){
+        panelContenedor = new org.edisoncor.gui.panel.Panel();
+        adornoPanelContenedor = new org.edisoncor.gui.panel.PanelCurves();
+        dineroEnCajaCampo = new org.edisoncor.gui.textField.TextField();
+        simboloPesoCantidadLabel = new org.edisoncor.gui.label.LabelRect();
+        dineroEnCajaInstruccionLabel = new org.edisoncor.gui.label.LabelMetric();
+        registrarCajaBoton = new org.edisoncor.gui.button.ButtonAction();
     }
 }

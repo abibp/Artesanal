@@ -39,7 +39,7 @@ public class AdaptadorPersonalizadoJTable extends AbstractTableModel {
      * con fireTa... 
      * @param row 
      */
-    public void añadirFila(ArrayList row){
+    public void agregarFila(ArrayList row){
         datos.add(row);
         fireTableDataChanged();
     }
