@@ -2,6 +2,7 @@ package usuario;
 
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import javax.swing.JFrame;
+import negocio.gestion.GestorCaja;
 import org.edisoncor.gui.panel.Panel;
 import org.edisoncor.gui.tabbedPane.TabbedPaneHeader;
 import usuario.menu.CorteMenuVentana;
@@ -14,12 +15,29 @@ import usuario.menu.VentaMenuVentana;
  *
  * @author PIX
  */
-public class PrincipalVentanaContenedora extends MenuVentana{
+public class PrincipalVentana extends MenuVentana{
     
     private TabbedPaneHeader menuPrincipalPanelSecciones;
     private JFrame ventanaPrincipal;
     private Panel panelPrincipal;
+    private final GestorCaja gestorCaja;
 
+    public PrincipalVentana(double cantidadInicialEnCaja) {
+        super();
+        gestorCaja = new GestorCaja();
+        gestorCaja.abrirCaja(MAXIMIZED_BOTH);
+    }
+    
+    
+    public void mostrarEnPantalla(){
+        ventanaPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ventanaPrincipal.setExtendedState(MAXIMIZED_BOTH);
+        ventanaPrincipal.pack();
+        ventanaPrincipal.setLocationRelativeTo(null);
+        ventanaPrincipal.setResizable(false);
+        ventanaPrincipal.setVisible(true);
+    }
+    
     @Override
     public Panel obtenerPanelContenedor() {
         return panelPrincipal;
@@ -49,16 +67,8 @@ public class PrincipalVentanaContenedora extends MenuVentana{
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(menuPrincipalPanelSecciones, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 709, Short.MAX_VALUE)
         );
-
-        ventanaPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ventanaPrincipal.setExtendedState(MAXIMIZED_BOTH);
-        ventanaPrincipal.pack();
-        ventanaPrincipal.setLocationRelativeTo(null);
-        ventanaPrincipal.setResizable(false);
-        ventanaPrincipal.setVisible(true);
     }
     
-
     private void agregarSecciones() {
          menuPrincipalPanelSecciones.addTab("Venta"     , new VentaMenuVentana().obtenerPanelContenedor());
          menuPrincipalPanelSecciones.addTab("Producto"  , new ProductoMenuVentana().obtenerPanelContenedor());

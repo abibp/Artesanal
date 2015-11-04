@@ -16,7 +16,8 @@ public class GestorCaja {
     private GestorReporte reporte_;
     
     public Caja abrirCaja(float montoInicial){
-        return null;
+        cajaHeladeria_ = new Caja(montoInicial);
+        return cajaHeladeria_;
     }
     
     public void cerrarCaja(){

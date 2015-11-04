@@ -16,16 +16,17 @@ public class Caja {
     public Caja(float montoInicial) {
         this.MONTO_INICIAL_ = montoInicial;
         this.nVentas_       = new ArrayList();
+        establecerDineroActual(MONTO_INICIAL_);
     }
 
     public float obtenerDineroActual() {
         return dineroActual_;
     }
-
-    public void establecerDineroActual(float dineroActual) {
-        this.dineroActual_ = dineroActual;
+    
+    public float modificarDineroActual(float monto){
+        return dineroActual_ + monto;
     }
-
+    
     public float obtenerMontoInicial() {
         return MONTO_INICIAL_;
     }
@@ -37,4 +38,9 @@ public class Caja {
     public void agregarVenta(Venta unaVenta){
         nVentas_.add(unaVenta);
     }
+    
+    private void establecerDineroActual(float dineroActual) {
+        this.dineroActual_ = dineroActual;
+    }
+
 }
