@@ -2,7 +2,7 @@ package usuario.menu;
 
 import java.awt.Color;
 import java.awt.Font;
-import javax.swing.Alignment;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.GroupLayout;
 import javax.swing.JLabel;
