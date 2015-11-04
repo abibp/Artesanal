@@ -1,10 +1,16 @@
 package usuario.menu;
 
+import java.awt.Color;
+import java.awt.Font;
+import javax.swing.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.GroupLayout;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 import org.edisoncor.gui.button.ButtonAction;
 import org.edisoncor.gui.button.ButtonSeven;
 import org.edisoncor.gui.label.LabelMetric;
@@ -50,12 +56,12 @@ public class VentaMenuVentana extends MenuVentana{
     
     @Override
     public void inicializarComponentes() {
-        ventaPanel = new org.edisoncor.gui.panel.Panel();
-        instruccionAgregarProductoVentaLabel = new org.edisoncor.gui.label.LabelTask();
+        ventaPanel = new Panel();
+        instruccionAgregarProductoVentaLabel = new LabelTask();
         instruccionAgregarProductoVentaLabel.setForeground(new java.awt.Color(255, 255, 255));
         instruccionAgregarProductoVentaLabel.setText("Agrega un producto");
-        codigoVentaCampo = new javax.swing.JTextField();
-        instruccionCodigoProductoVentaLabel = new org.edisoncor.gui.label.LabelMetric();
+        codigoVentaCampo = new JTextField();
+        instruccionCodigoProductoVentaLabel = new LabelMetric();
         instruccionCodigoProductoVentaLabel.setText("Codigo de Producto :");
 
     }
@@ -63,30 +69,30 @@ public class VentaMenuVentana extends MenuVentana{
     @Override
     public void establecerLayoutComponentes() {
 
-        ventaPanel = new org.edisoncor.gui.panel.Panel();
-        instruccionAgregarProductoVentaLabel = new org.edisoncor.gui.label.LabelTask();
-        agregarEfectivoBoton = new org.edisoncor.gui.button.ButtonAction();
-        quitarEfectivoBoton = new org.edisoncor.gui.button.ButtonAction();
-        buscarProductoVentaBoton = new org.edisoncor.gui.button.ButtonAction();
-        codigoVentaCampo = new javax.swing.JTextField();
-        agregarProductoVentaBoton = new org.edisoncor.gui.button.ButtonSeven();
-        cantidadVentaSpinner = new javax.swing.JSpinner();
-        productosEnVentaTablaBarraDesplazamiento = new javax.swing.JScrollPane();
-        productosEnVentaTabla = new javax.swing.JTable();
-        instruccionTotalVentaLabel = new org.edisoncor.gui.label.LabelRect();
-        totalVentalLabel = new javax.swing.JLabel();
-        pagoConVentaLabel = new javax.swing.JLabel();
-        instruccionPagoVentaLabel = new org.edisoncor.gui.label.LabelRect();
-        instruccionCambioVentaLabel = new org.edisoncor.gui.label.LabelRect();
-        cambioVentaLabel = new javax.swing.JLabel();
-        cobrarImporteVentaBoton = new org.edisoncor.gui.button.ButtonAction();
-        simboloPesoLabel = new org.edisoncor.gui.label.LabelRound();
-        totalImporteVentaLabel = new org.edisoncor.gui.label.LabelRound();
-        instruccionCodigoProductoVentaLabel = new org.edisoncor.gui.label.LabelMetric();
-        instruccionCantidadVentaLabel = new org.edisoncor.gui.label.LabelMetric();
-        instruccionTotalImporteVentaLabel = new org.edisoncor.gui.label.LabelMetric();
+        ventaPanel = new Panel();
+        instruccionAgregarProductoVentaLabel = new LabelTask();
+        agregarEfectivoBoton = new ButtonAction();
+        quitarEfectivoBoton = new ButtonAction();
+        buscarProductoVentaBoton = new ButtonAction();
+        codigoVentaCampo = new JTextField();
+        agregarProductoVentaBoton = new ButtonSeven();
+        cantidadVentaSpinner = new JSpinner();
+        productosEnVentaTablaBarraDesplazamiento = new JScrollPane();
+        productosEnVentaTabla = new JTable();
+        instruccionTotalVentaLabel = new LabelRect();
+        totalVentalLabel = new JLabel();
+        pagoConVentaLabel = new JLabel();
+        instruccionPagoVentaLabel = new LabelRect();
+        instruccionCambioVentaLabel = new LabelRect();
+        cambioVentaLabel = new JLabel();
+        cobrarImporteVentaBoton = new ButtonAction();
+        simboloPesoLabel = new LabelRound();
+        totalImporteVentaLabel = new LabelRound();
+        instruccionCodigoProductoVentaLabel = new LabelMetric();
+        instruccionCantidadVentaLabel = new LabelMetric();
+        instruccionTotalImporteVentaLabel = new LabelMetric();
 
-        instruccionAgregarProductoVentaLabel.setForeground(new java.awt.Color(255, 255, 255));
+        instruccionAgregarProductoVentaLabel.setForeground(new Color(255, 255, 255));
         instruccionAgregarProductoVentaLabel.setText("Agrega un producto");
 
         agregarEfectivoBoton.setText("Agregar Efectivo");
@@ -97,7 +103,7 @@ public class VentaMenuVentana extends MenuVentana{
 
         agregarProductoVentaBoton.setText("Agregar");
 
-        productosEnVentaTabla.setModel(new javax.swing.table.DefaultTableModel(
+        productosEnVentaTabla.setModel(new DefaultTableModel(
                 new Object[][]{
                     {null, null, null, null},
                     {null, null, null, null},
@@ -112,160 +118,160 @@ public class VentaMenuVentana extends MenuVentana{
 
         instruccionTotalVentaLabel.setText("Total");
 
-        totalVentalLabel.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
-        totalVentalLabel.setForeground(new java.awt.Color(255, 255, 255));
+        totalVentalLabel.setFont(new Font("Arial", 1, 48)); // NOI18N
+        totalVentalLabel.setForeground(new Color(255, 255, 255));
         totalVentalLabel.setText("0.0");
 
-        pagoConVentaLabel.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
-        pagoConVentaLabel.setForeground(new java.awt.Color(255, 255, 255));
+        pagoConVentaLabel.setFont(new Font("Arial", 1, 48)); // NOI18N
+        pagoConVentaLabel.setForeground(new Color(255, 255, 255));
         pagoConVentaLabel.setText("0.0");
 
         instruccionPagoVentaLabel.setText("Pago con");
 
         instruccionCambioVentaLabel.setText("Cambio");
 
-        cambioVentaLabel.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
-        cambioVentaLabel.setForeground(new java.awt.Color(255, 255, 255));
+        cambioVentaLabel.setFont(new Font("Arial", 1, 48)); // NOI18N
+        cambioVentaLabel.setForeground(new Color(255, 255, 255));
         cambioVentaLabel.setText("0.0");
 
         cobrarImporteVentaBoton.setText("Cobrar");
-        cobrarImporteVentaBoton.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
+        cobrarImporteVentaBoton.setFont(new Font("Arial", 1, 48)); // NOI18N
 
         simboloPesoLabel.setText("$");
-        simboloPesoLabel.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
+        simboloPesoLabel.setFont(new Font("Arial", 1, 48)); // NOI18N
 
         totalImporteVentaLabel.setText("O.O");
-        totalImporteVentaLabel.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
+        totalImporteVentaLabel.setFont(new Font("Arial", 1, 48)); // NOI18N
 
         instruccionCodigoProductoVentaLabel.setText("Codigo de Producto :");
 
         instruccionCantidadVentaLabel.setText("Cantidad :");
 
         instruccionTotalImporteVentaLabel.setText("Total :");
-        instruccionTotalImporteVentaLabel.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
+        instruccionTotalImporteVentaLabel.setFont(new Font("Arial", 1, 48)); // NOI18N
 
-        javax.swing.GroupLayout ventaPanelLayout = new javax.swing.GroupLayout(ventaPanel);
+        GroupLayout ventaPanelLayout = new GroupLayout(ventaPanel);
         ventaPanel.setLayout(ventaPanelLayout);
         ventaPanelLayout.setHorizontalGroup(
-                ventaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                ventaPanelLayout.createParallelGroup(Alignment.LEADING)
                 .addGroup(ventaPanelLayout.createSequentialGroup()
                         .addGap(27, 27, 27)
-                        .addGroup(ventaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(ventaPanelLayout.createParallelGroup(Alignment.LEADING)
                                 .addGroup(ventaPanelLayout.createSequentialGroup()
-                                        .addGroup(ventaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(ventaPanelLayout.createParallelGroup(Alignment.LEADING)
                                                 .addGroup(ventaPanelLayout.createSequentialGroup()
                                                         .addGap(7, 7, 7)
-                                                        .addComponent(instruccionAgregarProductoVentaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(instruccionAgregarProductoVentaLabel, GroupLayout.PREFERRED_SIZE, 265, GroupLayout.PREFERRED_SIZE)
                                                         .addGap(24, 24, 24)
-                                                        .addGroup(ventaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addGroup(ventaPanelLayout.createParallelGroup(Alignment.LEADING, false)
                                                                 .addComponent(codigoVentaCampo)
-                                                                .addComponent(instruccionCodigoProductoVentaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE))
-                                                        .addGroup(ventaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                .addComponent(instruccionCodigoProductoVentaLabel, GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE))
+                                                        .addGroup(ventaPanelLayout.createParallelGroup(Alignment.LEADING)
                                                                 .addGroup(ventaPanelLayout.createSequentialGroup()
                                                                         .addGap(46, 46, 46)
-                                                                        .addComponent(cantidadVentaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                        .addComponent(cantidadVentaSpinner, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
                                                                         .addGap(44, 44, 44)
-                                                                        .addComponent(agregarProductoVentaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                        .addComponent(agregarProductoVentaBoton, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                                                                 .addGroup(ventaPanelLayout.createSequentialGroup()
                                                                         .addGap(36, 36, 36)
-                                                                        .addComponent(instruccionCantidadVentaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                                        .addComponent(instruccionCantidadVentaLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
                                                 .addGroup(ventaPanelLayout.createSequentialGroup()
-                                                        .addComponent(agregarEfectivoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(agregarEfectivoBoton, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE)
                                                         .addGap(18, 18, 18)
-                                                        .addComponent(quitarEfectivoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(quitarEfectivoBoton, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                                         .addGap(15, 15, 15)
-                                                        .addComponent(buscarProductoVentaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addComponent(buscarProductoVentaBoton, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                                                 .addGroup(ventaPanelLayout.createSequentialGroup()
                                                         .addGap(21, 21, 21)
-                                                        .addGroup(ventaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                .addComponent(instruccionTotalVentaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addGroup(ventaPanelLayout.createParallelGroup(Alignment.LEADING)
+                                                                .addComponent(instruccionTotalVentaLabel, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
                                                                 .addGroup(ventaPanelLayout.createSequentialGroup()
                                                                         .addGap(26, 26, 26)
                                                                         .addComponent(totalVentalLabel)))
-                                                        .addGroup(ventaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(ventaPanelLayout.createParallelGroup(Alignment.LEADING)
                                                                 .addGroup(ventaPanelLayout.createSequentialGroup()
                                                                         .addGap(117, 117, 117)
                                                                         .addComponent(pagoConVentaLabel)
                                                                         .addGap(103, 103, 103))
-                                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ventaPanelLayout.createSequentialGroup()
-                                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                        .addComponent(instruccionPagoVentaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addGroup(Alignment.TRAILING, ventaPanelLayout.createSequentialGroup()
+                                                                        .addPreferredGap(ComponentPlacement.RELATED)
+                                                                        .addComponent(instruccionPagoVentaLabel, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE)
                                                                         .addGap(40, 40, 40)))
-                                                        .addGroup(ventaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                .addComponent(instruccionCambioVentaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addGroup(ventaPanelLayout.createParallelGroup(Alignment.LEADING)
+                                                                .addComponent(instruccionCambioVentaLabel, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
                                                                 .addGroup(ventaPanelLayout.createSequentialGroup()
                                                                         .addGap(20, 20, 20)
                                                                         .addComponent(cambioVentaLabel)))
                                                         .addGap(219, 219, 219)
-                                                        .addComponent(cobrarImporteVentaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(cobrarImporteVentaBoton, GroupLayout.PREFERRED_SIZE, 237, GroupLayout.PREFERRED_SIZE)
                                                         .addGap(25, 25, 25)
-                                                        .addComponent(simboloPesoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(simboloPesoLabel, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
                                                         .addGap(18, 18, 18)
-                                                        .addComponent(totalImporteVentaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                        .addComponent(totalImporteVentaLabel, GroupLayout.PREFERRED_SIZE, 220, GroupLayout.PREFERRED_SIZE)))
                                         .addContainerGap(31, Short.MAX_VALUE))
                                 .addGroup(ventaPanelLayout.createSequentialGroup()
-                                        .addComponent(productosEnVentaTablaBarraDesplazamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 860, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(instruccionTotalImporteVentaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(productosEnVentaTablaBarraDesplazamiento, GroupLayout.PREFERRED_SIZE, 860, GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(instruccionTotalImporteVentaLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                         .addGap(56, 56, 56))))
         );
         ventaPanelLayout.setVerticalGroup(
-                ventaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                ventaPanelLayout.createParallelGroup(Alignment.LEADING)
                 .addGroup(ventaPanelLayout.createSequentialGroup()
-                        .addGroup(ventaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(ventaPanelLayout.createParallelGroup(Alignment.LEADING)
                                 .addGroup(ventaPanelLayout.createSequentialGroup()
                                         .addGap(50, 50, 50)
-                                        .addGroup(ventaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                .addComponent(instruccionAgregarProductoVentaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(instruccionCodigoProductoVentaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(instruccionCantidadVentaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(ventaPanelLayout.createParallelGroup(Alignment.BASELINE)
+                                                .addComponent(instruccionAgregarProductoVentaLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(instruccionCodigoProductoVentaLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(instruccionCantidadVentaLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(ventaPanelLayout.createSequentialGroup()
                                         .addGap(110, 110, 110)
-                                        .addComponent(codigoVentaCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(codigoVentaCampo, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
                                 .addGroup(ventaPanelLayout.createSequentialGroup()
                                         .addGap(115, 115, 115)
-                                        .addComponent(cantidadVentaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(cantidadVentaSpinner, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                                 .addGroup(ventaPanelLayout.createSequentialGroup()
                                         .addGap(107, 107, 107)
-                                        .addComponent(agregarProductoVentaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(agregarProductoVentaBoton, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
                         .addGap(22, 22, 22)
-                        .addGroup(ventaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(agregarEfectivoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(quitarEfectivoBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(buscarProductoVentaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(ventaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(ventaPanelLayout.createParallelGroup(Alignment.LEADING)
+                                .addComponent(agregarEfectivoBoton, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(quitarEfectivoBoton, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(buscarProductoVentaBoton, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                        .addGroup(ventaPanelLayout.createParallelGroup(Alignment.LEADING)
                                 .addGroup(ventaPanelLayout.createSequentialGroup()
                                         .addGap(331, 331, 331)
-                                        .addComponent(cobrarImporteVentaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(cobrarImporteVentaBoton, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE))
                                 .addGroup(ventaPanelLayout.createSequentialGroup()
-                                        .addGroup(ventaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(ventaPanelLayout.createParallelGroup(Alignment.LEADING)
                                                 .addGroup(ventaPanelLayout.createSequentialGroup()
                                                         .addGap(18, 18, 18)
-                                                        .addComponent(productosEnVentaTablaBarraDesplazamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(productosEnVentaTablaBarraDesplazamiento, GroupLayout.PREFERRED_SIZE, 274, GroupLayout.PREFERRED_SIZE)
                                                         .addGap(18, 18, 18))
-                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ventaPanelLayout.createSequentialGroup()
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                        .addComponent(instruccionTotalImporteVentaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                                        .addGroup(ventaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(Alignment.TRAILING, ventaPanelLayout.createSequentialGroup()
+                                                        .addPreferredGap(ComponentPlacement.RELATED)
+                                                        .addComponent(instruccionTotalImporteVentaLabel, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+                                                        .addPreferredGap(ComponentPlacement.RELATED)))
+                                        .addGroup(ventaPanelLayout.createParallelGroup(Alignment.LEADING)
                                                 .addGroup(ventaPanelLayout.createSequentialGroup()
-                                                        .addComponent(instruccionTotalVentaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(instruccionTotalVentaLabel, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)
                                                         .addGap(18, 18, 18)
                                                         .addComponent(totalVentalLabel))
                                                 .addGroup(ventaPanelLayout.createSequentialGroup()
-                                                        .addComponent(instruccionPagoVentaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(instruccionPagoVentaLabel, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
                                                         .addGap(15, 15, 15)
                                                         .addComponent(pagoConVentaLabel))
                                                 .addGroup(ventaPanelLayout.createSequentialGroup()
                                                         .addGap(1, 1, 1)
-                                                        .addComponent(instruccionCambioVentaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(instruccionCambioVentaLabel, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
                                                         .addGap(14, 14, 14)
                                                         .addComponent(cambioVentaLabel))
                                                 .addGroup(ventaPanelLayout.createSequentialGroup()
                                                         .addGap(34, 34, 34)
-                                                        .addGroup(ventaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                .addComponent(simboloPesoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addComponent(totalImporteVentaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                                        .addGroup(ventaPanelLayout.createParallelGroup(Alignment.BASELINE)
+                                                                .addComponent(simboloPesoLabel, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE)
+                                                                .addComponent(totalImporteVentaLabel, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE))))))
                         .addContainerGap(33, Short.MAX_VALUE))
         );
     }
