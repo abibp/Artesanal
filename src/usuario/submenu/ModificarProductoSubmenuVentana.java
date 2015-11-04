@@ -71,7 +71,7 @@ public class ModificarProductoSubmenuVentana extends MenuVentana{
     }
 
     @Override
-    public void establecerLayoutComponentes() {
+    public void establecerDisenoComponentes() {
         instruccionModificarProductoLabel.setForeground(new java.awt.Color(255, 255, 255));
         instruccionModificarProductoLabel.setText("Modificar Producto");
 

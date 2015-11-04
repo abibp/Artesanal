@@ -182,6 +182,7 @@ public class InicialVentana implements ActionListener {
         simboloPesoCantidadLabel.setFont(simboloPesoFuenteTextoEtiqueta);
     }
 
+
     private void configurarCampos() {
 
         int DIMENSION_LETRA_CAMPO = 48;

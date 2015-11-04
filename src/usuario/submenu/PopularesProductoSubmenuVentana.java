@@ -35,7 +35,7 @@ public class PopularesProductoSubmenuVentana extends MenuVentana{
     }
 
     @Override
-    public void establecerLayoutComponentes() {
+    public void establecerDisenoComponentes() {
         
 
         tablaProductos.setModel(new javax.swing.table.DefaultTableModel(

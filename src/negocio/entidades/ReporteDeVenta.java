@@ -49,8 +49,7 @@ public class ReporteDeVenta {
         this.nVentas_.remove(ventaAEliminar);
     }
     
-    @Override
-    public String toString(){
+    public String imprimirReporte(){
         final String RETORNO_DE_CARRO = "\n";
         return this.DESCRIPCION_ + RETORNO_DE_CARRO + this.ID_REPORTE_ + 
                 RETORNO_DE_CARRO + this.nVentas_.toString().replace(", ", 

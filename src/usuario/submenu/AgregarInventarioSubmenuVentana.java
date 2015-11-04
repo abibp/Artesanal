@@ -56,7 +56,7 @@ public class AgregarInventarioSubmenuVentana extends MenuVentana{
     }
 
     @Override
-    public void establecerLayoutComponentes() {
+    public void establecerDisenoComponentes() {
         
 
         codigoProductoInventarioAgregarLabel.setText("Codigo :");

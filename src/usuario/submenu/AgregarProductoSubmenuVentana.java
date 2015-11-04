@@ -68,7 +68,7 @@ public class AgregarProductoSubmenuVentana extends MenuVentana{
     }
 
     @Override
-    public void establecerLayoutComponentes() {
+    public void establecerDisenoComponentes() {
         codigoProductoAgregarInstruccionLabel.setText("Codigo :");
 
         nombreProductoAgregarInstruccionLabel.setText("Nombre :");

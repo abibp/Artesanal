@@ -54,7 +54,7 @@ public class PrincipalVentana extends MenuVentana{
     }
 
     @Override
-    public void establecerLayoutComponentes() {
+    public void establecerDisenoComponentes() {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(panelPrincipal);
         panelPrincipal.setLayout(layout);
         layout.setHorizontalGroup(

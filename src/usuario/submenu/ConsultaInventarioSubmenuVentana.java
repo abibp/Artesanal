@@ -44,7 +44,7 @@ public class ConsultaInventarioSubmenuVentana extends MenuVentana{
     }
 
     @Override
-    public void establecerLayoutComponentes() {
+    public void establecerDisenoComponentes() {
         
 
         articulosInventarioConsultaTabla.setModel(new javax.swing.table.DefaultTableModel(

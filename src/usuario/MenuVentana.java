@@ -14,12 +14,12 @@ public abstract class MenuVentana {
     
     public final void prepararInterfazGrafica(){
         inicializarComponentes();
-        establecerLayoutComponentes();
+        establecerDisenoComponentes();
     }
     
     public abstract Panel obtenerPanelContenedor();
     
     public abstract void inicializarComponentes();
     
-    public abstract void establecerLayoutComponentes();
+    public abstract void establecerDisenoComponentes();
 }
