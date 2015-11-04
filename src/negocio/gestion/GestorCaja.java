@@ -28,10 +28,9 @@ public class GestorCaja {
         GestorBDVenta.agregarVenta(nuevaVenta);
     }
     
-    public void cancelarVenta(int IDVenta) throws ExcepcionVentaNoEncontrada{
-        
+    public void cancelarVenta(int IDVenta) throws ExcepcionVentaNoEncontrada{       
         boolean esEliminada = GestorBDVenta.eliminarVenta(IDVenta);
-        //crear excepcion 
+        
         if(!(esEliminada)){
             throw new ExcepcionVentaNoEncontrada();
         }
