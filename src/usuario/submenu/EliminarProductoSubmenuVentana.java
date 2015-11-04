@@ -71,7 +71,7 @@ public class EliminarProductoSubmenuVentana extends MenuVentana{
     }
 
     @Override
-    public void establecerLayoutComponentes() {
+    public void establecerDisenoComponentes() {
 
         instruccionEliminarProductoLabel.setForeground(new java.awt.Color(255, 255, 255));
         instruccionEliminarProductoLabel.setText("Eliminar Producto");

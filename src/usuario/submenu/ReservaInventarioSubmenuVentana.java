@@ -35,7 +35,7 @@ public class ReservaInventarioSubmenuVentana extends MenuVentana{
     }
 
     @Override
-    public void establecerLayoutComponentes() {
+    public void establecerDisenoComponentes() {
        
 
         tituloSubmenu.setBackground(new java.awt.Color(255, 255, 255));

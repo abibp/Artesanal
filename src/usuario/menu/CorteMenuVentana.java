@@ -86,7 +86,7 @@ public class CorteMenuVentana extends MenuVentana{
     }
 
     @Override
-    public void establecerLayoutComponentes() {
+    public void establecerDisenoComponentes() {
         
 
         realizacionCorteBoton.setBackground(new java.awt.Color(0, 204, 102));

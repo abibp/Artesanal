@@ -42,7 +42,7 @@ public class ReporteMenuVentana extends MenuVentana{
     }
 
     @Override
-    public void establecerLayoutComponentes() {
+    public void establecerDisenoComponentes() {
        
 
         tituloMenu.setForeground(new java.awt.Color(255, 255, 255));

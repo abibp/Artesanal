@@ -31,7 +31,7 @@ public class ProductoMenuVentana extends MenuVentana{
     }
 
     @Override
-    public void establecerLayoutComponentes() {
+    public void establecerDisenoComponentes() {
        
         javax.swing.GroupLayout productoPanelLayout = new javax.swing.GroupLayout(productoPanel);
         productoPanel.setLayout(productoPanelLayout);

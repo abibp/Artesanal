@@ -67,7 +67,7 @@ public class VentaMenuVentana extends MenuVentana{
     }
 
     @Override
-    public void establecerLayoutComponentes() {
+    public void establecerDisenoComponentes() {
 
         ventaPanel = new Panel();
         instruccionAgregarProductoVentaLabel = new LabelTask();
