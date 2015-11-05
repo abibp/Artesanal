@@ -22,40 +22,15 @@ public class GestorCaja {
         
     }
     
-    public float cerrarCaja(){
+    private float cerrarCaja(){
         
         float cantidadFinalDinero = cajaHeladeria_.obtenerCantidadDineroActual();
         return cantidadFinalDinero;
         
     }
     
-    public void agregarVenta(Venta nuevaVenta){
-        
-        GestorBDVenta.agregarVenta(nuevaVenta);
-    }
-    
-    public void cancelarVenta(int IDVenta) throws ExcepcionVentaNoEncontrada{       
-        boolean esEliminada = GestorBDVenta.eliminarVenta(IDVenta);
-        
-        if(!(esEliminada)){
-            throw new ExcepcionVentaNoEncontrada();
-        }
-    }
-    
-    public Venta obtenerPrimeraVenta(){
-        return GestorBDVenta.obtenerVenta(1);
-    }
-    
-    public Venta obtenerUltimaVenta(){
-        int numeroUltimaVenta = GestorBDVenta.obtenerNumeroDeVentas();
-        return GestorBDVenta.obtenerVenta(numeroUltimaVenta);
-    }
-    
     private ReporteDeVenta realizarCorteCaja(){
         return null;
     }
     
-    public float calcularPromedioDeVentas(){
-        return 0.0f;
-    }
 }
