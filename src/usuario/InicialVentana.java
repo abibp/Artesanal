@@ -5,10 +5,8 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.ParseException;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import org.edisoncor.gui.button.ButtonAction;
@@ -62,7 +60,10 @@ public class InicialVentana implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent accionEvento) {
 
-        if (!elCampoEstaVacio() && esNumeroPositivo()) {
+        boolean esValidaCantidadDineroInicial = 
+            !campoEstaVacio() && esNumeroPositivo();    
+        
+        if (esValidaCantidadDineroInicial) {
 
             mostrarVentanaPrincipal();
 
@@ -86,13 +87,14 @@ public class InicialVentana implements ActionListener {
 
     }
 
-    private boolean elCampoEstaVacio() {
+    private boolean campoEstaVacio() {
         return dineroEnCajaCampo.getText().length() == 0;
     }
 
     private boolean esNumeroPositivo() {
         String numeroEnTexto = dineroEnCajaCampo.getText();
-        boolean FALLO = false;
+        final boolean FALLO = false;
+        
         try {
 
             return Double.parseDouble(numeroEnTexto) > 0;

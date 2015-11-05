@@ -3,7 +3,7 @@ package usuario.menu;
 import org.edisoncor.gui.panel.Panel;
 import org.edisoncor.gui.tabbedPane.TabbedPaneHeader;
 import usuario.MenuVentana;
-import usuario.submenu.AgregarProductoSubmenuVentana;
+import usuario.submenu.ProductoSubmenuVentana;
 import usuario.submenu.EliminarProductoSubmenuVentana;
 import usuario.submenu.ModificarProductoSubmenuVentana;
 import usuario.submenu.PopularesProductoSubmenuVentana;
@@ -48,7 +48,7 @@ public class ProductoMenuVentana extends MenuVentana{
     }
 
     private void agregarSecciones() {
-        submenuProductosPanelSecciones.addTab("Agregar", new AgregarProductoSubmenuVentana().obtenerPanelContenedor());
+        submenuProductosPanelSecciones.addTab("Agregar", new ProductoSubmenuVentana().obtenerPanelContenedor());
         submenuProductosPanelSecciones.addTab("Modificar", new ModificarProductoSubmenuVentana().obtenerPanelContenedor());
         submenuProductosPanelSecciones.addTab("Eliminar", new EliminarProductoSubmenuVentana().obtenerPanelContenedor());
         submenuProductosPanelSecciones.addTab("Populares", new PopularesProductoSubmenuVentana().obtenerPanelContenedor());
