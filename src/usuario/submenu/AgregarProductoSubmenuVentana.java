@@ -1,11 +1,15 @@
 package usuario.submenu;
 
-import javax.swing.JSpinner;
+
+import java.awt.Color;
 import org.edisoncor.gui.button.ButtonAqua;
 import org.edisoncor.gui.label.LabelMetric;
-import org.edisoncor.gui.label.LabelTask;
 import org.edisoncor.gui.panel.Panel;
 import org.edisoncor.gui.panel.PanelRound;
+import javax.swing.GroupLayout;
+import javax.swing.JSpinner;
+import javax.swing.LayoutStyle;
+import org.edisoncor.gui.label.LabelTask;
 import org.edisoncor.gui.textField.TextFieldRound;
 import usuario.MenuVentana;
 
@@ -44,27 +48,27 @@ public class AgregarProductoSubmenuVentana extends MenuVentana{
 
     @Override
     public void inicializarComponentes() {
-        submenuAgregarPanel = new org.edisoncor.gui.panel.Panel();
-        agregarFormularioPanel = new org.edisoncor.gui.panel.PanelRound();
-        codigoProductoAgregarInstruccionLabel = new org.edisoncor.gui.label.LabelMetric();
-        codigoProductoAgregarCampo = new org.edisoncor.gui.textField.TextFieldRound();
-        nombreProductoAgregarInstruccionLabel = new org.edisoncor.gui.label.LabelMetric();
-        descripcionProductoAgregarInstruccionLabel = new org.edisoncor.gui.label.LabelMetric();
-        precioCostoProductoAgregarInstruccionLabel = new org.edisoncor.gui.label.LabelMetric();
-        gananciaProductoAgregarInstruccionLabel = new org.edisoncor.gui.label.LabelMetric();
-        precioVentaProductoAgregarInstruccionLabel = new org.edisoncor.gui.label.LabelMetric();
-        cantidadProductoAgregarInstruccionLabel = new org.edisoncor.gui.label.LabelMetric();
-        cantidadMinimaProductoAgregarInstruccionLabel = new org.edisoncor.gui.label.LabelMetric();
-        nombreProductoAgregarCampo = new org.edisoncor.gui.textField.TextFieldRound();
-        descripcionProductoAgregarCampo = new org.edisoncor.gui.textField.TextFieldRound();
-        precioVentaProductoAgregarCampo = new org.edisoncor.gui.textField.TextFieldRound();
-        precioCostoProductoAgregarBoton = new org.edisoncor.gui.textField.TextFieldRound();
-        cantidadMinimaProductoAgregarCampo = new org.edisoncor.gui.textField.TextFieldRound();
-        cantidadProductoAgregarCampo = new org.edisoncor.gui.textField.TextFieldRound();
-        gananciaProductoAgregarSpinner = new javax.swing.JSpinner();
-        instruccionAgregarProductoLabel = new org.edisoncor.gui.label.LabelTask();
-        cancelarProductoAgregarBoton = new org.edisoncor.gui.button.ButtonAqua();
-        guardarProductoAgregarBoton = new org.edisoncor.gui.button.ButtonAqua();
+        submenuAgregarPanel = new Panel();
+        agregarFormularioPanel = new PanelRound();
+        codigoProductoAgregarInstruccionLabel = new LabelMetric();
+        codigoProductoAgregarCampo = new TextFieldRound();
+        nombreProductoAgregarInstruccionLabel = new LabelMetric();
+        descripcionProductoAgregarInstruccionLabel = new LabelMetric();
+        precioCostoProductoAgregarInstruccionLabel = new LabelMetric();
+        gananciaProductoAgregarInstruccionLabel = new LabelMetric();
+        precioVentaProductoAgregarInstruccionLabel = new LabelMetric();
+        cantidadProductoAgregarInstruccionLabel = new LabelMetric();
+        cantidadMinimaProductoAgregarInstruccionLabel = new LabelMetric();
+        nombreProductoAgregarCampo = new TextFieldRound();
+        descripcionProductoAgregarCampo = new TextFieldRound();
+        precioVentaProductoAgregarCampo = new TextFieldRound();
+        precioCostoProductoAgregarBoton = new TextFieldRound();
+        cantidadMinimaProductoAgregarCampo = new TextFieldRound();
+        cantidadProductoAgregarCampo = new TextFieldRound();
+        gananciaProductoAgregarSpinner = new JSpinner();
+        instruccionAgregarProductoLabel = new LabelTask();
+        cancelarProductoAgregarBoton = new ButtonAqua();
+        guardarProductoAgregarBoton = new ButtonAqua();
     }
 
     @Override
@@ -87,122 +91,122 @@ public class AgregarProductoSubmenuVentana extends MenuVentana{
 
         cantidadMinimaProductoAgregarCampo.setText(" ");
 
-        javax.swing.GroupLayout agregarFormularioPanelLayout = new javax.swing.GroupLayout(agregarFormularioPanel);
+        GroupLayout agregarFormularioPanelLayout = new GroupLayout(agregarFormularioPanel);
         agregarFormularioPanel.setLayout(agregarFormularioPanelLayout);
         agregarFormularioPanelLayout.setHorizontalGroup(
-            agregarFormularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            agregarFormularioPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(agregarFormularioPanelLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addGroup(agregarFormularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(agregarFormularioPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addGroup(agregarFormularioPanelLayout.createSequentialGroup()
-                        .addComponent(gananciaProductoAgregarInstruccionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(gananciaProductoAgregarInstruccionLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(gananciaProductoAgregarSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(gananciaProductoAgregarSpinner, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE))
                     .addGroup(agregarFormularioPanelLayout.createSequentialGroup()
-                        .addGroup(agregarFormularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(codigoProductoAgregarInstruccionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nombreProductoAgregarInstruccionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(descripcionProductoAgregarInstruccionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(agregarFormularioPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                            .addComponent(codigoProductoAgregarInstruccionLabel, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nombreProductoAgregarInstruccionLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(descripcionProductoAgregarInstruccionLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                         .addGap(55, 55, 55)
-                        .addGroup(agregarFormularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(descripcionProductoAgregarCampo, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
-                            .addComponent(nombreProductoAgregarCampo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(codigoProductoAgregarCampo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(agregarFormularioPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                            .addComponent(descripcionProductoAgregarCampo, GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
+                            .addComponent(nombreProductoAgregarCampo, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(codigoProductoAgregarCampo, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(agregarFormularioPanelLayout.createSequentialGroup()
-                        .addGroup(agregarFormularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(agregarFormularioPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                             .addGroup(agregarFormularioPanelLayout.createSequentialGroup()
-                                .addComponent(cantidadProductoAgregarInstruccionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(cantidadProductoAgregarCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cantidadProductoAgregarInstruccionLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cantidadProductoAgregarCampo, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE))
                             .addGroup(agregarFormularioPanelLayout.createSequentialGroup()
-                                .addComponent(precioCostoProductoAgregarInstruccionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(precioCostoProductoAgregarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(precioCostoProductoAgregarInstruccionLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(precioCostoProductoAgregarBoton, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)))
                         .addGap(41, 41, 41)
-                        .addGroup(agregarFormularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(precioVentaProductoAgregarInstruccionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cantidadMinimaProductoAgregarInstruccionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(agregarFormularioPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                            .addComponent(precioVentaProductoAgregarInstruccionLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cantidadMinimaProductoAgregarInstruccionLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                         .addGap(32, 32, 32)
-                        .addGroup(agregarFormularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cantidadMinimaProductoAgregarCampo, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
-                            .addComponent(precioVentaProductoAgregarCampo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(agregarFormularioPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cantidadMinimaProductoAgregarCampo, GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+                            .addComponent(precioVentaProductoAgregarCampo, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(75, Short.MAX_VALUE))
         );
         agregarFormularioPanelLayout.setVerticalGroup(
-            agregarFormularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            agregarFormularioPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(agregarFormularioPanelLayout.createSequentialGroup()
                 .addGap(37, 37, 37)
-                .addGroup(agregarFormularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(codigoProductoAgregarInstruccionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(codigoProductoAgregarCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(agregarFormularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nombreProductoAgregarInstruccionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nombreProductoAgregarCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(agregarFormularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, agregarFormularioPanelLayout.createSequentialGroup()
-                        .addGroup(agregarFormularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(precioCostoProductoAgregarInstruccionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(precioVentaProductoAgregarInstruccionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(precioVentaProductoAgregarCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(precioCostoProductoAgregarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(agregarFormularioPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(codigoProductoAgregarInstruccionLabel, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(codigoProductoAgregarCampo, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(agregarFormularioPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(nombreProductoAgregarInstruccionLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nombreProductoAgregarCampo, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(agregarFormularioPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addGroup(GroupLayout.Alignment.TRAILING, agregarFormularioPanelLayout.createSequentialGroup()
+                        .addGroup(agregarFormularioPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                            .addComponent(precioCostoProductoAgregarInstruccionLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(precioVentaProductoAgregarInstruccionLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(precioVentaProductoAgregarCampo, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(precioCostoProductoAgregarBoton, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE))
                         .addGap(44, 44, 44)
-                        .addGroup(agregarFormularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(gananciaProductoAgregarInstruccionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(gananciaProductoAgregarSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(agregarFormularioPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                            .addComponent(gananciaProductoAgregarInstruccionLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(gananciaProductoAgregarSpinner, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                         .addGap(35, 35, 35))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, agregarFormularioPanelLayout.createSequentialGroup()
-                        .addGroup(agregarFormularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(descripcionProductoAgregarCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(descripcionProductoAgregarInstruccionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(GroupLayout.Alignment.TRAILING, agregarFormularioPanelLayout.createSequentialGroup()
+                        .addGroup(agregarFormularioPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                            .addComponent(descripcionProductoAgregarCampo, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(descripcionProductoAgregarInstruccionLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                         .addGap(156, 156, 156)))
-                .addGroup(agregarFormularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cantidadMinimaProductoAgregarInstruccionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cantidadProductoAgregarInstruccionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cantidadProductoAgregarCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cantidadMinimaProductoAgregarCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(agregarFormularioPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(cantidadMinimaProductoAgregarInstruccionLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cantidadProductoAgregarInstruccionLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cantidadProductoAgregarCampo, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cantidadMinimaProductoAgregarCampo, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
                 .addGap(106, 106, 106))
         );
 
-        instruccionAgregarProductoLabel.setForeground(new java.awt.Color(255, 255, 255));
+        instruccionAgregarProductoLabel.setForeground(new Color(255, 255, 255));
         instruccionAgregarProductoLabel.setText("Agregar Nuevo Producto");
 
-        cancelarProductoAgregarBoton.setBackground(new java.awt.Color(255, 0, 51));
+        cancelarProductoAgregarBoton.setBackground(new Color(255, 0, 51));
         cancelarProductoAgregarBoton.setText("Cancelar");
 
-        guardarProductoAgregarBoton.setBackground(new java.awt.Color(0, 204, 102));
+        guardarProductoAgregarBoton.setBackground(new Color(0, 204, 102));
         guardarProductoAgregarBoton.setText("Guardar Producto");
 
-        javax.swing.GroupLayout submenuAgregarPanelLayout = new javax.swing.GroupLayout(submenuAgregarPanel);
+        GroupLayout submenuAgregarPanelLayout = new GroupLayout(submenuAgregarPanel);
         submenuAgregarPanel.setLayout(submenuAgregarPanelLayout);
         submenuAgregarPanelLayout.setHorizontalGroup(
-            submenuAgregarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            submenuAgregarPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(submenuAgregarPanelLayout.createSequentialGroup()
-                .addGroup(submenuAgregarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(submenuAgregarPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addGroup(submenuAgregarPanelLayout.createSequentialGroup()
                         .addGap(216, 216, 216)
-                        .addComponent(instruccionAgregarProductoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(instruccionAgregarProductoLabel, GroupLayout.PREFERRED_SIZE, 315, GroupLayout.PREFERRED_SIZE))
                     .addGroup(submenuAgregarPanelLayout.createSequentialGroup()
                         .addGap(62, 62, 62)
-                        .addGroup(submenuAgregarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(agregarFormularioPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(submenuAgregarPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                            .addComponent(agregarFormularioPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                             .addGroup(submenuAgregarPanelLayout.createSequentialGroup()
-                                .addComponent(guardarProductoAgregarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 802, Short.MAX_VALUE)
-                                .addComponent(cancelarProductoAgregarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(guardarProductoAgregarBoton, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 802, Short.MAX_VALUE)
+                                .addComponent(cancelarProductoAgregarBoton, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))))
                 .addGap(24, 24, 24))
         );
         submenuAgregarPanelLayout.setVerticalGroup(
-            submenuAgregarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            submenuAgregarPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(submenuAgregarPanelLayout.createSequentialGroup()
-                .addComponent(instruccionAgregarProductoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(instruccionAgregarProductoLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
-                .addComponent(agregarFormularioPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
-                .addGroup(submenuAgregarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(guardarProductoAgregarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancelarProductoAgregarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(agregarFormularioPanel, GroupLayout.PREFERRED_SIZE, 379, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                .addGroup(submenuAgregarPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(guardarProductoAgregarBoton, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelarProductoAgregarBoton, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27))
         );
     }

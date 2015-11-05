@@ -58,7 +58,7 @@ public class VentaMenuVentana extends MenuVentana{
     public void inicializarComponentes() {
         ventaPanel = new Panel();
         instruccionAgregarProductoVentaLabel = new LabelTask();
-        instruccionAgregarProductoVentaLabel.setForeground(new java.awt.Color(255, 255, 255));
+        instruccionAgregarProductoVentaLabel.setForeground(new Color(255, 255, 255));
         instruccionAgregarProductoVentaLabel.setText("Agrega un producto");
         codigoVentaCampo = new JTextField();
         instruccionCodigoProductoVentaLabel = new LabelMetric();
