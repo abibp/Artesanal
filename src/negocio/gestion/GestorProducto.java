@@ -1,7 +1,6 @@
 package negocio.gestion;
 
 import negocio.entidades.Producto;
-import negocio.entidades.ProductoProveedor;
 
 /**
  *

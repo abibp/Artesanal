@@ -1,5 +1,6 @@
 package negocio.gestion;
 
+import negocio.entidades.Inventario;
 import negocio.entidades.Caja;
 import negocio.entidades.Venta;
 import negocio.entidades.ReporteDeVenta;

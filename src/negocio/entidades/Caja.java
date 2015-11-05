@@ -8,9 +8,9 @@ import java.util.ArrayList;
  */
 public class Caja {
 
-    private final float      MONTO_INICIAL_;
+    private final float MONTO_INICIAL_;
     
-    private float            dineroActual_;
+    private float dineroActual_;
     private ArrayList<Venta> nVentas_;
 
     public Caja(float montoInicial) {
@@ -19,7 +19,7 @@ public class Caja {
         establecerDineroActual(MONTO_INICIAL_);
     }
 
-    public float obtenerDineroActual() {
+    public float obtenerCantidadDineroActual() {
         return dineroActual_;
     }
     

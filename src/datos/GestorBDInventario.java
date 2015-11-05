@@ -6,7 +6,7 @@ import negocio.entidades.Producto;
  *
  * @author PIX
  */
-public class GestorBDInventario extends GestorBD{
+public class GestorBDInventario extends GestorBaseDatos{
     
     public void agregarProducto(Producto nuevoProducto){
     }

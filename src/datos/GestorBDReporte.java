@@ -6,7 +6,7 @@ import negocio.entidades.ReporteDeVenta;
  *
  * @author PIX
  */
-public class GestorBDReporte extends GestorBD {
+public class GestorBDReporte extends GestorBaseDatos {
 
     public void agregarReporte(ReporteDeVenta nuevoReporte) {
     }

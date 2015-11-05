@@ -10,5 +10,4 @@ public class ProductoCasero extends Producto {
             float costo) {
         super(idProducto, nombre, precio, costo);
     }
-
 }

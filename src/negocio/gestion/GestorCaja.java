@@ -16,11 +16,16 @@ public class GestorCaja {
     private GestorReporte reporte_;
     
     public Caja abrirCaja(float montoInicial){
-        cajaHeladeria_ = new Caja(montoInicial);
+        
+        cajaHeladeria_ = new Caja( montoInicial );
         return cajaHeladeria_;
+        
     }
     
-    public void cerrarCaja(){
+    public float cerrarCaja(){
+        
+        float cantidadFinalDinero = cajaHeladeria_.obtenerCantidadDineroActual();
+        return cantidadFinalDinero;
         
     }
     
