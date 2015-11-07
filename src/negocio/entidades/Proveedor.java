@@ -7,11 +7,10 @@ import java.util.ArrayList;
  * @author PIX
  */
 public class Proveedor {
-    
-   private String                       nombre_;
-   private String                       telefono_;
-   private String                       direccion_;
-   private ArrayList<ProductoProveedor> nProductos_;
+
+    private String nombre_;
+    private String telefono_;
+    private String direccion_;
 
     public String obtenerNombre() {
         return nombre_;
@@ -36,9 +35,5 @@ public class Proveedor {
     public void establecerDireccion(String direccion) {
         this.direccion_ = direccion;
     }
-   
-   public void agregarProducto(ProductoProveedor unProducto){
-       this.nProductos_.add(unProducto);
-   }
-   
+
 }

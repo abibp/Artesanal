@@ -32,11 +32,15 @@ public class GestorConexion {
     
     public void iniciarConexion(){
         
+        final String INICIO_URL = "jdbc:mysql://";
+        final String SEPARADOR = "/";
+        
         try {
             
-            final String URL = "jdbc:mysql://" +
+            final String URL = 
+                    INICIO_URL +
                     DIRECCION_CONEXION_ +
-                    "/" +
+                    SEPARADOR +
                     NOMBRE_BD_;
             
             conexion_ = DriverManager.getConnection(

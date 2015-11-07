@@ -1,7 +1,5 @@
 package negocio.entidades;
 
-import negocio.entidades.Producto;
-import negocio.entidades.Insumo;
 import java.util.ArrayList;
 
 /**

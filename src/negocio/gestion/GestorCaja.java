@@ -8,26 +8,38 @@ import negocio.entidades.ReporteDeVenta;
  * @author PIX
  */
 public class GestorCaja {
-    
+
     private Caja cajaHeladeria_;
     private GestorReporte reporte_;
-    
-    public Caja abrirCaja(float montoInicial){
-        
-        cajaHeladeria_ = new Caja( montoInicial );
+
+    public Caja abrirCaja(double montoInicial) {
+
+        cajaHeladeria_ = new Caja(montoInicial);
         return cajaHeladeria_;
-        
+
+    }
+
+    public void modificarDineroActual(double monto) {
+
+        cajaHeladeria_.establecerDineroActual(
+                cajaHeladeria_.obtenerCantidadDineroActual() + monto
+        );
+
+    }
+
+    public double obtenerCantidadActualDineroCaja(){
+        return cajaHeladeria_.obtenerCantidadDineroActual();
     }
     
-    private float cerrarCaja(){
-        
-        float cantidadFinalDinero = cajaHeladeria_.obtenerCantidadDineroActual();
+    public double cerrarCaja() {
+
+        double cantidadFinalDinero = cajaHeladeria_.obtenerCantidadDineroActual();
         return cantidadFinalDinero;
-        
+
     }
-    
-    private ReporteDeVenta realizarCorteCaja(){
+
+    private ReporteDeVenta realizarCorteCaja() {
         return null;
     }
-    
+
 }

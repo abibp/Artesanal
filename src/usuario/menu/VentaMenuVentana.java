@@ -2,15 +2,24 @@ package usuario.menu;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.GroupLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import negocio.entidades.Producto;
+import negocio.entidades.ProductoProveedor;
+import negocio.entidades.Proveedor;
+import negocio.entidades.ElementoVenta;
+import negocio.gestion.GestorCaja;
 import org.edisoncor.gui.button.ButtonAction;
 import org.edisoncor.gui.button.ButtonSeven;
 import org.edisoncor.gui.label.LabelMetric;
@@ -24,8 +33,9 @@ import usuario.MenuVentana;
  *
  * @author PIX
  */
-public class VentaMenuVentana extends MenuVentana{
+public class VentaMenuVentana extends MenuVentana implements ActionListener {
 
+    private final GestorCaja gestorCaja;
     private ButtonAction agregarEfectivoBoton;
     private ButtonSeven agregarProductoVentaBoton;
     private ButtonAction buscarProductoVentaBoton;
@@ -49,11 +59,16 @@ public class VentaMenuVentana extends MenuVentana{
     private JLabel totalVentalLabel;
     private Panel ventaPanel;
 
-    @Override
-    public Panel obtenerPanelContenedor(){
-        return ventaPanel;
+    public VentaMenuVentana(GestorCaja gestorCaja) {
+        super();
+        this.gestorCaja = gestorCaja;
     }
     
+    @Override
+    public Panel obtenerPanelContenedor() {
+        return ventaPanel;
+    }
+
     @Override
     public void inicializarComponentes() {
         ventaPanel = new Panel();
@@ -274,6 +289,74 @@ public class VentaMenuVentana extends MenuVentana{
                                                                 .addComponent(totalImporteVentaLabel, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE))))))
                         .addContainerGap(33, Short.MAX_VALUE))
         );
+        agregarProductoVentaBoton.addActionListener(this);
+        agregarEfectivoBoton.addActionListener(this);
+        quitarEfectivoBoton.addActionListener(this);
+        cobrarImporteVentaBoton.addActionListener(this);
+        buscarProductoVentaBoton.addActionListener(this);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent eventoGenerado) {
+        
+        Object origenDelEvento = eventoGenerado.getSource();
+
+        if (origenDelEvento.equals(agregarEfectivoBoton)) {
+
+            agregarEfectivoACaja();
+
+        } else if (origenDelEvento.equals(agregarProductoVentaBoton)) {
+
+            agregarProductoAVenta();
+
+        } else if (origenDelEvento.equals(quitarEfectivoBoton)) {
+
+            quitarEfectivoCaja();
+
+        } else if (origenDelEvento.equals(buscarProductoVentaBoton)) {
+
+            buscarProductoBoton();
+
+        } else if (origenDelEvento.equals(cobrarImporteVentaBoton)) {
+
+            realizarVenta();
+
+        }
+
+        ArrayList<ElementoVenta> arr = new ArrayList();
+        arr.add(new ElementoVenta(3, new ProductoProveedor(12, "sopkdlasd", 0.332, 45.3, new Proveedor())));
+        System.out.println("pelos : " + arr.size());
+
+    }
+
+    private void agregarEfectivoACaja() {
+
+        String cantidadDinero = JOptionPane.showInputDialog("Ingresa la cantidad de dinero");
+        if (cantidadDinero != null) {
+            double cantidadDeDineroAgregar = Double.parseDouble(cantidadDinero);
+            
+            System.out.println("Agregando " + cantidadDeDineroAgregar + " varos");
+        }
+    }
+
+    private void agregarProductoAVenta() {
+        System.out.println("Agregando producto a venta");
+    }
+
+    private void realizarVenta() {
+        System.out.println("Realizando Venta");
+    }
+
+    private void buscarProductoBoton() {
+        System.out.println("Abriendo buscador");
+    }
+
+    private void quitarEfectivoCaja() {
+        String cantidadDinero = JOptionPane.showInputDialog("Ingresa la cantidad de dinero");
+        if (cantidadDinero != null) {
+            double cantidadDeDineroAgregar = Double.parseDouble(cantidadDinero);
+            System.out.println("Agregando " + cantidadDeDineroAgregar + " varos");
+        }
     }
 
 }
