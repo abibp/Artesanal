@@ -4,20 +4,20 @@ package negocio.entidades;
  *
  * @author PIX
  */
-public abstract class Producto{
-    
-    private final int   ID_PRODUCTO_;    
-    private String      NOMBRE_;
-    
-    private String      descripcion_;
-    private double       precioVenta_;
-    private double       precioCompra_;
+public abstract class Producto {
+
+    private final int ID_PRODUCTO_;
+    private String NOMBRE_;
+
+    private String descripcion_;
+    private double precioVenta_;
+    private double precioCompra_;
 
     public Producto(int idProducto, String nombre, double precio, double costo) {
-        this.ID_PRODUCTO_   = idProducto;
-        this.NOMBRE_        = nombre;
-        this.precioVenta_   = precio;
-        this.precioCompra_  = costo;
+        this.ID_PRODUCTO_ = idProducto;
+        this.NOMBRE_ = nombre;
+        this.precioVenta_ = precio;
+        this.precioCompra_ = costo;
     }
 
     public double obtenerCosto() {
@@ -43,7 +43,7 @@ public abstract class Producto{
     public void establecerPrecio(double precio) {
         this.precioVenta_ = precio;
     }
-        
+
     public int obtenerIDProducto() {
         return ID_PRODUCTO_;
     }

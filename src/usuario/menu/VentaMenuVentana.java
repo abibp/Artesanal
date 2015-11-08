@@ -338,58 +338,56 @@ public class VentaMenuVentana extends MenuVentana implements ActionListener {
 
     private void agregarEfectivoACaja() {
 
-        System.out.println(gestorCaja.obtenerCantidadActualCaja());
         String cantidadDinero = JOptionPane.showInputDialog("Ingresa la cantidad de dinero");
         if (cantidadDinero != null) {
             double cantidadDeDineroAumentar = Double.parseDouble(cantidadDinero);
             gestorCaja.aumentarDineroCaja(cantidadDeDineroAumentar);
-            System.out.println("Agregando " + cantidadDeDineroAumentar + " varos"
-                    + " tienes " + gestorCaja.obtenerCantidadActualCaja());
         }
     }
 
     private GestorProducto gestorProducto = new GestorProducto();
 
     private void agregarProductoAVenta() {
+
+        final String VACIO = "";
+
         try {
             int codigoProducto = Integer.parseInt(codigoProductoCampo.getText());
-            int cantidad = Integer.parseInt(cantidadVentaSpinner.getValue().toString());
+            int cantidadProductos = Integer.parseInt(cantidadVentaSpinner.getValue().toString());
             if (gestorProducto.existeProducto(codigoProducto)) {
+                
                 ProductoProveedor pp = ((ProductoProveedor) gestorProducto.obtenerProducto(codigoProducto));
-                ArrayList fila = new ArrayList();
-                fila.add(pp.obtenerIDProducto());
-                fila.add(pp.obtenerNombre());
-                fila.add(pp.obtenerPrecio());
-                fila.add(cantidad);
-                fila.add(cantidad * pp.obtenerPrecio());
+                agregarFilaTabla(pp, cantidadProductos);
+                codigoProductoCampo.setText(VACIO);
 
-                gestorTabla.agregarFila(fila);
-                codigoProductoCampo.setText("");
-                
-                double cantidadActual = Double.parseDouble(totalImporteVentaLabel.getText());
-                cantidadActual += cantidad * pp.obtenerPrecio();
-                totalImporteVentaLabel.setText(String.valueOf(cantidadActual));
-
-                
+                double montoTotalActualVenta = Double.parseDouble(totalImporteVentaLabel.getText());
+                montoTotalActualVenta += cantidadProductos * pp.obtenerPrecio();
+                totalImporteVentaLabel.setText(String.valueOf(montoTotalActualVenta));
+          
             } else {
-                Informador.mostrarMensajeDeError("La cagaste");
+                final String MENSAJE_ERROR = "El producto solicitado no existe";
+                Informador.mostrarMensajeDeError(MENSAJE_ERROR);
             }
         } catch (NumberFormatException excepcion) {
-            Informador.mostrarMensajeDeError("La cagaste dos");
+            final String MENSAJE_ERROR = "Cometiste un error ingresando los datos";
+            Informador.mostrarMensajeDeError(MENSAJE_ERROR);
         }
 
     }
 
     private void realizarVenta() {
-        
+
         String cantidadDinero = JOptionPane.showInputDialog("Ingresa dinero recibido");
         if (cantidadDinero != null) {
             double cantidadDeDineroRecibido = Double.parseDouble(cantidadDinero);
             pagoConVentaLabel.setText(String.valueOf(cantidadDeDineroRecibido));
-            
+
+            double montoTotalVenta = Double.parseDouble(totalImporteVentaLabel.getText());
+            double cambio = cantidadDeDineroRecibido - montoTotalVenta;
+            cambioVentaLabel.setText(String.valueOf(cambio));
             
         }
-        
+
     }
 
     private void buscarProductoBoton() {
@@ -407,6 +405,19 @@ public class VentaMenuVentana extends MenuVentana implements ActionListener {
                     + " tienes " + gestorCaja.obtenerCantidadActualCaja());
         }
 
+    }
+
+    private void agregarFilaTabla(Producto pp, int cantidadProductos) {
+        ArrayList fila = new ArrayList();
+
+        fila.add(pp.obtenerIDProducto());
+        fila.add(pp.obtenerNombre());
+        fila.add(pp.obtenerPrecio());
+        fila.add(cantidadProductos);
+        double montoParcialVenta = cantidadProductos * pp.obtenerPrecio();
+        fila.add(montoParcialVenta);
+
+        gestorTabla.agregarFila(fila);
     }
 
 }
