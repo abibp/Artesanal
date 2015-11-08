@@ -50,7 +50,7 @@ public class Vendedor {
 
         for (Venta reciboActual : nRecibosDeVenta_) {
             
-            ArrayList<ElementoVenta> nVentas = reciboActual.obtenerVentas();
+            ArrayList<ElementoVenta> nVentas = reciboActual.obtenerElementosVenta();
             for(ElementoVenta ventaActual : nVentas){
                 montoTotalVentas += ventaActual.obtenerMonto();
             }

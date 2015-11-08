@@ -24,8 +24,8 @@ public class PrincipalVentana extends MenuVentana{
 
     public PrincipalVentana(double cantidadInicialEnCaja) {
         super();
-        gestorCaja = new GestorCaja();
-        gestorCaja.abrirCaja(MAXIMIZED_BOTH);
+        gestorCaja = GestorCaja.obtenerIntancia();
+        gestorCaja.abrirCaja(cantidadInicialEnCaja);
     }
     
     
@@ -70,7 +70,7 @@ public class PrincipalVentana extends MenuVentana{
     }
     
     private void agregarSecciones() {
-         menuPrincipalPanelSecciones.addTab("Venta"     , new VentaMenuVentana(gestorCaja).obtenerPanelContenedor());
+         menuPrincipalPanelSecciones.addTab("Venta"     , new VentaMenuVentana().obtenerPanelContenedor());
          menuPrincipalPanelSecciones.addTab("Producto"  , new ProductoMenuVentana().obtenerPanelContenedor());
          menuPrincipalPanelSecciones.addTab("Inventario", new InventarioMenuVentana().obtenerPanelContenedor());
          menuPrincipalPanelSecciones.addTab("Corte"     , new CorteMenuVentana().obtenerPanelContenedor());

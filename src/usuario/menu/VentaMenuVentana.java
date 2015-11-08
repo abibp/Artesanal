@@ -14,12 +14,14 @@ import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.table.DefaultTableModel;
 import negocio.entidades.Producto;
 import negocio.entidades.ProductoProveedor;
 import negocio.entidades.Proveedor;
 import negocio.entidades.ElementoVenta;
 import negocio.gestion.GestorCaja;
+import negocio.gestion.GestorProducto;
 import org.edisoncor.gui.button.ButtonAction;
 import org.edisoncor.gui.button.ButtonSeven;
 import org.edisoncor.gui.label.LabelMetric;
@@ -27,6 +29,9 @@ import org.edisoncor.gui.label.LabelRect;
 import org.edisoncor.gui.label.LabelRound;
 import org.edisoncor.gui.label.LabelTask;
 import org.edisoncor.gui.panel.Panel;
+import usuario.AdaptadorPersonalizadoJTable;
+import usuario.FiltroNumericoCampo;
+import usuario.Informador;
 import usuario.MenuVentana;
 
 /**
@@ -42,7 +47,7 @@ public class VentaMenuVentana extends MenuVentana implements ActionListener {
     private JLabel cambioVentaLabel;
     private JSpinner cantidadVentaSpinner;
     private ButtonAction cobrarImporteVentaBoton;
-    private JTextField codigoVentaCampo;
+    private JTextField codigoProductoCampo;
     private LabelTask instruccionAgregarProductoVentaLabel;
     private LabelRect instruccionCambioVentaLabel;
     private LabelMetric instruccionCantidadVentaLabel;
@@ -59,11 +64,13 @@ public class VentaMenuVentana extends MenuVentana implements ActionListener {
     private JLabel totalVentalLabel;
     private Panel ventaPanel;
 
-    public VentaMenuVentana(GestorCaja gestorCaja) {
+    private AdaptadorPersonalizadoJTable gestorTabla;
+
+    public VentaMenuVentana() {
         super();
-        this.gestorCaja = gestorCaja;
+        this.gestorCaja = GestorCaja.obtenerIntancia();
     }
-    
+
     @Override
     public Panel obtenerPanelContenedor() {
         return ventaPanel;
@@ -72,10 +79,12 @@ public class VentaMenuVentana extends MenuVentana implements ActionListener {
     @Override
     public void inicializarComponentes() {
         ventaPanel = new Panel();
+        String[] cabecera = {"ID", "Nombre", "Precio", "Cantidad", "Importe"};
+        gestorTabla = new AdaptadorPersonalizadoJTable(cabecera);
         instruccionAgregarProductoVentaLabel = new LabelTask();
         instruccionAgregarProductoVentaLabel.setForeground(new java.awt.Color(255, 255, 255));
         instruccionAgregarProductoVentaLabel.setText("Agrega un producto");
-        codigoVentaCampo = new JTextField();
+        codigoProductoCampo = new JTextField();
         instruccionCodigoProductoVentaLabel = new LabelMetric();
         instruccionCodigoProductoVentaLabel.setText("Codigo de Producto :");
 
@@ -89,7 +98,7 @@ public class VentaMenuVentana extends MenuVentana implements ActionListener {
         agregarEfectivoBoton = new ButtonAction();
         quitarEfectivoBoton = new ButtonAction();
         buscarProductoVentaBoton = new ButtonAction();
-        codigoVentaCampo = new JTextField();
+        codigoProductoCampo = new JTextField();
         agregarProductoVentaBoton = new ButtonSeven();
         cantidadVentaSpinner = new JSpinner();
         productosEnVentaTablaBarraDesplazamiento = new JScrollPane();
@@ -118,17 +127,14 @@ public class VentaMenuVentana extends MenuVentana implements ActionListener {
 
         agregarProductoVentaBoton.setText("Agregar");
 
-        productosEnVentaTabla.setModel(new DefaultTableModel(
-                new Object[][]{
-                    {null, null, null, null},
-                    {null, null, null, null},
-                    {null, null, null, null},
-                    {null, null, null, null}
-                },
-                new String[]{
-                    "Title 1", "Title 2", "Title 3", "Title 4"
-                }
-        ));
+        /**
+         *
+         */
+        productosEnVentaTabla.setModel(gestorTabla);
+
+        /**
+         *
+         */
         productosEnVentaTablaBarraDesplazamiento.setViewportView(productosEnVentaTabla);
 
         instruccionTotalVentaLabel.setText("Total");
@@ -155,7 +161,7 @@ public class VentaMenuVentana extends MenuVentana implements ActionListener {
         simboloPesoLabel.setText("$");
         simboloPesoLabel.setFont(new Font("Arial", 1, 48)); // NOI18N
 
-        totalImporteVentaLabel.setText("O.O");
+        totalImporteVentaLabel.setText("0.0");
         totalImporteVentaLabel.setFont(new Font("Arial", 1, 48)); // NOI18N
 
         instruccionCodigoProductoVentaLabel.setText("Codigo de Producto :");
@@ -179,7 +185,7 @@ public class VentaMenuVentana extends MenuVentana implements ActionListener {
                                                         .addComponent(instruccionAgregarProductoVentaLabel, GroupLayout.PREFERRED_SIZE, 265, GroupLayout.PREFERRED_SIZE)
                                                         .addGap(24, 24, 24)
                                                         .addGroup(ventaPanelLayout.createParallelGroup(Alignment.LEADING, false)
-                                                                .addComponent(codigoVentaCampo)
+                                                                .addComponent(codigoProductoCampo)
                                                                 .addComponent(instruccionCodigoProductoVentaLabel, GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE))
                                                         .addGroup(ventaPanelLayout.createParallelGroup(Alignment.LEADING)
                                                                 .addGroup(ventaPanelLayout.createSequentialGroup()
@@ -242,7 +248,7 @@ public class VentaMenuVentana extends MenuVentana implements ActionListener {
                                                 .addComponent(instruccionCantidadVentaLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(ventaPanelLayout.createSequentialGroup()
                                         .addGap(110, 110, 110)
-                                        .addComponent(codigoVentaCampo, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(codigoProductoCampo, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
                                 .addGroup(ventaPanelLayout.createSequentialGroup()
                                         .addGap(115, 115, 115)
                                         .addComponent(cantidadVentaSpinner, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
@@ -289,6 +295,12 @@ public class VentaMenuVentana extends MenuVentana implements ActionListener {
                                                                 .addComponent(totalImporteVentaLabel, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE))))))
                         .addContainerGap(33, Short.MAX_VALUE))
         );
+
+        cantidadVentaSpinner.setModel(new SpinnerNumberModel(1, 1, 1000, 1));
+        ((JSpinner.DefaultEditor) cantidadVentaSpinner.getEditor()).getTextField().setEditable(false);
+
+        cantidadVentaSpinner.addKeyListener(new FiltroNumericoCampo());
+
         agregarProductoVentaBoton.addActionListener(this);
         agregarEfectivoBoton.addActionListener(this);
         quitarEfectivoBoton.addActionListener(this);
@@ -298,7 +310,7 @@ public class VentaMenuVentana extends MenuVentana implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent eventoGenerado) {
-        
+
         Object origenDelEvento = eventoGenerado.getSource();
 
         if (origenDelEvento.equals(agregarEfectivoBoton)) {
@@ -322,29 +334,62 @@ public class VentaMenuVentana extends MenuVentana implements ActionListener {
             realizarVenta();
 
         }
-
-        ArrayList<ElementoVenta> arr = new ArrayList();
-        arr.add(new ElementoVenta(3, new ProductoProveedor(12, "sopkdlasd", 0.332, 45.3, new Proveedor())));
-        System.out.println("pelos : " + arr.size());
-
     }
 
     private void agregarEfectivoACaja() {
 
+        System.out.println(gestorCaja.obtenerCantidadActualCaja());
         String cantidadDinero = JOptionPane.showInputDialog("Ingresa la cantidad de dinero");
         if (cantidadDinero != null) {
-            double cantidadDeDineroAgregar = Double.parseDouble(cantidadDinero);
-            
-            System.out.println("Agregando " + cantidadDeDineroAgregar + " varos");
+            double cantidadDeDineroAumentar = Double.parseDouble(cantidadDinero);
+            gestorCaja.aumentarDineroCaja(cantidadDeDineroAumentar);
+            System.out.println("Agregando " + cantidadDeDineroAumentar + " varos"
+                    + " tienes " + gestorCaja.obtenerCantidadActualCaja());
         }
     }
 
+    private GestorProducto gestorProducto = new GestorProducto();
+
     private void agregarProductoAVenta() {
-        System.out.println("Agregando producto a venta");
+        try {
+            int codigoProducto = Integer.parseInt(codigoProductoCampo.getText());
+            int cantidad = Integer.parseInt(cantidadVentaSpinner.getValue().toString());
+            if (gestorProducto.existeProducto(codigoProducto)) {
+                ProductoProveedor pp = ((ProductoProveedor) gestorProducto.obtenerProducto(codigoProducto));
+                ArrayList fila = new ArrayList();
+                fila.add(pp.obtenerIDProducto());
+                fila.add(pp.obtenerNombre());
+                fila.add(pp.obtenerPrecio());
+                fila.add(cantidad);
+                fila.add(cantidad * pp.obtenerPrecio());
+
+                gestorTabla.agregarFila(fila);
+                codigoProductoCampo.setText("");
+                
+                double cantidadActual = Double.parseDouble(totalImporteVentaLabel.getText());
+                cantidadActual += cantidad * pp.obtenerPrecio();
+                totalImporteVentaLabel.setText(String.valueOf(cantidadActual));
+
+                
+            } else {
+                Informador.mostrarMensajeDeError("La cagaste");
+            }
+        } catch (NumberFormatException excepcion) {
+            Informador.mostrarMensajeDeError("La cagaste dos");
+        }
+
     }
 
     private void realizarVenta() {
-        System.out.println("Realizando Venta");
+        
+        String cantidadDinero = JOptionPane.showInputDialog("Ingresa dinero recibido");
+        if (cantidadDinero != null) {
+            double cantidadDeDineroRecibido = Double.parseDouble(cantidadDinero);
+            pagoConVentaLabel.setText(String.valueOf(cantidadDeDineroRecibido));
+            
+            
+        }
+        
     }
 
     private void buscarProductoBoton() {
@@ -352,11 +397,16 @@ public class VentaMenuVentana extends MenuVentana implements ActionListener {
     }
 
     private void quitarEfectivoCaja() {
-        String cantidadDinero = JOptionPane.showInputDialog("Ingresa la cantidad de dinero");
-        if (cantidadDinero != null) {
-            double cantidadDeDineroAgregar = Double.parseDouble(cantidadDinero);
-            System.out.println("Agregando " + cantidadDeDineroAgregar + " varos");
+
+        String cantidadDineroTexto = JOptionPane.showInputDialog("Ingresa la cantidad de dinero");
+
+        if (cantidadDineroTexto != null) {
+            double cantidadDeDineroDecrementar = Double.parseDouble(cantidadDineroTexto);
+            gestorCaja.decrementarDineroCaja(cantidadDeDineroDecrementar);
+            System.out.println("Quitando " + cantidadDeDineroDecrementar + " varos"
+                    + " tienes " + gestorCaja.obtenerCantidadActualCaja());
         }
+
     }
 
 }
