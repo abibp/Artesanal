@@ -15,11 +15,7 @@ import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
-import javax.swing.table.DefaultTableModel;
 import negocio.entidades.Producto;
-import negocio.entidades.ProductoProveedor;
-import negocio.entidades.Proveedor;
-import negocio.entidades.ElementoVenta;
 import negocio.gestion.GestorCaja;
 import negocio.gestion.GestorProducto;
 import org.edisoncor.gui.button.ButtonAction;
@@ -356,7 +352,7 @@ public class VentaMenuVentana extends MenuVentana implements ActionListener {
             int cantidadProductos = Integer.parseInt(cantidadVentaSpinner.getValue().toString());
             if (gestorProducto.existeProducto(codigoProducto)) {
                 
-                ProductoProveedor pp = ((ProductoProveedor) gestorProducto.obtenerProducto(codigoProducto));
+                Producto pp = gestorProducto.obtenerProducto(codigoProducto);
                 agregarFilaTabla(pp, cantidadProductos);
                 codigoProductoCampo.setText(VACIO);
 

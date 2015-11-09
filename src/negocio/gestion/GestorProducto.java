@@ -2,8 +2,6 @@ package negocio.gestion;
 
 import java.util.HashMap;
 import negocio.entidades.Producto;
-import negocio.entidades.ProductoProveedor;
-import negocio.entidades.Proveedor;
 
 /**
  *
@@ -38,18 +36,14 @@ public class GestorProducto {
     }
     
     private void llenarDirectorio() {
-        Proveedor proveedor = new Proveedor();
-        proveedor.establecerNombre("Jaimito");
-        proveedor.establecerDireccion("Calle 69");
-        proveedor.establecerTelefono("12345678");
-        
-        ProductoProveedor sabrita = new ProductoProveedor(1, "Ruffles", 10.0, 8.0, proveedor);
-        ProductoProveedor sabrita2 = new ProductoProveedor(2, "Doritos Nacho", 10.0, 8.0, proveedor);
-        ProductoProveedor sabrita3 = new ProductoProveedor(3, "Palomitas", 15.0, 10.0, proveedor);
-        ProductoProveedor sabrita4 = new ProductoProveedor(4, "Charritos", 10.0, 8.0, proveedor);
-        ProductoProveedor sabrita5 = new ProductoProveedor(5, "Tostachos", 10.0, 8.0, proveedor);
-        ProductoProveedor sabrita6 = new ProductoProveedor(6, "Paketaxo", 30.0, 22.0, proveedor);
-        ProductoProveedor sabrita7 = new ProductoProveedor(7, "Churros", 10.0, 8.0, proveedor);
+
+        Producto sabrita = new Producto(1, "Ruffles", 10.0, 8.0);
+        Producto sabrita2 = new Producto(2, "Doritos Nacho", 10.0, 8.0);
+        Producto sabrita3 = new Producto(3, "Palomitas", 15.0, 10.0);
+        Producto sabrita4 = new Producto(4, "Charritos", 10.0, 8.0);
+        Producto sabrita5 = new Producto(5, "Tostachos", 10.0, 8.0);
+        Producto sabrita6 = new Producto(6, "Paketaxo", 30.0, 22.0);
+        Producto sabrita7 = new Producto(7, "Churros", 10.0, 8.0);
         
         directorioProductos.put(sabrita.obtenerIDProducto(), sabrita);
         directorioProductos.put(sabrita2.obtenerIDProducto(), sabrita2);
