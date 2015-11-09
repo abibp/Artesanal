@@ -70,10 +70,10 @@ public class PrincipalVentana extends MenuVentana{
     }
     
     private void agregarSecciones() {
-         menuPrincipalPanelSecciones.addTab("Venta"     , new VentaMenuVentana().obtenerPanelContenedor());
-         menuPrincipalPanelSecciones.addTab("Producto"  , new ProductoMenuVentana().obtenerPanelContenedor());
-         menuPrincipalPanelSecciones.addTab("Inventario", new InventarioMenuVentana().obtenerPanelContenedor());
-         menuPrincipalPanelSecciones.addTab("Corte"     , new CorteMenuVentana().obtenerPanelContenedor());
-         menuPrincipalPanelSecciones.addTab("Reporte"   , new ReporteMenuVentana().obtenerPanelContenedor());
+        menuPrincipalPanelSecciones.addTab("Venta"     , new VentaMenuVentana().obtenerPanelContenedor());
+        menuPrincipalPanelSecciones.addTab("Producto"  , new ProductoMenuVentana().obtenerPanelContenedor());
+        menuPrincipalPanelSecciones.addTab("Inventario", new InventarioMenuVentana().obtenerPanelContenedor());
+        menuPrincipalPanelSecciones.addTab("Corte"     , new CorteMenuVentana().obtenerPanelContenedor());
+        menuPrincipalPanelSecciones.addTab("Reporte"   , new ReporteMenuVentana().obtenerPanelContenedor());
     }
 }

@@ -135,11 +135,11 @@ public class VentaMenuVentana extends MenuVentana implements ActionListener {
 
         instruccionTotalVentaLabel.setText("Total");
 
-        totalVentalLabel.setFont(new Font("Arial", 1, 48)); // NOI18N
+        totalVentalLabel.setFont(new Font("Arial", 1, 48)); 
         totalVentalLabel.setForeground(new Color(255, 255, 255));
         totalVentalLabel.setText("0.0");
 
-        pagoConVentaLabel.setFont(new Font("Arial", 1, 48)); // NOI18N
+        pagoConVentaLabel.setFont(new Font("Arial", 1, 48)); 
         pagoConVentaLabel.setForeground(new Color(255, 255, 255));
         pagoConVentaLabel.setText("0.0");
 
@@ -147,25 +147,25 @@ public class VentaMenuVentana extends MenuVentana implements ActionListener {
 
         instruccionCambioVentaLabel.setText("Cambio");
 
-        cambioVentaLabel.setFont(new Font("Arial", 1, 48)); // NOI18N
+        cambioVentaLabel.setFont(new Font("Arial", 1, 48)); 
         cambioVentaLabel.setForeground(new Color(255, 255, 255));
         cambioVentaLabel.setText("0.0");
 
         cobrarImporteVentaBoton.setText("Cobrar");
-        cobrarImporteVentaBoton.setFont(new Font("Arial", 1, 48)); // NOI18N
+        cobrarImporteVentaBoton.setFont(new Font("Arial", 1, 48)); 
 
         simboloPesoLabel.setText("$");
-        simboloPesoLabel.setFont(new Font("Arial", 1, 48)); // NOI18N
+        simboloPesoLabel.setFont(new Font("Arial", 1, 48)); 
 
         totalImporteVentaLabel.setText("0.0");
-        totalImporteVentaLabel.setFont(new Font("Arial", 1, 48)); // NOI18N
+        totalImporteVentaLabel.setFont(new Font("Arial", 1, 48)); 
 
         instruccionCodigoProductoVentaLabel.setText("Codigo de Producto :");
 
         instruccionCantidadVentaLabel.setText("Cantidad :");
 
         instruccionTotalImporteVentaLabel.setText("Total :");
-        instruccionTotalImporteVentaLabel.setFont(new Font("Arial", 1, 48)); // NOI18N
+        instruccionTotalImporteVentaLabel.setFont(new Font("Arial", 1, 48)); 
 
         GroupLayout ventaPanelLayout = new GroupLayout(ventaPanel);
         ventaPanel.setLayout(ventaPanelLayout);
@@ -405,15 +405,29 @@ public class VentaMenuVentana extends MenuVentana implements ActionListener {
 
     private void agregarFilaTabla(Producto pp, int cantidadProductos) {
         ArrayList fila = new ArrayList();
+        boolean existeProductoEnVenta = false;
+        for (int i = 0; i < gestorTabla.obtenerArray().size(); i++) {
+            if(((Integer) gestorTabla.getValueAt(i, 0)) == (pp.obtenerIDProducto())){
+                existeProductoEnVenta = true;
+                int nuevaCantidad = ((Integer) gestorTabla.getValueAt(i, 3)) + cantidadProductos;
+                gestorTabla.setValueAt(nuevaCantidad, i, 3);
+                double montoParcialVenta = ((Integer) gestorTabla.getValueAt(i, 3)) * pp.obtenerPrecio();
+                gestorTabla.setValueAt(montoParcialVenta, i, 4);
+                break;
+            }
+        }
+      
+        if (!existeProductoEnVenta) {
+            fila.add(pp.obtenerIDProducto());
+            fila.add(pp.obtenerNombre());
+            fila.add(pp.obtenerPrecio());
+            fila.add(cantidadProductos);
+            double montoParcialVenta = cantidadProductos * pp.obtenerPrecio();
+            fila.add(montoParcialVenta);
+            gestorTabla.agregarFila(fila);
+        }
 
-        fila.add(pp.obtenerIDProducto());
-        fila.add(pp.obtenerNombre());
-        fila.add(pp.obtenerPrecio());
-        fila.add(cantidadProductos);
-        double montoParcialVenta = cantidadProductos * pp.obtenerPrecio();
-        fila.add(montoParcialVenta);
-
-        gestorTabla.agregarFila(fila);
+        
     }
 
 }
