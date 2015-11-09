@@ -1,6 +1,13 @@
 package negocio.entidades;
 
+<<<<<<< HEAD
 
+=======
+/**
+ *
+ * @author PIX
+ */
+>>>>>>> f491c9535f857c4723bd6da72c1650d997d5f368
 public class ElementoVenta {
 
     private int cantidadDeProductos_;
