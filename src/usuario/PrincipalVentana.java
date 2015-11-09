@@ -24,8 +24,8 @@ public class PrincipalVentana extends MenuVentana{
 
     public PrincipalVentana(double cantidadInicialEnCaja) {
         super();
-        gestorCaja = new GestorCaja();
-        gestorCaja.abrirCaja(MAXIMIZED_BOTH);
+        gestorCaja = GestorCaja.obtenerIntancia();
+        gestorCaja.abrirCaja(cantidadInicialEnCaja);
     }
     
     

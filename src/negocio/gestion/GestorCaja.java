@@ -8,26 +8,76 @@ import negocio.entidades.ReporteDeVenta;
  * @author PIX
  */
 public class GestorCaja {
-    
+
     private Caja cajaHeladeria_;
     private GestorReporte reporte_;
-    
-    public Caja abrirCaja(float montoInicial){
-        
-        cajaHeladeria_ = new Caja( montoInicial );
+    private double entradaTotalEfectivo;
+    private double salidaTotalEfectivo;
+    private static GestorCaja primerGestor;
+
+    private GestorCaja() {
+        entradaTotalEfectivo = 0.0;
+        salidaTotalEfectivo = 0.0;
+    }
+
+    public synchronized static GestorCaja obtenerIntancia() {
+        if (primerGestor == null) {
+            primerGestor = new GestorCaja();
+        }
+        return primerGestor;
+    }
+
+    public Caja abrirCaja(double montoInicial) {
+
+        cajaHeladeria_ = new Caja(montoInicial);
         return cajaHeladeria_;
-        
+
     }
-    
-    private float cerrarCaja(){
-        
-        float cantidadFinalDinero = cajaHeladeria_.obtenerCantidadDineroActual();
+
+    public void aumentarDineroCaja(double montoAumentar) {
+
+        entradaTotalEfectivo += montoAumentar;
+
+        cajaHeladeria_.establecerDineroActual(
+                cajaHeladeria_.obtenerCantidadDineroActual() + montoAumentar
+        );
+
+    }
+
+    public void decrementarDineroCaja(double montoDecrementar) {
+
+        salidaTotalEfectivo += montoDecrementar;
+
+        cajaHeladeria_.establecerDineroActual(
+                cajaHeladeria_.obtenerCantidadDineroActual() - montoDecrementar
+        );
+
+    }
+
+    public double obtenerCantidadActualCaja() {
+        return cajaHeladeria_.obtenerCantidadDineroActual();
+    }
+
+    public double obtenerEntradaTotalEfectivo() {
+        return entradaTotalEfectivo;
+    }
+
+    public double obtenerSalidaTotalEfectivo() {
+        return salidaTotalEfectivo;
+    }
+
+    public double cerrarCaja() {
+
+        double cantidadFinalDinero = cajaHeladeria_.obtenerCantidadDineroActual();
         return cantidadFinalDinero;
-        
+
+    }
+
+    public double obtenerCantidadInicialCaja(){
+        return cajaHeladeria_.obtenerMontoInicial();
     }
     
-    private ReporteDeVenta realizarCorteCaja(){
+    private ReporteDeVenta realizarCorteCaja() {
         return null;
     }
-    
 }

@@ -1,5 +1,8 @@
 package usuario.menu;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import negocio.gestion.GestorCaja;
 import org.edisoncor.gui.button.ButtonAqua;
 import org.edisoncor.gui.label.LabelMetric;
 import org.edisoncor.gui.label.LabelRect;
@@ -12,7 +15,7 @@ import usuario.MenuVentana;
  *
  * @author PIX
  */
-public class CorteMenuVentana extends MenuVentana{
+public class CorteMenuVentana extends MenuVentana implements ActionListener{
 
     private ButtonAqua realizacionCorteBoton;
     private Panel cortePanel;
@@ -317,6 +320,17 @@ public class CorteMenuVentana extends MenuVentana{
                 .addComponent(formularioCortePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(20, Short.MAX_VALUE))
         );
+        
+       realizacionCorteBoton.addActionListener(this);
+        
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        GestorCaja gestor = GestorCaja.obtenerIntancia();
+        fondoDeCajaValorLabel.setText(""+gestor.obtenerCantidadInicialCaja());
+        entradasValorLabel.setText(""+gestor.obtenerEntradaTotalEfectivo());
+        salidasValorLabel.setText(""+gestor.obtenerSalidaTotalEfectivo());
     }
     
 }

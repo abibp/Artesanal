@@ -2,7 +2,7 @@ package negocio.gestion;
 
 import negocio.entidades.Inventario;
 import negocio.entidades.Caja;
-import negocio.entidades.Venta;
+import negocio.entidades.ElementoVenta;
 import negocio.entidades.ReporteDeVenta;
 
 /**
@@ -21,12 +21,12 @@ public class GestorReporte {
         return null;
     }
 
-    public boolean agregarVentaAlReporte(Venta ventaPorAgregar) {
+    public boolean agregarVentaAlReporte(ElementoVenta ventaPorAgregar) {
         reporteDeVentas.agregarVenta(ventaPorAgregar);
         return true;
     }
 
-    public boolean eliminarVentaDelReporte(Venta ventaAEliminar) {
+    public boolean eliminarVentaDelReporte(ElementoVenta ventaAEliminar) {
         reporteDeVentas.eliminarVenta(ventaAEliminar);
         return true;
     }

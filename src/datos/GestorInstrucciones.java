@@ -24,7 +24,7 @@ public class GestorInstrucciones {
         try {
             
             PreparedStatement consultaActual =
-                    conexionActual_.prepareStatement(instruccionSQL);
+                    conexionActual_.prepareStatement( instruccionSQL );
             resultadoConsulta = consultaActual.executeQuery();
             
         } catch (SQLException excepcionConsulta) {
@@ -34,4 +34,5 @@ public class GestorInstrucciones {
       return resultadoConsulta;
       
     }
+    
 }

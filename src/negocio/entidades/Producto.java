@@ -4,27 +4,27 @@ package negocio.entidades;
  *
  * @author PIX
  */
-public abstract class Producto{
-    
-    private final int   ID_PRODUCTO_;    
-    private String      NOMBRE_;
-    
-    private String      descripcion_;
-    private float       precioVenta_;
-    private float       precioCompra_;
+public abstract class Producto {
 
-    public Producto(int idProducto, String nombre, float precio, float costo) {
-        this.ID_PRODUCTO_   = idProducto;
-        this.NOMBRE_        = nombre;
-        this.precioVenta_   = precio;
-        this.precioCompra_  = costo;
+    private final int ID_PRODUCTO_;
+    private String NOMBRE_;
+
+    private String descripcion_;
+    private double precioVenta_;
+    private double precioCompra_;
+
+    public Producto(int idProducto, String nombre, double precio, double costo) {
+        this.ID_PRODUCTO_ = idProducto;
+        this.NOMBRE_ = nombre;
+        this.precioVenta_ = precio;
+        this.precioCompra_ = costo;
     }
 
-    public float obtenerCosto() {
+    public double obtenerCosto() {
         return precioCompra_;
     }
 
-    public void establecerCosto(float costo) {
+    public void establecerCosto(double costo) {
         this.precioCompra_ = costo;
     }
 
@@ -36,14 +36,14 @@ public abstract class Producto{
         this.descripcion_ = descripcion;
     }
 
-    public float obtenerPrecio() {
+    public double obtenerPrecio() {
         return precioVenta_;
     }
 
-    public void establecerPrecio(float precio) {
+    public void establecerPrecio(double precio) {
         this.precioVenta_ = precio;
     }
-        
+
     public int obtenerIDProducto() {
         return ID_PRODUCTO_;
     }

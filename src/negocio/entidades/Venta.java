@@ -1,5 +1,6 @@
 package negocio.entidades;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -8,47 +9,47 @@ import java.util.Date;
  */
 public class Venta {
 
-    private final int       ID_VENTA_;
-    private final float     MONTO_;
-    private final Date      FECHA_;
-    
-    private int             cantidadDeProductos_;
-    private Producto        productoVendido_;
+    private final int ID_;
+    private final Date FECHA_;
+    private double monto_;
+    private final ArrayList<ElementoVenta> elementosVenta;
 
-    public Venta(int IDVenta, float monto, int cantidadDeProductos, Producto productoVendido, Date fecha) {
-        this.ID_VENTA_            = IDVenta;
-        this.MONTO_               = monto;
-        this.FECHA_               = fecha;
-        this.cantidadDeProductos_ = cantidadDeProductos;
-        this.productoVendido_     = productoVendido;
+    public Venta(int FOLIO, Date FECHA_) {
+        this.ID_ = FOLIO;
+        this.FECHA_ = FECHA_;
+        this.monto_ = 0.0;
+        this.elementosVenta = new ArrayList();
     }
 
-    public Producto obtenerProductoVendido() {
-        return productoVendido_;
+    public ArrayList<ElementoVenta> obtenerElementosVenta() {
+        return elementosVenta;
     }
 
-    public void establecerProductoVendido(Producto productoVendido) {
-        this.productoVendido_ = productoVendido;
+    public double obtenerMonto() {
+
+        boolean montoHaSidoCalculado = monto_ > 0.0;
+
+        if (!montoHaSidoCalculado) {
+
+            monto_ = calcularMontoTotal();
+
+        }
+
+        return monto_;
+
     }
 
-    public int obtenerCantidadDeProductos() {
-        return cantidadDeProductos_;
-    }
+    private double calcularMontoTotal() {
 
-    public void establecerCantidadDeProductos(int cantidadDeProductos) {
-        this.cantidadDeProductos_ = cantidadDeProductos;
-    }
+        double montoTotal = 0.0;
 
-    public int obtenerIDVenta() {
-        return ID_VENTA_;
-    }
+        for (ElementoVenta elementoActual : elementosVenta) {
 
-    public Date obtenerFecha() {
-        return FECHA_;
-    }
+            montoTotal += elementoActual.obtenerMonto();
+        }
 
-    public float obtenerMonto() {
-        return MONTO_;
+        return montoTotal;
+
     }
 
 }
