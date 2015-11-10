@@ -2,10 +2,7 @@ package datos;
 
 import negocio.entidades.Proveedor;
 
-/**
- *
- * @author PIX
- */
+
 public class GestorBDProveedor extends GestorBaseDatos {
 
     public void agregarProveedor(Proveedor nuevoProveedor) {

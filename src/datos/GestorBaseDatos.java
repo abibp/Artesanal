@@ -2,10 +2,6 @@ package datos;
 
 import java.sql.Connection;
 
-/**
- *
- * @author PIX
- */
 public class GestorBaseDatos {
 
     private final GestorConexion gestorConexion_;

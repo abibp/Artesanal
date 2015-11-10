@@ -2,10 +2,7 @@ package datos;
 
 import negocio.entidades.ElementoVenta;
 
-/**
- *
- * @author PIX
- */
+
 public class GestorBDVenta extends GestorBaseDatos{
     
     private GestorBDVenta() {

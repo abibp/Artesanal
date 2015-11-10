@@ -4,10 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-/**
- *
- * @author PIX
- */
+
 public class GestorConexion {
 
     private final String DIRECCION_CONEXION_ = "127.0.0.1";
