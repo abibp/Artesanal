@@ -1,7 +1,9 @@
 package negocio.entidades;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.Set;
 
 /**
  *
@@ -25,20 +27,14 @@ public class Venta {
         return nProductosVendidos_;
     }
     
-    public void obtenerProductoVendido(String nombreProducto){
-            
-        
-        
-        
-        
-        
-        
+    public void agregarElementoVenta(ElementoVenta elementoVenta){
+        elementosVenta.add(elementoVenta);
     }
     
-    public void agregarProducto(ProductoVendido nuevoProducto){
-        nProductosVendidos_.add(nuevoProducto);
+    public void eliminarElementoVenta(ElementoVenta elementoVenta){
+        elementosVenta.remove(elementoVenta);
     }
-    
+
     public double obtenerMonto() {
 
         boolean montoHaSidoCalculado = monto_ > 0.0;

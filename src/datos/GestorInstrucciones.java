@@ -5,10 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/**
- *
- * @author PIX
- */
+
 public class GestorInstrucciones {
     
     private final Connection conexionActual_;
@@ -17,7 +14,7 @@ public class GestorInstrucciones {
         this.conexionActual_ = conexionActual_;
     }
     
-    public ResultSet ejecutarInstruccion( String instruccionSQL ) {
+    public ResultSet ejecutar( String instruccionSQL ) {
         
        ResultSet resultadoConsulta = null;
        

@@ -1,32 +1,17 @@
 package negocio.gestion;
 
-import datos.GestorBDVenta;
 import java.util.ArrayList;
 import negocio.entidades.Venta;
-import negocio.entidades.ProductoVendido;
-import negocio.excepcion.ExcepcionVentaNoEncontrada;
+import negocio.entidades.ElementoVenta;
 import usuario.Informador;
 
 /**
  *
  * @author PIX
  */
-public class Vendedor {
+public class GestorVenta {
 
     private ArrayList<Venta> nRecibosDeVenta_;
-
-    public void agregarVenta(Venta nuevaVenta) {
-        nRecibosDeVenta_.add(nuevaVenta);
-        GestorBDVenta.agregarVenta(nuevaVenta);
-    }
-
-    public void cancelarVenta(int IDVenta) throws ExcepcionVentaNoEncontrada {
-        boolean esEliminada = GestorBDVenta.eliminarVenta(IDVenta);
-
-        if (!(esEliminada)) {
-            throw new ExcepcionVentaNoEncontrada();
-        }
-    }
 
     public Venta obtenerPrimerReciboVenta() {
         
@@ -50,8 +35,8 @@ public class Vendedor {
 
         for (Venta reciboActual : nRecibosDeVenta_) {
             
-            ArrayList<ProductoVendido> nVentas = reciboActual.obtenerProductos();
-            for(ProductoVendido ventaActual : nVentas){
+            ArrayList<ElementoVenta> nVentas = reciboActual.obtenerElementosVenta();
+            for(ElementoVenta ventaActual : nVentas){
                 montoTotalVentas += ventaActual.obtenerMonto();
             }
         }

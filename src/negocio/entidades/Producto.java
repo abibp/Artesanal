@@ -6,27 +6,16 @@ package negocio.entidades;
  */
 public class Producto {
 
-    private final int ID_PRODUCTO_;
+    private final String ID_PRODUCTO_;
     private String NOMBRE_;
     
     private String descripcion_;
-    private Proveedor proveedor;
-    private double precioVenta_;
-    private double precioCompra_;
+    private double cantidadMinima_;
 
-    public Producto(int idProducto, String nombre, double precio, double costo) {
+    public Producto(String idProducto, String nombre, double cantidadMinima) {
         this.ID_PRODUCTO_ = idProducto;
         this.NOMBRE_ = nombre;
-        this.precioVenta_ = precio;
-        this.precioCompra_ = costo;
-    }
-
-    public double obtenerCosto() {
-        return precioCompra_;
-    }
-
-    public void establecerCosto(double costo) {
-        this.precioCompra_ = costo;
+        this.cantidadMinima_ = cantidadMinima;
     }
 
     public String obtenerDescripcion() {
@@ -37,19 +26,21 @@ public class Producto {
         this.descripcion_ = descripcion;
     }
 
-    public double obtenerPrecio() {
-        return precioVenta_;
-    }
-
-    public void establecerPrecio(double precio) {
-        this.precioVenta_ = precio;
-    }
-
-    public int obtenerIDProducto() {
+    public String obtenerIDProducto() {
         return ID_PRODUCTO_;
     }
 
     public String obtenerNombre() {
         return NOMBRE_;
     }
+
+    public double obtenerCantidadMinima() {
+        return cantidadMinima_;
+    }
+
+    public void establecerCantidadMinima(double cantidadMinima_) {
+        this.cantidadMinima_ = cantidadMinima_;
+    }
+    
+    
 }

@@ -4,16 +4,13 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-/**
- *
- * @author PIX
- */
+
 public class GestorConexion {
 
-    private final String DIRECCION_CONEXION_ = "127.0.0.1";
-    private final String NOMBRE_BD_ = "artesanal";
+    private final String DIRECCION_CONEXION_ = "localhost";
+    private final String NOMBRE_BD_ = "sis_artesanal";
     private final String NOMBRE_USUARIO_ = "root";
-    private final String CLAVE_USUARIO_ = "clave";
+    private final String CLAVE_USUARIO_ = "";
     private final String CLASE_MANEJADOR = "com.mysql.jdbc.Driver";
     
     private Connection conexion_;
