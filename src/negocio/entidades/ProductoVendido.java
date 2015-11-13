@@ -4,13 +4,13 @@ package negocio.entidades;
  *
  * @author PIX
  */
-public class ElementoVenta {
+public class ProductoVendido {
 
     private int cantidadDeProductos_;
     private Producto productoVendido_;
     private double monto;
 
-    public ElementoVenta(int cantidadDeProductos, Producto productoVendido) {
+    public ProductoVendido(int cantidadDeProductos, Producto productoVendido) {
         this.cantidadDeProductos_ = cantidadDeProductos;
         this.productoVendido_ = productoVendido;
     }

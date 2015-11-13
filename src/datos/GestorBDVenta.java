@@ -1,6 +1,7 @@
 package datos;
 
-import negocio.entidades.ElementoVenta;
+import negocio.entidades.ProductoVendido;
+import negocio.entidades.Venta;
 
 /**
  *
@@ -11,17 +12,17 @@ public class GestorBDVenta extends GestorBaseDatos{
     private GestorBDVenta() {
     }   
     
-    public static void agregarVenta(ElementoVenta nuevaVenta){
+    public static void agregarVenta(Venta nuevaVenta){
     }
     
     public static boolean eliminarVenta(int IDVenta){
         return false;
     }
     
-    public static void editarInformacionProducto(int IDVenta, ElementoVenta ventaActualizada){    
+    public static void editarInformacionProducto(int IDVenta, ProductoVendido ventaActualizada){    
     }
     
-    public static ElementoVenta obtenerVenta(int IDVentaAObtener){
+    public static Venta obtenerVenta(int IDVentaAObtener){
         return null;
     }
     

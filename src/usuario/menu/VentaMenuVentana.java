@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
 import negocio.entidades.Producto;
 import negocio.entidades.ProductoProveedor;
 import negocio.entidades.Proveedor;
-import negocio.entidades.ElementoVenta;
+import negocio.entidades.ProductoVendido;
 import negocio.gestion.GestorCaja;
 import negocio.gestion.GestorProducto;
 import org.edisoncor.gui.button.ButtonAction;
@@ -170,7 +170,7 @@ public class VentaMenuVentana extends MenuVentana implements ActionListener {
 
         instruccionTotalImporteVentaLabel.setText("Total :");
         instruccionTotalImporteVentaLabel.setFont(new Font("Arial", 1, 48)); 
-
+        
         GroupLayout ventaPanelLayout = new GroupLayout(ventaPanel);
         ventaPanel.setLayout(ventaPanelLayout);
         ventaPanelLayout.setHorizontalGroup(

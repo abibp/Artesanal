@@ -4,12 +4,13 @@ package negocio.entidades;
  *
  * @author PIX
  */
-public abstract class Producto {
+public class Producto {
 
     private final int ID_PRODUCTO_;
     private String NOMBRE_;
-
+    
     private String descripcion_;
+    private Proveedor proveedor;
     private double precioVenta_;
     private double precioCompra_;
 

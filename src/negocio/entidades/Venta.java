@@ -12,19 +12,33 @@ public class Venta {
     private final int ID_;
     private final Date FECHA_;
     private double monto_;
-    private final ArrayList<ElementoVenta> elementosVenta;
+    private ArrayList<ProductoVendido> nProductosVendidos_;
 
-    public Venta(int FOLIO, Date FECHA_) {
-        this.ID_ = FOLIO;
+    public Venta(int ID, Date FECHA_) {
+        this.ID_ = ID;
         this.FECHA_ = FECHA_;
         this.monto_ = 0.0;
-        this.elementosVenta = new ArrayList();
+        this.nProductosVendidos_ = new ArrayList();
     }
 
-    public ArrayList<ElementoVenta> obtenerElementosVenta() {
-        return elementosVenta;
+    public ArrayList<ProductoVendido> obtenerProductos() {
+        return nProductosVendidos_;
     }
-
+    
+    public void obtenerProductoVendido(String nombreProducto){
+            
+        
+        
+        
+        
+        
+        
+    }
+    
+    public void agregarProducto(ProductoVendido nuevoProducto){
+        nProductosVendidos_.add(nuevoProducto);
+    }
+    
     public double obtenerMonto() {
 
         boolean montoHaSidoCalculado = monto_ > 0.0;
@@ -39,11 +53,19 @@ public class Venta {
 
     }
 
+    public int obtenerID_() {
+        return ID_;
+    }
+
+    public Date obtenerFECHA_() {
+        return FECHA_;
+    }    
+    
     private double calcularMontoTotal() {
 
         double montoTotal = 0.0;
 
-        for (ElementoVenta elementoActual : elementosVenta) {
+        for (ProductoVendido elementoActual : nProductosVendidos_) {
 
             montoTotal += elementoActual.obtenerMonto();
         }
@@ -51,5 +73,5 @@ public class Venta {
         return montoTotal;
 
     }
-
+      
 }
