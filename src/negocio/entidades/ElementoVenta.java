@@ -6,12 +6,12 @@ package negocio.entidades;
  */
 public class ElementoVenta {
 
-    private int cantidadDeProductos_;
+    private double cantidadDeProducto_;
     private Producto productoVendido_;
     private double monto;
 
-    public ElementoVenta(int cantidadDeProductos, Producto productoVendido) {
-        this.cantidadDeProductos_ = cantidadDeProductos;
+    public ElementoVenta(double cantidadDeProductos, Producto productoVendido) {
+        this.cantidadDeProducto_ = cantidadDeProductos;
         this.productoVendido_ = productoVendido;
     }
 
@@ -23,12 +23,12 @@ public class ElementoVenta {
         this.productoVendido_ = productoVendido;
     }
 
-    public int obtenerCantidadDeProductos() {
-        return cantidadDeProductos_;
+    public double obtenerCantidadDeProducto() {
+        return cantidadDeProducto_;
     }
 
-    public void establecerCantidadDeProductos(int cantidadDeProductos) {
-        this.cantidadDeProductos_ = cantidadDeProductos;
+    public void establecerCantidadDeProductos(double cantidadDeProducto) {
+        this.cantidadDeProducto_ = cantidadDeProducto;
     }
 
     public double obtenerMonto() {

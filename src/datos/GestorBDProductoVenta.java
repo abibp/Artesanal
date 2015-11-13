@@ -12,81 +12,107 @@ import negocio.entidades.ProductoVenta;
  * @author PIX
  */
 public class GestorBDProductoVenta extends GestorBDProducto{
- 
-    private final String TABLA_PRODUCTO_VENTA_ = "producto_venta";
    
     public void agregarProductoVenta(ProductoVenta nuevoProducto) {
         
-        super.agregarProducto(nuevoProducto);
+        agregarProducto(nuevoProducto);
         
-        String instruccionInsertarProducto = 
-                "INSERT INTO " + TABLA_PRODUCTO_VENTA_ + 
-                " VALUES(" + 
-                nuevoProducto.obtenerIDProducto() + "," + 
-                nuevoProducto.obtenerPrecioCompra() + "," + 
-                nuevoProducto.obtenerPrecioVenta() + "," + 
-                ")";
+        final String INSTRUCCION_INSERTAR
+                = "INSERT INTO producto_venta VALUES(\"%s\",%f,%f,%f)";
+        
+        String instruccionFinalInsertar = 
+                String.format(
+                        INSTRUCCION_INSERTAR,
+                        nuevoProducto.obtenerID(),
+                        nuevoProducto.obtenerPrecioCompra(),
+                        nuevoProducto.obtenerPrecioVenta(),
+                        nuevoProducto.obtenerGanancia()
+                );
 
-        super.obtenerGestorInstrucciones().ejecutar(instruccionInsertarProducto);
-    }
-
-    public void eliminarProductoVenta(int IDProductoAEliminar) {
-        
-        String instruccionEliminarProducto =
-                "DELETE FROM " + TABLA_PRODUCTO_VENTA_ +
-                "WHERE ID = " + IDProductoAEliminar;
-        
-        super.obtenerGestorInstrucciones().ejecutar(instruccionEliminarProducto);
-        super.eliminarProducto(IDProductoAEliminar);
+        obtenerGestorInstrucciones().ejecutarModificacion(instruccionFinalInsertar);
         
     }
 
-    public void editarInformacionProductoVenta(int IDProducto, ProductoVenta productoActualizado) {
+    public void eliminarProductoVenta(String IDProductoAEliminar) {
         
-        double nuevoPrecioCompra = productoActualizado.obtenerPrecioCompra();
-        double nuevoPrecioVenta = productoActualizado.obtenerPrecioVenta();
-        double nuevaGanancia = productoActualizado.obtenerGanancia();
+        final String INSTRUCCION_ELIMINAR
+            = "DELETE FROM producto_venta WHERE producto_ID = \"%s\"";
         
-        String instruccionModificarProducto = 
-                "UPDATE " + TABLA_PRODUCTO_VENTA_ + 
-                "SET precio_compra = " + nuevoPrecioCompra + "," +
-                "precio_venta = " + nuevoPrecioVenta + "," + 
-                "ganacia = " + nuevaGanancia +
-                "WHERE ID = " + IDProducto;
+        String instruccionFinalEliminar = 
+                String.format(
+                        INSTRUCCION_ELIMINAR,
+                        IDProductoAEliminar
+                );
         
-        super.obtenerGestorInstrucciones().ejecutar(instruccionModificarProducto);
-        super.editarInformacionProducto(IDProducto, productoActualizado);
+        obtenerGestorInstrucciones().ejecutarConsulta(instruccionFinalEliminar);
+        eliminarProducto(IDProductoAEliminar);
+        
+    }
+
+    public void editarInformacionProductoVenta(ProductoVenta productoActualizado) {
+        
+        final String INSTRUCCION_MODIFICAR = 
+                "UPDATE producto_venta SET precio_compra = %f, precio_venta = %f, ganancia = %f " + 
+                "WHERE producto_ID = \"%s\"";
+        
+        String instruccionFinalModificar
+                = String.format(
+                        INSTRUCCION_MODIFICAR,
+                        productoActualizado.obtenerPrecioCompra(),
+                        productoActualizado.obtenerPrecioVenta(),
+                        productoActualizado.obtenerGanancia(),
+                        productoActualizado.obtenerID()
+                );
+
+        obtenerGestorInstrucciones().ejecutarModificacion(instruccionFinalModificar);
+        editarInformacionProducto(productoActualizado);
+        
     }
     
-    
-    public ProductoVenta obtenerProductoVenta(int IDProducto){
+     public ProductoVenta obtenerProductoVenta(String IDProducto) {
+
+        Producto productoBase = obtenerProducto(IDProducto);
         
-        Producto producto = super.obtenerProducto(IDProducto);
-        
-        String instruccionObtenerProducto = 
-                "SELECT * from " + TABLA_PRODUCTO_VENTA_ + 
-                "WHERE ID = " + IDProducto;
-         ResultSet resultado = super.obtenerGestorInstrucciones().ejecutar(instruccionObtenerProducto);
+        final String INSTRUCCION_OBTENER_UNO
+                = "SELECT * FROM producto_venta WHERE producto_ID = \"%s\"";
+
+        String instruccionFinalObtener
+                = String.format(
+                        INSTRUCCION_OBTENER_UNO,
+                        IDProducto
+                );
+
+        ResultSet resultadoConsulta
+                = obtenerGestorInstrucciones().ejecutarConsulta(instruccionFinalObtener);
+
+        return extraerProductoDeResultado(resultadoConsulta, productoBase);
+    }
+
+    private ProductoVenta extraerProductoDeResultado(ResultSet resultadoConsulta, Producto productoBase) {
         
         try {
-            while (resultado.next()) {
-                double precioCompra = resultado.getDouble("precio_compra");
-                double precioVenta = resultado.getDouble("precio_venta");
-                double ganacia = resultado.getDouble("ganacia");
-                
-                 ProductoVenta productoVenta = new ProductoVenta(
-                         producto.obtenerIDProducto(), 
-                         producto.obtenerNombre(), 
-                         producto.obtenerCantidadMinima(),
-                         precioCompra,
-                         precioVenta,
-                         ganacia
-                 );
-                 return productoVenta;
+
+            if (resultadoConsulta.next()) {
+                double precioCompra = resultadoConsulta.getDouble("precio_compra");
+                double precioVenta = resultadoConsulta.getDouble("precio_venta");
+                double ganancia = resultadoConsulta.getDouble("ganacia");
+
+                ProductoVenta productoVenta = new ProductoVenta(
+                        productoBase.obtenerID(), 
+                        productoBase.obtenerNombre(), 
+                        productoBase.obtenerCantidadMinima(),
+                        precioCompra,
+                        precioVenta,
+                        ganancia
+                );
+                return productoVenta;
             }
         } catch (SQLException ex) {
             Logger.getLogger(GestorBDProducto.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         return null;
     }
+
+    
 }

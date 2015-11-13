@@ -1,6 +1,10 @@
 package datos;
 
-import negocio.entidades.Producto;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -8,16 +12,77 @@ import negocio.entidades.Producto;
  */
 public class GestorBDInventario extends GestorBaseDatos{
     
-    public void agregarProducto(Producto nuevoProducto){
+    public void agregarProductosInventario(String IDProducto, double cantidad){
+        
+        final String INSTRUCCION_INSERTAR
+            = "INSERT INTO inventario VALUES(\"%s\",%f)";
+        
+        String instruccionFinalInsertar = 
+                String.format(
+                        INSTRUCCION_INSERTAR,
+                        IDProducto,
+                        cantidad
+                );
+
+        obtenerGestorInstrucciones().ejecutarModificacion(instruccionFinalInsertar);
+        
     }
     
-    public void eliminarProducto(int IDProductoAEliminar){
+    public void editarCantidadProductosInventario(String IDProducto, double nuevaCantidad){
+    
+        final String INSTRUCCION_MODIFICAR
+            = "UPDATE inventario SET cantidad = %f WHERE producto_ID = \"%s\"";
+        
+        String instruccionFinalModificar
+                = String.format(
+                        INSTRUCCION_MODIFICAR,
+                        nuevaCantidad,
+                        IDProducto
+                );
+
+        obtenerGestorInstrucciones().ejecutarModificacion(instruccionFinalModificar);
+    
     }
     
-    public void editarInformacionProducto(int IDProducto, Producto productoActualizado){
+    public ArrayList<Object[]> obtenerInformacionProductosInventario(){
+        
+        final String INSTRUCCION_OBTENER_TODOS =
+                "SELECT ID, nombre, cantidad FROM inventario " + 
+                "JOIN producto ON inventario.producto_ID = producto.ID";
+        
+        ResultSet resultadoConsulta
+                = obtenerGestorInstrucciones().ejecutarConsulta(INSTRUCCION_OBTENER_TODOS);
+
+        return extraerListaDeResultado(resultadoConsulta);
     }
-    
-    public Producto obtenerProducto(int IDProductoAObtener){
-        return null;
+
+    private ArrayList<Object[]> extraerListaDeResultado(ResultSet resultadoConsulta) {
+        
+        final int COLUMNA_ID = 0;
+        final int COLUMNA_NOMBRE = 1;
+        final int COLUMNA_CANTIDAD = 2;
+        
+        ArrayList<Object[]> tablaResultados = new ArrayList();
+        
+        try {
+
+            while (resultadoConsulta.next()) {
+                String id = resultadoConsulta.getString("ID");
+                String nombre = resultadoConsulta.getString("nombre");
+                double cantidad = resultadoConsulta.getDouble("cantidad");
+
+                Object[] fila = new Object[3];
+                fila[COLUMNA_ID] = id;
+                fila[COLUMNA_NOMBRE] = nombre;
+                fila[COLUMNA_CANTIDAD] = cantidad;
+                
+                tablaResultados.add(fila);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(GestorBDProducto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return tablaResultados;
     }
+
 }

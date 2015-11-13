@@ -6,7 +6,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import negocio.entidades.Producto;
 import negocio.entidades.ProductoInsumo;
-import negocio.entidades.ProductoVenta;
 
 /**
  *
@@ -14,67 +13,88 @@ import negocio.entidades.ProductoVenta;
  */
 public class GestorBDProductoInsumo extends GestorBDProducto {
 
-    private final String TABLA_PRODUCTO_INSUMO_ = "producto_insumo";
+    public void agregarProductoInsumo(ProductoInsumo nuevoProducto) {
+        
+        agregarProducto(nuevoProducto);
+        
+        final String INSTRUCCION_INSERTAR
+                = "INSERT INTO producto_insumo VALUES(\"%s\",%f)";
+        
+        String instruccionFinalInsertar = 
+                String.format(
+                        INSTRUCCION_INSERTAR,
+                        nuevoProducto.obtenerID(),
+                        nuevoProducto.obtenerPrecioCompra()
+                );
 
-    public void agregarProductoVenta(ProductoVenta nuevoProducto) {
-        
-        super.agregarProducto(nuevoProducto);
-        
-        String instruccionInsertarProducto = 
-                "INSERT INTO " + TABLA_PRODUCTO_INSUMO_ + 
-                " VALUES(" + 
-                nuevoProducto.obtenerIDProducto() + "," + 
-                nuevoProducto.obtenerPrecioCompra() + "," + 
-                ")";
-
-        super.obtenerGestorInstrucciones().ejecutar(instruccionInsertarProducto);
-    }
-
-    public void eliminarProductoVenta(int IDProductoAEliminar) {
-        
-        String instruccionEliminarProducto =
-                "DELETE FROM " + TABLA_PRODUCTO_INSUMO_ +
-                "WHERE ID = " + IDProductoAEliminar;
-        
-        super.obtenerGestorInstrucciones().ejecutar(instruccionEliminarProducto);
-        super.eliminarProducto(IDProductoAEliminar);
+        obtenerGestorInstrucciones().ejecutarModificacion(instruccionFinalInsertar);
         
     }
 
-    public void editarInformacionProductoVenta(int IDProducto, ProductoVenta productoActualizado) {
+    public void eliminarProductoInsumo(String IDProductoAEliminar) {
         
-        double nuevoPrecioCompra = productoActualizado.obtenerPrecioCompra();
+        final String INSTRUCCION_ELIMINAR
+            = "DELETE FROM producto_insumo WHERE ID = \"%s\"";
         
-        String instruccionModificarProducto = 
-                "UPDATE " + TABLA_PRODUCTO_INSUMO_ + 
-                "SET precio_compra = " + nuevoPrecioCompra +
-                "WHERE ID = " + IDProducto;
+        String instruccionFinalEliminar = 
+                String.format(
+                        INSTRUCCION_ELIMINAR,
+                        IDProductoAEliminar
+                );
         
-        super.obtenerGestorInstrucciones().ejecutar(instruccionModificarProducto);
-        super.editarInformacionProducto(IDProducto, productoActualizado);
+        obtenerGestorInstrucciones().ejecutarConsulta(instruccionFinalEliminar);
+        eliminarProducto(IDProductoAEliminar);
+        
     }
-    
-    
-    public ProductoInsumo obtenerProductoVenta(int IDProducto){
+
+    public void editarInformacionProductoInsumo(ProductoInsumo productoActualizado) {
         
-        Producto producto = super.obtenerProducto(IDProducto);
+        final String INSTRUCCION_MODIFICAR
+            = "UPDATE producto SET precio_compra = %f WHERE ID = \"%s\"";
         
-        String instruccionObtenerProducto = 
-                "SELECT * from " + TABLA_PRODUCTO_INSUMO_ + 
-                "WHERE ID = " + IDProducto;
-        ResultSet resultado = super.obtenerGestorInstrucciones().ejecutar(instruccionObtenerProducto);
+        String instruccionFinalModificar
+                = String.format(
+                        INSTRUCCION_MODIFICAR,
+                        productoActualizado.obtenerPrecioCompra(),
+                        productoActualizado.obtenerID()
+                );
+
+        obtenerGestorInstrucciones().ejecutarModificacion(instruccionFinalModificar);
+        editarInformacionProducto(productoActualizado);
+    }
+   
+    public ProductoInsumo obtenerProductoInsumo(String IDProducto) {
+
+        Producto productoBase = obtenerProducto(IDProducto);
         
+        final String INSTRUCCION_OBTENER_UNO
+                = "SELECT * FROM producto_insumo WHERE ID = \"%s\"";
+
+        String instruccionFinalObtener
+                = String.format(
+                        INSTRUCCION_OBTENER_UNO,
+                        IDProducto
+                );
+
+        ResultSet resultadoConsulta
+                = obtenerGestorInstrucciones().ejecutarConsulta(instruccionFinalObtener);
+
+        return extraerProductoDeResultado(resultadoConsulta, productoBase);
+    }
+
+    private ProductoInsumo extraerProductoDeResultado(ResultSet resultadoConsulta, Producto productoBase) {
         try {
-            while (resultado.next()) {
-                double precioCompra = resultado.getDouble("precio_compra");
-                
-                 ProductoInsumo productoInsumo = new ProductoInsumo(
-                         producto.obtenerIDProducto(), 
-                         producto.obtenerNombre(), 
-                         producto.obtenerCantidadMinima(),
-                         precioCompra
-                 );
-                 return productoInsumo;
+
+            if (resultadoConsulta.next()) {
+                double precioCompra = resultadoConsulta.getDouble("precio_compra");
+
+                ProductoInsumo productoInsumo = new ProductoInsumo(
+                        productoBase.obtenerID(), 
+                        productoBase.obtenerNombre(), 
+                        productoBase.obtenerCantidadMinima(),
+                        precioCompra
+                );
+                return productoInsumo;
             }
         } catch (SQLException ex) {
             Logger.getLogger(GestorBDProducto.class.getName()).log(Level.SEVERE, null, ex);

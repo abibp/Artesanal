@@ -20,7 +20,7 @@ import org.edisoncor.gui.textField.TextField;
  *
  * @author PIX
  */
-public class InicialVentana implements ActionListener {
+public class InicioVentana implements ActionListener {
 
     private JFrame ventanaInicial;
     private ButtonAction registrarCajaBoton;
@@ -32,7 +32,7 @@ public class InicialVentana implements ActionListener {
     private final String NOMBRE_FUENTE_LETRA = "Arial";
     private final int LETRA_SIN_DECORACION_CLAVE = 1;
 
-    public InicialVentana() {
+    public InicioVentana() {
 
         inicializarComponentes();
         configurarComponentes();

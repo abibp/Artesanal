@@ -423,7 +423,7 @@ public class VentaMenuVentana extends MenuVentana implements ActionListener {
         for (int i = 0; i < gestorTabla.obtenerArray().size(); i++) {
 
             String IDProductoActual = gestorTabla.getValueAt(i, INDICE_COLUMNA_ID).toString();
-            if (IDProductoActual.equals(productoVenta.obtenerIDProducto())) {
+            if (IDProductoActual.equals(productoVenta.obtenerID())) {
                 return i;
             }
         }
@@ -452,7 +452,7 @@ public class VentaMenuVentana extends MenuVentana implements ActionListener {
     private void agregarProductoTabla(ProductoVenta productoVenta, int cantidadProductos) {
         
         ArrayList fila = new ArrayList();
-        fila.add(productoVenta.obtenerIDProducto());
+        fila.add(productoVenta.obtenerID());
         fila.add(productoVenta.obtenerNombre());
         fila.add(productoVenta.obtenerPrecioVenta());
         fila.add(cantidadProductos);

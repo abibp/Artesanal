@@ -2,27 +2,23 @@ package datos;
 
 import negocio.entidades.ElementoVenta;
 
+public class GestorBDVenta extends GestorBaseDatos {
 
-public class GestorBDVenta extends GestorBaseDatos{
-    
-    private GestorBDVenta() {
-    }   
-    
-    public static void agregarVenta(ElementoVenta nuevaVenta){
+    public void agregarVenta(ElementoVenta nuevaVenta) {
+
+        final String INSTRUCCION_INSERTAR
+                = "INSERT INTO venta VALUES(NOW(),\"%s\",%f,%f)";
+
+        String instruccionFinalInsertar
+                = String.format(
+                        INSTRUCCION_INSERTAR,
+                        nuevaVenta.obtenerProductoVendido().obtenerID(),
+                        nuevaVenta.obtenerCantidadDeProducto(),
+                        nuevaVenta.obtenerMonto()
+                );
+
+        obtenerGestorInstrucciones().ejecutarModificacion(instruccionFinalInsertar);
+
     }
-    
-    public static boolean eliminarVenta(int IDVenta){
-        return false;
-    }
-    
-    public static void editarInformacionProducto(int IDVenta, ElementoVenta ventaActualizada){    
-    }
-    
-    public static ElementoVenta obtenerVenta(int IDVentaAObtener){
-        return null;
-    }
-    
-    public static int obtenerNumeroDeVentas(){
-        return 0;
-    }
+
 }

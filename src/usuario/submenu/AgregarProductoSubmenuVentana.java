@@ -208,6 +208,8 @@ public class AgregarProductoSubmenuVentana extends MenuVentana implements Action
                                 .addComponent(cancelarProductoAgregarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(27, 27, 27))
         );
+        
+        guardarProductoAgregarBoton.addActionListener(this);
     }
 
     @Override

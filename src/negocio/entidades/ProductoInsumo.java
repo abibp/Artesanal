@@ -13,11 +13,11 @@ public class ProductoInsumo extends Producto {
         this.precioCompra_ = precioCompra;
     }
 
-    public double getPrecioCompra_() {
+    public double obtenerPrecioCompra() {
         return precioCompra_;
     }
 
-    public void setPrecioCompra_(double precioCompra_) {
+    public void establecerPrecioCompra(double precioCompra_) {
         this.precioCompra_ = precioCompra_;
     }
 

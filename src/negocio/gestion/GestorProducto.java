@@ -34,7 +34,7 @@ public class GestorProducto {
     
    public void agregarProducto(ProductoVenta nuevoProducto){
        
-       directorioProductos.put(nuevoProducto.obtenerIDProducto(), nuevoProducto);
+       directorioProductos.put(nuevoProducto.obtenerID(), nuevoProducto);
        
        manejadorDatos.agregarProducto(nuevoProducto);
         
@@ -64,12 +64,12 @@ public class GestorProducto {
         Producto sabrita6 = new ProductoVenta("6", "Elote", 10, 10.0, 0.20, 12.0);
         Producto sabrita7 = new ProductoVenta("7", "Chicharron", 10, 10.0, 0.20, 12.0);
         
-        directorioProductos.put(sabrita.obtenerIDProducto(), sabrita);
-        directorioProductos.put(sabrita2.obtenerIDProducto(), sabrita2);
-        directorioProductos.put(sabrita3.obtenerIDProducto(), sabrita3);
-        directorioProductos.put(sabrita4.obtenerIDProducto(), sabrita4);
-        directorioProductos.put(sabrita5.obtenerIDProducto(), sabrita5);
-        directorioProductos.put(sabrita6.obtenerIDProducto(), sabrita6);
-        directorioProductos.put(sabrita7.obtenerIDProducto(), sabrita7);
+        directorioProductos.put(sabrita.obtenerID(), sabrita);
+        directorioProductos.put(sabrita2.obtenerID(), sabrita2);
+        directorioProductos.put(sabrita3.obtenerID(), sabrita3);
+        directorioProductos.put(sabrita4.obtenerID(), sabrita4);
+        directorioProductos.put(sabrita5.obtenerID(), sabrita5);
+        directorioProductos.put(sabrita6.obtenerID(), sabrita6);
+        directorioProductos.put(sabrita7.obtenerID(), sabrita7);
     }
 }

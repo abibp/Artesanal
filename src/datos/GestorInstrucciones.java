@@ -1,35 +1,46 @@
 package datos;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.sql.Statement;
 
 public class GestorInstrucciones {
-    
+
     private final Connection conexionActual_;
 
-    public GestorInstrucciones( Connection conexionActual_ ) {
+    public GestorInstrucciones(Connection conexionActual_) {
         this.conexionActual_ = conexionActual_;
     }
-    
-    public ResultSet ejecutar( String instruccionSQL ) {
-        
-       ResultSet resultadoConsulta = null;
-       
-        try {
+
+    public ResultSet ejecutarConsulta(String instruccionSQL) {
+
+        ResultSet resultadoConsulta = null;
+
+        try (Statement consultaActual = conexionActual_.createStatement()) {
             
-            PreparedStatement consultaActual =
-                    conexionActual_.prepareStatement( instruccionSQL );
-            resultadoConsulta = consultaActual.executeQuery();
-            
+            resultadoConsulta = consultaActual.executeQuery(instruccionSQL);
+
         } catch (SQLException excepcionConsulta) {
             excepcionConsulta.printStackTrace();
         }
-        
-      return resultadoConsulta;
-      
+
+        return resultadoConsulta;
+
     }
-    
+
+    public int ejecutarModificacion(String instruccionSQL) {
+
+        int filasAfectadas = 0;
+
+        try (Statement consultaActual = conexionActual_.createStatement()) {
+
+            filasAfectadas = consultaActual.executeUpdate(instruccionSQL);
+
+        } catch (SQLException excepcionConsulta) {
+            excepcionConsulta.printStackTrace();
+        }
+
+        return filasAfectadas;
+    }
 }

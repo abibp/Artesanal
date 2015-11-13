@@ -8,8 +8,6 @@ public class Producto {
 
     private final String ID_PRODUCTO_;
     private String NOMBRE_;
-
-    private String descripcion_;
     private double cantidadMinima_;
 
     public Producto(String idProducto, String nombre, double cantidadMinima) {
@@ -18,15 +16,7 @@ public class Producto {
         this.cantidadMinima_ = cantidadMinima;
     }
 
-    public String obtenerDescripcion() {
-        return descripcion_;
-    }
-
-    public void establecerDescripcion(String descripcion) {
-        this.descripcion_ = descripcion;
-    }
-
-    public String obtenerIDProducto() {
+    public String obtenerID() {
         return ID_PRODUCTO_;
     }
 
