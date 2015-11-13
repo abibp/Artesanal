@@ -1,7 +1,9 @@
 package negocio.gestion;
 
+import datos.GestorBDProducto;
 import java.util.HashMap;
 import negocio.entidades.Producto;
+import negocio.entidades.ProductoVenta;
 
 /**
  *
@@ -9,15 +11,32 @@ import negocio.entidades.Producto;
  */
 public class GestorProducto {
     
-   private static HashMap<Integer, Producto> directorioProductos = new HashMap();
-
-    public GestorProducto() {
+    private GestorBDProducto manejadorDatos;
+    private static GestorProducto gestorInstancia;
+    
+    private GestorProducto(){
+        manejadorDatos = new GestorBDProducto();
         llenarDirectorio();
     }
+    
+    public synchronized static GestorProducto obtenerInstancia(){
+        if(gestorInstancia == null){
+            gestorInstancia = new GestorProducto();
+            
+        }
+        return gestorInstancia;
+    }
+    
+    
+   private static HashMap<String, Producto> directorioProductos = new HashMap();
+   
    
     
-   public void agregarProducto(Producto nuevoProducto){
+   public void agregarProducto(ProductoVenta nuevoProducto){
+       
        directorioProductos.put(nuevoProducto.obtenerIDProducto(), nuevoProducto);
+       
+       manejadorDatos.agregarProducto(nuevoProducto);
         
     }
     public void eliminarProducto(int IDProductoAEliminar){
@@ -27,23 +46,23 @@ public class GestorProducto {
         
     }
     
-    public Producto obtenerProducto(int IDProductoAObtener){
+    public Producto obtenerProducto(String IDProductoAObtener){
         return directorioProductos.get(IDProductoAObtener);
     }
 
-    public boolean existeProducto(int IDProductoAObtener){
+    public boolean existeProducto(String IDProductoAObtener){
         return directorioProductos.containsKey(IDProductoAObtener);
     }
     
     private void llenarDirectorio() {
 
-        Producto sabrita = new Producto(1, "Ruffles", 10.0, 8.0);
-        Producto sabrita2 = new Producto(2, "Doritos Nacho", 10.0, 8.0);
-        Producto sabrita3 = new Producto(3, "Palomitas", 15.0, 10.0);
-        Producto sabrita4 = new Producto(4, "Charritos", 10.0, 8.0);
-        Producto sabrita5 = new Producto(5, "Tostachos", 10.0, 8.0);
-        Producto sabrita6 = new Producto(6, "Paketaxo", 30.0, 22.0);
-        Producto sabrita7 = new Producto(7, "Churros", 10.0, 8.0);
+        Producto sabrita = new ProductoVenta("1", "Ruffles", 10, 10.0, 0.20, 12.0);
+        Producto sabrita2 = new ProductoVenta("2", "Doritos", 10, 10.0, 0.20, 12.0);
+        Producto sabrita3 = new ProductoVenta("3", "Charritos", 10, 10.0, 0.20, 12.0);
+        Producto sabrita4 = new ProductoVenta("4", "Emperador", 10, 10.0, 0.20, 12.0);
+        Producto sabrita5 = new ProductoVenta("5", "Pelos con Papa", 10.0, 100.0, 0.20, 120.0);
+        Producto sabrita6 = new ProductoVenta("6", "Elote", 10, 10.0, 0.20, 12.0);
+        Producto sabrita7 = new ProductoVenta("7", "Chicharron", 10, 10.0, 0.20, 12.0);
         
         directorioProductos.put(sabrita.obtenerIDProducto(), sabrita);
         directorioProductos.put(sabrita2.obtenerIDProducto(), sabrita2);

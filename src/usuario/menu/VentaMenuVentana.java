@@ -16,6 +16,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import negocio.entidades.Producto;
+import negocio.entidades.ProductoVenta;
 import negocio.gestion.GestorCaja;
 import negocio.gestion.GestorProducto;
 import org.edisoncor.gui.button.ButtonAction;
@@ -135,11 +136,11 @@ public class VentaMenuVentana extends MenuVentana implements ActionListener {
 
         instruccionTotalVentaLabel.setText("Total");
 
-        totalVentalLabel.setFont(new Font("Arial", 1, 48)); 
+        totalVentalLabel.setFont(new Font("Arial", 1, 48));
         totalVentalLabel.setForeground(new Color(255, 255, 255));
         totalVentalLabel.setText("0.0");
 
-        pagoConVentaLabel.setFont(new Font("Arial", 1, 48)); 
+        pagoConVentaLabel.setFont(new Font("Arial", 1, 48));
         pagoConVentaLabel.setForeground(new Color(255, 255, 255));
         pagoConVentaLabel.setText("0.0");
 
@@ -147,25 +148,25 @@ public class VentaMenuVentana extends MenuVentana implements ActionListener {
 
         instruccionCambioVentaLabel.setText("Cambio");
 
-        cambioVentaLabel.setFont(new Font("Arial", 1, 48)); 
+        cambioVentaLabel.setFont(new Font("Arial", 1, 48));
         cambioVentaLabel.setForeground(new Color(255, 255, 255));
         cambioVentaLabel.setText("0.0");
 
         cobrarImporteVentaBoton.setText("Cobrar");
-        cobrarImporteVentaBoton.setFont(new Font("Arial", 1, 48)); 
+        cobrarImporteVentaBoton.setFont(new Font("Arial", 1, 48));
 
         simboloPesoLabel.setText("$");
-        simboloPesoLabel.setFont(new Font("Arial", 1, 48)); 
+        simboloPesoLabel.setFont(new Font("Arial", 1, 48));
 
         totalImporteVentaLabel.setText("0.0");
-        totalImporteVentaLabel.setFont(new Font("Arial", 1, 48)); 
+        totalImporteVentaLabel.setFont(new Font("Arial", 1, 48));
 
         instruccionCodigoProductoVentaLabel.setText("Codigo de Producto :");
 
         instruccionCantidadVentaLabel.setText("Cantidad :");
 
         instruccionTotalImporteVentaLabel.setText("Total :");
-        instruccionTotalImporteVentaLabel.setFont(new Font("Arial", 1, 48)); 
+        instruccionTotalImporteVentaLabel.setFont(new Font("Arial", 1, 48));
 
         GroupLayout ventaPanelLayout = new GroupLayout(ventaPanel);
         ventaPanel.setLayout(ventaPanelLayout);
@@ -341,25 +342,25 @@ public class VentaMenuVentana extends MenuVentana implements ActionListener {
         }
     }
 
-    private GestorProducto gestorProducto = new GestorProducto();
+    private GestorProducto gestorProducto = GestorProducto.obtenerInstancia();
 
     private void agregarProductoAVenta() {
 
         final String VACIO = "";
 
         try {
-            int codigoProducto = Integer.parseInt(codigoProductoCampo.getText());
+            String codigoProducto = codigoProductoCampo.getText();
             int cantidadProductos = Integer.parseInt(cantidadVentaSpinner.getValue().toString());
             if (gestorProducto.existeProducto(codigoProducto)) {
-                
-                Producto pp = gestorProducto.obtenerProducto(codigoProducto);
+
+                ProductoVenta pp = ((ProductoVenta)gestorProducto.obtenerProducto(codigoProducto));
                 agregarFilaTabla(pp, cantidadProductos);
                 codigoProductoCampo.setText(VACIO);
 
                 double montoTotalActualVenta = Double.parseDouble(totalImporteVentaLabel.getText());
-                montoTotalActualVenta += cantidadProductos * pp.obtenerPrecio();
+                montoTotalActualVenta += cantidadProductos * pp.obtenerPrecioVenta();
                 totalImporteVentaLabel.setText(String.valueOf(montoTotalActualVenta));
-          
+
             } else {
                 final String MENSAJE_ERROR = "El producto solicitado no existe";
                 Informador.mostrarMensajeDeError(MENSAJE_ERROR);
@@ -381,7 +382,7 @@ public class VentaMenuVentana extends MenuVentana implements ActionListener {
             double montoTotalVenta = Double.parseDouble(totalImporteVentaLabel.getText());
             double cambio = cantidadDeDineroRecibido - montoTotalVenta;
             cambioVentaLabel.setText(String.valueOf(cambio));
-            
+
         }
 
     }
@@ -397,37 +398,66 @@ public class VentaMenuVentana extends MenuVentana implements ActionListener {
         if (cantidadDineroTexto != null) {
             double cantidadDeDineroDecrementar = Double.parseDouble(cantidadDineroTexto);
             gestorCaja.decrementarDineroCaja(cantidadDeDineroDecrementar);
-            System.out.println("Quitando " + cantidadDeDineroDecrementar + " varos"
-                    + " tienes " + gestorCaja.obtenerCantidadActualCaja());
         }
 
     }
 
-    private void agregarFilaTabla(Producto pp, int cantidadProductos) {
-        ArrayList fila = new ArrayList();
-        boolean existeProductoEnVenta = false;
+    private void agregarFilaTabla(ProductoVenta productoVenta, int cantidadProductos) {
+
+        int indiceProducto = indiceDeProductoEnTabla(productoVenta);
+        boolean existeProductoEnTabla = indiceProducto != -1;
+
+        if (existeProductoEnTabla) {
+            incrementarCantidadProductoEnTabla(indiceProducto, cantidadProductos, productoVenta);
+        } else {
+            agregarProductoTabla(productoVenta, cantidadProductos);
+        }
+
+    }
+
+    private int indiceDeProductoEnTabla(Producto productoVenta) {
+
+        final int INDICE_ID = 0;
+
         for (int i = 0; i < gestorTabla.obtenerArray().size(); i++) {
-            if(((Integer) gestorTabla.getValueAt(i, 0)) == (pp.obtenerIDProducto())){
-                existeProductoEnVenta = true;
-                int nuevaCantidad = ((Integer) gestorTabla.getValueAt(i, 3)) + cantidadProductos;
-                gestorTabla.setValueAt(nuevaCantidad, i, 3);
-                double montoParcialVenta = ((Integer) gestorTabla.getValueAt(i, 3)) * pp.obtenerPrecio();
-                gestorTabla.setValueAt(montoParcialVenta, i, 4);
-                break;
+
+            String IDProductoActual = gestorTabla.getValueAt(i, INDICE_ID).toString();
+            if (IDProductoActual.equals(productoVenta.obtenerIDProducto())) {
+                return i;
             }
         }
-      
-        if (!existeProductoEnVenta) {
-            fila.add(pp.obtenerIDProducto());
-            fila.add(pp.obtenerNombre());
-            fila.add(pp.obtenerPrecio());
-            fila.add(cantidadProductos);
-            double montoParcialVenta = cantidadProductos * pp.obtenerPrecio();
-            fila.add(montoParcialVenta);
-            gestorTabla.agregarFila(fila);
-        }
 
-        
+        return -1;
     }
 
+    private void incrementarCantidadProductoEnTabla(
+            int indiceProducto,
+            int cantidadAdicionalProductosVenta,
+            ProductoVenta productoVenta) {
+
+        final int INDICE_COLUMNA_CANTIDAD = 3;
+        final int INDICE_COLUMNA_MONTO = 4;
+
+        int cantidadProductosVenta
+                = ((Integer) gestorTabla.getValueAt(indiceProducto, INDICE_COLUMNA_CANTIDAD));
+
+        int nuevaCantidadProductosVenta = cantidadProductosVenta + cantidadAdicionalProductosVenta;
+        gestorTabla.setValueAt(nuevaCantidadProductosVenta, indiceProducto, INDICE_COLUMNA_CANTIDAD);
+
+        double montoParcialVenta = cantidadProductosVenta * productoVenta.obtenerPrecioVenta();
+        gestorTabla.setValueAt(montoParcialVenta, indiceProducto, INDICE_COLUMNA_MONTO);
+    }
+
+    private void agregarProductoTabla(ProductoVenta productoVenta, int cantidadProductos) {
+        
+        ArrayList fila = new ArrayList();
+        fila.add(productoVenta.obtenerIDProducto());
+        fila.add(productoVenta.obtenerNombre());
+        fila.add(productoVenta.obtenerPrecioVenta());
+        fila.add(cantidadProductos);
+        double montoParcialVenta = cantidadProductos * productoVenta.obtenerPrecioVenta();
+        fila.add(montoParcialVenta);
+        gestorTabla.agregarFila(fila);
+        
+    }
 }

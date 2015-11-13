@@ -1,32 +1,17 @@
 package negocio.gestion;
 
-import datos.GestorBDVenta;
 import java.util.ArrayList;
 import negocio.entidades.Venta;
 import negocio.entidades.ElementoVenta;
-import negocio.excepcion.ExcepcionVentaNoEncontrada;
 import usuario.Informador;
 
 /**
  *
  * @author PIX
  */
-public class Vendedor {
+public class GestorVenta {
 
     private ArrayList<Venta> nRecibosDeVenta_;
-
-//    public void agregarVenta(ElementoVenta nuevaVenta) {
-//        nRecibosDeVenta_.add(nuevaVenta);
-//        GestorBDVenta.agregarVenta(nuevaVenta);
-//    }
-//
-//    public void cancelarVenta(int IDVenta) throws ExcepcionVentaNoEncontrada {
-//        boolean esEliminada = GestorBDVenta.eliminarVenta(IDVenta);
-//
-//        if (!(esEliminada)) {
-//            throw new ExcepcionVentaNoEncontrada();
-//        }
-//    }
 
     public Venta obtenerPrimerReciboVenta() {
         

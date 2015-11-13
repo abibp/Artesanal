@@ -1,7 +1,9 @@
 package negocio.entidades;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.Set;
 
 /**
  *
@@ -23,6 +25,14 @@ public class Venta {
 
     public ArrayList<ElementoVenta> obtenerElementosVenta() {
         return elementosVenta;
+    }
+    
+    public void agregarElementoVenta(ElementoVenta elementoVenta){
+        elementosVenta.add(elementoVenta);
+    }
+    
+    public void eliminarElementoVenta(ElementoVenta elementoVenta){
+        elementosVenta.remove(elementoVenta);
     }
 
     public double obtenerMonto() {

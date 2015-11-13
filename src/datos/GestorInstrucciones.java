@@ -17,7 +17,7 @@ public class GestorInstrucciones {
         this.conexionActual_ = conexionActual_;
     }
     
-    public ResultSet ejecutarInstruccion( String instruccionSQL ) {
+    public ResultSet ejecutar( String instruccionSQL ) {
         
        ResultSet resultadoConsulta = null;
        
