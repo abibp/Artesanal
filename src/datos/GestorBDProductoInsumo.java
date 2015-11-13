@@ -62,7 +62,7 @@ public class GestorBDProductoInsumo extends GestorBDProducto {
         String instruccionObtenerProducto = 
                 "SELECT * from " + TABLA_PRODUCTO_INSUMO_ + 
                 "WHERE ID = " + IDProducto;
-         ResultSet resultado = super.obtenerGestorInstrucciones().ejecutar(instruccionObtenerProducto);
+        ResultSet resultado = super.obtenerGestorInstrucciones().ejecutar(instruccionObtenerProducto);
         
         try {
             while (resultado.next()) {

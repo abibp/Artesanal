@@ -5,10 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/**
- *
- * @author PIX
- */
+
 public class GestorInstrucciones {
     
     private final Connection conexionActual_;

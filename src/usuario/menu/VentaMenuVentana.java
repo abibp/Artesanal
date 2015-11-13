@@ -161,6 +161,7 @@ public class VentaMenuVentana extends MenuVentana implements ActionListener {
         totalImporteVentaLabel.setText("0.0");
         totalImporteVentaLabel.setFont(new Font("Arial", 1, 48));
 
+
         instruccionCodigoProductoVentaLabel.setText("Codigo de Producto :");
 
         instruccionCantidadVentaLabel.setText("Cantidad :");
@@ -417,11 +418,11 @@ public class VentaMenuVentana extends MenuVentana implements ActionListener {
 
     private int indiceDeProductoEnTabla(Producto productoVenta) {
 
-        final int INDICE_ID = 0;
+        final int INDICE_COLUMNA_ID = 0;
 
         for (int i = 0; i < gestorTabla.obtenerArray().size(); i++) {
 
-            String IDProductoActual = gestorTabla.getValueAt(i, INDICE_ID).toString();
+            String IDProductoActual = gestorTabla.getValueAt(i, INDICE_COLUMNA_ID).toString();
             if (IDProductoActual.equals(productoVenta.obtenerIDProducto())) {
                 return i;
             }
