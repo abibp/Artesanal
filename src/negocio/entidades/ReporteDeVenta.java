@@ -11,9 +11,9 @@ public class ReporteDeVenta {
     private final int ID_REPORTE_;
     private final String DESCRIPCION_;
 
-    private ArrayList<ElementoVenta> nVentas_;
+    private ArrayList<ProductoVendido> nVentas_;
 
-    public ReporteDeVenta(int IDReporte, String descripcion, ArrayList<ElementoVenta> ventas) {
+    public ReporteDeVenta(int IDReporte, String descripcion, ArrayList<ProductoVendido> ventas) {
         this.ID_REPORTE_ = IDReporte;
         this.DESCRIPCION_ = descripcion;
         this.nVentas_ = ventas;
@@ -27,7 +27,7 @@ public class ReporteDeVenta {
         return DESCRIPCION_;
     }
 
-    public ArrayList<ElementoVenta> obtenerVentas() {
+    public ArrayList<ProductoVendido> obtenerVentas() {
         return nVentas_;
     }
 
@@ -35,12 +35,12 @@ public class ReporteDeVenta {
         return true;
     }
 
-    public void agregarVenta(ElementoVenta unaVenta) {
+    public void agregarVenta(ProductoVendido unaVenta) {
         this.nVentas_.add(unaVenta);
     }
 
-    public void eliminarVenta(ElementoVenta unaVenta) {
-        ElementoVenta ventaAEliminar = unaVenta;
+    public void eliminarVenta(ProductoVendido unaVenta) {
+        ProductoVendido ventaAEliminar = unaVenta;
         this.nVentas_.remove(ventaAEliminar);
     }
 

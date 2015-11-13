@@ -1,3 +1,4 @@
+
 package negocio.entidades;
 
 /**

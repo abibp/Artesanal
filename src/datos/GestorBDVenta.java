@@ -1,10 +1,10 @@
 package datos;
 
-import negocio.entidades.ElementoVenta;
+import negocio.entidades.ProductoVendido;
 
 public class GestorBDVenta extends GestorBaseDatos {
 
-    public void agregarVenta(ElementoVenta nuevaVenta) {
+    public void agregarVenta(ProductoVendido nuevaVenta) {
 
         final String INSTRUCCION_INSERTAR
                 = "INSERT INTO venta VALUES(NOW(),\"%s\",%f,%f)";
@@ -18,6 +18,7 @@ public class GestorBDVenta extends GestorBaseDatos {
                 );
 
         obtenerGestorInstrucciones().ejecutarModificacion(instruccionFinalInsertar);
+
 
     }
 

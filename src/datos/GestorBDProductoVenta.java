@@ -6,6 +6,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import negocio.entidades.Producto;
 import negocio.entidades.ProductoVenta;
+import negocio.excepcion.ExcepcionProductoNoEncontrado;
 
 /**
  *
@@ -69,7 +70,7 @@ public class GestorBDProductoVenta extends GestorBDProducto{
         
     }
     
-     public ProductoVenta obtenerProductoVenta(String IDProducto) {
+     public ProductoVenta obtenerProductoVenta(String IDProducto) throws ExcepcionProductoNoEncontrado{
 
         Producto productoBase = obtenerProducto(IDProducto);
         

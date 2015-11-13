@@ -1,8 +1,8 @@
 package negocio.gestion;
 
 import java.util.ArrayList;
+import negocio.entidades.ProductoVendido;
 import negocio.entidades.Venta;
-import negocio.entidades.ElementoVenta;
 import usuario.Informador;
 
 /**
@@ -35,8 +35,8 @@ public class GestorVenta {
 
         for (Venta reciboActual : nRecibosDeVenta_) {
             
-            ArrayList<ElementoVenta> nVentas = reciboActual.obtenerElementosVenta();
-            for(ElementoVenta ventaActual : nVentas){
+            ArrayList<ProductoVendido> nVentas = reciboActual.obtenerProductos();
+            for(ProductoVendido ventaActual : nVentas){
                 montoTotalVentas += ventaActual.obtenerMonto();
             }
         }
