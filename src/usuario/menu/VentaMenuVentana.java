@@ -161,7 +161,6 @@ public class VentaMenuVentana extends MenuVentana implements ActionListener {
         totalImporteVentaLabel.setText("0.0");
         totalImporteVentaLabel.setFont(new Font("Arial", 1, 48));
 
-
         instruccionCodigoProductoVentaLabel.setText("Codigo de Producto :");
 
         instruccionCantidadVentaLabel.setText("Cantidad :");
@@ -352,20 +351,15 @@ public class VentaMenuVentana extends MenuVentana implements ActionListener {
         try {
             String codigoProducto = codigoProductoCampo.getText();
             int cantidadProductos = Integer.parseInt(cantidadVentaSpinner.getValue().toString());
-            if (gestorProducto.existeProducto(codigoProducto)) {
 
-                ProductoVenta pp = ((ProductoVenta)gestorProducto.obtenerProducto(codigoProducto));
-                agregarFilaTabla(pp, cantidadProductos);
-                codigoProductoCampo.setText(VACIO);
+            ProductoVenta pp = ((ProductoVenta) gestorProducto.obtenerProducto(codigoProducto));
+            agregarFilaTabla(pp, cantidadProductos);
+            codigoProductoCampo.setText(VACIO);
 
-                double montoTotalActualVenta = Double.parseDouble(totalImporteVentaLabel.getText());
-                montoTotalActualVenta += cantidadProductos * pp.obtenerPrecioVenta();
-                totalImporteVentaLabel.setText(String.valueOf(montoTotalActualVenta));
+            double montoTotalActualVenta = Double.parseDouble(totalImporteVentaLabel.getText());
+            montoTotalActualVenta += cantidadProductos * pp.obtenerPrecioVenta();
+            totalImporteVentaLabel.setText(String.valueOf(montoTotalActualVenta));
 
-            } else {
-                final String MENSAJE_ERROR = "El producto solicitado no existe";
-                Informador.mostrarMensajeDeError(MENSAJE_ERROR);
-            }
         } catch (NumberFormatException excepcion) {
             final String MENSAJE_ERROR = "Cometiste un error ingresando los datos";
             Informador.mostrarMensajeDeError(MENSAJE_ERROR);
@@ -450,7 +444,7 @@ public class VentaMenuVentana extends MenuVentana implements ActionListener {
     }
 
     private void agregarProductoTabla(ProductoVenta productoVenta, int cantidadProductos) {
-        
+
         ArrayList fila = new ArrayList();
         fila.add(productoVenta.obtenerID());
         fila.add(productoVenta.obtenerNombre());
@@ -459,6 +453,6 @@ public class VentaMenuVentana extends MenuVentana implements ActionListener {
         double montoParcialVenta = cantidadProductos * productoVenta.obtenerPrecioVenta();
         fila.add(montoParcialVenta);
         gestorTabla.agregarFila(fila);
-        
+
     }
 }

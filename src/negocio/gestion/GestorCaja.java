@@ -1,7 +1,7 @@
 package negocio.gestion;
 
 import negocio.entidades.Caja;
-import negocio.entidades.ReporteDeVenta;
+import negocio.entidades.ReporteVenta;
 
 /**
  *
@@ -77,7 +77,7 @@ public class GestorCaja {
         return cajaHeladeria_.obtenerMontoInicial();
     }
     
-    private ReporteDeVenta realizarCorteCaja() {
+    private ReporteVenta realizarCorteCaja() {
         return null;
     }
 }

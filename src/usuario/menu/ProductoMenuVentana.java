@@ -6,7 +6,7 @@ import usuario.MenuVentana;
 import usuario.submenu.AgregarProductoSubmenuVentana;
 import usuario.submenu.EliminarProductoSubmenuVentana;
 import usuario.submenu.ModificarProductoSubmenuVentana;
-import usuario.submenu.PopularesProductoSubmenuVentana;
+import usuario.submenu.ProductosPopularesSubmenuVentana;
 
 /**
  *
@@ -51,7 +51,7 @@ public class ProductoMenuVentana extends MenuVentana{
         submenuProductosPanelSecciones.addTab("Agregar", new AgregarProductoSubmenuVentana().obtenerPanelContenedor());
         submenuProductosPanelSecciones.addTab("Modificar", new ModificarProductoSubmenuVentana().obtenerPanelContenedor());
         submenuProductosPanelSecciones.addTab("Eliminar", new EliminarProductoSubmenuVentana().obtenerPanelContenedor());
-        submenuProductosPanelSecciones.addTab("Populares", new PopularesProductoSubmenuVentana().obtenerPanelContenedor());
+        submenuProductosPanelSecciones.addTab("Populares", new ProductosPopularesSubmenuVentana().obtenerPanelContenedor());
     }
     
 }

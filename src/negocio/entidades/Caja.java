@@ -7,7 +7,6 @@ package negocio.entidades;
 public class Caja {
 
     private final double MONTO_INICIAL_;
-    
     private double dineroActual_;
 
     public Caja(double montoInicial) {

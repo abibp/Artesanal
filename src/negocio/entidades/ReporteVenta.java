@@ -6,14 +6,14 @@ import java.util.ArrayList;
  *
  * @author Astrid Briceño
  */
-public class ReporteDeVenta {
+public class ReporteVenta {
 
     private final int ID_REPORTE_;
     private final String DESCRIPCION_;
 
-    private ArrayList<ProductoVendido> nVentas_;
+    private ArrayList<Venta> nVentas_;
 
-    public ReporteDeVenta(int IDReporte, String descripcion, ArrayList<ProductoVendido> ventas) {
+    public ReporteVenta(int IDReporte, String descripcion, ArrayList<Venta> ventas) {
         this.ID_REPORTE_ = IDReporte;
         this.DESCRIPCION_ = descripcion;
         this.nVentas_ = ventas;
@@ -27,20 +27,15 @@ public class ReporteDeVenta {
         return DESCRIPCION_;
     }
 
-    public ArrayList<ProductoVendido> obtenerVentas() {
-        return nVentas_;
-    }
-
     public boolean isVentaEnReporte(int IDVentaABuscar) {
         return true;
     }
 
-    public void agregarVenta(ProductoVendido unaVenta) {
+    public void agregarVenta(Venta unaVenta) {
         this.nVentas_.add(unaVenta);
     }
 
-    public void eliminarVenta(ProductoVendido unaVenta) {
-        ProductoVendido ventaAEliminar = unaVenta;
+    public void eliminarVenta(Venta ventaAEliminar) {
         this.nVentas_.remove(ventaAEliminar);
     }
 

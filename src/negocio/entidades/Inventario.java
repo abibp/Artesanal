@@ -10,9 +10,6 @@ public class Inventario {
     
     private ArrayList<Producto> nProductos_;
 
-    public Inventario() {
-    }
-
     
     public ArrayList<Producto> getnProductos_() {
         return nProductos_;

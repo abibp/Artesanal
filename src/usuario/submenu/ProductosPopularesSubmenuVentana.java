@@ -11,7 +11,7 @@ import usuario.MenuVentana;
  *
  * @author PIX
  */
-public class PopularesProductoSubmenuVentana extends MenuVentana{
+public class ProductosPopularesSubmenuVentana extends MenuVentana{
 
     private JScrollPane barraDezplazamientoTabla;
     private JTable tablaProductos;

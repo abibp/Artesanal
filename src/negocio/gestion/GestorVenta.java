@@ -13,8 +13,8 @@ public class GestorVenta {
 
     private ArrayList<Venta> nRecibosDeVenta_;
 
-    public Venta obtenerPrimerReciboVenta() {
-        
+    public Venta obtenerPrimeraVenta() {
+
         int INDICE_PRIMERA_VENTA = 0;
 
         Venta primeraVentaDia = nRecibosDeVenta_.get(INDICE_PRIMERA_VENTA);
@@ -22,31 +22,33 @@ public class GestorVenta {
     }
 
     public Venta obtenerUltimaVenta() {
+
         int INDICE_ULTIMA_VENTA = nRecibosDeVenta_.size() - 1;
 
         Venta primeraVentaDia = nRecibosDeVenta_.get(INDICE_ULTIMA_VENTA);
         return primeraVentaDia;
+
     }
 
     public double calcularPromedioDeVentasTotales() {
 
-        double montoTotalVentas = 0.0f;
-        int cantidadRecibosVenta = nRecibosDeVenta_.size();
+        double montoTotalVentas = 0.0;
 
         for (Venta reciboActual : nRecibosDeVenta_) {
-            
+
             ArrayList<ProductoVendido> nVentas = reciboActual.obtenerProductos();
-            for(ProductoVendido ventaActual : nVentas){
-                montoTotalVentas += ventaActual.obtenerMonto();
-            }
+
+            montoTotalVentas += reciboActual.obtenerMonto();
+
         }
 
+        int cantidadRecibosVenta = nRecibosDeVenta_.size();
         double promedioVentas = 0.0f;
-        
+
         try {
-            
+
             promedioVentas = montoTotalVentas / cantidadRecibosVenta;
-            
+
         } catch (ArithmeticException excepcionDivision) {
             String error_mensaje = "No tienes ninguna venta";
             Informador.mostrarMensajeDeError(error_mensaje);

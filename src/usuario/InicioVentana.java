@@ -61,7 +61,7 @@ public class InicioVentana implements ActionListener {
     public void actionPerformed(ActionEvent accionEvento) {
 
         boolean esValidaCantidadDineroInicial = 
-            !campoEstaVacio() && esNumeroPositivo();    
+            !campoEstaVacio();    
         
         if (esValidaCantidadDineroInicial) {
 
@@ -91,18 +91,6 @@ public class InicioVentana implements ActionListener {
         return dineroEnCajaCampo.getText().length() == 0;
     }
 
-    private boolean esNumeroPositivo() {
-        String numeroEnTexto = dineroEnCajaCampo.getText();
-        final boolean FALLO = false;
-        
-        try {
-
-            return Double.parseDouble(numeroEnTexto) > 0;
-
-        } catch (NumberFormatException errorDeConversion) {
-            return FALLO;
-        }
-    }
 
     private void establecerDistribucionComponentes() {
 
