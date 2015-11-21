@@ -5,7 +5,7 @@ import java.sql.Connection;
 public class GestorBaseDatos {
 
     private final GestorConexion gestorConexion_;
-    private final GestorInstrucciones gestorInstrucciones_;
+    private final EjecutorInstrucciones ejecutorInstrucciones_;
 
     public GestorBaseDatos() {
         
@@ -14,7 +14,7 @@ public class GestorBaseDatos {
         
         Connection conexionEstablecida = gestorConexion_.obtenerConexion();
         
-        gestorInstrucciones_ = new GestorInstrucciones( conexionEstablecida );
+        ejecutorInstrucciones_ = new EjecutorInstrucciones( conexionEstablecida );
         
     }
 
@@ -22,8 +22,8 @@ public class GestorBaseDatos {
         return gestorConexion_;
     }
 
-    public GestorInstrucciones obtenerGestorInstrucciones() {
-        return gestorInstrucciones_;
+    public EjecutorInstrucciones obtenerEjecutorInstrucciones() {
+        return ejecutorInstrucciones_;
     }
     
 }

@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import negocio.entidades.Producto;
-import negocio.excepcion.ExcepcionProductoNoEncontrado;
+import datos.excepcion.ExcepcionProductoNoEncontrado;
 
 /**
  *
@@ -23,16 +23,18 @@ public class GestorBDProducto extends GestorBaseDatos {
                         INSTRUCCION_INSERTAR,
                         nuevoProducto.obtenerID(),
                         nuevoProducto.obtenerNombre(),
-                        nuevoProducto.obtenerCantidadMinima()
+                        nuevoProducto.obtenerCosto(),
+                        nuevoProducto.obtenerPrecio(),
+                        nuevoProducto.obtenerExistencia()
                 );
 
-        obtenerGestorInstrucciones().ejecutarModificacion(instruccionFinalInsertar);
+        obtenerEjecutorInstrucciones().ejecutarModificacion(instruccionFinalInsertar);
     }
 
     public void eliminarProducto(String IDProductoAEliminar) {
 
         final String INSTRUCCION_ELIMINAR
-            = "DELETE FROM producto WHERE ID = \"%s\"";
+            = "DELETE FROM producto WHERE id_insumo = \"%s\"";
         
         String instruccionFinalEliminar = 
                 String.format(
@@ -40,7 +42,7 @@ public class GestorBDProducto extends GestorBaseDatos {
                         IDProductoAEliminar
                 );
 
-        obtenerGestorInstrucciones().ejecutarModificacion(instruccionFinalEliminar);
+        obtenerEjecutorInstrucciones().ejecutarModificacion(instruccionFinalEliminar);
 
     }
 
@@ -57,7 +59,7 @@ public class GestorBDProducto extends GestorBaseDatos {
                         productoActualizado.obtenerID()
                 );
 
-        obtenerGestorInstrucciones().ejecutarModificacion(instruccionFinalModificar);
+        obtenerEjecutorInstrucciones().ejecutarModificacion(instruccionFinalModificar);
     }
 
     public Producto obtenerProducto(String IDProducto) throws ExcepcionProductoNoEncontrado{
@@ -72,7 +74,7 @@ public class GestorBDProducto extends GestorBaseDatos {
                 );
 
         ResultSet resultadoConsulta
-                = obtenerGestorInstrucciones().ejecutarConsulta(instruccionFinalObtener);
+                = obtenerEjecutorInstrucciones().ejecutarConsulta(instruccionFinalObtener);
 
         return extraerProductoDeResultado(resultadoConsulta);
     }
@@ -83,9 +85,9 @@ public class GestorBDProducto extends GestorBaseDatos {
         try {
 
             if (resultadoConsulta.next()) {
-                String id = resultadoConsulta.getString("ID");
+                String id = resultadoConsulta.getString("id_insumo");
                 String nombre = resultadoConsulta.getString("nombre");
-                double cantidadMinima = resultadoConsulta.getDouble("cantidad_minima");
+                double cantidadMinima = resultadoConsulta.getDouble("costo");
 
                 Producto producto = new Producto(id, nombre, cantidadMinima);
                 return producto;
