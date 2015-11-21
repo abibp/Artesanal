@@ -8,12 +8,13 @@ package negocio.entidades;
 public class Producto {
 
     private final String ID_;
+    
     private String nombre_;
     private double costo_;
     private double precio_;
     private int existencia_;
 
-    public Producto(String ID, String nombre, double costo, double precio, int existencia, String unidadMedida) {
+    public Producto(String ID, String nombre, double costo, double precio, int existencia) {
         this.ID_ = ID;
         this.nombre_ = nombre;
         this.costo_ = costo;
@@ -33,23 +34,23 @@ public class Producto {
         this.nombre_ = nombre;
     }
 
-    public double obtenerPrecioCompra() {
+    public double obtenerCosto() {
         return costo_;
     }
 
-    public void establecerPrecioCompra(double costo) {
+    public void establecerCosto(double costo) {
         this.costo_ = costo;
     }
 
-    public double obtenerPrecioVenta() {
+    public double obtenerPrecio() {
         return precio_;
     }
 
-    public void establecerPrecioVenta(double precio) {
+    public void establecerPrecio(double precio) {
         this.precio_ = precio;
     }
 
-    public double obtenerExistencia() {
+    public int obtenerExistencia() {
         return existencia_;
     }
 
