@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import negocio.entidades.Producto;
-import negocio.entidades.ProductoVenta;
 import negocio.excepcion.ExcepcionProductoNoEncontrado;
 
 /**
@@ -29,7 +28,7 @@ public class GestorProducto {
         return gestorInstancia;
     }
     
-   public void agregarProducto(ProductoVenta nuevoProducto){       
+   public void agregarProducto(Producto nuevoProducto){       
        manejadorDatos.agregarProducto(nuevoProducto);
     }
     public void eliminarProducto(int IDProductoAEliminar){

@@ -72,10 +72,10 @@ public class GestorBDProveedor extends GestorBaseDatos {
         ResultSet resultadoConsulta
                 = obtenerGestorInstrucciones().ejecutarConsulta(instruccionFinalObtener);
 
-        return extraerProductoDeResultado(resultadoConsulta);
+        return extraerProveedorDeResultado(resultadoConsulta);
     }
 
-    private Proveedor extraerProductoDeResultado(ResultSet resultadoConsulta) 
+    private Proveedor extraerProveedorDeResultado(ResultSet resultadoConsulta) 
             throws ExcepcionProveedorNoEncontrado{
         
         try {

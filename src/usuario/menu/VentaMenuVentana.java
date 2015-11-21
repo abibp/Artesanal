@@ -16,7 +16,6 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import negocio.entidades.Producto;
-import negocio.entidades.ProductoVenta;
 import negocio.gestion.GestorCaja;
 import negocio.gestion.GestorProducto;
 import org.edisoncor.gui.button.ButtonAction;
@@ -352,7 +351,7 @@ public class VentaMenuVentana extends MenuVentana implements ActionListener {
             String codigoProducto = codigoProductoCampo.getText();
             int cantidadProductos = Integer.parseInt(cantidadVentaSpinner.getValue().toString());
 
-            ProductoVenta pp = ((ProductoVenta) gestorProducto.obtenerProducto(codigoProducto));
+            Producto pp = ((Producto) gestorProducto.obtenerProducto(codigoProducto));
             agregarFilaTabla(pp, cantidadProductos);
             codigoProductoCampo.setText(VACIO);
 
@@ -397,27 +396,27 @@ public class VentaMenuVentana extends MenuVentana implements ActionListener {
 
     }
 
-    private void agregarFilaTabla(ProductoVenta productoVenta, int cantidadProductos) {
+    private void agregarFilaTabla(Producto producto, int cantidadProductos) {
 
-        int indiceProducto = indiceDeProductoEnTabla(productoVenta);
+        int indiceProducto = indiceDeProductoEnTabla(producto);
         boolean existeProductoEnTabla = indiceProducto != -1;
 
         if (existeProductoEnTabla) {
-            incrementarCantidadProductoEnTabla(indiceProducto, cantidadProductos, productoVenta);
+            incrementarCantidadProductoEnTabla(indiceProducto, cantidadProductos, producto);
         } else {
-            agregarProductoTabla(productoVenta, cantidadProductos);
+            agregarProductoTabla(producto, cantidadProductos);
         }
 
     }
 
-    private int indiceDeProductoEnTabla(Producto productoVenta) {
+    private int indiceDeProductoEnTabla(Producto producto) {
 
         final int INDICE_COLUMNA_ID = 0;
 
         for (int i = 0; i < gestorTabla.obtenerArray().size(); i++) {
 
             String IDProductoActual = gestorTabla.getValueAt(i, INDICE_COLUMNA_ID).toString();
-            if (IDProductoActual.equals(productoVenta.obtenerID())) {
+            if (IDProductoActual.equals(producto.obtenerID())) {
                 return i;
             }
         }
@@ -428,7 +427,7 @@ public class VentaMenuVentana extends MenuVentana implements ActionListener {
     private void incrementarCantidadProductoEnTabla(
             int indiceProducto,
             int cantidadAdicionalProductosVenta,
-            ProductoVenta productoVenta) {
+            Producto producto) {
 
         final int INDICE_COLUMNA_CANTIDAD = 3;
         final int INDICE_COLUMNA_MONTO = 4;
@@ -439,18 +438,18 @@ public class VentaMenuVentana extends MenuVentana implements ActionListener {
         int nuevaCantidadProductosVenta = cantidadProductosVenta + cantidadAdicionalProductosVenta;
         gestorTabla.setValueAt(nuevaCantidadProductosVenta, indiceProducto, INDICE_COLUMNA_CANTIDAD);
 
-        double montoParcialVenta = cantidadProductosVenta * productoVenta.obtenerPrecioVenta();
+        double montoParcialVenta = cantidadProductosVenta * producto.obtenerPrecioVenta();
         gestorTabla.setValueAt(montoParcialVenta, indiceProducto, INDICE_COLUMNA_MONTO);
     }
 
-    private void agregarProductoTabla(ProductoVenta productoVenta, int cantidadProductos) {
+    private void agregarProductoTabla(Producto producto, int cantidadProductos) {
 
         ArrayList fila = new ArrayList();
-        fila.add(productoVenta.obtenerID());
-        fila.add(productoVenta.obtenerNombre());
-        fila.add(productoVenta.obtenerPrecioVenta());
+        fila.add(producto.obtenerID());
+        fila.add(producto.obtenerNombre());
+        fila.add(producto.obtenerPrecioVenta());
         fila.add(cantidadProductos);
-        double montoParcialVenta = cantidadProductos * productoVenta.obtenerPrecioVenta();
+        double montoParcialVenta = cantidadProductos * producto.obtenerPrecioVenta();
         fila.add(montoParcialVenta);
         gestorTabla.agregarFila(fila);
 

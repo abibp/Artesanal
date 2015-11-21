@@ -4,7 +4,7 @@ import datos.GestorBDProducto;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JSpinner;
-import negocio.entidades.ProductoVenta;
+import negocio.entidades.Producto;
 import negocio.gestion.GestorProducto;
 import org.edisoncor.gui.button.ButtonAqua;
 import org.edisoncor.gui.label.LabelMetric;
@@ -36,8 +36,8 @@ public class AgregarProductoSubmenuVentana extends MenuVentana implements Action
     private LabelTask instruccionAgregarProductoLabel;
     private TextFieldRound nombreProductoCampo;
     private LabelMetric nombreProductoAgregarInstruccionLabel;
-    private TextFieldRound precioCostoCampo;
-    private LabelMetric precioCostoProductoAgregarInstruccionLabel;
+    private TextFieldRound precioCompraCampo;
+    private LabelMetric precioCompraProductoAgregarInstruccionLabel;
     private TextFieldRound precioVentaProductoCampo;
     private LabelMetric precioVentaProductoAgregarInstruccionLabel;
     private Panel submenuAgregarPanel;
@@ -55,7 +55,7 @@ public class AgregarProductoSubmenuVentana extends MenuVentana implements Action
         codigoProductoCampo = new org.edisoncor.gui.textField.TextFieldRound();
         nombreProductoAgregarInstruccionLabel = new org.edisoncor.gui.label.LabelMetric();
         descripcionProductoAgregarInstruccionLabel = new org.edisoncor.gui.label.LabelMetric();
-        precioCostoProductoAgregarInstruccionLabel = new org.edisoncor.gui.label.LabelMetric();
+        precioCompraProductoAgregarInstruccionLabel = new org.edisoncor.gui.label.LabelMetric();
         gananciaProductoAgregarInstruccionLabel = new org.edisoncor.gui.label.LabelMetric();
         precioVentaProductoAgregarInstruccionLabel = new org.edisoncor.gui.label.LabelMetric();
         cantidadProductoAgregarInstruccionLabel = new org.edisoncor.gui.label.LabelMetric();
@@ -63,7 +63,7 @@ public class AgregarProductoSubmenuVentana extends MenuVentana implements Action
         nombreProductoCampo = new org.edisoncor.gui.textField.TextFieldRound();
         descripcionProductoCampo = new org.edisoncor.gui.textField.TextFieldRound();
         precioVentaProductoCampo = new org.edisoncor.gui.textField.TextFieldRound();
-        precioCostoCampo = new org.edisoncor.gui.textField.TextFieldRound();
+        precioCompraCampo = new org.edisoncor.gui.textField.TextFieldRound();
         cantidadMinimaProductoCampo = new org.edisoncor.gui.textField.TextFieldRound();
         cantidadProductoCampo = new org.edisoncor.gui.textField.TextFieldRound();
         gananciaProductoSpinner = new javax.swing.JSpinner();
@@ -80,7 +80,7 @@ public class AgregarProductoSubmenuVentana extends MenuVentana implements Action
 
         descripcionProductoAgregarInstruccionLabel.setText("Descripcion :");
 
-        precioCostoProductoAgregarInstruccionLabel.setText("Precio Costo :");
+        precioCompraProductoAgregarInstruccionLabel.setText("Precio Costo :");
 
         gananciaProductoAgregarInstruccionLabel.setText("Ganancia :");
 
@@ -119,9 +119,9 @@ public class AgregarProductoSubmenuVentana extends MenuVentana implements Action
                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                         .addComponent(cantidadProductoCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addGroup(agregarFormularioPanelLayout.createSequentialGroup()
-                                                        .addComponent(precioCostoProductoAgregarInstruccionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(precioCompraProductoAgregarInstruccionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                        .addComponent(precioCostoCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                        .addComponent(precioCompraCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addGap(41, 41, 41)
                                         .addGroup(agregarFormularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(precioVentaProductoAgregarInstruccionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -146,10 +146,10 @@ public class AgregarProductoSubmenuVentana extends MenuVentana implements Action
                         .addGroup(agregarFormularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, agregarFormularioPanelLayout.createSequentialGroup()
                                         .addGroup(agregarFormularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                .addComponent(precioCostoProductoAgregarInstruccionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(precioCompraProductoAgregarInstruccionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(precioVentaProductoAgregarInstruccionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(precioVentaProductoCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(precioCostoCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(precioCompraCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(44, 44, 44)
                                         .addGroup(agregarFormularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                                 .addComponent(gananciaProductoAgregarInstruccionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -208,7 +208,7 @@ public class AgregarProductoSubmenuVentana extends MenuVentana implements Action
                                 .addComponent(cancelarProductoAgregarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(27, 27, 27))
         );
-        
+
         guardarProductoAgregarBoton.addActionListener(this);
     }
 
@@ -216,25 +216,26 @@ public class AgregarProductoSubmenuVentana extends MenuVentana implements Action
     public void actionPerformed(ActionEvent e) {
         boolean formularioCompletado = formularioCompletado();
         if (formularioCompletado) {
-            String codigoProduto = codigoProductoCampo.getText();
+            String codigoProducto = codigoProductoCampo.getText();
             String nombreProducto = nombreProductoCampo.getText();
             String descricionProducto = descripcionProductoCampo.getText();
-            String precioCosto = precioCostoCampo.getText();
+            String precioCompra = precioCompraCampo.getText();
             String precioVenta = precioVentaProductoCampo.getText();
             String cantidad = cantidadProductoCampo.getText();
             String cantidadMinima = cantidadMinimaProductoCampo.getText();
             String ganancia = gananciaProductoSpinner.getValue().toString();
-            
-            ProductoVenta productoVenta = new ProductoVenta(
-                    codigoProduto, 
-                    nombreProducto, 
-                    Double.parseDouble(cantidadMinima), 
-                    Double.parseDouble(precioVenta), 
-                    Double.parseDouble(ganancia), 
-                    Double.parseDouble(precioCosto));
-            
+
+
+            Producto producto = new Producto(
+                    codigoProducto,
+                    nombreProducto,
+                    Double.parseDouble(precioVenta),
+                    Double.parseDouble(precioCompra),
+                    Integer.parseInt(cantidad), 
+                    "default String");//MODIFICAR UNIDAD DE MEDIDA
+
             GestorProducto gestor = GestorProducto.obtenerInstancia();
-            gestor.agregarProducto(productoVenta);
+            gestor.agregarProducto(producto);
         }
 
     }

@@ -9,15 +9,19 @@ public class Producto {
 
     private final String ID_;
     private String nombre_;
-    private double cantidadMinima_;
+    private double costo_;
+    private double precio_;
+    private int existencia_;
 
-    public Producto(String idProducto, String nombre, double cantidadMinima) {
-        this.ID_ = idProducto;
+    public Producto(String ID, String nombre, double costo, double precio, int existencia, String unidadMedida) {
+        this.ID_ = ID;
         this.nombre_ = nombre;
-        this.cantidadMinima_ = cantidadMinima;
+        this.costo_ = costo;
+        this.precio_ = precio;
+        this.existencia_ = existencia;
     }
-
-    public String obtenerID() {
+    
+    public String obtenerID(){
         return ID_;
     }
 
@@ -25,18 +29,32 @@ public class Producto {
         return nombre_;
     }
 
-    public double obtenerCantidadMinima() {
-        return cantidadMinima_;
+    public void establecerNombre(String nombre) {
+        this.nombre_ = nombre;
     }
 
-    public void establecerNombre(String nombre_) {
-        this.nombre_ = nombre_;
+    public double obtenerPrecioCompra() {
+        return costo_;
     }
 
-    
-    public void establecerCantidadMinima(double cantidadMinima_) {
-        this.cantidadMinima_ = cantidadMinima_;
+    public void establecerPrecioCompra(double costo) {
+        this.costo_ = costo;
     }
-    
+
+    public double obtenerPrecioVenta() {
+        return precio_;
+    }
+
+    public void establecerPrecioVenta(double precio) {
+        this.precio_ = precio;
+    }
+
+    public double obtenerExistencia() {
+        return existencia_;
+    }
+
+    public void establecerExistencia(int existencia) {
+        this.existencia_ = existencia;
+    }
     
 }
