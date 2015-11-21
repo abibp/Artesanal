@@ -1,6 +1,6 @@
 package datos;
 
-import negocio.excepcion.ExcepcionProveedorNoEncontrado;
+import datos.excepcion.ExcepcionProveedorNoEncontrado;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -23,7 +23,7 @@ public class GestorBDProveedor extends GestorBaseDatos {
                         nuevoProveedor.obtenerDireccion()
                 );
 
-        obtenerGestorInstrucciones().ejecutarModificacion(instruccionFinalInsertar);
+        obtenerEjecutorInstrucciones().ejecutarModificacion(instruccionFinalInsertar);
         
     }
 
@@ -37,7 +37,7 @@ public class GestorBDProveedor extends GestorBaseDatos {
                         IDProveedor
                 );
 
-        obtenerGestorInstrucciones().ejecutarModificacion(instruccionFinalEliminar);
+        obtenerEjecutorInstrucciones().ejecutarModificacion(instruccionFinalEliminar);
     }
 
     public void editarInformacionProveedor(int IDProveedor, Proveedor nuevoProveedor) {
@@ -54,7 +54,7 @@ public class GestorBDProveedor extends GestorBaseDatos {
                         IDProveedor
                 );
 
-        obtenerGestorInstrucciones().ejecutarModificacion(instruccionFinalModificar);
+        obtenerEjecutorInstrucciones().ejecutarModificacion(instruccionFinalModificar);
     
     }
 
@@ -70,7 +70,7 @@ public class GestorBDProveedor extends GestorBaseDatos {
                 );
 
         ResultSet resultadoConsulta
-                = obtenerGestorInstrucciones().ejecutarConsulta(instruccionFinalObtener);
+                = obtenerEjecutorInstrucciones().ejecutarConsulta(instruccionFinalObtener);
 
         return extraerProveedorDeResultado(resultadoConsulta);
     }

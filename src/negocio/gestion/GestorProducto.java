@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import negocio.entidades.Producto;
-import negocio.excepcion.ExcepcionProductoNoEncontrado;
+import datos.excepcion.ExcepcionProductoNoEncontrado;
 
 /**
  *
