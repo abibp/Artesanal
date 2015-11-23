@@ -6,7 +6,8 @@ package negocio.entidades;
  */
 public class Insumo {
     
-    private String ID_;
+    private final String ID_;
+    
     private String nombre_;
     private double costo_;
     private String unidadMedida_;
@@ -20,10 +21,6 @@ public class Insumo {
 
     public String obtenerID() {
         return ID_;
-    }
-
-    public void establecerID(String ID) {
-        this.ID_ = ID;
     }
 
     public String obtenerNombre() {
@@ -49,7 +46,5 @@ public class Insumo {
     public void establecerUnidadMedida(String unidadMedida) {
         this.unidadMedida_ = unidadMedida;
     }
-    
-    
-    
+        
 }

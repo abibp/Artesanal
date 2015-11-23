@@ -1,8 +1,8 @@
 package negocio.gestion;
 
 import java.util.ArrayList;
-import negocio.entidades.ProductoVendido;
-import negocio.entidades.Venta;
+import negocio.entidades.ElementoNota;
+import negocio.entidades.NotaDeVenta;
 import usuario.Informador;
 
 /**
@@ -11,21 +11,21 @@ import usuario.Informador;
  */
 public class GestorVenta {
 
-    private ArrayList<Venta> nRecibosDeVenta_;
+    private ArrayList<NotaDeVenta> nRecibosDeVenta_;
 
-    public Venta obtenerPrimeraVenta() {
+    public NotaDeVenta obtenerPrimeraVenta() {
 
         int INDICE_PRIMERA_VENTA = 0;
 
-        Venta primeraVentaDia = nRecibosDeVenta_.get(INDICE_PRIMERA_VENTA);
+        NotaDeVenta primeraVentaDia = nRecibosDeVenta_.get(INDICE_PRIMERA_VENTA);
         return primeraVentaDia;
     }
 
-    public Venta obtenerUltimaVenta() {
+    public NotaDeVenta obtenerUltimaVenta() {
 
         int INDICE_ULTIMA_VENTA = nRecibosDeVenta_.size() - 1;
 
-        Venta primeraVentaDia = nRecibosDeVenta_.get(INDICE_ULTIMA_VENTA);
+        NotaDeVenta primeraVentaDia = nRecibosDeVenta_.get(INDICE_ULTIMA_VENTA);
         return primeraVentaDia;
 
     }
@@ -34,9 +34,9 @@ public class GestorVenta {
 
         double montoTotalVentas = 0.0;
 
-        for (Venta reciboActual : nRecibosDeVenta_) {
+        for (NotaDeVenta reciboActual : nRecibosDeVenta_) {
 
-            ArrayList<ProductoVendido> nVentas = reciboActual.obtenerProductos();
+            ArrayList<ElementoNota> nVentas = reciboActual.obtenerElementos();
 
             montoTotalVentas += reciboActual.obtenerMonto();
 
@@ -57,7 +57,7 @@ public class GestorVenta {
         return promedioVentas;
     }
 
-    public ArrayList<Venta> obtenerRecibosVentas() {
+    public ArrayList<NotaDeVenta> obtenerRecibosVentas() {
         return nRecibosDeVenta_;
     }
 
