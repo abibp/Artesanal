@@ -9,7 +9,7 @@ import negocio.entidades.Insumo;
 
 /**
  *
- * @author PIX
+ * @author Astrid Briceño
  */
 public class GestorBDInsumo extends GestorBDProducto {
 
