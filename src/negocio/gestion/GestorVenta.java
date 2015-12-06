@@ -1,11 +1,12 @@
 package negocio.gestion;
 
+import datos.GestorBDVenta;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
 import negocio.entidades.ElementoNota;
 import negocio.entidades.NotaDeVenta;
-import usuario.Informador;
+import presentacion.utileria.Informador;
 
 /**
  *
@@ -79,7 +80,7 @@ public class GestorVenta {
         ArrayList<ElementoNota> elementos = venta.obtenerElementos();
         
         for (ElementoNota elemento : elementos) {
-            GestorBDVenta.agregarVenta(elemento);
+            GestorBDVenta.obtenerInstancia().agregarVenta(elemento);
         }
     }
 

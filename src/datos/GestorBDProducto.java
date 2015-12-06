@@ -13,6 +13,10 @@ import datos.excepcion.ExcepcionProductoNoEncontrado;
  */
 public class GestorBDProducto extends GestorBaseDatos {
 
+    public static Object obtenerInstancia() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public void agregar(Producto nuevoProducto) {
 
         final String INSTRUCCION_INSERTAR
@@ -39,7 +43,7 @@ public class GestorBDProducto extends GestorBaseDatos {
         String instruccionFinalEliminar = 
                 String.format(
                         INSTRUCCION_ELIMINAR,
-                        IDProductoAEliminar
+                        id
                 );
 
         obtenerEjecutorInstrucciones().ejecutarModificacion(instruccionFinalEliminar);

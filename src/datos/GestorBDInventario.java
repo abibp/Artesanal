@@ -11,6 +11,10 @@ import java.util.logging.Logger;
  * @author PIX
  */
 public class GestorBDInventario extends GestorBaseDatos{
+
+    public static Object obtenerInstancia() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     public void agregarProductosInventario(String IDProducto, double cantidad){
         

@@ -31,20 +31,18 @@ public class GestorBDInsumo extends GestorBDProducto {
         
     }
 
-    public void eliminarProductoInsumo(String IDProductoAEliminar) {
+    public void eliminarInsumo(String IDInsumoPorEliminar) {
         
         final String INSTRUCCION_ELIMINAR
-            = "DELETE FROM producto_insumo WHERE ID = \"%s\"";
+            = "DELETE FROM insumo WHERE ID = \"%s\"";
         
         String instruccionFinalEliminar = 
                 String.format(
                         INSTRUCCION_ELIMINAR,
-                        IDProductoAEliminar
+                        IDInsumoPorEliminar
                 );
         
-        obtenerEjecutorInstrucciones().ejecutarConsulta(instruccionFinalEliminar);
-        eliminarProducto(IDProductoAEliminar);
-        
+        obtenerEjecutorInstrucciones().ejecutarModificacion(instruccionFinalEliminar);
     }
 
     public void editarInformacionInsumo(Insumo insumoActualizado) {
