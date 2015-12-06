@@ -13,14 +13,11 @@ import java.util.ArrayList;
  */
 public interface Gestor<Entidad> {
     
-    
     public void agregar(Entidad objeto);
     
     public void eliminar(String id);
     
     public void editarInformacion(String id, Entidad objeto);
-    
-    public void inicializarLista(ArrayList<Entidad> elementos);
     
     public Object obtener(String id);
 }

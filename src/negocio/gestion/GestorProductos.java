@@ -5,6 +5,7 @@
  */
 package negocio.gestion;
 
+import datos.GestorBDProducto;
 import java.util.ArrayList;
 import java.util.HashMap;
 import negocio.entidades.Producto;
@@ -14,6 +15,8 @@ import negocio.entidades.Producto;
  * @author MiguelAngel
  */
 public class GestorProductos implements Gestor<Producto>{
+    
+    private final GestorBDProducto gestorBD;
     
     private static GestorProductos unicoGestor_;
     
@@ -26,28 +29,40 @@ public class GestorProductos implements Gestor<Producto>{
         return unicoGestor_;
     }
 
+    @Override
     public void agregar(Producto nuevoProducto) {
         nProductos_.put(nuevoProducto.obtenerID(), nuevoProducto);
         GestorBDProducto.obtenerInstancia().agregar(nuevoProducto);
     }
 
+    @Override
     public void eliminar(String id) {
         nProductos_.remove(id);
         GestorBDProducto.obtenerInstancia().eliminar(id);
     }
 
+    @Override
     public void editarInformacion(String id, Producto actualizado) {
         nProductos_.replace(id, actualizado);
         GestorBDProducto.obtenerInstancia().editarInformacion(id, actualizado);
     }
 
-    public void inicializarLista(ArrayList<Producto> productos) {
-        for (Producto producto : productos) {
-            nProductos_.put(producto.obtenerID(), producto);
-        }
-    }
-    
+    @Override
     public Producto obtener(String id) {
         return nProductos_.get(id);
     }
+    
+    private void inicializarLista() {
+        ArrayList<Producto> listaProductos = gestorBD.obtenerListaProductos();
+        
+        for (Producto producto : listaProductos) {
+            nProductos_.put(producto.obtenerID(), producto);
+        }
+    }
+
+    private GestorProductos() {
+        this.gestorBD = new GestorBDProducto();
+        inicializarLista();
+    }
+    
 }

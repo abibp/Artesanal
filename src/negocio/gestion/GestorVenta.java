@@ -66,10 +66,6 @@ public class GestorVenta {
         return promedioVentas;
     }
     
-    public HashMap<String, NotaDeVenta> obtenerRecibosDeVentas() {
-        return nNotasDeVenta_;
-    }
-    
     public void realizarVenta(ArrayList<ElementoNota> productos){
           
         for (ElementoNota elemento : productos) {

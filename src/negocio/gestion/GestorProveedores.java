@@ -5,6 +5,7 @@
  */
 package negocio.gestion;
 
+import datos.GestorBDProveedor;
 import java.util.ArrayList;
 import java.util.HashMap;
 import negocio.entidades.Proveedor;
@@ -14,6 +15,8 @@ import negocio.entidades.Proveedor;
  * @author MiguelAngel
  */
 public class GestorProveedores implements Gestor<Proveedor>{
+    
+    private GestorBDProveedor gestorBD;
     
     private static GestorProveedores unicoGestor_;
     
@@ -45,19 +48,21 @@ public class GestorProveedores implements Gestor<Proveedor>{
     }
 
     @Override
-    public void inicializarLista(ArrayList<Proveedor> proveedores) {
-        for (Proveedor proveedor : proveedores) {
-            nProveedores_.put(proveedor.obtenerID(), proveedor);
-        }
-    }
-    
-    @Override
     public Proveedor obtener(String id) {
         return nProveedores_.get(id);
     }
     
+    private void inicializarLista() {
+        ArrayList<Proveedor> listaProveedors = gestorBD.obtenerListaProveedors();
+        
+        for (Proveedor proveedor : listaProveedors) {
+            nProveedores_.put(proveedor.obtenerID(), proveedor);
+        }
+    }
+    
     private GestorProveedores() {
-        this.nProveedores_ = new HashMap();
+        this.gestorBD = new GestorBDProveedor();
+        inicializarLista();
     }
 
 }

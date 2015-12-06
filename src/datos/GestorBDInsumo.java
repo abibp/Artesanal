@@ -1,5 +1,5 @@
-package datos;
 
+package datos;
 import datos.excepcion.ExcepcionInsumoNoEncontrado;
 import java.sql.ResultSet;
 import java.sql.SQLException;

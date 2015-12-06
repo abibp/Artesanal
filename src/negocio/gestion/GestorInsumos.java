@@ -5,6 +5,7 @@
  */
 package negocio.gestion;
 
+import datos.GestorBDInsumo;
 import java.util.ArrayList;
 import java.util.HashMap;
 import negocio.entidades.Insumo;
@@ -14,6 +15,8 @@ import negocio.entidades.Insumo;
  * @author MiguelAngel
  */
 public class GestorInsumos implements Gestor<Insumo>{
+    
+    private final GestorBDInsumo gestorBD;
     
     private static GestorInsumos unicoGestor_;
     
@@ -29,30 +32,38 @@ public class GestorInsumos implements Gestor<Insumo>{
     @Override
     public void agregar(Insumo nuevoInsumo) {
         nInsumos_.put(nuevoInsumo.obtenerID(), nuevoInsumo);
-        GestorBDInsumo.obtenerInstancia().agregar(nuevoInsumo);
+        gestorBD.agregar(nuevoInsumo);
     }
 
     @Override
     public void eliminar(String id) {
         nInsumos_.remove(id);
-        GestorBDInsumo.obtenerInstancia().eliminar(id);
+        gestorBD.eliminar(id);
     }
 
     @Override
     public void editarInformacion(String id, Insumo actualizado) {
         nInsumos_.replace(id, actualizado);
-        GestorBDInsumo.obtenerInstancia().editarInformacion(id, actualizado);
+        gestorBD.editarInformacion(id, actualizado);
     }
 
-    @Override
-    public void inicializarLista (ArrayList<Insumo> insumos) {
-        for (Insumo insumo : insumos) {
-            nInsumos_.put(insumo.obtenerID(), insumo);
-        }
-    }
-    
     @Override
     public Insumo obtener(String id) {
         return nInsumos_.get(id);
     }
+    
+    private void inicializarLista () {
+        ArrayList<Insumo> listaInsumos = gestorBD.obtenerListaInsumos();
+        
+        for (Insumo insumo : listaInsumos) {
+            nInsumos_.put(insumo.obtenerID(), insumo);
+        }
+    }
+
+    private GestorInsumos() {
+        this.gestorBD = new GestorBDInsumo();
+        inicializarLista();
+    }
+    
+    
 }
