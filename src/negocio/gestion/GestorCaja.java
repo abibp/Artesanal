@@ -1,5 +1,6 @@
 package negocio.gestion;
 
+import java.util.Date;
 import negocio.entidades.Caja;
 import negocio.entidades.ReporteVenta;
 
@@ -9,75 +10,69 @@ import negocio.entidades.ReporteVenta;
  */
 public class GestorCaja {
 
+    private static GestorCaja unicoGestor_;
+    
     private Caja cajaHeladeria_;
-    private GestorReporte reporte_;
-    private double entradaTotalEfectivo;
-    private double salidaTotalEfectivo;
-    private static GestorCaja primerGestor;
-
-    private GestorCaja() {
-        entradaTotalEfectivo = 0.0;
-        salidaTotalEfectivo = 0.0;
-    }
+    private GestorReportes reporte_;
+    private double entradaTotal;
+    private double salidaTotal;
 
     public synchronized static GestorCaja obtenerIntancia() {
-        if (primerGestor == null) {
-            primerGestor = new GestorCaja();
+        if (unicoGestor_ == null) {
+            unicoGestor_ = new GestorCaja();
         }
-        return primerGestor;
+        return unicoGestor_;
     }
 
-    public Caja abrirCaja(double montoInicial) {
-
+    public Caja abrir(double montoInicial) {
         cajaHeladeria_ = new Caja(montoInicial);
         return cajaHeladeria_;
-
     }
 
-    public void aumentarDineroCaja(double montoAumentar) {
-
-        entradaTotalEfectivo += montoAumentar;
+    public void despositar(double efectivo) {
+        entradaTotal += efectivo;
 
         cajaHeladeria_.establecerDineroActual(
-                cajaHeladeria_.obtenerCantidadDineroActual() + montoAumentar
-        );
-
+                cajaHeladeria_.obtenerDineroActual() + efectivo);
     }
 
-    public void decrementarDineroCaja(double montoDecrementar) {
-
-        salidaTotalEfectivo += montoDecrementar;
+    public void retirar(double efectivo) {
+        salidaTotal += efectivo;
 
         cajaHeladeria_.establecerDineroActual(
-                cajaHeladeria_.obtenerCantidadDineroActual() - montoDecrementar
-        );
+                cajaHeladeria_.obtenerDineroActual() - efectivo);
+    }
+
+    public double obtenerDineroActual() {
+        return cajaHeladeria_.obtenerDineroActual();
+    }
+
+    public double obtenerEntradaTotal() {
+        return entradaTotal;
+    }
+
+    public double obtenerSalidaTotal() {
+        return salidaTotal;
+    }
+
+    public double cerrar() {
+
+        double cantidadFinalEfectivo = cajaHeladeria_.obtenerDineroActual();
+        return cantidadFinalEfectivo;
 
     }
 
-    public double obtenerCantidadActualCaja() {
-        return cajaHeladeria_.obtenerCantidadDineroActual();
-    }
-
-    public double obtenerEntradaTotalEfectivo() {
-        return entradaTotalEfectivo;
-    }
-
-    public double obtenerSalidaTotalEfectivo() {
-        return salidaTotalEfectivo;
-    }
-
-    public double cerrarCaja() {
-
-        double cantidadFinalDinero = cajaHeladeria_.obtenerCantidadDineroActual();
-        return cantidadFinalDinero;
-
-    }
-
-    public double obtenerCantidadInicialCaja(){
-        return cajaHeladeria_.obtenerMontoInicial();
+    public double obtenerDineroInicial(){
+        return cajaHeladeria_.obtenerDineroInicial();
     }
     
-    private ReporteVenta realizarCorteCaja() {
+    private ReporteVenta realizarCorte() {
+        Date fechaActual = new Date();
         return null;
+    }
+    
+    private GestorCaja() {
+        entradaTotal = 0.0;
+        salidaTotal = 0.0;
     }
 }

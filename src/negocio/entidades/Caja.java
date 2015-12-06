@@ -15,11 +15,11 @@ public class Caja {
         establecerDineroActual(DINERO_INICIAL_);
     }
 
-    public double obtenerCantidadDineroActual() {
+    public double obtenerDineroActual() {
         return dineroActual_;
     }
     
-    public double obtenerMontoInicial() {
+    public double obtenerDineroInicial() {
         return DINERO_INICIAL_;
     }
     

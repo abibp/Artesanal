@@ -6,20 +6,20 @@ package negocio.entidades;
  */
 public class Proveedor {
 
-    private final int ID_;
+    private final String ID_;
     
     private String nombre_;
     private String direccion_;
     private String telefono_;
 
-    public Proveedor(int ID, String nombre_, String direccion_, String telefono_) {
+    public Proveedor(String ID, String nombre_, String direccion_, String telefono_) {
         this.ID_ = ID;
         this.nombre_ = nombre_;
         this.direccion_ = direccion_;
         this.telefono_ = telefono_;
     }
 
-    public int obtenerID() {
+    public String obtenerID() {
         return ID_;
     }
     

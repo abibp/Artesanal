@@ -17,7 +17,8 @@ public class GestorBDVenta extends GestorBaseDatos {
                         nuevaVenta.obtenerImporte()
                 );
 
-        obtenerEjecutorInstrucciones().ejecutarModificacion(instruccionFinalInsertar);
+        obtenerEjecutorInstrucciones().
+                ejecutarModificacion(instruccionFinalInsertar);
 
 
     }
