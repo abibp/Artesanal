@@ -56,10 +56,8 @@ public class GestorCaja {
     }
 
     public double cerrar() {
-
         double cantidadFinalEfectivo = cajaHeladeria_.obtenerDineroActual();
         return cantidadFinalEfectivo;
-
     }
 
     public double obtenerDineroInicial(){

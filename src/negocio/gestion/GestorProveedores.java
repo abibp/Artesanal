@@ -13,7 +13,7 @@ import negocio.entidades.Proveedor;
  *
  * @author MiguelAngel
  */
-public class GestorProveedores {
+public class GestorProveedores implements Gestor<Proveedor>{
     
     private static GestorProveedores unicoGestor_;
     
@@ -26,28 +26,33 @@ public class GestorProveedores {
         return unicoGestor_;
     }
 
+    @Override
     public void agregar(Proveedor nuevoProveedor) {
         nProveedores_.put(nuevoProveedor.obtenerID(), nuevoProveedor);
         GestorBDProveedor.obtenerInstancia().agregar(nuevoProveedor);
     }
 
+    @Override
     public void eliminar(String id) {
         nProveedores_.remove(id);
         GestorBDProveedor.obtenerInstancia().eliminar(id);
     }
 
-    public void editarInformación(String id, Proveedor actualizado) {
+    @Override
+    public void editarInformacion(String id, Proveedor actualizado) {
         nProveedores_.replace(id, actualizado);
         GestorBDProveedor.obtenerInstancia().editarInformacion(id, actualizado);
     }
 
-    public void inicializarListaProveedores (ArrayList<Proveedor> proveedores) {
+    @Override
+    public void inicializarLista(ArrayList<Proveedor> proveedores) {
         for (Proveedor proveedor : proveedores) {
             nProveedores_.put(proveedor.obtenerID(), proveedor);
         }
     }
     
-    public Proveedor obtenerProveedor(String id) {
+    @Override
+    public Proveedor obtener(String id) {
         return nProveedores_.get(id);
     }
     

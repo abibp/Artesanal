@@ -14,8 +14,6 @@ import usuario.Informador;
 public class GestorVenta {
 
     private static GestorVenta unicoGestor_;
-    
-    private HashMap<String,NotaDeVenta> nNotasDeVenta_;
 
     public synchronized static GestorVenta obtenerInstancia() {
         if (unicoGestor_ == null) {
@@ -72,19 +70,15 @@ public class GestorVenta {
         return nNotasDeVenta_;
     }
     
-    public void realizarVenta(NotaDeVenta venta){
-        
-        String id = String.valueOf(nNotasDeVenta_.size() + 1);
-        nNotasDeVenta_.put(id,venta);
-        ArrayList<ElementoNota> elementos = venta.obtenerElementos();
-        
-        for (ElementoNota elemento : elementos) {
+    public void realizarVenta(ArrayList<ElementoNota> productos){
+          
+        for (ElementoNota elemento : productos) {
             GestorBDVenta.agregarVenta(elemento);
         }
     }
 
     private GestorVenta() {
-        this.nNotasDeVenta_ = new HashMap();
+        
     }
 
 }
