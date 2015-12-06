@@ -37,7 +37,6 @@ public class GestorInventario {
     public void eliminarProducto(String id) {
         nProductos_.remove(id);
         GestorBDProducto.obtenerInstancia().eliminar(id);
-        GestorBDInventario.obtenerInstancia().eliminarProducto(id);
     }
 
     public void editarInformacionProducto(String id, Producto actualizado) {
@@ -65,7 +64,6 @@ public class GestorInventario {
     public void eliminarInsumo(String id) {
         nInsumos_.remove(id);
         GestorBDInsumo.obtenerInstancia().eliminar(id);
-        GestorBDInventario.obtenerInstancia().eliminarInsumo(id);
     }
 
     public void editarInformacionInsumo(String id, Insumo actualizado) {

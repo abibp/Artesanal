@@ -7,7 +7,6 @@ package negocio.gestion;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import negocio.entidades.Producto;
 import negocio.entidades.Proveedor;
 
 /**

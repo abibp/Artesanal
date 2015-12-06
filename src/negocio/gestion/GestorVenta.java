@@ -41,7 +41,7 @@ public class GestorVenta {
 //
 //    }
 
-    public double calcularPromedioDeVentasTotales() {  //Investigar implementacion del forEach
+    public double calcularImporteTotal() {  //Investigar implementacion del forEach
 
         double importeTotalVentas = 0.0;
         for (Entry<String, NotaDeVenta> entry: nNotasDeVenta_.entrySet()) {
@@ -49,12 +49,16 @@ public class GestorVenta {
             importeTotalVentas += reciboActual.obtenerImporteTotal();
         }
 
+        return importeTotalVentas;
+    }
+
+    public double calcularPromedioTotal () {
         int cantidadRecibosVenta = nNotasDeVenta_.size();
         double promedioVentas = 0.0f;
 
         try {
 
-            promedioVentas = importeTotalVentas / cantidadRecibosVenta;
+            promedioVentas = calcularImporteTotal() / cantidadRecibosVenta;
 
         } catch (ArithmeticException excepcionDivision) {
             String error_mensaje = "No tienes ninguna venta";
@@ -63,7 +67,7 @@ public class GestorVenta {
 
         return promedioVentas;
     }
-
+    
     public HashMap<String, NotaDeVenta> obtenerRecibosDeVentas() {
         return nNotasDeVenta_;
     }
