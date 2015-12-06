@@ -7,10 +7,7 @@ import java.util.logging.Logger;
 import negocio.entidades.Producto;
 import datos.excepcion.ExcepcionProductoNoEncontrado;
 
-/**
- *
- * @author PIX
- */
+
 public class GestorBDProducto extends GestorBaseDatos {
 
     public void agregarProducto(Producto nuevoProducto) {
@@ -33,8 +30,9 @@ public class GestorBDProducto extends GestorBaseDatos {
 
     public void eliminarProducto(String IDProductoAEliminar) {
 
-        final String INSTRUCCION_ELIMINAR
-            = "DELETE FROM producto WHERE id_insumo = \"%s\"";
+        final String INSTRUCCION_ELIMINAR 
+                = "DELETE producto,inventario_producto FROM producto JOIN inventario_producto ON producto.id_producto = inventario_producto.fp_id_producto WHERE inventario_producto.fp_id_producto= \"%s\"";
+            
         
         String instruccionFinalEliminar = 
                 String.format(

@@ -8,7 +8,6 @@ package negocio.entidades;
 public class Producto {
 
     private final String ID_;
-    
     private String nombre_;
     private double costo_;
     private double precio_;
