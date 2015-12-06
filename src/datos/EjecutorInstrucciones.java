@@ -5,11 +5,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class GestorInstrucciones {
+public class EjecutorInstrucciones {
 
     private final Connection conexionActual_;
 
-    public GestorInstrucciones(Connection conexionActual_) {
+    public EjecutorInstrucciones(Connection conexionActual_) {
         this.conexionActual_ = conexionActual_;
     }
 

@@ -1,4 +1,4 @@
-package negocio.excepcion;
+package datos.excepcion;
 
 /**
  *

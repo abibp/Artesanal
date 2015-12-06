@@ -24,7 +24,7 @@ public class GestorBDInventario extends GestorBaseDatos{
                         cantidad
                 );
 
-        obtenerGestorInstrucciones().ejecutarModificacion(instruccionFinalInsertar);
+        obtenerEjecutorInstrucciones().ejecutarModificacion(instruccionFinalInsertar);
         
     }
     
@@ -40,7 +40,7 @@ public class GestorBDInventario extends GestorBaseDatos{
                         IDProducto
                 );
 
-        obtenerGestorInstrucciones().ejecutarModificacion(instruccionFinalModificar);
+        obtenerEjecutorInstrucciones().ejecutarModificacion(instruccionFinalModificar);
     
     }
     
@@ -51,7 +51,7 @@ public class GestorBDInventario extends GestorBaseDatos{
                 "JOIN producto ON inventario.producto_ID = producto.ID";
         
         ResultSet resultadoConsulta
-                = obtenerGestorInstrucciones().ejecutarConsulta(INSTRUCCION_OBTENER_TODOS);
+                = obtenerEjecutorInstrucciones().ejecutarConsulta(INSTRUCCION_OBTENER_TODOS);
 
         return extraerListaDeResultado(resultadoConsulta);
     }

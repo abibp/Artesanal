@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import negocio.entidades.Producto;
-import negocio.excepcion.ExcepcionProductoNoEncontrado;
+import datos.excepcion.ExcepcionProductoNoEncontrado;
 
 /**
  *
@@ -13,7 +13,7 @@ import negocio.excepcion.ExcepcionProductoNoEncontrado;
  */
 public class GestorBDProducto extends GestorBaseDatos {
 
-    public void agregarProducto(Producto nuevoProducto) {
+    public void agregar(Producto nuevoProducto) {
 
         final String INSTRUCCION_INSERTAR
             = "INSERT INTO producto VALUES(\"%s\",\"%s\",%f)";
@@ -23,16 +23,18 @@ public class GestorBDProducto extends GestorBaseDatos {
                         INSTRUCCION_INSERTAR,
                         nuevoProducto.obtenerID(),
                         nuevoProducto.obtenerNombre(),
-                        nuevoProducto.obtenerCantidadMinima()
+                        nuevoProducto.obtenerCosto(),
+                        nuevoProducto.obtenerPrecio(),
+                        nuevoProducto.obtenerExistencia()
                 );
 
-        obtenerGestorInstrucciones().ejecutarModificacion(instruccionFinalInsertar);
+        obtenerEjecutorInstrucciones().ejecutarModificacion(instruccionFinalInsertar);
     }
 
-    public void eliminarProducto(String IDProductoAEliminar) {
+    public void eliminar(String id) {
 
         final String INSTRUCCION_ELIMINAR
-            = "DELETE FROM producto WHERE ID = \"%s\"";
+            = "DELETE FROM producto WHERE id_insumo = \"%s\"";
         
         String instruccionFinalEliminar = 
                 String.format(
@@ -40,11 +42,11 @@ public class GestorBDProducto extends GestorBaseDatos {
                         IDProductoAEliminar
                 );
 
-        obtenerGestorInstrucciones().ejecutarModificacion(instruccionFinalEliminar);
+        obtenerEjecutorInstrucciones().ejecutarModificacion(instruccionFinalEliminar);
 
     }
 
-    public void editarInformacionProducto(Producto productoActualizado) {
+    public void editarInformacion(String id, Producto actualizado) {
 
         final String INSTRUCCION_MODIFICAR
             = "UPDATE producto SET nombre = \"%s\", cantidad_minima = %f, WHERE ID = \"%s\"";
@@ -52,15 +54,15 @@ public class GestorBDProducto extends GestorBaseDatos {
         String instruccionFinalModificar
                 = String.format(
                         INSTRUCCION_MODIFICAR,
-                        productoActualizado.obtenerNombre(),
-                        productoActualizado.obtenerCantidadMinima(),
-                        productoActualizado.obtenerID()
+                        actualizado.obtenerNombre(),
+                        actualizado,
+                        actualizado.obtenerID()
                 );
 
-        obtenerGestorInstrucciones().ejecutarModificacion(instruccionFinalModificar);
+        obtenerEjecutorInstrucciones().ejecutarModificacion(instruccionFinalModificar);
     }
 
-    public Producto obtenerProducto(String IDProducto) throws ExcepcionProductoNoEncontrado{
+    public Producto obtenerProducto(String id) throws ExcepcionProductoNoEncontrado{
 
         final String INSTRUCCION_OBTENER_UNO
                 = "SELECT * FROM producto WHERE ID = \"%s\"";
@@ -68,11 +70,11 @@ public class GestorBDProducto extends GestorBaseDatos {
         String instruccionFinalObtener = 
                 String.format(
                         INSTRUCCION_OBTENER_UNO,
-                        IDProducto
+                        id
                 );
 
         ResultSet resultadoConsulta
-                = obtenerGestorInstrucciones().ejecutarConsulta(instruccionFinalObtener);
+                = obtenerEjecutorInstrucciones().ejecutarConsulta(instruccionFinalObtener);
 
         return extraerProductoDeResultado(resultadoConsulta);
     }
@@ -83,9 +85,9 @@ public class GestorBDProducto extends GestorBaseDatos {
         try {
 
             if (resultadoConsulta.next()) {
-                String id = resultadoConsulta.getString("ID");
+                String id = resultadoConsulta.getString("id_insumo");
                 String nombre = resultadoConsulta.getString("nombre");
-                double cantidadMinima = resultadoConsulta.getDouble("cantidad_minima");
+                double cantidadMinima = resultadoConsulta.getDouble("costo");
 
                 Producto producto = new Producto(id, nombre, cantidadMinima);
                 return producto;

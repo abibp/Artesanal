@@ -1,12 +1,11 @@
 package datos;
 
+import datos.excepcion.ExcepcionInsumoNoEncontrado;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import negocio.entidades.Producto;
 import negocio.entidades.Insumo;
-import negocio.excepcion.ExcepcionProductoNoEncontrado;
 
 /**
  *
@@ -14,21 +13,21 @@ import negocio.excepcion.ExcepcionProductoNoEncontrado;
  */
 public class GestorBDInsumo extends GestorBDProducto {
 
-    public void agregarProductoInsumo(Insumo nuevoProducto) {
-        
-        agregarProducto(nuevoProducto);
+    public void agregarInsumo(Insumo nuevoInsumo) {
         
         final String INSTRUCCION_INSERTAR
-                = "INSERT INTO producto_insumo VALUES(\"%s\",%f)";
-        
+                = "INSERT INTO insumo VALUES(\"%s\",%f)";
+          
         String instruccionFinalInsertar = 
                 String.format(
                         INSTRUCCION_INSERTAR,
-                        nuevoProducto.obtenerID(),
-                        nuevoProducto.obtenerPrecioCompra()
+                        nuevoInsumo.obtenerID(),
+                        nuevoInsumo.obtenerNombre(),
+                        nuevoInsumo.obtenerCosto(),
+                        nuevoInsumo.obtenerUnidadMedida()
                 );
 
-        obtenerGestorInstrucciones().ejecutarModificacion(instruccionFinalInsertar);
+        obtenerEjecutorInstrucciones().ejecutarModificacion(instruccionFinalInsertar);
         
     }
 
@@ -43,64 +42,62 @@ public class GestorBDInsumo extends GestorBDProducto {
                         IDProductoAEliminar
                 );
         
-        obtenerGestorInstrucciones().ejecutarConsulta(instruccionFinalEliminar);
+        obtenerEjecutorInstrucciones().ejecutarConsulta(instruccionFinalEliminar);
         eliminarProducto(IDProductoAEliminar);
         
     }
 
-    public void editarInformacionProductoInsumo(Insumo productoActualizado) {
+    public void editarInformacionInsumo(Insumo insumoActualizado) {
         
         final String INSTRUCCION_MODIFICAR
-            = "UPDATE producto SET precio_compra = %f WHERE ID = \"%s\"";
+            = "UPDATE insumo SET costo = %f WHERE ID = \"%s\"";
         
         String instruccionFinalModificar
                 = String.format(
                         INSTRUCCION_MODIFICAR,
-                        productoActualizado.obtenerPrecioCompra(),
-                        productoActualizado.obtenerID()
+                        insumoActualizado.obtenerCosto(),
+                        insumoActualizado.obtenerID()
                 );
 
-        obtenerGestorInstrucciones().ejecutarModificacion(instruccionFinalModificar);
-        editarInformacionProducto(productoActualizado);
+        obtenerEjecutorInstrucciones().ejecutarModificacion(instruccionFinalModificar);
+        editarInformacionInsumo(insumoActualizado);
     }
    
-    public Insumo obtenerProductoInsumo(String IDProducto) throws ExcepcionProductoNoEncontrado {
+    public Insumo obtenerInsumo(String IDInsumo) throws ExcepcionInsumoNoEncontrado {
 
-        Producto productoBase = obtenerProducto(IDProducto);
-        
         final String INSTRUCCION_OBTENER_UNO
-                = "SELECT * FROM producto_insumo WHERE ID = \"%s\"";
+                = "SELECT * FROM insumo WHERE id_insumo = \"%s\"";
 
         String instruccionFinalObtener
                 = String.format(
                         INSTRUCCION_OBTENER_UNO,
-                        IDProducto
+                        IDInsumo
                 );
 
-        ResultSet resultadoConsulta
-                = obtenerGestorInstrucciones().ejecutarConsulta(instruccionFinalObtener);
+        ResultSet resultadoConsulta = 
+                obtenerEjecutorInstrucciones().ejecutarConsulta(instruccionFinalObtener);
 
-        return extraerProductoDeResultado(resultadoConsulta, productoBase);
+        return extraerInsumoDeResultado(resultadoConsulta);
     }
 
-    private Insumo extraerProductoDeResultado(ResultSet resultadoConsulta, Producto productoBase) {
+    private Insumo extraerInsumoDeResultado(ResultSet resultadoConsulta) throws ExcepcionInsumoNoEncontrado {
         try {
 
             if (resultadoConsulta.next()) {
-                double precioCompra = resultadoConsulta.getDouble("precio_compra");
+                String ID = resultadoConsulta.getString("id_insumo");
+                String nombre = resultadoConsulta.getString("nombre");
+                double costo = resultadoConsulta.getDouble("costo");
+                String unidadMedida = resultadoConsulta.getString("unidades");
 
-                Insumo productoInsumo = new Insumo(
-                        productoBase.obtenerID(), 
-                        productoBase.obtenerNombre(), 
-                        productoBase.obtenerCantidadMinima(),
-                        precioCompra
-                );
-                return productoInsumo;
+                Insumo insumo = new Insumo(ID, nombre, costo, unidadMedida);
+                
+                return insumo;
             }
+            
         } catch (SQLException ex) {
-            Logger.getLogger(GestorBDProducto.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GestorBDInsumo.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
+        throw new ExcepcionInsumoNoEncontrado();
     }
 
 }
