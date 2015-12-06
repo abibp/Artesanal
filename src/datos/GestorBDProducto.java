@@ -10,7 +10,7 @@ import datos.excepcion.ExcepcionProductoNoEncontrado;
 
 public class GestorBDProducto extends GestorBaseDatos {
 
-    public void agregarProducto(Producto nuevoProducto) {
+    public void agregar(Producto nuevoProducto) {
 
         final String INSTRUCCION_INSERTAR
             = "INSERT INTO producto VALUES(\"%s\",\"%s\",%f)";
@@ -28,7 +28,7 @@ public class GestorBDProducto extends GestorBaseDatos {
         obtenerEjecutorInstrucciones().ejecutarModificacion(instruccionFinalInsertar);
     }
 
-    public void eliminarProducto(String IDProductoAEliminar) {
+    public void eliminar(String id) {
 
         final String INSTRUCCION_ELIMINAR 
                 = "DELETE producto,inventario_producto FROM producto JOIN inventario_producto ON producto.id_producto = inventario_producto.fp_id_producto WHERE inventario_producto.fp_id_producto= \"%s\"";
@@ -44,7 +44,7 @@ public class GestorBDProducto extends GestorBaseDatos {
 
     }
 
-    public void editarInformacionProducto(Producto productoActualizado) {
+    public void editarInformacion(String id, Producto actualizado) {
 
         final String INSTRUCCION_MODIFICAR
             = "UPDATE producto SET nombre = \"%s\", cantidad_minima = %f, WHERE ID = \"%s\"";
@@ -52,15 +52,15 @@ public class GestorBDProducto extends GestorBaseDatos {
         String instruccionFinalModificar
                 = String.format(
                         INSTRUCCION_MODIFICAR,
-                        productoActualizado.obtenerNombre(),
-                        productoActualizado.obtenerCantidadMinima(),
-                        productoActualizado.obtenerID()
+                        actualizado.obtenerNombre(),
+                        actualizado,
+                        actualizado.obtenerID()
                 );
 
         obtenerEjecutorInstrucciones().ejecutarModificacion(instruccionFinalModificar);
     }
 
-    public Producto obtenerProducto(String IDProducto) throws ExcepcionProductoNoEncontrado{
+    public Producto obtenerProducto(String id) throws ExcepcionProductoNoEncontrado{
 
         final String INSTRUCCION_OBTENER_UNO
                 = "SELECT * FROM producto WHERE ID = \"%s\"";
@@ -68,7 +68,7 @@ public class GestorBDProducto extends GestorBaseDatos {
         String instruccionFinalObtener = 
                 String.format(
                         INSTRUCCION_OBTENER_UNO,
-                        IDProducto
+                        id
                 );
 
         ResultSet resultadoConsulta

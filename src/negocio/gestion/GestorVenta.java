@@ -1,6 +1,8 @@
 package negocio.gestion;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map.Entry;
 import negocio.entidades.ElementoNota;
 import negocio.entidades.NotaDeVenta;
 import usuario.Informador;
@@ -11,43 +13,52 @@ import usuario.Informador;
  */
 public class GestorVenta {
 
-    private ArrayList<NotaDeVenta> nRecibosDeVenta_;
+    private static GestorVenta unicoGestor_;
+    
+    private HashMap<String,NotaDeVenta> nNotasDeVenta_;
 
-    public NotaDeVenta obtenerPrimeraVenta() {
-
-        int INDICE_PRIMERA_VENTA = 0;
-
-        NotaDeVenta primeraVentaDia = nRecibosDeVenta_.get(INDICE_PRIMERA_VENTA);
-        return primeraVentaDia;
+    public synchronized static GestorVenta obtenerInstancia() {
+        if (unicoGestor_ == null) {
+            unicoGestor_ = new GestorVenta();
+        }
+        return unicoGestor_;
     }
 
-    public NotaDeVenta obtenerUltimaVenta() {
+//    public NotaDeVenta obtenerPrimeraVenta() {
+//
+//        int INDICE_PRIMERA_VENTA = 0;
+//
+//        NotaDeVenta primeraVentaDia = nNotasDeVenta_.get(INDICE_PRIMERA_VENTA);
+//        return primeraVentaDia;
+//    }
+//
+//    public NotaDeVenta obtenerUltimaVenta() {
+//
+//        int INDICE_ULTIMA_VENTA = nNotasDeVenta_.size() - 1;
+//
+//        NotaDeVenta primeraVentaDia = nNotasDeVenta_.get(INDICE_ULTIMA_VENTA);
+//        return primeraVentaDia;
+//
+//    }
 
-        int INDICE_ULTIMA_VENTA = nRecibosDeVenta_.size() - 1;
+    public double calcularImporteTotal() {  //Investigar implementacion del forEach
 
-        NotaDeVenta primeraVentaDia = nRecibosDeVenta_.get(INDICE_ULTIMA_VENTA);
-        return primeraVentaDia;
-
-    }
-
-    public double calcularPromedioDeVentasTotales() {
-
-        double montoTotalVentas = 0.0;
-
-        for (NotaDeVenta reciboActual : nRecibosDeVenta_) {
-
-            ArrayList<ElementoNota> nVentas = reciboActual.obtenerElementos();
-
-            montoTotalVentas += reciboActual.obtenerMonto();
-
+        double importeTotalVentas = 0.0;
+        for (Entry<String, NotaDeVenta> entry: nNotasDeVenta_.entrySet()) {
+            NotaDeVenta reciboActual = entry.getValue();
+            importeTotalVentas += reciboActual.obtenerImporteTotal();
         }
 
-        int cantidadRecibosVenta = nRecibosDeVenta_.size();
+        return importeTotalVentas;
+    }
+
+    public double calcularPromedioTotal () {
+        int cantidadRecibosVenta = nNotasDeVenta_.size();
         double promedioVentas = 0.0f;
 
         try {
 
-            promedioVentas = montoTotalVentas / cantidadRecibosVenta;
+            promedioVentas = calcularImporteTotal() / cantidadRecibosVenta;
 
         } catch (ArithmeticException excepcionDivision) {
             String error_mensaje = "No tienes ninguna venta";
@@ -56,9 +67,24 @@ public class GestorVenta {
 
         return promedioVentas;
     }
+    
+    public HashMap<String, NotaDeVenta> obtenerRecibosDeVentas() {
+        return nNotasDeVenta_;
+    }
+    
+    public void realizarVenta(NotaDeVenta venta){
+        
+        String id = String.valueOf(nNotasDeVenta_.size() + 1);
+        nNotasDeVenta_.put(id,venta);
+        ArrayList<ElementoNota> elementos = venta.obtenerElementos();
+        
+        for (ElementoNota elemento : elementos) {
+            GestorBDVenta.agregarVenta(elemento);
+        }
+    }
 
-    public ArrayList<NotaDeVenta> obtenerRecibosVentas() {
-        return nRecibosDeVenta_;
+    private GestorVenta() {
+        this.nNotasDeVenta_ = new HashMap();
     }
 
 }

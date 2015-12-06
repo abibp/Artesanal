@@ -15,8 +15,6 @@ public class GestorBDInsumo extends GestorBDProducto {
 
     public void agregarInsumo(Insumo nuevoInsumo) {
         
-        agregarInsumo(nuevoInsumo);
-        
         final String INSTRUCCION_INSERTAR
                 = "INSERT INTO insumo VALUES(\"%s\",%f)";
           
