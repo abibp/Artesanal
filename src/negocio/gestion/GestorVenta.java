@@ -1,11 +1,12 @@
 package negocio.gestion;
 
+import datos.GestorBDVenta;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
 import negocio.entidades.ElementoNota;
 import negocio.entidades.NotaDeVenta;
-import usuario.Informador;
+import presentacion.utileria.Informador;
 
 /**
  *
@@ -14,8 +15,6 @@ import usuario.Informador;
 public class GestorVenta {
 
     private static GestorVenta unicoGestor_;
-    
-    private HashMap<String,NotaDeVenta> nNotasDeVenta_;
 
     public synchronized static GestorVenta obtenerInstancia() {
         if (unicoGestor_ == null) {
@@ -79,12 +78,12 @@ public class GestorVenta {
         ArrayList<ElementoNota> elementos = venta.obtenerElementos();
         
         for (ElementoNota elemento : elementos) {
-            GestorBDVenta.agregarVenta(elemento);
+            GestorBDVenta.obtenerInstancia().agregarVenta(elemento);
         }
     }
 
     private GestorVenta() {
-        this.nNotasDeVenta_ = new HashMap();
+        
     }
 
 }

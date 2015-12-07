@@ -5,6 +5,7 @@
  */
 package negocio.gestion;
 
+import datos.GestorBDProveedor;
 import java.util.ArrayList;
 import java.util.HashMap;
 import negocio.entidades.Proveedor;
@@ -13,7 +14,9 @@ import negocio.entidades.Proveedor;
  *
  * @author MiguelAngel
  */
-public class GestorProveedores {
+public class GestorProveedores implements Gestor<Proveedor>{
+    
+    private GestorBDProveedor gestorBD;
     
     private static GestorProveedores unicoGestor_;
     
@@ -26,33 +29,40 @@ public class GestorProveedores {
         return unicoGestor_;
     }
 
+    @Override
     public void agregar(Proveedor nuevoProveedor) {
         nProveedores_.put(nuevoProveedor.obtenerID(), nuevoProveedor);
         GestorBDProveedor.obtenerInstancia().agregar(nuevoProveedor);
     }
 
+    @Override
     public void eliminar(String id) {
         nProveedores_.remove(id);
         GestorBDProveedor.obtenerInstancia().eliminar(id);
     }
 
-    public void editarInformación(String id, Proveedor actualizado) {
+    @Override
+    public void editarInformacion(String id, Proveedor actualizado) {
         nProveedores_.replace(id, actualizado);
         GestorBDProveedor.obtenerInstancia().editarInformacion(id, actualizado);
     }
 
-    public void inicializarListaProveedores (ArrayList<Proveedor> proveedores) {
-        for (Proveedor proveedor : proveedores) {
+    @Override
+    public Proveedor obtener(String id) {
+        return nProveedores_.get(id);
+    }
+    
+    private void inicializarLista() {
+        ArrayList<Proveedor> listaProveedors = gestorBD.obtenerListaProveedors();
+        
+        for (Proveedor proveedor : listaProveedors) {
             nProveedores_.put(proveedor.obtenerID(), proveedor);
         }
     }
     
-    public Proveedor obtenerProveedor(String id) {
-        return nProveedores_.get(id);
-    }
-    
     private GestorProveedores() {
-        this.nProveedores_ = new HashMap();
+        this.gestorBD = new GestorBDProveedor();
+        inicializarLista();
     }
 
 }
