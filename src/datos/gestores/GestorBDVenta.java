@@ -1,4 +1,4 @@
-package datos;
+package datos.gestores;
 
 import negocio.entidades.ElementoNota;
 

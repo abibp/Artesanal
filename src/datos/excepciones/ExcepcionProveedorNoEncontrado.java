@@ -1,4 +1,4 @@
-package datos.excepcion;
+package datos.excepciones;
 
 /**
  *

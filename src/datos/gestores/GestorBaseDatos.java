@@ -1,5 +1,6 @@
-package datos;
+package datos.gestores;
 
+import datos.EjecutorInstrucciones;
 import java.sql.Connection;
 
 public class GestorBaseDatos {

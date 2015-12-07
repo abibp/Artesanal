@@ -351,7 +351,7 @@ public class RegistroVentasPanel extends javax.swing.JPanel {
 
         } else {
 
-            final String NO_SELECCIONO_FILA_MENSAJE = "¡ No seleccionaste un producto !";
+            final String NO_SELECCIONO_FILA_MENSAJE = "¡No seleccionaste un producto!";
 
             Informador.mostrarMensajeDeError(NO_SELECCIONO_FILA_MENSAJE);
 
@@ -378,15 +378,16 @@ public class RegistroVentasPanel extends javax.swing.JPanel {
     }
 
     private void realizarCobro() {
-
-        boolean CORRECTO = true;
-        boolean ventaValida = !productosVentaActualTablaModelo.estaVacia();
+   
+        boolean estaVacia = productosVentaActualTablaModelo.estaVacia();
+        boolean ventaValida = !estaVacia;
 
         if (ventaValida) {
 
-            String pagoCliente = JOptionPane.showInputDialog("Ingresa la cantidad a abonar");
+            String pagoCliente = JOptionPane.showInputDialog("Ingresa la cantidad recibida");
             boolean estadoValidacionPago = validarPagoCliente(pagoCliente);
 
+            boolean CORRECTO = true;
             if (estadoValidacionPago == CORRECTO) {
 
                 double cantidadPagadaCliente
@@ -422,7 +423,7 @@ public class RegistroVentasPanel extends javax.swing.JPanel {
 
             } else {
 
-                final String NO_SELECCIONO_CANTIDAD = "¡ Selecciona una cantidad !";
+                final String NO_SELECCIONO_CANTIDAD = "¡Selecciona una cantidad!";
 
                 Informador.mostrarMensajeDeError(NO_SELECCIONO_CANTIDAD);
                 return false;
@@ -430,7 +431,7 @@ public class RegistroVentasPanel extends javax.swing.JPanel {
 
         } else {
 
-            final String NO_SELECCIONO_PRODUCTO = "¡ Selecciona un producto !";
+            final String NO_SELECCIONO_PRODUCTO = "¡Selecciona un producto!";
 
             Informador.mostrarMensajeDeError(NO_SELECCIONO_PRODUCTO);
             return false;

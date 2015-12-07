@@ -1,5 +1,5 @@
 
-package datos;
+package datos.generadores;
 
 /**
  *

@@ -5,7 +5,7 @@
  */
 package negocio.gestion;
 
-import datos.GestorBDProveedor;
+import datos.gestores.GestorBDProveedor;
 import java.util.ArrayList;
 import java.util.HashMap;
 import negocio.entidades.Proveedor;

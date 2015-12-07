@@ -1,6 +1,6 @@
 package negocio.gestion;
 
-import datos.GestorBDVenta;
+import datos.gestores.GestorBDVenta;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
@@ -8,10 +8,7 @@ import negocio.entidades.ElementoNota;
 import negocio.entidades.NotaDeVenta;
 import presentacion.utileria.Informador;
 
-/**
- *
- * @author PIX
- */
+
 public class GestorVenta {
 
     private static GestorVenta unicoGestor_;
