@@ -14,7 +14,7 @@ import negocio.entidades.Insumo;
 
 public class GestorBDInsumo extends GestorBaseDatos {
     
-    public static String TABLA_INSUMO = "productos";
+    public static String TABLA_INSUMO = "insumos";
     private final GeneradorSentenciasInsumo generadorSentencia;
 
     public GestorBDInsumo() {

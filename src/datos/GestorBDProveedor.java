@@ -7,93 +7,90 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import negocio.entidades.Proveedor;
 
+/**
+ *
+ * @author Astrid Briceño
+ */
 
 public class GestorBDProveedor extends GestorBaseDatos {
-
-    public void agregarProveedor(Proveedor nuevoProveedor) {
-        
-        final String INSTRUCCION_INSERTAR
-            = "INSERT INTO proveedor VALUES(\"%s\",\"%s\",\"%s\")";
-        
-        String instruccionFinalInsertar = 
-                String.format(
-                        INSTRUCCION_INSERTAR,
-                        nuevoProveedor.obtenerNombre(),
-                        nuevoProveedor.obtenerTelefono(),
-                        nuevoProveedor.obtenerDireccion()
-                );
-
-        obtenerEjecutorInstrucciones().ejecutarModificacion(instruccionFinalInsertar);
-        
-    }
-
-    public void eliminarProveedor(int IDProveedor) {
-        final String INSTRUCCION_ELIMINAR
-            = "DELETE FROM proveedor WHERE ID = %d";
-        
-        String instruccionFinalEliminar = 
-                String.format(
-                        INSTRUCCION_ELIMINAR,
-                        IDProveedor
-                );
-
-        obtenerEjecutorInstrucciones().ejecutarModificacion(instruccionFinalEliminar);
-    }
-
-    public void editarInformacionProveedor(int IDProveedor, Proveedor nuevoProveedor) {
     
-         final String INSTRUCCION_MODIFICAR
-            = "UPDATE proveedor SET nombre = \"%s\", telefono = \"%s\", direccion = \"%s\" WHERE ID = %d";
-        
-        String instruccionFinalModificar
-                = String.format(
-                        INSTRUCCION_MODIFICAR,
-                        nuevoProveedor.obtenerNombre(),
-                        nuevoProveedor.obtenerTelefono(),
-                        nuevoProveedor.obtenerDireccion(),
-                        IDProveedor
-                );
+    public static String TABLA_PROVEEDOR = "proveedor";
+    private final GeneradorSentenciasProveedor generadorSentencia;
 
-        obtenerEjecutorInstrucciones().ejecutarModificacion(instruccionFinalModificar);
+    public GestorBDProveedor() {
+        generadorSentencia = new GeneradorSentenciasProveedor(TABLA_PROVEEDOR);
+    }
     
+    
+    public void agregar(Proveedor nuevoProveedor) {
+        
+        String sentenciaInsertarProveedor;
+        sentenciaInsertarProveedor = generadorSentencia.generarSentenciaInsertarProveedor(nuevoProveedor);
+        obtenerEjecutorInstrucciones().ejecutarModificacion(sentenciaInsertarProveedor);
+        
     }
 
-    public Proveedor obtenerProveedor(int IDProveedorAObtener) throws ExcepcionProveedorNoEncontrado{
+    
+    public void eliminar(String idProveedor) {
         
-        final String INSTRUCCION_OBTENER_UNO
-                = "SELECT * FROM proveedor WHERE ID = %d";
+        String sentenciaEliminarProveedor;
+        sentenciaEliminarProveedor = generadorSentencia.generarSentenciaEliminarProveedor(idProveedor);
+        obtenerEjecutorInstrucciones().ejecutarModificacion(sentenciaEliminarProveedor);
         
-        String instruccionFinalObtener = 
-                String.format(
-                        INSTRUCCION_OBTENER_UNO,
-                        IDProveedorAObtener
-                );
-
-        ResultSet resultadoConsulta
-                = obtenerEjecutorInstrucciones().ejecutarConsulta(instruccionFinalObtener);
-
-        return extraerProveedorDeResultado(resultadoConsulta);
     }
 
-    private Proveedor extraerProveedorDeResultado(ResultSet resultadoConsulta) 
-            throws ExcepcionProveedorNoEncontrado{
+    
+    public void editarInformacion(String id, Proveedor productoActualizado) {
+        
+        String sentenciaEditarInformacionProveedor;
+        sentenciaEditarInformacionProveedor = generadorSentencia.generarSentenciaActualizarProveedor(productoActualizado);
+        obtenerEjecutorInstrucciones().ejecutarModificacion(sentenciaEditarInformacionProveedor);
+        
+    }
+    
+    
+    public Proveedor obtenerLista(String idProveedor) throws ExcepcionProveedorNoEncontrado{
+        
+        String sentenciaObtenerProveedors;
+        sentenciaObtenerProveedors = generadorSentencia.generarSentenciaObtenerProveedores();
+        ResultSet resultadoConsulta = obtenerEjecutorInstrucciones().ejecutarConsulta(sentenciaObtenerProveedors);
+        
+        return extraerDeResultado(resultadoConsulta);
+        
+    }
+
+    
+    public Proveedor obtenerPorId(String idProveedor) throws ExcepcionProveedorNoEncontrado{
+        
+        String sentenciaObtenerProveedorPorId;
+        sentenciaObtenerProveedorPorId = generadorSentencia.generarSentenciaObtenerProveedorPorId(idProveedor);
+        ResultSet resultadoConsulta = obtenerEjecutorInstrucciones().ejecutarConsulta(sentenciaObtenerProveedorPorId);
+
+        return extraerDeResultado(resultadoConsulta);
+        
+    }
+    
+    
+    private Proveedor extraerDeResultado(ResultSet resultadoConsulta) throws ExcepcionProveedorNoEncontrado{
         
         try {
 
             if (resultadoConsulta.next()) {
-                String id = resultadoConsulta.getString("ID");
-                String nombre = resultadoConsulta.getString("nombre");
-                String telefono = resultadoConsulta.getString("telefono");
-                String direccion = resultadoConsulta.getString("direccion");
-                
 
-                Proveedor proveedor = new Proveedor(id, nombre, telefono, direccion);
+                String id = resultadoConsulta.getString("id_producto");
+                String nombre = resultadoConsulta.getString("nombre");
+                String direccion = resultadoConsulta.getString("direccion");
+                String telefono = resultadoConsulta.getString("telefono");
+
+                Proveedor proveedor = new Proveedor(id, nombre, direccion, telefono);
                 return proveedor;
             }
+            
         } catch (SQLException ex) {
-            Logger.getLogger(GestorBDProducto.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GestorBDProveedor.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         throw new ExcepcionProveedorNoEncontrado();
     }
+
 }

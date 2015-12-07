@@ -58,7 +58,7 @@ public class GestorBDProducto extends GestorBaseDatos {
     public Producto obtenerPorId(String idProducto) throws ExcepcionProductoNoEncontrado{
         
         String sentenciaObtenerProductoPorId;
-        sentenciaObtenerProductoPorId = generadorSentencia.generarSentenciaObtenerProductosPorId(idProducto);
+        sentenciaObtenerProductoPorId = generadorSentencia.generarSentenciaObtenerProductoPorId(idProducto);
         ResultSet resultadoConsulta = obtenerEjecutorInstrucciones().ejecutarConsulta(sentenciaObtenerProductoPorId);
 
         return extraerDeResultado(resultadoConsulta);

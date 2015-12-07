@@ -11,7 +11,7 @@ import negocio.entidades.Insumo;
 public class GeneradorSentenciasInsumo {
 
     private final String nombreTabla;
-    private String VARIABLE_TEXTO = "\"%s\"";
+    private final String VARIABLE_TEXTO = "\"%s\"";
 
     public GeneradorSentenciasInsumo(String nombreTabla) {
         this.nombreTabla = nombreTabla;
