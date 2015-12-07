@@ -11,92 +11,86 @@ import negocio.entidades.Insumo;
  *
  * @author Astrid Briceño
  */
-public class GestorBDInsumo extends GestorBDProducto {
 
-    public void agregarInsumo(Insumo nuevoInsumo) {
+public class GestorBDInsumo extends GestorBaseDatos {
+    
+    public static String TABLA_INSUMO = "productos";
+    private final GeneradorSentenciasInsumo generadorSentencia;
+
+    public GestorBDInsumo() {
+        generadorSentencia = new GeneradorSentenciasInsumo(TABLA_INSUMO);
+    }
+    
+    
+    public void agregar(Insumo nuevoInsumo) {
         
-        final String INSTRUCCION_INSERTAR
-                = "INSERT INTO insumo VALUES(\"%s\",%f)";
-          
-        String instruccionFinalInsertar = 
-                String.format(
-                        INSTRUCCION_INSERTAR,
-                        nuevoInsumo.obtenerID(),
-                        nuevoInsumo.obtenerNombre(),
-                        nuevoInsumo.obtenerCosto(),
-                        nuevoInsumo.obtenerUnidadMedida()
-                );
-
-        obtenerEjecutorInstrucciones().ejecutarModificacion(instruccionFinalInsertar);
+        String sentenciaInsertarInsumo;
+        sentenciaInsertarInsumo = generadorSentencia.generarSentenciaInsertarInsumo(nuevoInsumo);
+        obtenerEjecutorInstrucciones().ejecutarModificacion(sentenciaInsertarInsumo);
         
     }
 
-    public void eliminarProductoInsumo(String IDProductoAEliminar) {
+    
+    public void eliminar(String idInsumo) {
         
-        final String INSTRUCCION_ELIMINAR
-            = "DELETE FROM producto_insumo WHERE ID = \"%s\"";
-        
-        String instruccionFinalEliminar = 
-                String.format(
-                        INSTRUCCION_ELIMINAR,
-                        IDProductoAEliminar
-                );
-        
-        obtenerEjecutorInstrucciones().ejecutarConsulta(instruccionFinalEliminar);
-        eliminarProducto(IDProductoAEliminar);
+        String sentenciaEliminarInsumo;
+        sentenciaEliminarInsumo = generadorSentencia.generarSentenciaEliminarInsumo(idInsumo);
+        obtenerEjecutorInstrucciones().ejecutarModificacion(sentenciaEliminarInsumo);
         
     }
 
-    public void editarInformacionInsumo(Insumo insumoActualizado) {
+    
+    public void editarInformacion(String id, Insumo productoActualizado) {
         
-        final String INSTRUCCION_MODIFICAR
-            = "UPDATE insumo SET costo = %f WHERE ID = \"%s\"";
+        String sentenciaEditarInformacionInsumo;
+        sentenciaEditarInformacionInsumo = generadorSentencia.generarSentenciaActualizarInsumo(productoActualizado);
+        obtenerEjecutorInstrucciones().ejecutarModificacion(sentenciaEditarInformacionInsumo);
         
-        String instruccionFinalModificar
-                = String.format(
-                        INSTRUCCION_MODIFICAR,
-                        insumoActualizado.obtenerCosto(),
-                        insumoActualizado.obtenerID()
-                );
-
-        obtenerEjecutorInstrucciones().ejecutarModificacion(instruccionFinalModificar);
-        editarInformacionInsumo(insumoActualizado);
     }
-   
-    public Insumo obtenerInsumo(String IDInsumo) throws ExcepcionInsumoNoEncontrado {
-
-        final String INSTRUCCION_OBTENER_UNO
-                = "SELECT * FROM insumo WHERE id_insumo = \"%s\"";
-
-        String instruccionFinalObtener
-                = String.format(
-                        INSTRUCCION_OBTENER_UNO,
-                        IDInsumo
-                );
-
-        ResultSet resultadoConsulta = 
-                obtenerEjecutorInstrucciones().ejecutarConsulta(instruccionFinalObtener);
-
-        return extraerInsumoDeResultado(resultadoConsulta);
+    
+    
+    public Insumo obtenerLista(String idInsumo) throws ExcepcionInsumoNoEncontrado{
+        
+        String sentenciaObtenerInsumos;
+        sentenciaObtenerInsumos = generadorSentencia.generarSentenciaObtenerInsumos();
+        ResultSet resultadoConsulta = obtenerEjecutorInstrucciones().ejecutarConsulta(sentenciaObtenerInsumos);
+        
+        return extraerDeResultado(resultadoConsulta);
+        
     }
 
-    private Insumo extraerInsumoDeResultado(ResultSet resultadoConsulta) throws ExcepcionInsumoNoEncontrado {
+    
+    public Insumo obtenerPorId(String idInsumo) throws ExcepcionInsumoNoEncontrado{
+        
+        String sentenciaObtenerInsumoPorId;
+        sentenciaObtenerInsumoPorId = generadorSentencia.generarSentenciaObtenerInsumoPorId(idInsumo);
+        ResultSet resultadoConsulta = obtenerEjecutorInstrucciones().ejecutarConsulta(sentenciaObtenerInsumoPorId);
+
+        return extraerDeResultado(resultadoConsulta);
+        
+    }
+    
+    
+    private Insumo extraerDeResultado(ResultSet resultadoConsulta) throws ExcepcionInsumoNoEncontrado{
+        
         try {
 
             if (resultadoConsulta.next()) {
-                String ID = resultadoConsulta.getString("id_insumo");
+
+                String id = resultadoConsulta.getString("id_producto");
                 String nombre = resultadoConsulta.getString("nombre");
                 double costo = resultadoConsulta.getDouble("costo");
-                String unidadMedida = resultadoConsulta.getString("unidades");
+                String unidadMedida = resultadoConsulta.getString("unidadMedida");
+                int existencia = resultadoConsulta.getInt("existencia");
 
-                Insumo insumo = new Insumo(ID, nombre, costo, unidadMedida);
-                
-                return insumo;
+                Insumo producto = new Insumo(id, nombre, costo, unidadMedida, existencia);
+                return producto;
             }
             
         } catch (SQLException ex) {
             Logger.getLogger(GestorBDInsumo.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         throw new ExcepcionInsumoNoEncontrado();
     }
 

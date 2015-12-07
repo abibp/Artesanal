@@ -1,10 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package datos;
 
+import java.util.Locale;
 import negocio.entidades.Producto;
 
 /**
@@ -18,36 +15,69 @@ public class GeneradorSentenciasProducto {
         this.nombreTabla = nombreTabla;
     }
 
-    public String generarSentenciaInsertarProducto(Producto producto) {
-        String sentenciaGenerada;
-        sentenciaGenerada = "INSERT INTO " + nombreTabla + " (id_producto, nombre, costo, precio) " +
-                "VALUES ('" +  producto.obtenerID()+ 
-                "', '"  + producto.obtenerNombre() + 
-                "', '" + producto.obtenerCosto() + 
-                "', '" + producto.obtenerPrecio() +
-                "')";
-        System.out.println(sentenciaGenerada);
-        return sentenciaGenerada;
+    public String generarSentenciaInsertarProducto(Producto nuevoProducto) {
+        final String INSTRUCCION_INSERTAR = "INSERT INTO " + nombreTabla + " VALUES (\"%s\", \"%s\", %f, %f, %d)";
+        
+        String sentenciaInsertarGenerada = 
+                String.format(
+                        INSTRUCCION_INSERTAR,
+                        nuevoProducto.obtenerID(),
+                        nuevoProducto.obtenerNombre(),
+                        nuevoProducto.obtenerCosto(),
+                        nuevoProducto.obtenerPrecio(),
+                        nuevoProducto.obtenerExistencia()
+                );
+        System.out.println(sentenciaInsertarGenerada);
+        return sentenciaInsertarGenerada;
     }
 
     public String generarSentenciaEliminarProducto(String idProducto) {
-        String sentenciaGenerada;
-        sentenciaGenerada = "DELETE FROM " + nombreTabla + " WHERE " +
-                "id_producto = '" + idProducto + "'";
-        return sentenciaGenerada;
+        final String INSTRUCCION_ELIMINAR = 
+                "DELETE FROM " + nombreTabla + 
+                " WHERE id_producto = \"%s\"";
+        
+        String sentenciaEliminarGenerada =
+                String.format(INSTRUCCION_ELIMINAR, idProducto);
+        System.out.println(sentenciaEliminarGenerada);
+        return sentenciaEliminarGenerada;
     }
 
     public String generarSentenciaActualizarProducto(Producto productoActualizado) {
         String condicion = "id_producto = " + productoActualizado.obtenerID();
-        String sentenciaGenerada;
-        sentenciaGenerada = "UPDATE " + nombreTabla +
-                " SET nombre = '" + productoActualizado.obtenerNombre() +
-                "', costo = " + productoActualizado.obtenerCosto() +
-                ", precio = " + productoActualizado.obtenerPrecio() +
-                ", existencia = " + productoActualizado.obtenerExistencia()
-                ;
-        return sentenciaGenerada;
+        final String INSTRUCCION_ACTUALIZAR = 
+                "UPDATE " + nombreTabla + 
+                " SET nombre = \"%s\", costo = %f, precio = %f, existencia = %d WHERE " 
+                + condicion;
+        
+        String sentenciaActualizarGenerada =
+                String.format(
+                        INSTRUCCION_ACTUALIZAR, 
+                        productoActualizado.obtenerNombre(),
+                        productoActualizado.obtenerCosto(),
+                        productoActualizado.obtenerPrecio(),
+                        productoActualizado.obtenerExistencia()
+                );
+        return sentenciaActualizarGenerada;
     }
 
+    public String generarSentenciaObtenerProductos(){
+        final String INSTRUCCION_OBTENER = "SELECT * FROM " + nombreTabla;
+        
+        String sentenciaObtenerProductosGenerada = INSTRUCCION_OBTENER;
+        
+        return sentenciaObtenerProductosGenerada;
+    }
+    
+    public String generarSentenciaObtenerProductoPorId(String idProducto){
+        String condicion = "id_producto = " + idProducto;
+        final String INSTRUCCION_OBTENER_POR_ID = 
+                "SELECT * FROM " + nombreTabla + "WHERE " + condicion;
+        
+        String sentenciaObtenerProductoPorIdGenerada =
+                String.format(INSTRUCCION_OBTENER_POR_ID, idProducto);
+        
+        return sentenciaObtenerProductoPorIdGenerada;
+    }
+    
     
 }

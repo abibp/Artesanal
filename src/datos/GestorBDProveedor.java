@@ -81,7 +81,7 @@ public class GestorBDProveedor extends GestorBaseDatos {
         try {
 
             if (resultadoConsulta.next()) {
-                int id = resultadoConsulta.getInt("ID");
+                String id = resultadoConsulta.getString("ID");
                 String nombre = resultadoConsulta.getString("nombre");
                 String telefono = resultadoConsulta.getString("telefono");
                 String direccion = resultadoConsulta.getString("direccion");

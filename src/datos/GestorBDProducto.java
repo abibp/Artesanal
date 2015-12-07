@@ -9,85 +9,76 @@ import datos.excepcion.ExcepcionProductoNoEncontrado;
 
 
 public class GestorBDProducto extends GestorBaseDatos {
+    
+    public static String TABLA_PRODUCTO = "productos";
+    private final GeneradorSentenciasProducto generadorSentencia;
 
+    public GestorBDProducto() {
+        generadorSentencia = new GeneradorSentenciasProducto(TABLA_PRODUCTO);
+    }
+    
+    
     public void agregar(Producto nuevoProducto) {
-
-        final String INSTRUCCION_INSERTAR
-            = "INSERT INTO producto VALUES(\"%s\",\"%s\",%f)";
+        String sentenciaInsertarProducto;
+        sentenciaInsertarProducto = generadorSentencia.generarSentenciaInsertarProducto(nuevoProducto);
+        obtenerEjecutorInstrucciones().ejecutarModificacion(sentenciaInsertarProducto);
         
-        String instruccionFinalInsertar = 
-                String.format(
-                        INSTRUCCION_INSERTAR,
-                        nuevoProducto.obtenerID(),
-                        nuevoProducto.obtenerNombre(),
-                        nuevoProducto.obtenerCosto(),
-                        nuevoProducto.obtenerPrecio(),
-                        nuevoProducto.obtenerExistencia()
-                );
-
-        obtenerEjecutorInstrucciones().ejecutarModificacion(instruccionFinalInsertar);
     }
 
-    public void eliminar(String id) {
-
-        final String INSTRUCCION_ELIMINAR 
-                = "DELETE producto,inventario_producto FROM producto JOIN inventario_producto ON producto.id_producto = inventario_producto.fp_id_producto WHERE inventario_producto.fp_id_producto= \"%s\"";
-            
+    
+    public void eliminar(String idProducto) {
         
-        String instruccionFinalEliminar = 
-                String.format(
-                        INSTRUCCION_ELIMINAR,
-                        IDProductoAEliminar
-                );
-
-        obtenerEjecutorInstrucciones().ejecutarModificacion(instruccionFinalEliminar);
-
+        String sentenciaEliminarProducto;
+        sentenciaEliminarProducto = generadorSentencia.generarSentenciaEliminarProducto(idProducto);
+        obtenerEjecutorInstrucciones().ejecutarModificacion(sentenciaEliminarProducto);
+        
     }
 
-    public void editarInformacion(String id, Producto actualizado) {
-
-        final String INSTRUCCION_MODIFICAR
-            = "UPDATE producto SET nombre = \"%s\", cantidad_minima = %f, WHERE ID = \"%s\"";
+    
+    public void editarInformacion(String id, Producto productoActualizado) {
         
-        String instruccionFinalModificar
-                = String.format(
-                        INSTRUCCION_MODIFICAR,
-                        actualizado.obtenerNombre(),
-                        actualizado,
-                        actualizado.obtenerID()
-                );
-
-        obtenerEjecutorInstrucciones().ejecutarModificacion(instruccionFinalModificar);
+        String sentenciaEditarInformacionProducto;
+        sentenciaEditarInformacionProducto = generadorSentencia.generarSentenciaActualizarProducto(productoActualizado);
+        obtenerEjecutorInstrucciones().ejecutarModificacion(sentenciaEditarInformacionProducto);
+        
+    }
+    
+    
+    public Producto obtenerLista(String idProducto) throws ExcepcionProductoNoEncontrado{
+        
+        String sentenciaObtenerProductos;
+        sentenciaObtenerProductos = generadorSentencia.generarSentenciaObtenerProductos();
+        ResultSet resultadoConsulta = obtenerEjecutorInstrucciones().ejecutarConsulta(sentenciaObtenerProductos);
+        
+        return extraerDeResultado(resultadoConsulta);
+        
     }
 
-    public Producto obtenerProducto(String id) throws ExcepcionProductoNoEncontrado{
-
-        final String INSTRUCCION_OBTENER_UNO
-                = "SELECT * FROM producto WHERE ID = \"%s\"";
+    
+    public Producto obtenerPorId(String idProducto) throws ExcepcionProductoNoEncontrado{
         
-        String instruccionFinalObtener = 
-                String.format(
-                        INSTRUCCION_OBTENER_UNO,
-                        id
-                );
+        String sentenciaObtenerProductoPorId;
+        sentenciaObtenerProductoPorId = generadorSentencia.generarSentenciaObtenerProductosPorId(idProducto);
+        ResultSet resultadoConsulta = obtenerEjecutorInstrucciones().ejecutarConsulta(sentenciaObtenerProductoPorId);
 
-        ResultSet resultadoConsulta
-                = obtenerEjecutorInstrucciones().ejecutarConsulta(instruccionFinalObtener);
-
-        return extraerProductoDeResultado(resultadoConsulta);
+        return extraerDeResultado(resultadoConsulta);
+        
     }
-
-    private Producto extraerProductoDeResultado(ResultSet resultadoConsulta) 
-            throws ExcepcionProductoNoEncontrado{
+    
+    
+    private Producto extraerDeResultado(ResultSet resultadoConsulta) throws ExcepcionProductoNoEncontrado{
         
         try {
 
             if (resultadoConsulta.next()) {
-                String id = resultadoConsulta.getString("id_insumo");
-                String nombre = resultadoConsulta.getString("nombre");
-                double cantidadMinima = resultadoConsulta.getDouble("costo");
 
-                Producto producto = new Producto(id, nombre, cantidadMinima);
+                String id = resultadoConsulta.getString("id_producto");
+                String nombre = resultadoConsulta.getString("nombre");
+                double costo = resultadoConsulta.getDouble("costo");
+                double precio = resultadoConsulta.getDouble("precio");
+                int existencia = resultadoConsulta.getInt("existencia");
+
+                Producto producto = new Producto(id, nombre, costo, precio, existencia);
                 return producto;
             }
         } catch (SQLException ex) {
