@@ -3,6 +3,7 @@ package datos;
 import datos.excepcion.ExcepcionInsumoNoEncontrado;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import negocio.entidades.Insumo;
@@ -11,9 +12,9 @@ import negocio.entidades.Insumo;
  *
  * @author PIX
  */
-public class GestorBDInsumo extends GestorBDProducto {
+public class GestorBDInsumo extends GestorBaseDatos {
 
-    public void agregarInsumo(Insumo nuevoInsumo) {
+    public void agregar(Insumo nuevoInsumo) {
         
         final String INSTRUCCION_INSERTAR
                 = "INSERT INTO insumo VALUES(\"%s\",%f)";
@@ -31,7 +32,7 @@ public class GestorBDInsumo extends GestorBDProducto {
         
     }
 
-    public void eliminarProductoInsumo(String IDProductoAEliminar) {
+    public void eliminar(String IDProductoAEliminar) {
         
         final String INSTRUCCION_ELIMINAR
             = "DELETE FROM producto_insumo WHERE ID = \"%s\"";
@@ -43,11 +44,11 @@ public class GestorBDInsumo extends GestorBDProducto {
                 );
         
         obtenerEjecutorInstrucciones().ejecutarConsulta(instruccionFinalEliminar);
-        eliminarProducto(IDProductoAEliminar);
+        eliminar(IDProductoAEliminar);
         
     }
 
-    public void editarInformacionInsumo(Insumo insumoActualizado) {
+    public void editarInformacion(String id, Insumo insumoActualizado) {
         
         final String INSTRUCCION_MODIFICAR
             = "UPDATE insumo SET costo = %f WHERE ID = \"%s\"";
@@ -60,10 +61,10 @@ public class GestorBDInsumo extends GestorBDProducto {
                 );
 
         obtenerEjecutorInstrucciones().ejecutarModificacion(instruccionFinalModificar);
-        editarInformacionInsumo(insumoActualizado);
+        editarInformacion(id, insumoActualizado);
     }
    
-    public Insumo obtenerInsumo(String IDInsumo) throws ExcepcionInsumoNoEncontrado {
+    public Insumo obtener(String IDInsumo) throws ExcepcionInsumoNoEncontrado {
 
         final String INSTRUCCION_OBTENER_UNO
                 = "SELECT * FROM insumo WHERE id_insumo = \"%s\"";
@@ -98,6 +99,10 @@ public class GestorBDInsumo extends GestorBDProducto {
             Logger.getLogger(GestorBDInsumo.class.getName()).log(Level.SEVERE, null, ex);
         }
         throw new ExcepcionInsumoNoEncontrado();
+    }
+
+    public ArrayList<Insumo> obtenerListaInsumos() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

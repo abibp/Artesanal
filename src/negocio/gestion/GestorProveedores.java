@@ -16,11 +16,10 @@ import negocio.entidades.Proveedor;
  */
 public class GestorProveedores implements Gestor<Proveedor>{
     
-    private GestorBDProveedor gestorBD;
+    private final GestorBDProveedor gestorBD_;
+    private final HashMap<String, Proveedor> nProveedores_;
     
     private static GestorProveedores unicoGestor_;
-    
-    private HashMap<String, Proveedor> nProveedores_;
 
     public synchronized static GestorProveedores obtenerInstancia() {
         if (unicoGestor_ == null) {
@@ -32,19 +31,19 @@ public class GestorProveedores implements Gestor<Proveedor>{
     @Override
     public void agregar(Proveedor nuevoProveedor) {
         nProveedores_.put(nuevoProveedor.obtenerID(), nuevoProveedor);
-        GestorBDProveedor.obtenerInstancia().agregar(nuevoProveedor);
+        gestorBD_.agregar(nuevoProveedor);
     }
 
     @Override
     public void eliminar(String id) {
         nProveedores_.remove(id);
-        GestorBDProveedor.obtenerInstancia().eliminar(id);
+        gestorBD_.eliminar(id);
     }
 
     @Override
     public void editarInformacion(String id, Proveedor actualizado) {
         nProveedores_.replace(id, actualizado);
-        GestorBDProveedor.obtenerInstancia().editarInformacion(id, actualizado);
+        gestorBD_.editarInformacion(id, actualizado);
     }
 
     @Override
@@ -53,7 +52,7 @@ public class GestorProveedores implements Gestor<Proveedor>{
     }
     
     private void inicializarLista() {
-        ArrayList<Proveedor> listaProveedors = gestorBD.obtenerListaProveedors();
+        ArrayList<Proveedor> listaProveedors = gestorBD_.obtenerListaProveedores();
         
         for (Proveedor proveedor : listaProveedors) {
             nProveedores_.put(proveedor.obtenerID(), proveedor);
@@ -61,7 +60,8 @@ public class GestorProveedores implements Gestor<Proveedor>{
     }
     
     private GestorProveedores() {
-        this.gestorBD = new GestorBDProveedor();
+        this.gestorBD_ = new GestorBDProveedor();
+        this.nProveedores_ = new HashMap();
         inicializarLista();
     }
 

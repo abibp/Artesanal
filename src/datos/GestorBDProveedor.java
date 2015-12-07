@@ -3,6 +3,7 @@ package datos;
 import datos.excepcion.ExcepcionProveedorNoEncontrado;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import negocio.entidades.Proveedor;
@@ -10,7 +11,7 @@ import negocio.entidades.Proveedor;
 
 public class GestorBDProveedor extends GestorBaseDatos {
 
-    public void agregarProveedor(Proveedor nuevoProveedor) {
+    public void agregar(Proveedor nuevoProveedor) {
         
         final String INSTRUCCION_INSERTAR
             = "INSERT INTO proveedor VALUES(\"%s\",\"%s\",\"%s\")";
@@ -27,7 +28,7 @@ public class GestorBDProveedor extends GestorBaseDatos {
         
     }
 
-    public void eliminarProveedor(int IDProveedor) {
+    public void eliminar(String IDProveedor) {
         final String INSTRUCCION_ELIMINAR
             = "DELETE FROM proveedor WHERE ID = %d";
         
@@ -40,7 +41,7 @@ public class GestorBDProveedor extends GestorBaseDatos {
         obtenerEjecutorInstrucciones().ejecutarModificacion(instruccionFinalEliminar);
     }
 
-    public void editarInformacionProveedor(int IDProveedor, Proveedor nuevoProveedor) {
+    public void editarInformacion(String IDProveedor, Proveedor nuevoProveedor) {
     
          final String INSTRUCCION_MODIFICAR
             = "UPDATE proveedor SET nombre = \"%s\", telefono = \"%s\", direccion = \"%s\" WHERE ID = %d";
@@ -58,7 +59,7 @@ public class GestorBDProveedor extends GestorBaseDatos {
     
     }
 
-    public Proveedor obtenerProveedor(int IDProveedorAObtener) throws ExcepcionProveedorNoEncontrado{
+    public Proveedor obtener(String IDProveedorAObtener) throws ExcepcionProveedorNoEncontrado{
         
         final String INSTRUCCION_OBTENER_UNO
                 = "SELECT * FROM proveedor WHERE ID = %d";
@@ -81,7 +82,7 @@ public class GestorBDProveedor extends GestorBaseDatos {
         try {
 
             if (resultadoConsulta.next()) {
-                int id = resultadoConsulta.getInt("ID");
+                String id = resultadoConsulta.getString("ID");
                 String nombre = resultadoConsulta.getString("nombre");
                 String telefono = resultadoConsulta.getString("telefono");
                 String direccion = resultadoConsulta.getString("direccion");
@@ -95,5 +96,9 @@ public class GestorBDProveedor extends GestorBaseDatos {
         }
         
         throw new ExcepcionProveedorNoEncontrado();
+    }
+
+    public ArrayList<Proveedor> obtenerListaProveedores() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

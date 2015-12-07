@@ -15,10 +15,10 @@ public class NotaDeVenta {
     
     private double importeTotal_;
 
-    public NotaDeVenta(int id, Date fecha) {
+    public NotaDeVenta(int id, ArrayList<ElementoNota> elementos) {
         this.ID_ = id;
-        this.FECHA_ = fecha;
-        this.PRODUCTOS_VENDIDOS_ = new ArrayList();
+        this.FECHA_ = new Date();
+        this.PRODUCTOS_VENDIDOS_ = elementos;
         this.importeTotal_ = 0.0;
     }
 
@@ -52,6 +52,7 @@ public class NotaDeVenta {
     }
 
     private double calcularImporteTotal() {
+        
         double montoTotal = 0.0;
         for (ElementoNota elementoActual : PRODUCTOS_VENDIDOS_) {
             montoTotal += elementoActual.obtenerImporte();

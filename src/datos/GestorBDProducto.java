@@ -6,6 +6,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import negocio.entidades.Producto;
 import datos.excepcion.ExcepcionProductoNoEncontrado;
+import java.util.ArrayList;
+import negocio.entidades.ProductoCompuesto;
 
 /**
  *
@@ -39,7 +41,7 @@ public class GestorBDProducto extends GestorBaseDatos {
         String instruccionFinalEliminar = 
                 String.format(
                         INSTRUCCION_ELIMINAR,
-                        IDProductoAEliminar
+                        id
                 );
 
         obtenerEjecutorInstrucciones().ejecutarModificacion(instruccionFinalEliminar);
@@ -89,7 +91,7 @@ public class GestorBDProducto extends GestorBaseDatos {
                 String nombre = resultadoConsulta.getString("nombre");
                 double cantidadMinima = resultadoConsulta.getDouble("costo");
 
-                Producto producto = new Producto(id, nombre, cantidadMinima);
+                Producto producto = new Producto(id, nombre, cantidadMinima,0.0,0);
                 return producto;
             }
         } catch (SQLException ex) {
@@ -97,6 +99,14 @@ public class GestorBDProducto extends GestorBaseDatos {
         }
         
         throw new ExcepcionProductoNoEncontrado();
+    }
+
+    public ArrayList<Producto> obtenerListaProductos() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public ArrayList<ProductoCompuesto> obtenerListaProductosCompuestos() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

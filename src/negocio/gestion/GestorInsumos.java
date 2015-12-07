@@ -16,12 +16,11 @@ import negocio.entidades.Insumo;
  */
 public class GestorInsumos implements Gestor<Insumo>{
     
-    private final GestorBDInsumo gestorBD;
+    private final GestorBDInsumo gestorBD_;
+    private final HashMap<String,Insumo> nInsumos_;
     
     private static GestorInsumos unicoGestor_;
     
-    private HashMap<String,Insumo> nInsumos_;
-
     public synchronized static GestorInsumos obtenerInstancia() {
         if (unicoGestor_ == null) {
             unicoGestor_ = new GestorInsumos();
@@ -32,19 +31,19 @@ public class GestorInsumos implements Gestor<Insumo>{
     @Override
     public void agregar(Insumo nuevoInsumo) {
         nInsumos_.put(nuevoInsumo.obtenerID(), nuevoInsumo);
-        gestorBD.agregar(nuevoInsumo);
+        gestorBD_.agregar(nuevoInsumo);
     }
 
     @Override
     public void eliminar(String id) {
         nInsumos_.remove(id);
-        gestorBD.eliminar(id);
+        gestorBD_.eliminar(id);
     }
 
     @Override
     public void editarInformacion(String id, Insumo actualizado) {
         nInsumos_.replace(id, actualizado);
-        gestorBD.editarInformacion(id, actualizado);
+        gestorBD_.editarInformacion(id, actualizado);
     }
 
     @Override
@@ -53,7 +52,7 @@ public class GestorInsumos implements Gestor<Insumo>{
     }
     
     private void inicializarLista () {
-        ArrayList<Insumo> listaInsumos = gestorBD.obtenerListaInsumos();
+        ArrayList<Insumo> listaInsumos = gestorBD_.obtenerListaInsumos();
         
         for (Insumo insumo : listaInsumos) {
             nInsumos_.put(insumo.obtenerID(), insumo);
@@ -61,7 +60,8 @@ public class GestorInsumos implements Gestor<Insumo>{
     }
 
     private GestorInsumos() {
-        this.gestorBD = new GestorBDInsumo();
+        this.gestorBD_ = new GestorBDInsumo();
+        this.nInsumos_ = new HashMap();
         inicializarLista();
     }
     
