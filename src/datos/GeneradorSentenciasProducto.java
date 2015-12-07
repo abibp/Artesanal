@@ -1,13 +1,13 @@
 
 package datos;
 
-import java.util.Locale;
 import negocio.entidades.Producto;
 
 /**
  *
  * @author Astrid Briceño
  */
+
 public class GeneradorSentenciasProducto {
     private final String nombreTabla;
 
@@ -27,7 +27,7 @@ public class GeneradorSentenciasProducto {
                         nuevoProducto.obtenerPrecio(),
                         nuevoProducto.obtenerExistencia()
                 );
-        System.out.println(sentenciaInsertarGenerada);
+        
         return sentenciaInsertarGenerada;
     }
 
@@ -38,16 +38,16 @@ public class GeneradorSentenciasProducto {
         
         String sentenciaEliminarGenerada =
                 String.format(INSTRUCCION_ELIMINAR, idProducto);
-        System.out.println(sentenciaEliminarGenerada);
+        
         return sentenciaEliminarGenerada;
     }
 
     public String generarSentenciaActualizarProducto(Producto productoActualizado) {
-        String condicion = "id_producto = " + productoActualizado.obtenerID();
+        
         final String INSTRUCCION_ACTUALIZAR = 
                 "UPDATE " + nombreTabla + 
-                " SET nombre = \"%s\", costo = %f, precio = %f, existencia = %d WHERE " 
-                + condicion;
+                " SET nombre = \"%s\", costo = %f, precio = %f, existencia = %d" +
+                " WHERE id_producto = \"%s\"";
         
         String sentenciaActualizarGenerada =
                 String.format(
@@ -55,23 +55,28 @@ public class GeneradorSentenciasProducto {
                         productoActualizado.obtenerNombre(),
                         productoActualizado.obtenerCosto(),
                         productoActualizado.obtenerPrecio(),
-                        productoActualizado.obtenerExistencia()
+                        productoActualizado.obtenerExistencia(),
+                        productoActualizado.obtenerID()
                 );
+        
         return sentenciaActualizarGenerada;
+        
     }
 
     public String generarSentenciaObtenerProductos(){
+        
         final String INSTRUCCION_OBTENER = "SELECT * FROM " + nombreTabla;
         
         String sentenciaObtenerProductosGenerada = INSTRUCCION_OBTENER;
         
         return sentenciaObtenerProductosGenerada;
+        
     }
     
     public String generarSentenciaObtenerProductoPorId(String idProducto){
-        String condicion = "id_producto = " + idProducto;
+        
         final String INSTRUCCION_OBTENER_POR_ID = 
-                "SELECT * FROM " + nombreTabla + "WHERE " + condicion;
+                "SELECT * FROM " + nombreTabla + " WHERE id_producto = \"%s\"";
         
         String sentenciaObtenerProductoPorIdGenerada =
                 String.format(INSTRUCCION_OBTENER_POR_ID, idProducto);

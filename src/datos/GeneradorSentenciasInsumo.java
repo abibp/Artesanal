@@ -11,13 +11,16 @@ import negocio.entidades.Insumo;
 public class GeneradorSentenciasInsumo {
 
     private final String nombreTabla;
+    private String VARIABLE_TEXTO = "\"%s\"";
 
     public GeneradorSentenciasInsumo(String nombreTabla) {
         this.nombreTabla = nombreTabla;
     }
 
     public String generarSentenciaInsertarInsumo(Insumo nuevoInsumo) {
-        final String INSTRUCCION_INSERTAR = "INSERT INTO " + nombreTabla + " VALUES (\"%s\", \"%s\", %f, \"%s\", %f)";
+        final String INSTRUCCION_INSERTAR = 
+                "INSERT INTO " + nombreTabla + 
+                " VALUES (\"%s\", \"%s\", %f, \"%s\", %f)";
         
         String sentenciaInsertarGenerada = 
                 String.format(
@@ -44,7 +47,6 @@ public class GeneradorSentenciasInsumo {
     }
 
     public String generarSentenciaActualizarInsumo(Insumo insumoActualizado) {
-        String VARIABLE_TEXTO = "\"%s\"";
         final String INSTRUCCION_ACTUALIZAR = 
                 "UPDATE " + nombreTabla + 
                 " SET nombre = " + VARIABLE_TEXTO + ", costo = %f, unidad = \"%s\", existencia = %f" +
@@ -72,7 +74,7 @@ public class GeneradorSentenciasInsumo {
     }
     
     public String generarSentenciaObtenerInsumoPorId(String idInsumo){
-        String condicion = "id_producto = " + idInsumo;
+        String condicion = "id_insumo = " + idInsumo;
         final String INSTRUCCION_OBTENER_POR_ID = 
                 "SELECT * FROM " + nombreTabla + "WHERE id_insumo = \"%s\" ";
         
