@@ -16,7 +16,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import negocio.entidades.Producto;
-import negocio.gestion.GestorCaja;
+import negocio.gestion.Cajero;
 import negocio.gestion.GestorProducto;
 import org.edisoncor.gui.button.ButtonAction;
 import org.edisoncor.gui.button.ButtonSeven;
@@ -36,7 +36,7 @@ import usuario.MenuVentana;
  */
 public class VentaMenuVentana extends MenuVentana implements ActionListener {
 
-    private final GestorCaja gestorCaja;
+    private final Cajero gestorCaja;
     private ButtonAction agregarEfectivoBoton;
     private ButtonSeven agregarProductoVentaBoton;
     private ButtonAction buscarProductoVentaBoton;
@@ -64,7 +64,7 @@ public class VentaMenuVentana extends MenuVentana implements ActionListener {
 
     public VentaMenuVentana() {
         super();
-        this.gestorCaja = GestorCaja.obtenerIntancia();
+        this.gestorCaja = Cajero.obtenerIntancia();
     }
 
     @Override

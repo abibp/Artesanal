@@ -2,7 +2,7 @@ package usuario;
 
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import javax.swing.JFrame;
-import negocio.gestion.GestorCaja;
+import negocio.gestion.Cajero;
 import org.edisoncor.gui.panel.Panel;
 import org.edisoncor.gui.tabbedPane.TabbedPaneHeader;
 import usuario.menu.CorteMenuVentana;
@@ -20,11 +20,11 @@ public class PrincipalVentana extends MenuVentana{
     private TabbedPaneHeader menuPrincipalPanelSecciones;
     private JFrame ventanaPrincipal;
     private Panel panelPrincipal;
-    private final GestorCaja gestorCaja;
+    private final Cajero gestorCaja;
 
     public PrincipalVentana(double cantidadInicialEnCaja) {
         super();
-        gestorCaja = GestorCaja.obtenerIntancia();
+        gestorCaja = Cajero.obtenerIntancia();
         gestorCaja.abrirCaja(cantidadInicialEnCaja);
     }
     

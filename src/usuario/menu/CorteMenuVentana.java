@@ -2,7 +2,7 @@ package usuario.menu;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import negocio.gestion.GestorCaja;
+import negocio.gestion.Cajero;
 import org.edisoncor.gui.button.ButtonAqua;
 import org.edisoncor.gui.label.LabelMetric;
 import org.edisoncor.gui.label.LabelRect;
@@ -327,7 +327,7 @@ public class CorteMenuVentana extends MenuVentana implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        GestorCaja gestor = GestorCaja.obtenerIntancia();
+        Cajero gestor = Cajero.obtenerIntancia();
         fondoDeCajaValorLabel.setText(""+gestor.obtenerCantidadInicialCaja());
         entradasValorLabel.setText(""+gestor.obtenerEntradaTotalEfectivo());
         salidasValorLabel.setText(""+gestor.obtenerSalidaTotalEfectivo());
