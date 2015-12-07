@@ -8,18 +8,18 @@ import negocio.entidades.ReporteVenta;
  *
  * @author PIX
  */
-public class GestorCaja {
+public class Cajero {
 
-    private static GestorCaja unicoGestor_;
+    private static Cajero unicoGestor_;
     
     private Caja cajaHeladeria_;
     private GestorReportes reporte_;
     private double entradaTotal;
     private double salidaTotal;
 
-    public synchronized static GestorCaja obtenerInstancia() {
+    public synchronized static Cajero obtenerInstancia() {
         if (unicoGestor_ == null) {
-            unicoGestor_ = new GestorCaja();
+            unicoGestor_ = new Cajero();
         }
         return unicoGestor_;
     }
@@ -31,12 +31,12 @@ public class GestorCaja {
 
     public void despositar(double efectivo) {
         cajaHeladeria_.establecerDineroActual(obtenerDineroActual() + efectivo);
-        entradaTotal += efectivo;
+        establecerEntradaTotal(obtenerEntradaTotal() + efectivo);
     }
 
     public void retirar(double efectivo) {
         cajaHeladeria_.establecerDineroActual(obtenerDineroActual() - efectivo);
-        salidaTotal += efectivo;
+        establecerSalidaTotal(obtenerSalidaTotal() + efectivo);
     }
 
     public double obtenerDineroActual() {
@@ -47,8 +47,16 @@ public class GestorCaja {
         return entradaTotal;
     }
 
+    public void establecerEntradaTotal(double entradaTotal) {
+        this.entradaTotal = entradaTotal;
+    }
+    
     public double obtenerSalidaTotal() {
         return salidaTotal;
+    }
+
+    public void establecerSalidaTotal(double salidaTotal) {
+        this.salidaTotal = salidaTotal;
     }
 
     public double obtenerDineroInicial(){
@@ -66,7 +74,7 @@ public class GestorCaja {
         return cantidadFinalEfectivo;
     }
     
-    private GestorCaja() {
+    private Cajero() {
         entradaTotal = 0.0;
         salidaTotal = 0.0;
     }

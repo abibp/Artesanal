@@ -91,9 +91,10 @@ public class GestorBDProducto extends GestorBaseDatos {
             if (resultadoConsulta.next()) {
                 String id = resultadoConsulta.getString("id_insumo");
                 String nombre = resultadoConsulta.getString("nombre");
-                double cantidadMinima = resultadoConsulta.getDouble("costo");
+                double costo = resultadoConsulta.getDouble("costo");
+                double precio = resultadoConsulta.getDouble("precio");
 
-                Producto producto = new Producto(id, nombre, cantidadMinima);
+                Producto producto = new Producto(id, nombre, costo, precio);
                 return producto;
             }
         } catch (SQLException ex) {
