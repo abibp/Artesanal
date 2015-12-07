@@ -17,7 +17,7 @@ public class GestorCaja {
     private double entradaTotal;
     private double salidaTotal;
 
-    public synchronized static GestorCaja obtenerIntancia() {
+    public synchronized static GestorCaja obtenerInstancia() {
         if (unicoGestor_ == null) {
             unicoGestor_ = new GestorCaja();
         }
@@ -30,17 +30,13 @@ public class GestorCaja {
     }
 
     public void despositar(double efectivo) {
+        cajaHeladeria_.establecerDineroActual(obtenerDineroActual() + efectivo);
         entradaTotal += efectivo;
-
-        cajaHeladeria_.establecerDineroActual(
-                cajaHeladeria_.obtenerDineroActual() + efectivo);
     }
 
     public void retirar(double efectivo) {
+        cajaHeladeria_.establecerDineroActual(obtenerDineroActual() - efectivo);
         salidaTotal += efectivo;
-
-        cajaHeladeria_.establecerDineroActual(
-                cajaHeladeria_.obtenerDineroActual() - efectivo);
     }
 
     public double obtenerDineroActual() {
@@ -55,20 +51,19 @@ public class GestorCaja {
         return salidaTotal;
     }
 
-    public double cerrar() {
-
-        double cantidadFinalEfectivo = cajaHeladeria_.obtenerDineroActual();
-        return cantidadFinalEfectivo;
-
-    }
-
     public double obtenerDineroInicial(){
         return cajaHeladeria_.obtenerDineroInicial();
     }
     
     private ReporteVenta realizarCorte() {
         Date fechaActual = new Date();
+        cerrar();
         return null;
+    }
+    
+    private double cerrar() {
+        double cantidadFinalEfectivo = cajaHeladeria_.obtenerDineroActual();
+        return cantidadFinalEfectivo;
     }
     
     private GestorCaja() {

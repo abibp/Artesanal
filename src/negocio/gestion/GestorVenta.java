@@ -15,8 +15,6 @@ import presentacion.utileria.Informador;
 public class GestorVenta {
 
     private static GestorVenta unicoGestor_;
-    
-    private HashMap<String,NotaDeVenta> nNotasDeVenta_;
 
     public synchronized static GestorVenta obtenerInstancia() {
         if (unicoGestor_ == null) {
@@ -85,7 +83,7 @@ public class GestorVenta {
     }
 
     private GestorVenta() {
-        this.nNotasDeVenta_ = new HashMap();
+        
     }
 
 }

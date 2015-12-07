@@ -22,6 +22,14 @@ public class Producto {
         this.existencia_ = existencia;
     }
     
+    public Producto(String ID, String nombre, double costo, double precio) {
+        this.ID_ = ID;
+        this.nombre_ = nombre;
+        this.costo_ = costo;
+        this.precio_ = precio;
+        this.existencia_ = 0;
+    }
+    
     public String obtenerID(){
         return ID_;
     }
