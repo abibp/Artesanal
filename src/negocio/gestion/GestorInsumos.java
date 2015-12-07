@@ -5,9 +5,12 @@
  */
 package negocio.gestion;
 
+import datos.excepciones.ExcepcionInsumoNoEncontrado;
 import datos.gestores.GestorBDInsumo;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import negocio.entidades.Insumo;
 
 /**
@@ -52,8 +55,8 @@ public class GestorInsumos implements Gestor<Insumo>{
         return nInsumos_.get(id);
     }
     
-    private void inicializarLista () {
-        ArrayList<Insumo> listaInsumos = gestorBD.obtenerListaInsumos();
+    private void inicializarLista () throws ExcepcionInsumoNoEncontrado {
+        ArrayList<Insumo> listaInsumos = gestorBD.obtenerLista();
         
         for (Insumo insumo : listaInsumos) {
             nInsumos_.put(insumo.obtenerID(), insumo);
@@ -62,7 +65,11 @@ public class GestorInsumos implements Gestor<Insumo>{
 
     private GestorInsumos() {
         this.gestorBD = new GestorBDInsumo();
-        inicializarLista();
+        try {
+            inicializarLista();
+        } catch (ExcepcionInsumoNoEncontrado ex) {
+            Logger.getLogger(GestorInsumos.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     

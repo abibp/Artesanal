@@ -5,6 +5,7 @@
  */
 package negocio.gestion;
 
+import datos.excepciones.ExcepcionProductoNoEncontrado;
 import datos.gestores.GestorBDProducto;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -52,8 +53,8 @@ public class GestorProductos implements Gestor<Producto>{
         return nProductos_.get(id);
     }
     
-    private void inicializarLista() {
-        ArrayList<Producto> listaProductos = gestorBD.obtenerListaProductos();
+    private void inicializarLista() throws ExcepcionProductoNoEncontrado {
+        ArrayList<Producto> listaProductos = gestorBD.obtenerLista();
         
         for (Producto producto : listaProductos) {
             nProductos_.put(producto.obtenerID(), producto);

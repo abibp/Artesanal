@@ -4,6 +4,7 @@ import datos.generadores.GeneradorSentenciasProveedor;
 import datos.excepciones.ExcepcionProveedorNoEncontrado;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import negocio.entidades.Proveedor;
@@ -50,14 +51,23 @@ public class GestorBDProveedor extends GestorBaseDatos {
     }
     
     
-    public Proveedor obtenerLista(String idProveedor) throws ExcepcionProveedorNoEncontrado{
-        
-        String sentenciaObtenerProveedors;
-        sentenciaObtenerProveedors = generadorSentencia.generarSentenciaObtenerProveedores();
-        ResultSet resultadoConsulta = obtenerEjecutorInstrucciones().ejecutarConsulta(sentenciaObtenerProveedors);
-        
-        return extraerDeResultado(resultadoConsulta);
-        
+    public ArrayList<Proveedor> obtenerLista() throws ExcepcionProveedorNoEncontrado{
+
+        ArrayList<Proveedor> listaProveedors = new ArrayList<>();
+        String sentenciaObtenerProveedores;
+        sentenciaObtenerProveedores = generadorSentencia.generarSentenciaObtenerProveedores();
+        ResultSet resultadoConsulta = obtenerEjecutorInstrucciones().ejecutarConsulta(sentenciaObtenerProveedores);
+
+        try {
+            while (resultadoConsulta.next()) {
+                Proveedor actual = extraerDeResultado(resultadoConsulta);
+                listaProveedors.add(actual);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(GestorBDProveedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listaProveedors;
     }
 
     

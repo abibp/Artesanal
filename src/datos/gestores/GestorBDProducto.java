@@ -7,6 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import negocio.entidades.Producto;
 import datos.excepciones.ExcepcionProductoNoEncontrado;
+import java.util.ArrayList;
 
 
 public class GestorBDProducto extends GestorBaseDatos {
@@ -45,14 +46,23 @@ public class GestorBDProducto extends GestorBaseDatos {
     }
     
     
-    public Producto obtenerLista(String idProducto) throws ExcepcionProductoNoEncontrado{
-        
+    public ArrayList<Producto> obtenerLista() throws ExcepcionProductoNoEncontrado{
+
+        ArrayList<Producto> listaProductos = new ArrayList<>();
         String sentenciaObtenerProductos;
         sentenciaObtenerProductos = generadorSentencia.generarSentenciaObtenerProductos();
         ResultSet resultadoConsulta = obtenerEjecutorInstrucciones().ejecutarConsulta(sentenciaObtenerProductos);
-        
-        return extraerDeResultado(resultadoConsulta);
-        
+
+        try {
+            while (resultadoConsulta.next()) {
+                Producto actual = extraerDeResultado(resultadoConsulta);
+                listaProductos.add(actual);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(GestorBDProducto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listaProductos;
     }
 
     

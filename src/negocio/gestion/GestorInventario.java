@@ -6,7 +6,7 @@
 package negocio.gestion;
 
 import datos.gestores.GestorBDInsumo;
-import datos.GestorBDInventario;
+
 import datos.gestores.GestorBDProducto;
 import java.util.ArrayList;
 import java.util.HashMap;
