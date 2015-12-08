@@ -66,4 +66,9 @@ public class GestorProveedores implements Gestor<Proveedor>{
         inicializarLista();
     }
 
+    @Override
+    public ArrayList<Proveedor> obtenerLista() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
