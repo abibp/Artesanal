@@ -53,10 +53,10 @@ public class GestorProductosCompuestos implements Gestor<ProductoCompuesto>{
     
     private void inicializarLista() {
         
-        ArrayList<ProductoCompuesto> listaProductos = gestorBD_.obtenerListaProductosCompuestos();
-        for (ProductoCompuesto producto : listaProductos) {
-            nProductosCompuestos_.put(producto.obtenerID(), producto);
-        }
+//        ArrayList<ProductoCompuesto> listaProductos = gestorBD_.obtenerListaProductosCompuestos();
+//        for (ProductoCompuesto producto : listaProductos) {
+//            nProductosCompuestos_.put(producto.obtenerID(), producto);
+//        }
     }
 
     private GestorProductosCompuestos() {

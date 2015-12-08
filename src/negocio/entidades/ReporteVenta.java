@@ -8,19 +8,19 @@ import java.util.ArrayList;
  */
 public class ReporteVenta {
 
-    private final int ID_REPORTE_;
+    private final int ID_;
     private final String DESCRIPCION_;
 
     private ArrayList<NotaDeVenta> nVentas_;
 
     public ReporteVenta(int IDReporte, String descripcion, ArrayList<NotaDeVenta> ventas) {
-        this.ID_REPORTE_ = IDReporte;
+        this.ID_ = IDReporte;
         this.DESCRIPCION_ = descripcion;
         this.nVentas_ = ventas;
     }
 
     public int obtenerIDReporte() {
-        return ID_REPORTE_;
+        return ID_;
     }
 
     public String obtenerDescripcion() {

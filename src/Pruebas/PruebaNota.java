@@ -41,7 +41,7 @@ public class PruebaNota {
         NotaDeVenta nota = new NotaDeVenta(elementos, 50.0);
         
         System.out.println(nota.obtenerImporteTotal());
-        System.out.println(nota.obtenerFecha());
+        System.out.println(nota.obtenerFechaConFormato());
     }
     
 }

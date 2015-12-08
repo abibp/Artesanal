@@ -1,5 +1,6 @@
 package negocio.entidades;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -18,6 +19,7 @@ public final class NotaDeVenta {
     private int ID_;
 
     public NotaDeVenta(ArrayList<ElementoNota> elementos, double importeTotal, double pago, double cambio, int id) {
+        
         this.FECHA_ = new Date();
         this.PRODUCTOS_VENDIDOS_ = elementos;
         this.IMPORTE_TOTAL_ = calcularImporteTotal();
@@ -40,6 +42,14 @@ public final class NotaDeVenta {
 
     public Date obtenerFecha() {
         return FECHA_;
+    }
+    
+    public String obtenerFechaConFormato() {
+        
+        final String FORMATO = "yyyy-MM-dd";
+        SimpleDateFormat formateador = new SimpleDateFormat(FORMATO);
+        String fecha = formateador.format(obtenerFecha());
+        return fecha;
     }
     
     public ArrayList<ElementoNota> obtenerElementos() {
