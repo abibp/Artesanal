@@ -9,7 +9,9 @@ import datos.excepciones.ExcepcionInsumoNoEncontrado;
 import datos.gestores.GestorBDInsumo;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map.Entry;
 import negocio.entidades.Insumo;
+import negocio.excepciones.ExcepcionElementoYaExistente;
 
 /**
  *
@@ -30,9 +32,13 @@ public class GestorInsumos implements Gestor<Insumo>{
     }
 
     @Override
-    public void agregar(Insumo nuevoInsumo) {
-        nInsumos_.put(nuevoInsumo.obtenerID(), nuevoInsumo);
-        gestorBD_.agregar(nuevoInsumo);
+    public void agregar(Insumo nuevoInsumo) throws ExcepcionElementoYaExistente{
+        if(!nInsumos_.containsKey(nuevoInsumo.obtenerID())){
+            nInsumos_.put(nuevoInsumo.obtenerID(), nuevoInsumo);
+            gestorBD_.agregar(nuevoInsumo);
+        }else{
+            throw new ExcepcionElementoYaExistente();
+        }
     }
 
     @Override
@@ -52,6 +58,17 @@ public class GestorInsumos implements Gestor<Insumo>{
         return nInsumos_.get(id);
     }
     
+    @Override
+    public ArrayList<Insumo> obtenerLista() {
+        
+        ArrayList<Insumo> listaInsumos = new ArrayList<>();
+        for (Entry<String, Insumo> entry : nInsumos_.entrySet()) {
+                Insumo ingrediente = entry.getValue();
+                listaInsumos.add(ingrediente);
+            }
+        return listaInsumos;
+    }
+    
     private void inicializarLista () throws ExcepcionInsumoNoEncontrado {
         ArrayList<Insumo> listaInsumos = gestorBD_.obtenerLista();
         
@@ -65,6 +82,5 @@ public class GestorInsumos implements Gestor<Insumo>{
         this.nInsumos_ = new HashMap();
         inicializarLista();
     }
-    
     
 }

@@ -70,5 +70,10 @@ public class GestorProductos implements Gestor<Producto>{
         this.nProductos_ = new HashMap();
         inicializarLista();
     }
+
+    @Override
+    public ArrayList<Producto> obtenerLista() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
