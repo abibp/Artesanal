@@ -13,8 +13,7 @@ import presentacion.utileria.Informador;
  */
 public class ExcepcionElementoNoEncontrado extends Exception {
 
-    private final String MENSAJE_DE_ERROR_ = "Este elemento no se encuentra en "
-            + "la lista.";
+    private final String MENSAJE_DE_ERROR_ = "Este elemento no se encuentra almacenado. ";
     private final String INFORMACION_ADICIONAL_ = "\nDetalles: \n";
     
     /**
