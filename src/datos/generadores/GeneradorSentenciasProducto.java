@@ -30,6 +30,10 @@ public class GeneradorSentenciasProducto {
         
         return sentenciaInsertarGenerada;
     }
+    
+    public String generarSentenciaInsertarProductoCompuesto(ProductoCompuesto nuevoProductoCompuesto){
+        final String INSTRUCCION_INSERTAR_COMPUESTO = "INSERT INTO " + ;
+    }
 
     public String generarSentenciaEliminarProducto(String idProducto) {
         final String INSTRUCCION_ELIMINAR = 

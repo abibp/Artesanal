@@ -66,6 +66,15 @@ public class GestorBDProducto extends GestorBaseDatos {
         
     }
     
+    private ProductoCompuesto obtenerLista(String idProducto) throws ExceptionProductoNoEncontrado{
+        
+       String sentenciasObtenerProductosCompuestos;
+       sentenciaObtenerProductosCompuestos = generadorSentencia.generarSentenciaObtenerProductosCompuestos();
+       ResultSet resultadoConsulta = obtenerEjecutorInstrucciones().ejecutarConsulta(sentenciaObtenerProductosCompuestos);
+       
+       return extraerDeResultado(resultadoConsulta);
+    }
+    
     
     private Producto extraerDeResultado(ResultSet resultadoConsulta) throws ExcepcionProductoNoEncontrado{
         
