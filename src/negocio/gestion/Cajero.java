@@ -1,7 +1,11 @@
 package negocio.gestion;
 
+import datos.gestores.GestorBDVenta;
+import java.util.ArrayList;
 import java.util.Date;
 import negocio.entidades.Caja;
+import negocio.entidades.ElementoNota;
+import negocio.entidades.NotaDeVenta;
 import negocio.entidades.ReporteVenta;
 
 /**
@@ -10,6 +14,8 @@ import negocio.entidades.ReporteVenta;
  */
 public class Cajero {
 
+    private final GestorBDVenta gestorBD_;
+    
     private static Cajero unicoGestor_;
     
     private Caja cajaHeladeria_;
@@ -63,6 +69,11 @@ public class Cajero {
         return cajaHeladeria_.obtenerDineroInicial();
     }
     
+    public double realizarVenta(ArrayList<ElementoNota> productos, double pago){
+        NotaDeVenta nota = new NotaDeVenta(productos);
+        gestorBD_.agregarVenta(nota);
+        return 0.0;
+    }
     private ReporteVenta realizarCorte() {
         Date fechaActual = new Date();
         cerrar();
@@ -75,6 +86,7 @@ public class Cajero {
     }
     
     private Cajero() {
+        this.gestorBD_ = new GestorBDVenta();
         entradaTotal = 0.0;
         salidaTotal = 0.0;
     }

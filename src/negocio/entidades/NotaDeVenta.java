@@ -8,11 +8,11 @@ import java.util.Date;
  * @author PIX
  */
 public class NotaDeVenta {
-
-    private final int ID_;
+    
     private final Date FECHA_;
     private final ArrayList<ElementoNota> PRODUCTOS_VENDIDOS_;
     
+    private int ID_;
     private double importeTotal_;
 
     public NotaDeVenta(int id, ArrayList<ElementoNota> elementos) {
@@ -22,6 +22,12 @@ public class NotaDeVenta {
         this.importeTotal_ = 0.0;
     }
 
+    public NotaDeVenta(ArrayList<ElementoNota> elementos) {
+        this.FECHA_ = new Date();
+        this.PRODUCTOS_VENDIDOS_ = elementos;
+        this.importeTotal_ = 0.0;
+    }
+    
     public int obtenerID() {
         return ID_;
     }

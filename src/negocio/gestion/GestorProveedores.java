@@ -5,7 +5,8 @@
  */
 package negocio.gestion;
 
-import datos.GestorBDProveedor;
+import datos.excepciones.ExcepcionProveedorNoEncontrado;
+import datos.gestores.GestorBDProveedor;
 import java.util.ArrayList;
 import java.util.HashMap;
 import negocio.entidades.Proveedor;
@@ -21,7 +22,7 @@ public class GestorProveedores implements Gestor<Proveedor>{
     
     private static GestorProveedores unicoGestor_;
 
-    public synchronized static GestorProveedores obtenerInstancia() {
+    public synchronized static GestorProveedores obtenerInstancia() throws ExcepcionProveedorNoEncontrado {
         if (unicoGestor_ == null) {
             unicoGestor_ = new GestorProveedores();
         }
@@ -51,15 +52,15 @@ public class GestorProveedores implements Gestor<Proveedor>{
         return nProveedores_.get(id);
     }
     
-    private void inicializarLista() {
-        ArrayList<Proveedor> listaProveedors = gestorBD_.obtenerListaProveedores();
+    private void inicializarLista() throws ExcepcionProveedorNoEncontrado {
+        ArrayList<Proveedor> listaProveedors = gestorBD_.obtenerLista();
         
         for (Proveedor proveedor : listaProveedors) {
             nProveedores_.put(proveedor.obtenerID(), proveedor);
         }
     }
     
-    private GestorProveedores() {
+    private GestorProveedores() throws ExcepcionProveedorNoEncontrado {
         this.gestorBD_ = new GestorBDProveedor();
         this.nProveedores_ = new HashMap();
         inicializarLista();

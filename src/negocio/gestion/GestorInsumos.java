@@ -5,7 +5,8 @@
  */
 package negocio.gestion;
 
-import datos.GestorBDInsumo;
+import datos.excepciones.ExcepcionInsumoNoEncontrado;
+import datos.gestores.GestorBDInsumo;
 import java.util.ArrayList;
 import java.util.HashMap;
 import negocio.entidades.Insumo;
@@ -21,7 +22,7 @@ public class GestorInsumos implements Gestor<Insumo>{
     
     private static GestorInsumos unicoGestor_;
     
-    public synchronized static GestorInsumos obtenerInstancia() {
+    public synchronized static GestorInsumos obtenerInstancia() throws ExcepcionInsumoNoEncontrado {
         if (unicoGestor_ == null) {
             unicoGestor_ = new GestorInsumos();
         }
@@ -51,15 +52,15 @@ public class GestorInsumos implements Gestor<Insumo>{
         return nInsumos_.get(id);
     }
     
-    private void inicializarLista () {
-        ArrayList<Insumo> listaInsumos = gestorBD_.obtenerListaInsumos();
+    private void inicializarLista () throws ExcepcionInsumoNoEncontrado {
+        ArrayList<Insumo> listaInsumos = gestorBD_.obtenerLista();
         
         for (Insumo insumo : listaInsumos) {
             nInsumos_.put(insumo.obtenerID(), insumo);
         }
     }
 
-    private GestorInsumos() {
+    private GestorInsumos() throws ExcepcionInsumoNoEncontrado {
         this.gestorBD_ = new GestorBDInsumo();
         this.nInsumos_ = new HashMap();
         inicializarLista();
