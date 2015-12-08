@@ -9,6 +9,7 @@ import datos.excepciones.ExcepcionProveedorNoEncontrado;
 import datos.gestores.GestorBDProveedor;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map.Entry;
 import negocio.entidades.Proveedor;
 
 /**
@@ -52,6 +53,17 @@ public class GestorProveedores implements Gestor<Proveedor>{
         return nProveedores_.get(id);
     }
     
+    @Override
+    public ArrayList<Proveedor> obtenerLista() {
+        
+        ArrayList<Proveedor> listaProveedors = new ArrayList<>();
+        for (Entry<String, Proveedor> entry : nProveedores_.entrySet()) {
+                Proveedor producto = entry.getValue();
+                listaProveedors.add(producto);
+            }
+        return listaProveedors;
+    }
+    
     private void inicializarLista() throws ExcepcionProveedorNoEncontrado {
         ArrayList<Proveedor> listaProveedors = gestorBD_.obtenerLista();
         
@@ -64,11 +76,6 @@ public class GestorProveedores implements Gestor<Proveedor>{
         this.gestorBD_ = new GestorBDProveedor();
         this.nProveedores_ = new HashMap();
         inicializarLista();
-    }
-
-    @Override
-    public ArrayList<Proveedor> obtenerLista() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
