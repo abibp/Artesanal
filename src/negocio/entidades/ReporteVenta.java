@@ -27,7 +27,7 @@ public class ReporteVenta {
         return DESCRIPCION_;
     }
 
-    public boolean isVentaEnReporte(int IDVentaABuscar) {
+    public boolean estaVentaEnReporte(int IDVentaABuscar) {
         return true;
     }
 
