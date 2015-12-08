@@ -9,8 +9,6 @@ import datos.excepciones.ExcepcionInsumoNoEncontrado;
 import datos.gestores.GestorBDInsumo;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import negocio.entidades.Insumo;
 
 /**
@@ -19,13 +17,12 @@ import negocio.entidades.Insumo;
  */
 public class GestorInsumos implements Gestor<Insumo>{
     
-    private final GestorBDInsumo gestorBD;
+    private final GestorBDInsumo gestorBD_;
+    private final HashMap<String,Insumo> nInsumos_;
     
     private static GestorInsumos unicoGestor_;
     
-    private HashMap<String,Insumo> nInsumos_;
-
-    public synchronized static GestorInsumos obtenerInstancia() {
+    public synchronized static GestorInsumos obtenerInstancia() throws ExcepcionInsumoNoEncontrado {
         if (unicoGestor_ == null) {
             unicoGestor_ = new GestorInsumos();
         }
@@ -35,19 +32,19 @@ public class GestorInsumos implements Gestor<Insumo>{
     @Override
     public void agregar(Insumo nuevoInsumo) {
         nInsumos_.put(nuevoInsumo.obtenerID(), nuevoInsumo);
-        gestorBD.agregar(nuevoInsumo);
+        gestorBD_.agregar(nuevoInsumo);
     }
 
     @Override
     public void eliminar(String id) {
         nInsumos_.remove(id);
-        gestorBD.eliminar(id);
+        gestorBD_.eliminar(id);
     }
 
     @Override
     public void editarInformacion(String id, Insumo actualizado) {
         nInsumos_.replace(id, actualizado);
-        gestorBD.editarInformacion(id, actualizado);
+        gestorBD_.editarInformacion(id, actualizado);
     }
 
     @Override
@@ -56,20 +53,17 @@ public class GestorInsumos implements Gestor<Insumo>{
     }
     
     private void inicializarLista () throws ExcepcionInsumoNoEncontrado {
-        ArrayList<Insumo> listaInsumos = gestorBD.obtenerLista();
+        ArrayList<Insumo> listaInsumos = gestorBD_.obtenerLista();
         
         for (Insumo insumo : listaInsumos) {
             nInsumos_.put(insumo.obtenerID(), insumo);
         }
     }
 
-    private GestorInsumos() {
-        this.gestorBD = new GestorBDInsumo();
-        try {
-            inicializarLista();
-        } catch (ExcepcionInsumoNoEncontrado ex) {
-            Logger.getLogger(GestorInsumos.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    private GestorInsumos() throws ExcepcionInsumoNoEncontrado {
+        this.gestorBD_ = new GestorBDInsumo();
+        this.nInsumos_ = new HashMap();
+        inicializarLista();
     }
     
     

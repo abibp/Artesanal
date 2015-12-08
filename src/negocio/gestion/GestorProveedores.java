@@ -5,6 +5,7 @@
  */
 package negocio.gestion;
 
+import datos.excepciones.ExcepcionProveedorNoEncontrado;
 import datos.gestores.GestorBDProveedor;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,13 +17,12 @@ import negocio.entidades.Proveedor;
  */
 public class GestorProveedores implements Gestor<Proveedor>{
     
-    private GestorBDProveedor gestorBD;
+    private final GestorBDProveedor gestorBD_;
+    private final HashMap<String, Proveedor> nProveedores_;
     
     private static GestorProveedores unicoGestor_;
-    
-    private HashMap<String, Proveedor> nProveedores_;
 
-    public synchronized static GestorProveedores obtenerInstancia() {
+    public synchronized static GestorProveedores obtenerInstancia() throws ExcepcionProveedorNoEncontrado {
         if (unicoGestor_ == null) {
             unicoGestor_ = new GestorProveedores();
         }
@@ -32,19 +32,19 @@ public class GestorProveedores implements Gestor<Proveedor>{
     @Override
     public void agregar(Proveedor nuevoProveedor) {
         nProveedores_.put(nuevoProveedor.obtenerID(), nuevoProveedor);
-        GestorBDProveedor.obtenerInstancia().agregar(nuevoProveedor);
+        gestorBD_.agregar(nuevoProveedor);
     }
 
     @Override
     public void eliminar(String id) {
         nProveedores_.remove(id);
-        GestorBDProveedor.obtenerInstancia().eliminar(id);
+        gestorBD_.eliminar(id);
     }
 
     @Override
     public void editarInformacion(String id, Proveedor actualizado) {
         nProveedores_.replace(id, actualizado);
-        GestorBDProveedor.obtenerInstancia().editarInformacion(id, actualizado);
+        gestorBD_.editarInformacion(id, actualizado);
     }
 
     @Override
@@ -52,16 +52,17 @@ public class GestorProveedores implements Gestor<Proveedor>{
         return nProveedores_.get(id);
     }
     
-    private void inicializarLista() {
-        ArrayList<Proveedor> listaProveedors = gestorBD.obtenerListaProveedors();
+    private void inicializarLista() throws ExcepcionProveedorNoEncontrado {
+        ArrayList<Proveedor> listaProveedors = gestorBD_.obtenerLista();
         
         for (Proveedor proveedor : listaProveedors) {
             nProveedores_.put(proveedor.obtenerID(), proveedor);
         }
     }
     
-    private GestorProveedores() {
-        this.gestorBD = new GestorBDProveedor();
+    private GestorProveedores() throws ExcepcionProveedorNoEncontrado {
+        this.gestorBD_ = new GestorBDProveedor();
+        this.nProveedores_ = new HashMap();
         inicializarLista();
     }
 

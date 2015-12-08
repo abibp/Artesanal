@@ -10,6 +10,7 @@ import datos.gestores.GestorBDProducto;
 import java.util.ArrayList;
 import java.util.HashMap;
 import negocio.entidades.Producto;
+import negocio.excepciones.ExcepcionElementoNoEncontrado;
 
 /**
  *
@@ -17,13 +18,12 @@ import negocio.entidades.Producto;
  */
 public class GestorProductos implements Gestor<Producto>{
     
-    private final GestorBDProducto gestorBD;
+    private final GestorBDProducto gestorBD_;
+    private final HashMap<String,Producto> nProductos_;
     
     private static GestorProductos unicoGestor_;
-    
-    private HashMap<String,Producto> nProductos_;
 
-    public synchronized static GestorProductos obtenerInstancia() {
+    public synchronized static GestorProductos obtenerInstancia() throws ExcepcionProductoNoEncontrado {
         if (unicoGestor_ == null) {
             unicoGestor_ = new GestorProductos();
         }
@@ -33,36 +33,41 @@ public class GestorProductos implements Gestor<Producto>{
     @Override
     public void agregar(Producto nuevoProducto) {
         nProductos_.put(nuevoProducto.obtenerID(), nuevoProducto);
-        GestorBDProducto.obtenerInstancia().agregar(nuevoProducto);
+        gestorBD_.agregar(nuevoProducto);
     }
 
     @Override
     public void eliminar(String id) {
         nProductos_.remove(id);
-        GestorBDProducto.obtenerInstancia().eliminar(id);
+        gestorBD_.eliminar(id);
     }
 
     @Override
     public void editarInformacion(String id, Producto actualizado) {
         nProductos_.replace(id, actualizado);
-        GestorBDProducto.obtenerInstancia().editarInformacion(id, actualizado);
+        gestorBD_.editarInformacion(id, actualizado);
     }
 
     @Override
-    public Producto obtener(String id) {
-        return nProductos_.get(id);
+    public Producto obtener(String id) throws ExcepcionElementoNoEncontrado{
+        if(nProductos_.containsKey(id)) {
+            return nProductos_.get(id);
+        }else{
+            throw new ExcepcionElementoNoEncontrado();
+        }
     }
     
     private void inicializarLista() throws ExcepcionProductoNoEncontrado {
-        ArrayList<Producto> listaProductos = gestorBD.obtenerLista();
+        ArrayList<Producto> listaProductos = gestorBD_.obtenerLista();
         
         for (Producto producto : listaProductos) {
             nProductos_.put(producto.obtenerID(), producto);
         }
     }
 
-    private GestorProductos() {
-        this.gestorBD = new GestorBDProducto();
+    private GestorProductos() throws ExcepcionProductoNoEncontrado {
+        this.gestorBD_ = new GestorBDProducto();
+        this.nProductos_ = new HashMap();
         inicializarLista();
     }
     
