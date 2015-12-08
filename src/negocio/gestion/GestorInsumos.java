@@ -7,9 +7,12 @@ package negocio.gestion;
 
 import datos.excepciones.ExcepcionInsumoNoEncontrado;
 import datos.gestores.GestorBDInsumo;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import negocio.entidades.Insumo;
 import negocio.excepciones.ExcepcionElementoYaExistente;
 
@@ -55,7 +58,7 @@ public class GestorInsumos implements Gestor<Insumo>{
 
     @Override
     public Insumo obtener(String id) {
-        return nInsumos_.get(id);
+         return nInsumos_.get(id);
     }
     
     @Override
@@ -65,7 +68,7 @@ public class GestorInsumos implements Gestor<Insumo>{
         for (Entry<String, Insumo> entry : nInsumos_.entrySet()) {
                 Insumo ingrediente = entry.getValue();
                 listaInsumos.add(ingrediente);
-            }
+        }
         return listaInsumos;
     }
     
@@ -80,7 +83,7 @@ public class GestorInsumos implements Gestor<Insumo>{
     private GestorInsumos() throws ExcepcionInsumoNoEncontrado {
         this.gestorBD_ = new GestorBDInsumo();
         this.nInsumos_ = new HashMap();
-        //inicializarLista();
+        inicializarLista();
     }
     
 }

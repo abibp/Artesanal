@@ -83,7 +83,7 @@ public class GeneradorReporte {
 
     private void agregarTitulo() throws DocumentException {
 
-        Paragraph titulo = new Paragraph("PELOS");
+        Paragraph titulo = new Paragraph("Reporte de ventas");
         reporte.add(titulo);
     }
 

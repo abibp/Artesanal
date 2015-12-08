@@ -1,6 +1,10 @@
 package aplicacion;
 
 
+import datos.excepciones.ExcepcionInsumoNoEncontrado;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import negocio.gestion.GestorInsumos;
 import presentacion.inicio.AperturaCajaRegistradoraVentana;
 
 /**
@@ -10,6 +14,7 @@ import presentacion.inicio.AperturaCajaRegistradoraVentana;
 public class Principal {
 
     public static void main(String[] args) {
+        iniciarGestores();
         iniciarSistema();
     }
 
@@ -20,5 +25,13 @@ public class Principal {
         aperturaCajaVentana.setLocationRelativeTo(null);
         aperturaCajaVentana.setVisible(true);
         
+    }
+
+    private static void iniciarGestores() {
+        try {
+            GestorInsumos.obtenerInstancia();
+        } catch (ExcepcionInsumoNoEncontrado ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

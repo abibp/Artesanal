@@ -46,7 +46,7 @@ public class GestorBDInsumo extends GestorBaseDatos {
 
     }
 
-    public ArrayList<Insumo> obtenerLista() throws ExcepcionInsumoNoEncontrado{
+    public ArrayList<Insumo> obtenerLista() throws ExcepcionInsumoNoEncontrado {
 
         ArrayList<Insumo> listaInsumos = new ArrayList<>();
         String sentenciaObtenerInsumos;
@@ -65,12 +65,12 @@ public class GestorBDInsumo extends GestorBaseDatos {
         return listaInsumos;
     }
 
-    public Insumo obtenerPorId(String idInsumo) throws ExcepcionInsumoNoEncontrado {
+    public Insumo obtenerPorId(String idInsumo) throws ExcepcionInsumoNoEncontrado, SQLException {
 
         String sentenciaObtenerInsumoPorId;
         sentenciaObtenerInsumoPorId = generadorSentencia.generarSentenciaObtenerInsumoPorId(idInsumo);
         ResultSet resultadoConsulta = obtenerEjecutorInstrucciones().ejecutarConsulta(sentenciaObtenerInsumoPorId);
-
+        resultadoConsulta.next();
         return extraerDeResultado(resultadoConsulta);
 
     }
@@ -79,17 +79,14 @@ public class GestorBDInsumo extends GestorBaseDatos {
 
         try {
 
-            if (resultadoConsulta.next()) {
+            String id = resultadoConsulta.getString("id_insumo");
+            String nombre = resultadoConsulta.getString("nombre");
+            double costo = resultadoConsulta.getDouble("precio");
+            String unidadMedida = resultadoConsulta.getString("unidadMedida");
+            int existencia = resultadoConsulta.getInt("existencia");
 
-                String id = resultadoConsulta.getString("id_producto");
-                String nombre = resultadoConsulta.getString("nombre");
-                double costo = resultadoConsulta.getDouble("costo");
-                String unidadMedida = resultadoConsulta.getString("unidadMedida");
-                int existencia = resultadoConsulta.getInt("existencia");
-
-                Insumo producto = new Insumo(id, nombre, costo, unidadMedida, existencia);
-                return producto;
-            }
+            Insumo producto = new Insumo(id, nombre, costo, unidadMedida, existencia);
+            return producto;
 
         } catch (SQLException ex) {
             Logger.getLogger(GestorBDInsumo.class.getName()).log(Level.SEVERE, null, ex);

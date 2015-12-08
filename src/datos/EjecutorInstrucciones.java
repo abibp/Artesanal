@@ -14,11 +14,10 @@ public class EjecutorInstrucciones {
     }
 
     public ResultSet ejecutarConsulta(String instruccionSQL) {
-
         ResultSet resultadoConsulta = null;
 
-        try (Statement consultaActual = conexionActual_.createStatement()) {
-            
+        try {
+            Statement consultaActual = conexionActual_.createStatement();
             resultadoConsulta = consultaActual.executeQuery(instruccionSQL);
 
         } catch (SQLException excepcionConsulta) {
@@ -30,11 +29,10 @@ public class EjecutorInstrucciones {
     }
 
     public int ejecutarModificacion(String instruccionSQL) {
-
         int filasAfectadas = 0;
 
-        try (Statement consultaActual = conexionActual_.createStatement()) {
-
+        try {
+            Statement consultaActual = conexionActual_.createStatement();
             filasAfectadas = consultaActual.executeUpdate(instruccionSQL);
 
         } catch (SQLException excepcionConsulta) {

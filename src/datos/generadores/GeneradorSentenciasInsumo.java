@@ -49,7 +49,7 @@ public class GeneradorSentenciasInsumo {
     public String generarSentenciaActualizarInsumo(Insumo insumoActualizado) {
         final String INSTRUCCION_ACTUALIZAR = 
                 "UPDATE " + nombreTabla + 
-                " SET nombre = " + VARIABLE_TEXTO + ", costo = %f, unidad = \"%s\", existencia = %f" +
+                " SET nombre = " + VARIABLE_TEXTO + ", precio = %f, unidadMedida = \"%s\", existencia = %d" +
                 " WHERE id_insumo = \"%s\" ";
         
         String sentenciaActualizarGenerada =
@@ -76,7 +76,7 @@ public class GeneradorSentenciasInsumo {
     public String generarSentenciaObtenerInsumoPorId(String idInsumo){
         String condicion = "id_insumo = " + idInsumo;
         final String INSTRUCCION_OBTENER_POR_ID = 
-                "SELECT * FROM " + nombreTabla + "WHERE id_insumo = \"%s\" ";
+                "SELECT * FROM " + nombreTabla + " WHERE id_insumo = \"%s\" ";
         
         String sentenciaObtenerInsumoPorIdGenerada =
                 String.format(INSTRUCCION_OBTENER_POR_ID, idInsumo);

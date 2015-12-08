@@ -1,5 +1,11 @@
 package presentacion.insumos;
 
+import datos.excepciones.ExcepcionInsumoNoEncontrado;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import negocio.entidades.Insumo;
+import negocio.gestion.GestorInsumos;
 import presentacion.utileria.ModeloPersonalizadoTabla;
 
 /**
@@ -154,7 +160,7 @@ public class InventarioInsumosPanel extends javax.swing.JPanel{
 
     private void configurarComponentes() {
 
-        String[] cabeceraTabla = {"ID Insumo","Nombre","Costo", "Cantidad","Cantidad Minima", "Estado"};
+        String[] cabeceraTabla = {"ID Insumo","Nombre","Costo", "Cantidad"};
         insumosInventarioTablaModelo = new ModeloPersonalizadoTabla(cabeceraTabla);
         insumosInventarioTabla.setModel(insumosInventarioTablaModelo);
 
@@ -170,7 +176,16 @@ public class InventarioInsumosPanel extends javax.swing.JPanel{
     private void mostrarInformacionTodosLosInsumos() {
         
         insumosInventarioTablaModelo.reiniciarTabla();
-        //TODO: pedir informacion al gestor productos
+        
+        try {
+            ArrayList<Insumo> insumos = GestorInsumos.obtenerInstancia().obtenerLista();
+            for(Insumo actual : insumos){
+                agregarInsumoTabla(actual);
+            }
+//TODO: pedir informacion al gestor productos
+        } catch (ExcepcionInsumoNoEncontrado ex) {
+            Logger.getLogger(InventarioInsumosPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private void buscarInsumos() {
@@ -195,6 +210,17 @@ public class InventarioInsumosPanel extends javax.swing.JPanel{
         
         insumosInventarioTablaModelo.reiniciarTabla();
         //TODO: recibir una lista de productos y actualizar la tabla
+        
+    }
+
+    private void agregarInsumoTabla(Insumo actual) {
+        ArrayList fila = new ArrayList();
+        fila.add(actual.obtenerID());
+        fila.add(actual.obtenerNombre());
+        fila.add(String.valueOf(actual.obtenerCosto()));
+        fila.add(String.valueOf(actual.obtenerExistencia()));
+        
+        insumosInventarioTablaModelo.agregarFila(fila);
         
     }
 

@@ -157,7 +157,7 @@ public class FormularioRegistroInsumo extends javax.swing.JPanel {
                 .addGroup(formularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cantidadActualEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cantidadActualCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
 
         accionIconoEtiqueta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/recursos/agregar_main.png"))); // NOI18N
@@ -198,7 +198,7 @@ public class FormularioRegistroInsumo extends javax.swing.JPanel {
                     .addComponent(formularioPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(reiniciarCamposBoton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(registrarInsumoBoton)
                 .addGap(30, 30, 30))
         );
@@ -297,14 +297,17 @@ public class FormularioRegistroInsumo extends javax.swing.JPanel {
         if (estadoValidacion == CORRECTO) {
 
             Insumo insumoCreado = crearInsumo();
+            
             try {
-                GestorInsumos gestor = GestorInsumos.obtenerInstancia();
-                gestor.agregar(insumoCreado);
-                Informador.mostrarMensajeDeInformacion("Insumo Agregado");
-                //TODO: asignar el resultado del metodo a una variable producto y enviarla a negocio
-            } catch (ExcepcionInsumoNoEncontrado ex) {
-                Logger.getLogger(FormularioRegistroInsumo.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ExcepcionElementoYaExistente ex) {
+                                
+                GestorInsumos gestorInsumos = GestorInsumos.obtenerInstancia();
+                gestorInsumos.agregar(insumoCreado);
+                reiniciarInformacionFormulario();
+                
+                final String MENSAJE_EXITO = "Insumo Agregado";
+                Informador.mostrarMensajeDeInformacion(MENSAJE_EXITO);
+                
+            } catch (ExcepcionInsumoNoEncontrado | ExcepcionElementoYaExistente ex) {
                 Logger.getLogger(FormularioRegistroInsumo.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
@@ -329,6 +332,7 @@ public class FormularioRegistroInsumo extends javax.swing.JPanel {
     }
 
     private Insumo crearInsumo() {
+        
         String codigo = codigoCampo.getText();
         String nombre = nombreCampo.getText();
         double costo = Double.parseDouble(costoCampo.getText());
@@ -336,5 +340,6 @@ public class FormularioRegistroInsumo extends javax.swing.JPanel {
         
         Insumo insumoCreado = new Insumo(codigo, nombre, costo, "KG", cantidadActual);
         return insumoCreado;
+    
     }
 }
