@@ -4,9 +4,7 @@ import negocio.entidades.ElementoNota;
 
 public class GestorBDVenta extends GestorBaseDatos {
 
-    public static Object obtenerInstancia() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 
     public void agregarVenta(ElementoNota nuevaVenta) {
 
