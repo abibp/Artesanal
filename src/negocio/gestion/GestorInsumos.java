@@ -48,9 +48,9 @@ public class GestorInsumos implements Gestor<Insumo>{
     }
 
     @Override
-    public void editarInformacion(String id, Insumo actualizado) {
-        nInsumos_.replace(id, actualizado);
-        gestorBD_.editarInformacion(id, actualizado);
+    public void editarInformacion(Insumo actualizado) {
+        nInsumos_.replace(actualizado.obtenerID(), actualizado);
+        gestorBD_.editarInformacion(actualizado.obtenerID(), actualizado);
     }
 
     @Override

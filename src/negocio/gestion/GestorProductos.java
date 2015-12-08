@@ -9,6 +9,7 @@ import datos.excepciones.ExcepcionProductoNoEncontrado;
 import datos.gestores.GestorBDProducto;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map.Entry;
 import negocio.entidades.Producto;
 import negocio.excepciones.ExcepcionElementoNoEncontrado;
 
@@ -43,9 +44,9 @@ public class GestorProductos implements Gestor<Producto>{
     }
 
     @Override
-    public void editarInformacion(String id, Producto actualizado) {
-        nProductos_.replace(id, actualizado);
-        gestorBD_.editarInformacion(id, actualizado);
+    public void editarInformacion(Producto actualizado) {
+        nProductos_.replace(actualizado.obtenerID(), actualizado);
+        gestorBD_.editarInformacion(actualizado.obtenerID(), actualizado);
     }
 
     @Override
@@ -57,23 +58,29 @@ public class GestorProductos implements Gestor<Producto>{
         }
     }
     
+    @Override
+    public ArrayList<Producto> obtenerLista() {
+        
+        ArrayList<Producto> listaProductos = new ArrayList<>();
+        for (Entry<String, Producto> entry : nProductos_.entrySet()) {
+                Producto producto = entry.getValue();
+                listaProductos.add(producto);
+            }
+        return listaProductos;
+    }
+    
     private void inicializarLista() throws ExcepcionProductoNoEncontrado {
         ArrayList<Producto> listaProductos = gestorBD_.obtenerLista();
         
         for (Producto producto : listaProductos) {
             nProductos_.put(producto.obtenerID(), producto);
-        }
+        } 
     }
 
     private GestorProductos() throws ExcepcionProductoNoEncontrado {
         this.gestorBD_ = new GestorBDProducto();
         this.nProductos_ = new HashMap();
         inicializarLista();
-    }
-
-    @Override
-    public ArrayList<Producto> obtenerLista() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

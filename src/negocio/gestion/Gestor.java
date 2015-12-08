@@ -20,7 +20,7 @@ public interface Gestor<Entidad> {
     
     public void eliminar(String id) throws ExcepcionElementoNoEncontrado;
     
-    public void editarInformacion(String id, Entidad objeto) throws ExcepcionElementoNoEncontrado;
+    public void editarInformacion(Entidad objeto) throws ExcepcionElementoNoEncontrado;
     
     public Entidad obtener(String id) throws ExcepcionElementoNoEncontrado;
     
