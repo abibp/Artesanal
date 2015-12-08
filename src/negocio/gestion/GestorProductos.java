@@ -10,6 +10,7 @@ import datos.gestores.GestorBDProducto;
 import java.util.ArrayList;
 import java.util.HashMap;
 import negocio.entidades.Producto;
+import negocio.excepciones.ExcepcionElementoNoEncontrado;
 
 /**
  *
@@ -48,8 +49,12 @@ public class GestorProductos implements Gestor<Producto>{
     }
 
     @Override
-    public Producto obtener(String id) {
-        return nProductos_.get(id);
+    public Producto obtener(String id) throws ExcepcionElementoNoEncontrado{
+        if(nProductos_.containsKey(id)) {
+            return nProductos_.get(id);
+        }else{
+            throw new ExcepcionElementoNoEncontrado();
+        }
     }
     
     private void inicializarLista() throws ExcepcionProductoNoEncontrado {

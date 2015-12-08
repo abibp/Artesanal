@@ -5,7 +5,7 @@
  */
 package negocio.excepciones;
 
-import usuario.Informador;
+import presentacion.utileria.Informador;
 
 /**
  *
@@ -14,8 +14,8 @@ import usuario.Informador;
 public class ExcepcionElementoNoEncontrado extends Exception {
 
     private final String MENSAJE_DE_ERROR_ = "Este elemento no se encuentra en "
-            + "la lista. ";
-    private final String INFORMACION_ADICIONAL_ = "Detalles: ";
+            + "la lista.";
+    private final String INFORMACION_ADICIONAL_ = "\nDetalles: \n";
     
     /**
      * Creates a new instance of <code>ExcepcionElementoNoEncontrado</code>

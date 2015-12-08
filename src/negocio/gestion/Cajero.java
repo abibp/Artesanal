@@ -70,9 +70,15 @@ public class Cajero {
     }
     
     public double realizarVenta(ArrayList<ElementoNota> productos, double pago){
-        NotaDeVenta nota = new NotaDeVenta(productos);
+        
+        NotaDeVenta nota = new NotaDeVenta(productos, pago);
+        registrarVenta(nota);
+        double cambio = pago - (nota.obtenerImporteTotal());
+        return cambio;
+    }
+    
+    private void registrarVenta(NotaDeVenta nota){
         gestorBD_.agregarVenta(nota);
-        return 0.0;
     }
     private ReporteVenta realizarCorte() {
         Date fechaActual = new Date();

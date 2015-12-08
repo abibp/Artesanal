@@ -5,7 +5,7 @@
  */
 package negocio.excepciones;
 
-import usuario.Informador;
+import presentacion.utileria.Informador;
 
 /**
  *
