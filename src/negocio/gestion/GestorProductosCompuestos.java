@@ -41,14 +41,19 @@ public class GestorProductosCompuestos implements Gestor<ProductoCompuesto>{
     }
 
     @Override
-    public void editarInformacion(String id, ProductoCompuesto actualizado) {
-        nProductosCompuestos_.replace(id, actualizado);
-        gestorBD_.editarInformacion(id, actualizado);
+    public void editarInformacion(ProductoCompuesto actualizado) {
+        nProductosCompuestos_.replace(actualizado.obtenerID(), actualizado);
+        gestorBD_.editarInformacion(actualizado.obtenerID(), actualizado);
     }
 
     @Override
     public ProductoCompuesto obtener(String id) {
         return nProductosCompuestos_.get(id);
+    }
+    
+    @Override
+    public ArrayList<ProductoCompuesto> obtenerLista() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     private void inicializarLista() {
@@ -63,11 +68,6 @@ public class GestorProductosCompuestos implements Gestor<ProductoCompuesto>{
         this.gestorBD_ = new GestorBDProducto();
         this.nProductosCompuestos_ = new HashMap();
         inicializarLista();
-    }
-
-    @Override
-    public ArrayList<ProductoCompuesto> obtenerLista() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

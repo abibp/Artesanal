@@ -44,9 +44,9 @@ public class GestorProductos implements Gestor<Producto>{
     }
 
     @Override
-    public void editarInformacion(String id, Producto actualizado) {
-        nProductos_.replace(id, actualizado);
-        gestorBD_.editarInformacion(id, actualizado);
+    public void editarInformacion(Producto actualizado) {
+        nProductos_.replace(actualizado.obtenerID(), actualizado);
+        gestorBD_.editarInformacion(actualizado.obtenerID(), actualizado);
     }
 
     @Override

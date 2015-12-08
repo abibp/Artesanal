@@ -43,9 +43,9 @@ public class GestorProveedores implements Gestor<Proveedor>{
     }
 
     @Override
-    public void editarInformacion(String id, Proveedor actualizado) {
-        nProveedores_.replace(id, actualizado);
-        gestorBD_.editarInformacion(id, actualizado);
+    public void editarInformacion(Proveedor actualizado) {
+        nProveedores_.replace(actualizado.obtenerID(), actualizado);
+        gestorBD_.editarInformacion(actualizado.obtenerID(), actualizado);
     }
 
     @Override
