@@ -63,7 +63,7 @@ public class GestorInsumos implements Gestor<Insumo>{
     private GestorInsumos() throws ExcepcionInsumoNoEncontrado {
         this.gestorBD_ = new GestorBDInsumo();
         this.nInsumos_ = new HashMap();
-        inicializarLista();
+        //inicializarLista();
     }
     
     

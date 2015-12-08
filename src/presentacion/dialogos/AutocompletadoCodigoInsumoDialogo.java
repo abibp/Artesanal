@@ -3,6 +3,7 @@ package presentacion.dialogos;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JTextField;
+import negocio.gestion.GestorInsumos;
 import presentacion.utileria.ModeloPersonalizadoTabla;
 
 /**
@@ -157,6 +158,7 @@ public class AutocompletadoCodigoInsumoDialogo extends javax.swing.JDialog {
     }
 
     private void llenarTabla() {
+        
         //TODO: Solicitar lista a gestor
         
     }

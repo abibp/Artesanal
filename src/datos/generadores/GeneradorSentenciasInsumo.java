@@ -20,7 +20,7 @@ public class GeneradorSentenciasInsumo {
     public String generarSentenciaInsertarInsumo(Insumo nuevoInsumo) {
         final String INSTRUCCION_INSERTAR = 
                 "INSERT INTO " + nombreTabla + 
-                " VALUES (\"%s\", \"%s\", %f, \"%s\", %f)";
+                " VALUES (\"%s\", \"%s\", %f, \"%s\", %d)";
         
         String sentenciaInsertarGenerada = 
                 String.format(

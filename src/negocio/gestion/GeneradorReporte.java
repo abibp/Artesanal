@@ -81,9 +81,10 @@ public class GeneradorReporte {
         return tablaProductosVendidos;
     }
 
-    private void agregarTitulo() {
+    private void agregarTitulo() throws DocumentException {
 
-        Paragraph titulo = new Paragraph();
+        Paragraph titulo = new Paragraph("PELOS");
+        reporte.add(titulo);
     }
 
     private void agregarSeccion(NotaDeVenta actual) {
@@ -100,7 +101,7 @@ public class GeneradorReporte {
 
     private void iniciarEdicion(String ubicacionDirectorio) throws FileNotFoundException, DocumentException {
 
-        final String SEPARADOR = "\"";
+        final String SEPARADOR = "\\";
         FileOutputStream archivoPDF = new FileOutputStream(ubicacionDirectorio + SEPARADOR + nombreReporte);
         PdfWriter.getInstance(reporte, archivoPDF);
         reporte.open();

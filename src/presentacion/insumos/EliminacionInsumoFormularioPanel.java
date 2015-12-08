@@ -1,12 +1,17 @@
 package presentacion.insumos;
 
+import datos.excepciones.ExcepcionInsumoNoEncontrado;
 import java.awt.Component;
 import java.awt.event.KeyListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import negocio.entidades.Insumo;
+import negocio.gestion.GestorInsumos;
 import presentacion.dialogos.AutocompletadoCodigoInsumoDialogo;
 import presentacion.utileria.RestriccionNumeroDecimalCampo;
 import presentacion.utileria.Informador;
@@ -15,14 +20,14 @@ import presentacion.utileria.Informador;
  *
  * @author PIX
  */
-public class EliminacionInsumoFormularioPanel extends javax.swing.JPanel implements DocumentListener{
+public class EliminacionInsumoFormularioPanel extends javax.swing.JPanel implements DocumentListener {
 
     public EliminacionInsumoFormularioPanel() {
         initComponents();
         configurarEventos();
     }
 
-      @Override
+    @Override
     public void insertUpdate(DocumentEvent e) {
         completarInformacionInsumo();
     }
@@ -36,7 +41,7 @@ public class EliminacionInsumoFormularioPanel extends javax.swing.JPanel impleme
     public void changedUpdate(DocumentEvent e) {
         completarInformacionInsumo();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -268,11 +273,10 @@ public class EliminacionInsumoFormularioPanel extends javax.swing.JPanel impleme
     private org.edisoncor.gui.label.LabelMetric tituloPanel;
     // End of variables declaration//GEN-END:variables
 
-
     private void configurarEventos() {
-        
+
         busquedaCodigoInsumoBoton.addActionListener(evento -> autocompletarCodigoInsumo());
-        eliminacionInsumoBoton.addActionListener(evento -> registrarInsumo());
+        eliminacionInsumoBoton.addActionListener(evento -> eliminarInsumo());
     }
 
     private boolean estaCompletaInformacionFormulario() {
@@ -294,7 +298,7 @@ public class EliminacionInsumoFormularioPanel extends javax.swing.JPanel impleme
         return true;
     }
 
-    private void registrarInsumo() {
+    private void eliminarInsumo() {
 
         final boolean CORRECTO = true;
 
@@ -316,8 +320,8 @@ public class EliminacionInsumoFormularioPanel extends javax.swing.JPanel impleme
 
         } else {
 
-            final String MENSAJE_CAMPOS_INCOMPLETOS = 
-                    "¡Selecciona un insumo a eliminar!";
+            final String MENSAJE_CAMPOS_INCOMPLETOS
+                    = "¡Selecciona un insumo a eliminar!";
             Informador.mostrarMensajeDeError(MENSAJE_CAMPOS_INCOMPLETOS);
 
             return false;
@@ -326,14 +330,20 @@ public class EliminacionInsumoFormularioPanel extends javax.swing.JPanel impleme
     }
 
     private void completarInformacionInsumo() {
-        
+
         //TODO: solicitar el insumo de la bd
         String IDInsumo = codigoCampo.getText();
-        nombreCampo.setText("");
-        costoCampo.setText("");
-        cantidadActualCampo.setText("");
-        cantidadMinimaCampo.setText("");
-        
+
+        try {
+            Insumo insumoSolicitado = GestorInsumos.obtenerInstancia().obtener(IDInsumo);
+            nombreCampo.setText(insumoSolicitado.obtenerNombre());
+            costoCampo.setText("" + insumoSolicitado.obtenerCosto());
+            cantidadActualCampo.setText("" + insumoSolicitado.obtenerExistencia());
+            cantidadMinimaCampo.setText("" + 10);
+        } catch (ExcepcionInsumoNoEncontrado ex) {
+            Logger.getLogger(EliminacionInsumoFormularioPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     private void autocompletarCodigoInsumo() {
@@ -341,11 +351,11 @@ public class EliminacionInsumoFormularioPanel extends javax.swing.JPanel impleme
         final boolean MODO_DIALOGO = true;
         JFrame ventanaActiva = (JFrame) SwingUtilities.getWindowAncestor(this);
 
-        AutocompletadoCodigoInsumoDialogo dialogoAutocompletado = 
-                new AutocompletadoCodigoInsumoDialogo(ventanaActiva, MODO_DIALOGO);
+        AutocompletadoCodigoInsumoDialogo dialogoAutocompletado
+                = new AutocompletadoCodigoInsumoDialogo(ventanaActiva, MODO_DIALOGO);
 
         dialogoAutocompletado.establecerCampoPorAutocompletar(codigoCampo);
-        
+
         dialogoAutocompletado.mostrarEnPantalla();
     }
 }
