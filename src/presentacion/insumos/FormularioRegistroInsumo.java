@@ -7,6 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTextField;
 import negocio.entidades.Insumo;
+import negocio.excepciones.ExcepcionElementoYaExistente;
 import negocio.gestion.GestorInsumos;
 import presentacion.utileria.RestriccionNumeroDecimalCampo;
 import presentacion.utileria.Informador;
@@ -16,9 +17,9 @@ import presentacion.utileria.RestriccionNumeroEnteroCampo;
  *
  * @author PIX
  */
-public class RegistroInsumoFormularioPanel extends javax.swing.JPanel {
+public class FormularioRegistroInsumo extends javax.swing.JPanel {
 
-    public RegistroInsumoFormularioPanel() {
+    public FormularioRegistroInsumo() {
         initComponents();
         configurarComponentes();
         configurarEventos();
@@ -302,7 +303,9 @@ public class RegistroInsumoFormularioPanel extends javax.swing.JPanel {
                 Informador.mostrarMensajeDeInformacion("Insumo Agregado");
                 //TODO: asignar el resultado del metodo a una variable producto y enviarla a negocio
             } catch (ExcepcionInsumoNoEncontrado ex) {
-                Logger.getLogger(RegistroInsumoFormularioPanel.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(FormularioRegistroInsumo.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ExcepcionElementoYaExistente ex) {
+                Logger.getLogger(FormularioRegistroInsumo.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 

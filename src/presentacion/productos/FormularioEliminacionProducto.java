@@ -1,28 +1,24 @@
 package presentacion.productos;
 
 import java.awt.Component;
-import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import presentacion.dialogos.AutocompletadoCodigoProductoDialogo;
-import presentacion.dialogos.AutocompletadoCodigoProveedorDialogo;
-import presentacion.dialogos.RegistroUsoInsumoDialogo;
 import presentacion.utileria.ModeloPersonalizadoTabla;
-import presentacion.utileria.RestriccionNumeroDecimalCampo;
 import presentacion.utileria.Informador;
 
 /**
  *
  * @author PIX
  */
-public class ModificacionProductoFormularioPanel extends javax.swing.JPanel implements DocumentListener{
+public class FormularioEliminacionProducto extends javax.swing.JPanel implements DocumentListener{
 
     private ModeloPersonalizadoTabla insumosUsadosTablaModelo;
 
-    public ModificacionProductoFormularioPanel() {
+    public FormularioEliminacionProducto() {
         initComponents();
         configurarComponentes();
         configurarEventos();
@@ -52,7 +48,7 @@ public class ModificacionProductoFormularioPanel extends javax.swing.JPanel impl
         clavoIzquierdoIconoEtiqueta = new javax.swing.JLabel();
         clavoDerechoIconoEtiqueta = new javax.swing.JLabel();
         tituloPanel = new org.edisoncor.gui.label.LabelMetric();
-        agregarProductoBoton = new javax.swing.JButton();
+        eliminarProductoBoton = new javax.swing.JButton();
         formularioPanel = new javax.swing.JPanel();
         codigoEtiqueta = new org.edisoncor.gui.label.LabelMetric();
         codigoCampo = new javax.swing.JTextField();
@@ -66,15 +62,11 @@ public class ModificacionProductoFormularioPanel extends javax.swing.JPanel impl
         cantidadActualEtiqueta = new org.edisoncor.gui.label.LabelMetric();
         proveedorCampo = new javax.swing.JTextField();
         proveedorEtiqueta = new org.edisoncor.gui.label.LabelMetric();
-        autocompletarCodigoProveedorBoton = new javax.swing.JButton();
         completarCodigoProducto = new javax.swing.JButton();
         barraDesplazamientoTabla = new javax.swing.JScrollPane();
         insumosUsadosTabla = new javax.swing.JTable();
         insumosUsadosEtiqueta = new org.edisoncor.gui.label.LabelMetric();
         accionIconoEtiqueta = new javax.swing.JLabel();
-        agregarInsumoBoton = new javax.swing.JButton();
-        removerInsumoBoton = new javax.swing.JButton();
-        reiniciarCamposBoton = new javax.swing.JButton();
 
         fondoPanel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/recursos/madera_fondo.jpg"))); // NOI18N
 
@@ -84,7 +76,7 @@ public class ModificacionProductoFormularioPanel extends javax.swing.JPanel impl
 
         clavoDerechoIconoEtiqueta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/recursos/clavo.png"))); // NOI18N
 
-        tituloPanel.setText("Modificacion de Producto");
+        tituloPanel.setText("Eliminacion de Producto");
         tituloPanel.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
 
         javax.swing.GroupLayout tituloFondoPanelLayout = new javax.swing.GroupLayout(tituloFondoPanel);
@@ -111,11 +103,11 @@ public class ModificacionProductoFormularioPanel extends javax.swing.JPanel impl
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
-        agregarProductoBoton.setBackground(new java.awt.Color(153, 0, 0));
-        agregarProductoBoton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        agregarProductoBoton.setForeground(new java.awt.Color(255, 255, 255));
-        agregarProductoBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/recursos/registrar.png"))); // NOI18N
-        agregarProductoBoton.setText("Registrar");
+        eliminarProductoBoton.setBackground(new java.awt.Color(153, 0, 0));
+        eliminarProductoBoton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        eliminarProductoBoton.setForeground(new java.awt.Color(255, 255, 255));
+        eliminarProductoBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/recursos/registrar.png"))); // NOI18N
+        eliminarProductoBoton.setText("Eliminar");
 
         formularioPanel.setBackground(new java.awt.Color(51, 0, 0));
         formularioPanel.setMaximumSize(new java.awt.Dimension(523, 405));
@@ -127,21 +119,25 @@ public class ModificacionProductoFormularioPanel extends javax.swing.JPanel impl
         codigoCampo.setEditable(false);
         codigoCampo.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
 
+        costoCampo.setEditable(false);
         costoCampo.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
 
         costoEtiqueta.setText("Costo :");
         costoEtiqueta.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
 
+        nombreCampo.setEditable(false);
         nombreCampo.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
 
         nombreEtiqueta.setText("Nombre :");
         nombreEtiqueta.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
 
+        precioCampo.setEditable(false);
         precioCampo.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
 
         precioEtiqueta.setText("Precio :");
         precioEtiqueta.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
 
+        cantidadActualCampo.setEditable(false);
         cantidadActualCampo.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
 
         cantidadActualEtiqueta.setText("Cantidad Actual :");
@@ -152,12 +148,6 @@ public class ModificacionProductoFormularioPanel extends javax.swing.JPanel impl
 
         proveedorEtiqueta.setText("Codigo Proveedor :");
         proveedorEtiqueta.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-
-        autocompletarCodigoProveedorBoton.setBackground(new java.awt.Color(102, 0, 0));
-        autocompletarCodigoProveedorBoton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        autocompletarCodigoProveedorBoton.setForeground(new java.awt.Color(255, 255, 255));
-        autocompletarCodigoProveedorBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/recursos/buscar.png"))); // NOI18N
-        autocompletarCodigoProveedorBoton.setText("Buscar");
 
         completarCodigoProducto.setBackground(new java.awt.Color(102, 0, 0));
         completarCodigoProducto.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -170,7 +160,7 @@ public class ModificacionProductoFormularioPanel extends javax.swing.JPanel impl
         formularioPanelLayout.setHorizontalGroup(
             formularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(formularioPanelLayout.createSequentialGroup()
-                .addGroup(formularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(formularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(formularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(formularioPanelLayout.createSequentialGroup()
                             .addComponent(costoEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -198,13 +188,11 @@ public class ModificacionProductoFormularioPanel extends javax.swing.JPanel impl
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(completarCodigoProducto)))))
                     .addGroup(formularioPanelLayout.createSequentialGroup()
-                        .addGap(46, 46, 46)
+                        .addGap(45, 45, 45)
                         .addComponent(proveedorEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(proveedorCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(autocompletarCodigoProveedorBoton)))
-                .addContainerGap(63, Short.MAX_VALUE))
+                        .addComponent(proveedorCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
         formularioPanelLayout.setVerticalGroup(
             formularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,12 +218,11 @@ public class ModificacionProductoFormularioPanel extends javax.swing.JPanel impl
                 .addGroup(formularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cantidadActualEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cantidadActualCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(formularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(proveedorEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(proveedorCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(autocompletarCodigoProveedorBoton))
-                .addContainerGap(88, Short.MAX_VALUE))
+                    .addComponent(proveedorCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         insumosUsadosTabla.setModel(new javax.swing.table.DefaultTableModel(
@@ -254,25 +241,7 @@ public class ModificacionProductoFormularioPanel extends javax.swing.JPanel impl
         insumosUsadosEtiqueta.setText("Insumos Usados");
         insumosUsadosEtiqueta.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
 
-        accionIconoEtiqueta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/recursos/cambio_main.png"))); // NOI18N
-
-        agregarInsumoBoton.setBackground(new java.awt.Color(102, 0, 0));
-        agregarInsumoBoton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        agregarInsumoBoton.setForeground(new java.awt.Color(255, 255, 255));
-        agregarInsumoBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/recursos/agregar_insumo.png"))); // NOI18N
-        agregarInsumoBoton.setText("Agregar Insumo");
-
-        removerInsumoBoton.setBackground(new java.awt.Color(102, 0, 0));
-        removerInsumoBoton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        removerInsumoBoton.setForeground(new java.awt.Color(255, 255, 255));
-        removerInsumoBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/recursos/borrar_insumo.png"))); // NOI18N
-        removerInsumoBoton.setText("Eliminar Insumo");
-
-        reiniciarCamposBoton.setBackground(new java.awt.Color(102, 0, 0));
-        reiniciarCamposBoton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        reiniciarCamposBoton.setForeground(new java.awt.Color(255, 255, 255));
-        reiniciarCamposBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/recursos/borrador.png"))); // NOI18N
-        reiniciarCamposBoton.setText("Reiniciar Campos");
+        accionIconoEtiqueta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/recursos/baja_main.png"))); // NOI18N
 
         javax.swing.GroupLayout fondoPanelLayout = new javax.swing.GroupLayout(fondoPanel);
         fondoPanel.setLayout(fondoPanelLayout);
@@ -281,7 +250,7 @@ public class ModificacionProductoFormularioPanel extends javax.swing.JPanel impl
             .addComponent(tituloFondoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(fondoPanelLayout.createSequentialGroup()
                 .addGap(586, 586, 586)
-                .addComponent(agregarProductoBoton)
+                .addComponent(eliminarProductoBoton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(fondoPanelLayout.createSequentialGroup()
                 .addGap(47, 47, 47)
@@ -291,43 +260,34 @@ public class ModificacionProductoFormularioPanel extends javax.swing.JPanel impl
                         .addGap(105, 105, 105)
                         .addComponent(insumosUsadosEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(fondoPanelLayout.createSequentialGroup()
-                        .addGap(74, 74, 74)
-                        .addGroup(fondoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(agregarInsumoBoton)
-                            .addGroup(fondoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(removerInsumoBoton)
-                                .addComponent(barraDesplazamientoTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(75, 75, 75)
+                        .addComponent(barraDesplazamientoTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
-                .addGroup(fondoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fondoPanelLayout.createSequentialGroup()
-                        .addComponent(accionIconoEtiqueta)
-                        .addGap(151, 151, 151))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fondoPanelLayout.createSequentialGroup()
-                        .addComponent(reiniciarCamposBoton)
-                        .addGap(138, 138, 138))))
+                .addComponent(accionIconoEtiqueta)
+                .addGap(151, 151, 151))
         );
         fondoPanelLayout.setVerticalGroup(
             fondoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fondoPanelLayout.createSequentialGroup()
                 .addComponent(tituloFondoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(fondoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(formularioPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(fondoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(fondoPanelLayout.createSequentialGroup()
-                        .addComponent(accionIconoEtiqueta)
-                        .addGap(40, 40, 40)
-                        .addComponent(reiniciarCamposBoton))
+                        .addGap(53, 53, 53)
+                        .addGroup(fondoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(fondoPanelLayout.createSequentialGroup()
+                                .addComponent(accionIconoEtiqueta)
+                                .addGap(81, 81, 81))
+                            .addGroup(fondoPanelLayout.createSequentialGroup()
+                                .addComponent(insumosUsadosEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(barraDesplazamientoTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                        .addComponent(eliminarProductoBoton)
+                        .addGap(30, 30, 30))
                     .addGroup(fondoPanelLayout.createSequentialGroup()
-                        .addComponent(agregarInsumoBoton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(removerInsumoBoton)
                         .addGap(18, 18, 18)
-                        .addComponent(insumosUsadosEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(barraDesplazamientoTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addComponent(agregarProductoBoton)
-                .addGap(30, 30, 30))
+                        .addComponent(formularioPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -345,9 +305,6 @@ public class ModificacionProductoFormularioPanel extends javax.swing.JPanel impl
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel accionIconoEtiqueta;
-    private javax.swing.JButton agregarInsumoBoton;
-    private javax.swing.JButton agregarProductoBoton;
-    private javax.swing.JButton autocompletarCodigoProveedorBoton;
     private javax.swing.JScrollPane barraDesplazamientoTabla;
     private javax.swing.JTextField cantidadActualCampo;
     private org.edisoncor.gui.label.LabelMetric cantidadActualEtiqueta;
@@ -358,6 +315,7 @@ public class ModificacionProductoFormularioPanel extends javax.swing.JPanel impl
     private javax.swing.JButton completarCodigoProducto;
     private javax.swing.JTextField costoCampo;
     private org.edisoncor.gui.label.LabelMetric costoEtiqueta;
+    private javax.swing.JButton eliminarProductoBoton;
     private org.edisoncor.gui.panel.PanelImage fondoPanel;
     private javax.swing.JPanel formularioPanel;
     private org.edisoncor.gui.label.LabelMetric insumosUsadosEtiqueta;
@@ -368,103 +326,26 @@ public class ModificacionProductoFormularioPanel extends javax.swing.JPanel impl
     private org.edisoncor.gui.label.LabelMetric precioEtiqueta;
     private javax.swing.JTextField proveedorCampo;
     private org.edisoncor.gui.label.LabelMetric proveedorEtiqueta;
-    private javax.swing.JButton reiniciarCamposBoton;
-    private javax.swing.JButton removerInsumoBoton;
     private org.edisoncor.gui.panel.PanelImage tituloFondoPanel;
     private org.edisoncor.gui.label.LabelMetric tituloPanel;
     // End of variables declaration//GEN-END:variables
 
     private void configurarComponentes() {
 
-        establecerRestriccionCampo(costoCampo, new RestriccionNumeroDecimalCampo());
-        establecerRestriccionCampo(precioCampo, new RestriccionNumeroDecimalCampo());
-        establecerRestriccionCampo(cantidadActualCampo, new RestriccionNumeroDecimalCampo());
-
         String[] cabeceraTabla = {"ID insumo", "Cantidad"};
         insumosUsadosTablaModelo = new ModeloPersonalizadoTabla(cabeceraTabla);
         insumosUsadosTabla.setModel(insumosUsadosTablaModelo);
 
     }
-    
-    private void establecerRestriccionCampo(JTextField campo, KeyListener filtro){
-        campo.addKeyListener(filtro);
-        campo.setTransferHandler(null);
-    }
+
 
     private void configurarEventos() {
-        
-        autocompletarCodigoProveedorBoton.addActionListener(evento -> autocompletarCodigoProveedor());
+
         completarCodigoProducto.addActionListener(evento -> autocompletarCodigoProducto());
-        agregarInsumoBoton.addActionListener(evento -> agregarUsoInsumo());
-        removerInsumoBoton.addActionListener(evento -> removerUsoInsumo());
-        reiniciarCamposBoton.addActionListener(evento -> reiniciarInformacionFormulario());
-        agregarProductoBoton.addActionListener(evento -> modificarProducto());
+        eliminarProductoBoton.addActionListener(evento -> eliminarProducto());
 
     }
 
-    private void autocompletarCodigoProveedor() {
-
-        final boolean MODO_DIALOGO = true;
-        JFrame ventanaActiva = (JFrame) SwingUtilities.getWindowAncestor(this);
-
-        AutocompletadoCodigoProveedorDialogo dialogoAutocompletado = 
-                new AutocompletadoCodigoProveedorDialogo(ventanaActiva, MODO_DIALOGO);
-
-        dialogoAutocompletado.establecerCampoPorAutocompletar(proveedorCampo);
-        
-        dialogoAutocompletado.mostrarEnPantalla();
-    }
-
-    private void agregarUsoInsumo() {
-        
-        final boolean MODO_DIALOGO = true;
-        JFrame ventanaActiva = (JFrame) SwingUtilities.getWindowAncestor(this);
-
-        RegistroUsoInsumoDialogo dialogoAutocompletado = 
-                new RegistroUsoInsumoDialogo(ventanaActiva, MODO_DIALOGO);
-
-        dialogoAutocompletado.establecerTablaPorAcompletar(insumosUsadosTablaModelo);
-        
-        dialogoAutocompletado.mostrarEnPantalla();
-        
-    }
-
-    private void removerUsoInsumo() {
-
-        boolean hayUnaFilaSeleccionada = insumosUsadosTabla.getSelectedRow() >= 0 ;
-        
-        if(hayUnaFilaSeleccionada){
-        
-            int indiceFilaSeleccionada = insumosUsadosTabla.getSelectedRow();
-            insumosUsadosTablaModelo.eliminarFila(indiceFilaSeleccionada);
-            
-        }else{
-            
-            final String NO_SELECCIONO_FILA_MENSAJE = "¡ Selecciona un insumo !";
-            
-            Informador.mostrarMensajeDeError(NO_SELECCIONO_FILA_MENSAJE);
-            
-        }
-        
-    }
-
-    private void reiniciarInformacionFormulario() {
-        
-        final String VACIO = "";
-
-        for (Component componente : formularioPanel.getComponents()) {
-
-            if (componente instanceof JTextField) {
-
-                JTextField campoTexto = (JTextField) componente;
-
-                campoTexto.setText(VACIO);
-
-            }
-        }
-
-        insumosUsadosTablaModelo.reiniciarTabla();
-    }
 
     private boolean estaCompletaInformacionFormulario() {
 
@@ -485,7 +366,7 @@ public class ModificacionProductoFormularioPanel extends javax.swing.JPanel impl
         return true;
     }
 
-    private void modificarProducto() {
+    private void eliminarProducto() {
 
         final boolean CORRECTO = true;
 
@@ -493,7 +374,6 @@ public class ModificacionProductoFormularioPanel extends javax.swing.JPanel impl
 
         if (estadoValidacion == CORRECTO) {
 
-            crearProducto();
             //TODO: asignar el resultado del metodo a una variable producto y enviarla a negocio
         }
 
@@ -507,27 +387,15 @@ public class ModificacionProductoFormularioPanel extends javax.swing.JPanel impl
 
         } else {
 
-            final String MENSAJE_CAMPOS_INCOMPLETOS = 
-                    "¡Rellena todos los campos!";
-            Informador.mostrarMensajeDeError(MENSAJE_CAMPOS_INCOMPLETOS);
+            final String NO_SELECCIONO_PRODUCTO_MENSAJE = 
+                    "¡No has seleccionado un producto!";
+            Informador.mostrarMensajeDeError(NO_SELECCIONO_PRODUCTO_MENSAJE);
 
             return false;
         }
 
     }
 
-    
-
-    private void crearProducto() {
-        String codigo = codigoCampo.getText();
-        String nombre = nombreCampo.getText();
-        double costo = Double.parseDouble(costoCampo.getText());
-        double precio = Double.parseDouble(precioCampo.getText());
-        double cantidadActual = Double.parseDouble(cantidadActualCampo.getText());
-        int codigoProveedor = Integer.parseInt(proveedorCampo.getText());
-
-        //TODO: Devolver una instancia de Producto
-    }
 
     private void autocompletarCodigoProducto() {
 

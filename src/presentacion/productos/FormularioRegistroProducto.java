@@ -15,11 +15,11 @@ import presentacion.utileria.Informador;
  *
  * @author PIX
  */
-public class RegistroProductoFormularioPanel extends javax.swing.JPanel {
+public class FormularioRegistroProducto extends javax.swing.JPanel {
 
     private ModeloPersonalizadoTabla insumosUsadosTablaModelo;
 
-    public RegistroProductoFormularioPanel() {
+    public FormularioRegistroProducto() {
         initComponents();
         configurarComponentes();
         configurarEventos();

@@ -1,17 +1,12 @@
 package presentacion.insumos;
 
-import datos.excepciones.ExcepcionInsumoNoEncontrado;
 import java.awt.Component;
 import java.awt.event.KeyListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import negocio.entidades.Insumo;
-import negocio.gestion.GestorInsumos;
 import presentacion.dialogos.AutocompletadoCodigoInsumoDialogo;
 import presentacion.utileria.RestriccionNumeroDecimalCampo;
 import presentacion.utileria.Informador;
@@ -20,14 +15,15 @@ import presentacion.utileria.Informador;
  *
  * @author PIX
  */
-public class EliminacionInsumoFormularioPanel extends javax.swing.JPanel implements DocumentListener {
+public class FormularioModificacionInsumo extends javax.swing.JPanel implements DocumentListener{
 
-    public EliminacionInsumoFormularioPanel() {
+    public FormularioModificacionInsumo() {
         initComponents();
+        configurarComponentes();
         configurarEventos();
     }
 
-    @Override
+      @Override
     public void insertUpdate(DocumentEvent e) {
         completarInformacionInsumo();
     }
@@ -41,7 +37,7 @@ public class EliminacionInsumoFormularioPanel extends javax.swing.JPanel impleme
     public void changedUpdate(DocumentEvent e) {
         completarInformacionInsumo();
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -51,7 +47,7 @@ public class EliminacionInsumoFormularioPanel extends javax.swing.JPanel impleme
         clavoIzquierdoIconoEtiqueta = new javax.swing.JLabel();
         clavoDerechoIconoEtiqueta = new javax.swing.JLabel();
         tituloPanel = new org.edisoncor.gui.label.LabelMetric();
-        eliminacionInsumoBoton = new javax.swing.JButton();
+        modificacionInsumoBoton = new javax.swing.JButton();
         formularioPanel = new javax.swing.JPanel();
         codigoEtiqueta = new org.edisoncor.gui.label.LabelMetric();
         codigoCampo = new javax.swing.JTextField();
@@ -65,6 +61,7 @@ public class EliminacionInsumoFormularioPanel extends javax.swing.JPanel impleme
         cantidadMinimaCampo = new javax.swing.JTextField();
         busquedaCodigoInsumoBoton = new javax.swing.JButton();
         accionIconoEtiqueta = new javax.swing.JLabel();
+        reiniciarCamposBoton = new javax.swing.JButton();
 
         fondoPanel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/recursos/madera_fondo.jpg"))); // NOI18N
 
@@ -74,7 +71,7 @@ public class EliminacionInsumoFormularioPanel extends javax.swing.JPanel impleme
 
         clavoDerechoIconoEtiqueta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/recursos/clavo.png"))); // NOI18N
 
-        tituloPanel.setText("Eliminacion de Insumo");
+        tituloPanel.setText("Modificacion de Insumo");
         tituloPanel.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
 
         javax.swing.GroupLayout tituloFondoPanelLayout = new javax.swing.GroupLayout(tituloFondoPanel);
@@ -101,11 +98,11 @@ public class EliminacionInsumoFormularioPanel extends javax.swing.JPanel impleme
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
-        eliminacionInsumoBoton.setBackground(new java.awt.Color(153, 0, 0));
-        eliminacionInsumoBoton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        eliminacionInsumoBoton.setForeground(new java.awt.Color(255, 255, 255));
-        eliminacionInsumoBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/recursos/registrar.png"))); // NOI18N
-        eliminacionInsumoBoton.setText("Eliminar");
+        modificacionInsumoBoton.setBackground(new java.awt.Color(153, 0, 0));
+        modificacionInsumoBoton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        modificacionInsumoBoton.setForeground(new java.awt.Color(255, 255, 255));
+        modificacionInsumoBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/recursos/registrar.png"))); // NOI18N
+        modificacionInsumoBoton.setText("Modificar");
 
         formularioPanel.setBackground(new java.awt.Color(51, 0, 0));
 
@@ -115,19 +112,16 @@ public class EliminacionInsumoFormularioPanel extends javax.swing.JPanel impleme
         codigoCampo.setEditable(false);
         codigoCampo.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
 
-        costoCampo.setEditable(false);
         costoCampo.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
 
         costoEtiqueta.setText("Costo :");
         costoEtiqueta.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
 
-        nombreCampo.setEditable(false);
         nombreCampo.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
 
         nombreEtiqueta.setText("Nombre :");
         nombreEtiqueta.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
 
-        cantidadActualCampo.setEditable(false);
         cantidadActualCampo.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
 
         cantidadActualEtiqueta.setText("Cantidad Actual :");
@@ -136,7 +130,6 @@ public class EliminacionInsumoFormularioPanel extends javax.swing.JPanel impleme
         cantidadMinimaEtiqueta.setText("Cantidad Minima :");
         cantidadMinimaEtiqueta.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
 
-        cantidadMinimaCampo.setEditable(false);
         cantidadMinimaCampo.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
 
         busquedaCodigoInsumoBoton.setBackground(new java.awt.Color(153, 0, 0));
@@ -207,7 +200,13 @@ public class EliminacionInsumoFormularioPanel extends javax.swing.JPanel impleme
                 .addContainerGap(37, Short.MAX_VALUE))
         );
 
-        accionIconoEtiqueta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/recursos/baja_main.png"))); // NOI18N
+        accionIconoEtiqueta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/recursos/cambio_main.png"))); // NOI18N
+
+        reiniciarCamposBoton.setBackground(new java.awt.Color(102, 0, 0));
+        reiniciarCamposBoton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        reiniciarCamposBoton.setForeground(new java.awt.Color(255, 255, 255));
+        reiniciarCamposBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/recursos/borrador.png"))); // NOI18N
+        reiniciarCamposBoton.setText("Reiniciar Campos");
 
         javax.swing.GroupLayout fondoPanelLayout = new javax.swing.GroupLayout(fondoPanel);
         fondoPanel.setLayout(fondoPanelLayout);
@@ -216,8 +215,12 @@ public class EliminacionInsumoFormularioPanel extends javax.swing.JPanel impleme
             .addComponent(tituloFondoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(fondoPanelLayout.createSequentialGroup()
                 .addGap(586, 586, 586)
-                .addComponent(eliminacionInsumoBoton)
+                .addComponent(modificacionInsumoBoton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(fondoPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(reiniciarCamposBoton)
+                .addGap(138, 138, 138))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fondoPanelLayout.createSequentialGroup()
                 .addGap(186, 186, 186)
                 .addComponent(formularioPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -233,8 +236,10 @@ public class EliminacionInsumoFormularioPanel extends javax.swing.JPanel impleme
                 .addGroup(fondoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(accionIconoEtiqueta)
                     .addComponent(formularioPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
-                .addComponent(eliminacionInsumoBoton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(reiniciarCamposBoton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addComponent(modificacionInsumoBoton)
                 .addGap(30, 30, 30))
         );
 
@@ -264,19 +269,50 @@ public class EliminacionInsumoFormularioPanel extends javax.swing.JPanel impleme
     private org.edisoncor.gui.label.LabelMetric codigoEtiqueta;
     private javax.swing.JTextField costoCampo;
     private org.edisoncor.gui.label.LabelMetric costoEtiqueta;
-    private javax.swing.JButton eliminacionInsumoBoton;
     private org.edisoncor.gui.panel.PanelImage fondoPanel;
     private javax.swing.JPanel formularioPanel;
+    private javax.swing.JButton modificacionInsumoBoton;
     private javax.swing.JTextField nombreCampo;
     private org.edisoncor.gui.label.LabelMetric nombreEtiqueta;
+    private javax.swing.JButton reiniciarCamposBoton;
     private org.edisoncor.gui.panel.PanelImage tituloFondoPanel;
     private org.edisoncor.gui.label.LabelMetric tituloPanel;
     // End of variables declaration//GEN-END:variables
 
-    private void configurarEventos() {
+    private void configurarComponentes() {
 
+        establecerRestriccionCampo(costoCampo, new RestriccionNumeroDecimalCampo());
+        establecerRestriccionCampo(cantidadActualCampo, new RestriccionNumeroDecimalCampo());
+        establecerRestriccionCampo(cantidadMinimaCampo, new RestriccionNumeroDecimalCampo());
+
+    }
+    
+    private void establecerRestriccionCampo(JTextField campo, KeyListener filtro){
+        campo.addKeyListener(filtro);
+        campo.setTransferHandler(null);
+    }
+
+    private void configurarEventos() {
+        
         busquedaCodigoInsumoBoton.addActionListener(evento -> autocompletarCodigoInsumo());
-        eliminacionInsumoBoton.addActionListener(evento -> eliminarInsumo());
+        reiniciarCamposBoton.addActionListener(evento -> reiniciarInformacionFormulario());
+        modificacionInsumoBoton.addActionListener(evento -> registrarInsumo());
+    }
+   
+    private void reiniciarInformacionFormulario() {
+        final String VACIO = "";
+
+        for (Component componente : formularioPanel.getComponents()) {
+
+            if (componente instanceof JTextField) {
+
+                JTextField campoTexto = (JTextField) componente;
+
+                campoTexto.setText(VACIO);
+
+            }
+        }
+
     }
 
     private boolean estaCompletaInformacionFormulario() {
@@ -298,7 +334,7 @@ public class EliminacionInsumoFormularioPanel extends javax.swing.JPanel impleme
         return true;
     }
 
-    private void eliminarInsumo() {
+    private void registrarInsumo() {
 
         final boolean CORRECTO = true;
 
@@ -306,8 +342,8 @@ public class EliminacionInsumoFormularioPanel extends javax.swing.JPanel impleme
 
         if (estadoValidacion == CORRECTO) {
 
-            String IDInsumo = codigoCampo.getText();
-            //TODO: eliminar insumo por id
+            crearInsumo();
+            //TODO: asignar el resultado del metodo a una variable producto y enviarla a negocio
         }
 
     }
@@ -320,8 +356,8 @@ public class EliminacionInsumoFormularioPanel extends javax.swing.JPanel impleme
 
         } else {
 
-            final String MENSAJE_CAMPOS_INCOMPLETOS
-                    = "¡Selecciona un insumo a eliminar!";
+            final String MENSAJE_CAMPOS_INCOMPLETOS = 
+                    "¡Rellena todos los campos!";
             Informador.mostrarMensajeDeError(MENSAJE_CAMPOS_INCOMPLETOS);
 
             return false;
@@ -329,21 +365,26 @@ public class EliminacionInsumoFormularioPanel extends javax.swing.JPanel impleme
 
     }
 
-    private void completarInformacionInsumo() {
+    private void crearInsumo() {
+        
+        String codigo = codigoCampo.getText();
+        String nombre = nombreCampo.getText();
+        double costo = Double.parseDouble(costoCampo.getText());
+        double cantidadActual = Double.parseDouble(cantidadActualCampo.getText());
+        double cantidadMinima = Double.parseDouble(cantidadMinimaCampo.getText());
 
+        //TODO: Devolver una instancia de insumo
+    }
+
+    private void completarInformacionInsumo() {
+        
         //TODO: solicitar el insumo de la bd
         String IDInsumo = codigoCampo.getText();
-
-        try {
-            Insumo insumoSolicitado = GestorInsumos.obtenerInstancia().obtener(IDInsumo);
-            nombreCampo.setText(insumoSolicitado.obtenerNombre());
-            costoCampo.setText("" + insumoSolicitado.obtenerCosto());
-            cantidadActualCampo.setText("" + insumoSolicitado.obtenerExistencia());
-            cantidadMinimaCampo.setText("" + 10);
-        } catch (ExcepcionInsumoNoEncontrado ex) {
-            Logger.getLogger(EliminacionInsumoFormularioPanel.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+        nombreCampo.setText("");
+        costoCampo.setText("");
+        cantidadActualCampo.setText("");
+        cantidadMinimaCampo.setText("");
+        
     }
 
     private void autocompletarCodigoInsumo() {
@@ -351,11 +392,11 @@ public class EliminacionInsumoFormularioPanel extends javax.swing.JPanel impleme
         final boolean MODO_DIALOGO = true;
         JFrame ventanaActiva = (JFrame) SwingUtilities.getWindowAncestor(this);
 
-        AutocompletadoCodigoInsumoDialogo dialogoAutocompletado
-                = new AutocompletadoCodigoInsumoDialogo(ventanaActiva, MODO_DIALOGO);
+        AutocompletadoCodigoInsumoDialogo dialogoAutocompletado = 
+                new AutocompletadoCodigoInsumoDialogo(ventanaActiva, MODO_DIALOGO);
 
         dialogoAutocompletado.establecerCampoPorAutocompletar(codigoCampo);
-
+        
         dialogoAutocompletado.mostrarEnPantalla();
     }
 }
