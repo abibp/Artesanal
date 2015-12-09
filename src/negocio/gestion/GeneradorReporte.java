@@ -29,7 +29,8 @@ public class GeneradorReporte {
     public void generarReporteVentas(
             Date fechaInicio,
             Date fechaFinalizacion,
-            String ubicacionDirectorio) throws FileNotFoundException, DocumentException {
+            String ubicacionDirectorio
+    ) throws FileNotFoundException, DocumentException {
 
         iniciarEdicion(ubicacionDirectorio);
         agregarTitulo();
