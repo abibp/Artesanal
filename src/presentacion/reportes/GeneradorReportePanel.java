@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
-import negocio.gestion.GeneradorReporte;
+import negocio.administracion.GeneradorReporte;
 import presentacion.utileria.Informador;
 
 /**

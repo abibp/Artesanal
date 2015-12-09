@@ -1,4 +1,4 @@
-package negocio.gestion;
+package negocio.administracion;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;

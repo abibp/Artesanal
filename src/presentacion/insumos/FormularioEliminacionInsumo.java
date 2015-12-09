@@ -11,7 +11,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import negocio.entidades.Insumo;
 import negocio.excepciones.ExcepcionElementoYaExistente;
-import negocio.gestion.GestorInsumos;
+import negocio.administracion.GestorInsumos;
 import presentacion.dialogos.AutocompletadoCodigoInsumoDialogo;
 import presentacion.utileria.Informador;
 

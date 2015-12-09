@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package negocio.gestion;
+package negocio.administracion;
 
 import datos.excepciones.ExcepcionInsumoNoEncontrado;
 import datos.gestores.GestorBDInsumo;

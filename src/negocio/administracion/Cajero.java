@@ -1,4 +1,4 @@
-package negocio.gestion;
+package negocio.administracion;
 
 import datos.gestores.GestorBDVenta;
 import java.util.ArrayList;

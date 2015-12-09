@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 import javax.swing.JTextField;
 import negocio.entidades.Insumo;
 import negocio.excepciones.ExcepcionElementoYaExistente;
-import negocio.gestion.GestorInsumos;
+import negocio.administracion.GestorInsumos;
 import presentacion.utileria.RestriccionNumeroDecimalCampo;
 import presentacion.utileria.Informador;
 import presentacion.utileria.RestriccionNumeroEnteroCampo;

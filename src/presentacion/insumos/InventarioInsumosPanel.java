@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import negocio.entidades.Insumo;
-import negocio.gestion.GestorInsumos;
+import negocio.administracion.GestorInsumos;
 import presentacion.utileria.ModeloPersonalizadoTabla;
 
 /**

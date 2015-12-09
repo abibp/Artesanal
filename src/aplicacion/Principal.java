@@ -4,7 +4,7 @@ package aplicacion;
 import datos.excepciones.ExcepcionInsumoNoEncontrado;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import negocio.gestion.GestorInsumos;
+import negocio.administracion.GestorInsumos;
 import presentacion.inicio.AperturaCajaRegistradoraVentana;
 
 /**

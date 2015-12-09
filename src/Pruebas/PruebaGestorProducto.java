@@ -8,7 +8,7 @@ package Pruebas;
 import datos.excepciones.ExcepcionProductoNoEncontrado;
 import negocio.entidades.Producto;
 import negocio.excepciones.ExcepcionElementoNoEncontrado;
-import negocio.gestion.GestorProductos;
+import negocio.administracion.GestorProductos;
 
 /**
  *
