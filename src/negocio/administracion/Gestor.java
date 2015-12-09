@@ -25,4 +25,5 @@ public interface Gestor<Entidad> {
     public Entidad obtener(String id) throws ExcepcionElementoNoEncontrado;
     
     public ArrayList<Entidad> obtenerLista();
+    
 }

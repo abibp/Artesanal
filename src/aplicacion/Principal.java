@@ -1,10 +1,10 @@
 package aplicacion;
 
 
-import datos.excepciones.ExcepcionInsumoNoEncontrado;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import negocio.administracion.GestorInsumos;
+import negocio.excepciones.ExcepcionElementoNoEncontrado;
 import presentacion.inicio.AperturaCajaRegistradoraVentana;
 
 /**
@@ -30,7 +30,7 @@ public class Principal {
     private static void iniciarGestores() {
         try {
             GestorInsumos.obtenerInstancia();
-        } catch (ExcepcionInsumoNoEncontrado ex) {
+        } catch (ExcepcionElementoNoEncontrado ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

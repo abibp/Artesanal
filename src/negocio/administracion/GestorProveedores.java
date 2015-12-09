@@ -10,7 +10,10 @@ import datos.gestores.GestorBDProveedor;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import negocio.entidades.Proveedor;
+import negocio.excepciones.ExcepcionElementoNoEncontrado;
 
 /**
  *
@@ -23,7 +26,7 @@ public class GestorProveedores implements Gestor<Proveedor>{
     
     private static GestorProveedores unicoGestor_;
 
-    public synchronized static GestorProveedores obtenerInstancia() throws ExcepcionProveedorNoEncontrado {
+    public synchronized static GestorProveedores obtenerInstancia() throws ExcepcionElementoNoEncontrado {
         if (unicoGestor_ == null) {
             unicoGestor_ = new GestorProveedores();
         }
@@ -52,27 +55,31 @@ public class GestorProveedores implements Gestor<Proveedor>{
     public Proveedor obtener(String id) {
         return nDirectorio_.get(id);
     }
-    
+
     @Override
     public ArrayList<Proveedor> obtenerLista() {
-        
+
         ArrayList<Proveedor> listaProveedors = new ArrayList<>();
         for (Entry<String, Proveedor> entry : nDirectorio_.entrySet()) {
-                Proveedor producto = entry.getValue();
-                listaProveedors.add(producto);
-            }
+            Proveedor producto = entry.getValue();
+            listaProveedors.add(producto);
+        }
         return listaProveedors;
     }
     
-    private void inicializarLista() throws ExcepcionProveedorNoEncontrado {
-        ArrayList<Proveedor> listaProveedors = gestorBD_.obtenerLista();
-        
-        for (Proveedor proveedor : listaProveedors) {
-            nDirectorio_.put(proveedor.obtenerID(), proveedor);
+    private void inicializarLista() throws ExcepcionElementoNoEncontrado {
+        try {
+            ArrayList<Proveedor> listaProveedors = gestorBD_.obtenerLista();
+            
+            for (Proveedor proveedor : listaProveedors) {
+                nDirectorio_.put(proveedor.obtenerID(), proveedor);
+            }
+        } catch (ExcepcionProveedorNoEncontrado ex) {
+            throw new ExcepcionElementoNoEncontrado();
         }
     }
     
-    private GestorProveedores() throws ExcepcionProveedorNoEncontrado {
+    private GestorProveedores() throws ExcepcionElementoNoEncontrado {
         this.gestorBD_ = new GestorBDProveedor();
         this.nDirectorio_ = new HashMap();
         inicializarLista();

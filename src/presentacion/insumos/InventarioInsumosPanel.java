@@ -1,11 +1,11 @@
 package presentacion.insumos;
 
-import datos.excepciones.ExcepcionInsumoNoEncontrado;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import negocio.entidades.Insumo;
 import negocio.administracion.GestorInsumos;
+import negocio.excepciones.ExcepcionElementoNoEncontrado;
 import presentacion.utileria.ModeloPersonalizadoTabla;
 
 /**
@@ -183,7 +183,7 @@ public class InventarioInsumosPanel extends javax.swing.JPanel{
                 agregarInsumoTabla(actual);
             }
 //TODO: pedir informacion al gestor productos
-        } catch (ExcepcionInsumoNoEncontrado ex) {
+        } catch (ExcepcionElementoNoEncontrado ex) {
             Logger.getLogger(InventarioInsumosPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

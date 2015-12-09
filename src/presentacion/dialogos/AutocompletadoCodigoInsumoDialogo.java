@@ -1,6 +1,5 @@
 package presentacion.dialogos;
 
-import datos.excepciones.ExcepcionInsumoNoEncontrado;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -9,6 +8,7 @@ import java.util.logging.Logger;
 import javax.swing.JTextField;
 import negocio.entidades.Insumo;
 import negocio.administracion.GestorInsumos;
+import negocio.excepciones.ExcepcionElementoNoEncontrado;
 import presentacion.utileria.ModeloPersonalizadoTabla;
 
 /**
@@ -170,7 +170,7 @@ public class AutocompletadoCodigoInsumoDialogo extends javax.swing.JDialog {
             }
             
             //TODO: Solicitar lista a gestor
-        } catch (ExcepcionInsumoNoEncontrado ex) {
+        } catch (ExcepcionElementoNoEncontrado ex) {
             Logger.getLogger(AutocompletadoCodigoInsumoDialogo.class.getName()).log(Level.SEVERE, null, ex);
         }
         

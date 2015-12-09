@@ -80,6 +80,7 @@ public class Cajero {
     private void registrarVenta(NotaDeVenta nota){
         gestorBD_.agregarVenta(null);
     }
+    
     private ReporteVenta realizarCorte() {
         Date fechaActual = new Date();
         cerrar();

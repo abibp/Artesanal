@@ -7,13 +7,13 @@ package negocio.administracion;
 
 import datos.excepciones.ExcepcionInsumoNoEncontrado;
 import datos.gestores.GestorBDInsumo;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import negocio.entidades.Insumo;
+import negocio.excepciones.ExcepcionElementoNoEncontrado;
 import negocio.excepciones.ExcepcionElementoYaExistente;
 
 /**
@@ -27,7 +27,7 @@ public class GestorInsumos implements Gestor<Insumo>{
     
     private static GestorInsumos unicoGestor_;
     
-    public synchronized static GestorInsumos obtenerInstancia() throws ExcepcionInsumoNoEncontrado {
+    public synchronized static GestorInsumos obtenerInstancia() throws ExcepcionElementoNoEncontrado {
         if (unicoGestor_ == null) {
             unicoGestor_ = new GestorInsumos();
         }
@@ -36,6 +36,7 @@ public class GestorInsumos implements Gestor<Insumo>{
 
     @Override
     public void agregar(Insumo nuevoInsumo) throws ExcepcionElementoYaExistente{
+        
         if(!nInsumos_.containsKey(nuevoInsumo.obtenerID())){
             nInsumos_.put(nuevoInsumo.obtenerID(), nuevoInsumo);
             gestorBD_.agregar(nuevoInsumo);
@@ -72,15 +73,20 @@ public class GestorInsumos implements Gestor<Insumo>{
         return listaInsumos;
     }
     
-    private void inicializarLista () throws ExcepcionInsumoNoEncontrado {
-        ArrayList<Insumo> listaInsumos = gestorBD_.obtenerLista();
+    private void inicializarLista () throws ExcepcionElementoNoEncontrado {
         
-        for (Insumo insumo : listaInsumos) {
-            nInsumos_.put(insumo.obtenerID(), insumo);
+        try {
+            ArrayList<Insumo> listaInsumos = gestorBD_.obtenerLista();
+            
+            for (Insumo insumo : listaInsumos) {
+                nInsumos_.put(insumo.obtenerID(), insumo);
+            }
+        } catch (ExcepcionInsumoNoEncontrado insumoNoEncontrado) {
+            throw new ExcepcionElementoNoEncontrado();
         }
     }
 
-    private GestorInsumos() throws ExcepcionInsumoNoEncontrado {
+    private GestorInsumos() throws ExcepcionElementoNoEncontrado {
         this.gestorBD_ = new GestorBDInsumo();
         this.nInsumos_ = new HashMap();
         inicializarLista();
