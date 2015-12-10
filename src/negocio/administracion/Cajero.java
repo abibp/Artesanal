@@ -117,7 +117,6 @@ public class Cajero {
     }
     
     private void realizarCorte() {
-        Date fechaActual = new Date();
         cerrar();
     }
 
