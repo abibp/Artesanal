@@ -13,6 +13,7 @@ import negocio.administracion.GestorProductos;
 import negocio.entidades.ElementoNota;
 import negocio.entidades.Producto;
 import negocio.excepciones.ExcepcionElementoNoEncontrado;
+import negocio.excepciones.ExcepcionExistenciasInsuficientes;
 import presentacion.dialogos.AutocompletadoCodigoProductoDialogo;
 import presentacion.utileria.ModeloPersonalizadoTabla;
 import presentacion.utileria.RestriccionNumeroDecimalCampo;
@@ -430,7 +431,11 @@ public class RegistroVentasPanel extends javax.swing.JPanel {
 
                 double importeTotalVenta = Double.parseDouble(totalVentaCampo.getText());
 
-                cajeroActual.realizarVenta(notaVenta_, cantidadPagadaCliente);
+                try {
+                    cajeroActual.realizarVenta(notaVenta_, cantidadPagadaCliente);
+                } catch (ExcepcionElementoNoEncontrado | ExcepcionExistenciasInsuficientes ex) {
+                    Logger.getLogger(RegistroVentasPanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
                 mostrarImporteCambio(cantidadPagadaCliente, importeTotalVenta);
                 reiniciarDatosVenta();

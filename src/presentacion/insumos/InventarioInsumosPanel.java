@@ -1,6 +1,7 @@
 package presentacion.insumos;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import negocio.entidades.Insumo;
@@ -178,7 +179,7 @@ public class InventarioInsumosPanel extends javax.swing.JPanel{
         insumosInventarioTablaModelo.reiniciarTabla();
         
         try {
-            ArrayList<Insumo> insumos = GestorInsumos.obtenerInstancia().obtenerLista();
+            List<Insumo> insumos = GestorInsumos.obtenerInstancia().obtenerLista();
             for(Insumo actual : insumos){
                 agregarInsumoTabla(actual);
             }

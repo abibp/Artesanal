@@ -75,24 +75,25 @@ public class GestorBDProveedor extends GestorBaseDatos {
 
     }
 
-    private Proveedor extraerDeResultado(ResultSet resultadoConsulta) throws ExcepcionProveedorNoEncontrado {
+    private Proveedor extraerDeResultado(ResultSet resultadoConsulta) {
 
+        Proveedor proveedor = null;
         try {
-
+            
             String id = resultadoConsulta.getString("id_proveedor");
             String nombre = resultadoConsulta.getString("nombre");
             String direccion = resultadoConsulta.getString("direccion");
             String telefono = resultadoConsulta.getString("telefono");
-
-            Proveedor proveedor = new Proveedor(id, nombre, direccion, telefono);
+            
+            proveedor = new Proveedor(id, nombre, direccion, telefono);
             return proveedor;
-
-
+            
         } catch (SQLException ex) {
             Logger.getLogger(GestorBDProveedor.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        throw new ExcepcionProveedorNoEncontrado();
+        
+        return proveedor;
+        
     }
 
 }

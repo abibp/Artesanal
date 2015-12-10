@@ -7,6 +7,7 @@ import javax.swing.JTextField;
 import negocio.administracion.GestorProveedores;
 import negocio.entidades.Proveedor;
 import negocio.excepciones.ExcepcionElementoNoEncontrado;
+import negocio.excepciones.ExcepcionElementoYaExistente;
 import presentacion.utileria.Informador;
 
 /**
@@ -289,7 +290,9 @@ public class FormularioRegistroProveedor extends javax.swing.JPanel {
                 final String MENSAJE_EXITO = "Proveedor Agregado";
                 Informador.mostrarMensajeDeInformacion(MENSAJE_EXITO);
 
-            } catch (ExcepcionElementoNoEncontrado ex) {
+            } catch (ExcepcionElementoNoEncontrado ex ) {
+                Logger.getLogger(FormularioRegistroProveedor.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ExcepcionElementoYaExistente ex) {
                 Logger.getLogger(FormularioRegistroProveedor.class.getName()).log(Level.SEVERE, null, ex);
             }
 

@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 import negocio.entidades.Proveedor;
 import negocio.excepciones.ExcepcionElementoNoEncontrado;
+import negocio.excepciones.ExcepcionElementoYaExistente;
 
 /**
  *
@@ -32,9 +33,17 @@ public class GestorProveedores implements Gestor<Proveedor>{
     }
 
     @Override
-    public void agregar(Proveedor nuevoProveedor) {
-        nDirectorio_.put(nuevoProveedor.obtenerID(), nuevoProveedor);
-        gestorBD_.agregar(nuevoProveedor);
+    public void agregar(Proveedor nuevoProveedor) throws ExcepcionElementoYaExistente {
+        
+        if(!nDirectorio_.containsKey(nuevoProveedor.obtenerID())){
+            
+            nDirectorio_.put(nuevoProveedor.obtenerID(), nuevoProveedor);
+            gestorBD_.agregar(nuevoProveedor);
+            
+        }else{
+            throw new ExcepcionElementoYaExistente();
+        }
+        
     }
 
     @Override

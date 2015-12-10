@@ -9,6 +9,7 @@ import datos.excepciones.ExcepcionProductoNoEncontrado;
 import negocio.entidades.Producto;
 import negocio.excepciones.ExcepcionElementoNoEncontrado;
 import negocio.administracion.GestorProductos;
+import negocio.excepciones.ExcepcionElementoYaExistente;
 
 /**
  *
@@ -19,7 +20,7 @@ public class PruebaGestorProducto {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws ExcepcionElementoNoEncontrado, ExcepcionProductoNoEncontrado {
+    public static void main(String[] args) throws ExcepcionElementoNoEncontrado, ExcepcionProductoNoEncontrado, ExcepcionElementoYaExistente {
         // TODO code application logic here
         GestorProductos gestor = GestorProductos.obtenerInstancia();
         try{
