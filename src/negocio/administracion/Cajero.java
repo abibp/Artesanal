@@ -2,12 +2,10 @@ package negocio.administracion;
 
 import datos.gestores.GestorBDVenta;
 import java.util.ArrayList;
-import java.util.Date;
 import negocio.entidades.Caja;
 import negocio.entidades.ElementoNota;
 import negocio.entidades.NotaDeVenta;
 import negocio.entidades.Producto;
-import negocio.entidades.ReporteVentas;
 import negocio.excepciones.ExcepcionElementoNoEncontrado;
 import negocio.excepciones.ExcepcionExistenciasInsuficientes;
 
