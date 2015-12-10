@@ -63,23 +63,38 @@ public class Cajero {
         return cajaHeladeria_.obtenerDineroInicial();
     }
 
-    public double realizarVenta(ArrayList<ElementoNota> productos, double pago) throws ExcepcionElementoNoEncontrado, ExcepcionExistenciasInsuficientes {
+    public void realizarVenta(ArrayList<ElementoNota> productos, double pago) throws ExcepcionElementoNoEncontrado, ExcepcionExistenciasInsuficientes {
         
         if(hayExistencias(productos)){
             
             NotaDeVenta notaVenta = new NotaDeVenta(productos, pago);
             registrarVenta(notaVenta);
             actualizarExistencias(productos);
-
-            double cambio = pago - (notaVenta.obtenerImporteTotal());
-            return cambio;
             
-        }else{
-            throw new ExcepcionExistenciasInsuficientes();
         }
         
     }
 
+    private boolean hayExistencias(ArrayList<ElementoNota> elementos) throws ExcepcionExistenciasInsuficientes {
+
+        for (ElementoNota elemento : elementos) {
+
+            Producto actual = elemento.obtenerProductoVendido();
+            int existenciaActual = actual.obtenerExistencia();
+            int cantidadAVender = elemento.obtenerCantidadDeProducto();
+
+            if (existenciaActual < cantidadAVender) {
+                String mensaje = "Las existencias de " + actual.obtenerNombre() 
+                        + " son insuficientes";
+                throw new ExcepcionExistenciasInsuficientes(mensaje);
+            }
+
+        }
+        
+        return true;
+        
+    }
+    
     private void actualizarExistencias(ArrayList<ElementoNota> productos) throws ExcepcionElementoNoEncontrado, ExcepcionExistenciasInsuficientes{
         
         GestorProductos gestor = GestorProductos.obtenerInstancia();
@@ -99,22 +114,6 @@ public class Cajero {
     
     private void registrarVenta(NotaDeVenta nota) {      
         gestorBDVenta_.agregarVenta(null);    
-    }
-
-    private boolean hayExistencias(ArrayList<ElementoNota> elementos){
-        
-        for (ElementoNota elemento : elementos) {
-            
-            Producto actual = elemento.obtenerProductoVendido();
-            int existenciaActual = actual.obtenerExistencia();
-            int cantidadAVender = elemento.obtenerCantidadDeProducto();
-            
-            if(existenciaActual < cantidadAVender){
-                return false;
-            }
-            
-        }
-        return true;
     }
     
     private void realizarCorte() {
