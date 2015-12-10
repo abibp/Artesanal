@@ -117,10 +117,9 @@ public class Cajero {
         return true;
     }
     
-    private ReporteVentas realizarCorte() {
+    private void realizarCorte() {
         Date fechaActual = new Date();
         cerrar();
-        return null;
     }
 
     private double cerrar() {
