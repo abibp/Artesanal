@@ -3,6 +3,7 @@ package presentacion.dialogos;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTextField;
@@ -166,7 +167,7 @@ public class AutocompletadoCodigoProveedorDialogo extends javax.swing.JDialog {
     private void llenarTabla() {
         
         try {
-            ArrayList<Proveedor> proveedores = GestorProveedores.obtenerInstancia().obtenerLista();
+            List<Proveedor> proveedores = GestorProveedores.obtenerInstancia().obtenerLista();
             for(Proveedor actual : proveedores){
                 agregarFilaTabla(actual);
             }

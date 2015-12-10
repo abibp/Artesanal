@@ -1,6 +1,7 @@
 package presentacion.productos;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import negocio.administracion.GestorProductos;
@@ -177,7 +178,7 @@ public class InventarioProductosPanel extends javax.swing.JPanel {
         try {
             productosInventarioTablaModelo.reiniciarTabla();
             
-            ArrayList<Producto> productos = GestorProductos.obtenerInstancia().obtenerLista();
+            List<Producto> productos = GestorProductos.obtenerInstancia().obtenerLista();
             for (Producto actual : productos) {
                 agregarFilaTabla(actual);
             }

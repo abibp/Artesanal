@@ -1,6 +1,7 @@
 package presentacion.proveedores;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import negocio.administracion.GestorProveedores;
@@ -178,7 +179,7 @@ public class DirectorioProveedoresPanel extends javax.swing.JPanel{
         
         directorioProveedoresTablaModelo.reiniciarTabla();
         try {
-            ArrayList<Proveedor> proveedores = GestorProveedores.obtenerInstancia().obtenerLista();
+            List<Proveedor> proveedores = GestorProveedores.obtenerInstancia().obtenerLista();
             for(Proveedor actual : proveedores){
                 agregarFilaTabla(actual);
             }

@@ -1,5 +1,6 @@
 package presentacion.inicio;
 
+import negocio.administracion.Cajero;
 import presentacion.MenuPrincipalVentana;
 import presentacion.utileria.RestriccionNumeroDecimalCampo;
 import presentacion.utileria.Informador;
@@ -149,7 +150,9 @@ public class AperturaCajaRegistradoraVentana extends javax.swing.JFrame {
 
             double dineroInicialCaja = Double.parseDouble(
                     dineroInicialCajaCampo.getText());
-            //TODO: Avisar al gestor de Caja :)))))))))))))))))
+            Cajero cajeroActual = Cajero.obtenerInstancia();
+            cajeroActual.abrir(dineroInicialCaja);
+            
             MenuPrincipalVentana menuPrincipal = new MenuPrincipalVentana();
             menuPrincipal.setVisible(true);
             dispose();

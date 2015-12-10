@@ -113,7 +113,7 @@ public class Cajero {
     
     
     private void registrarVenta(NotaDeVenta nota) {      
-        gestorBDVenta_.agregarVenta(null);    
+        gestorBDVenta_.agregarVenta(nota);    
     }
     
     private void realizarCorte() {
