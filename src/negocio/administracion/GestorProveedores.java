@@ -10,8 +10,6 @@ import datos.gestores.GestorBDProveedor;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import negocio.entidades.Proveedor;
 import negocio.excepciones.ExcepcionElementoNoEncontrado;
 

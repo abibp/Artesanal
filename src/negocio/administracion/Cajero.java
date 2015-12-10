@@ -19,7 +19,6 @@ public class Cajero {
     private static Cajero unicoGestor_;
     
     private Caja cajaHeladeria_;
-    private GestorReportes reporte_;
     private double entradaTotal;
     private double salidaTotal;
 
