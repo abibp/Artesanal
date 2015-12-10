@@ -27,14 +27,14 @@ import negocio.entidades.Producto;
 public class GeneradorReportes {
     
     private final Document REPORTE_;
-    private final Paragraph ESPACIO_;
+    private final Paragraph SEPARADOR_;
     
     private AlmacenadorDeArchivos almacenador;
     private String nombreReporte_ = "reporte.pdf";
    
     public GeneradorReportes() {
         this.REPORTE_ = new Document();
-        this.ESPACIO_ = new Paragraph("\n");
+        this.SEPARADOR_ = new Paragraph("\n");
         this.almacenador = new AlmacenadorDeArchivos();
     }
     
@@ -104,14 +104,14 @@ public class GeneradorReportes {
         Paragraph titulo = new Paragraph(encabezado);
         
         REPORTE_.add(titulo);
-        REPORTE_.add(ESPACIO_);
+        REPORTE_.add(SEPARADOR_);
 
     }
 
 
     private void agregarSeccion(NotaDeVenta actual) throws DocumentException {
         REPORTE_.add(generarTablaNotaVenta(actual));
-        REPORTE_.add(ESPACIO_);
+        REPORTE_.add(SEPARADOR_);
     }
 
 
