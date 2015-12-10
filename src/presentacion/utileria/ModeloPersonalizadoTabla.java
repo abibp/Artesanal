@@ -83,7 +83,7 @@ public class ModeloPersonalizadoTabla extends AbstractTableModel {
             }
         }
         
-        cargarContenidoFiltrado(resultado);
+        mostrarContenidoFiltrado(resultado);
 
     }
     
@@ -124,7 +124,7 @@ public class ModeloPersonalizadoTabla extends AbstractTableModel {
         fireTableCellUpdated(rowIndex, columnIndex);
     }
     
-    private void cargarContenidoFiltrado(ArrayList<ArrayList<Object>> lista){
+    private void mostrarContenidoFiltrado(ArrayList<ArrayList<Object>> lista){
         reiniciarTabla();
         
         for (ArrayList<Object> fila : lista) {
