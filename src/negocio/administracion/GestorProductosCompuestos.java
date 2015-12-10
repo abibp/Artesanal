@@ -5,12 +5,15 @@
  */
 package negocio.administracion;
 
+import datos.excepciones.ExcepcionInsumoNoEncontrado;
+import datos.excepciones.ExcepcionProductoNoEncontrado;
 import datos.gestores.GestorBDProducto;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import negocio.entidades.ProductoCompuesto;
-import negocio.entidades.Proveedor;
+import negocio.excepciones.ExcepcionElementoYaExistente;
+import negocio.excepciones.ExcepcionListaVacia;
 
 /**
  *
@@ -23,11 +26,14 @@ public class GestorProductosCompuestos implements Gestor<ProductoCompuesto>{
     
     private static GestorProductosCompuestos unicoGestor_;
 
-    public synchronized static GestorProductosCompuestos obtenerInstancia() {
+    public synchronized static GestorProductosCompuestos obtenerInstancia() throws ExcepcionProductoNoEncontrado, ExcepcionListaVacia, ExcepcionElementoYaExistente, ExcepcionInsumoNoEncontrado {
+        
         if (unicoGestor_ == null) {
             unicoGestor_ = new GestorProductosCompuestos();
         }
+        
         return unicoGestor_;
+        
     }
 
     @Override
@@ -61,18 +67,20 @@ public class GestorProductosCompuestos implements Gestor<ProductoCompuesto>{
             ProductoCompuesto producto = entry.getValue();
             listaProductosCompuestos.add(producto);
         }
-        return listaProductosCompuestos;
-    }
-
-    private void inicializarLista() {
         
-//        ArrayList<ProductoCompuesto> listaProductos = gestorBD_.obtenerListaProductosCompuestos();
-//        for (ProductoCompuesto producto : listaProductos) {
-//            nProductosCompuestos_.put(producto.obtenerID(), producto);
-//        }
+        return listaProductosCompuestos;
+        
     }
 
-    private GestorProductosCompuestos() {
+    private void inicializarLista() throws ExcepcionProductoNoEncontrado, ExcepcionListaVacia, ExcepcionElementoYaExistente, ExcepcionInsumoNoEncontrado {
+        
+        ArrayList<ProductoCompuesto> listaProductos = gestorBD_.obtenerListaCompuestos();
+        for (ProductoCompuesto producto : listaProductos) {
+            nInventario_.put(producto.obtenerID(), producto);
+        }
+    }
+
+    private GestorProductosCompuestos() throws ExcepcionProductoNoEncontrado, ExcepcionListaVacia, ExcepcionElementoYaExistente, ExcepcionInsumoNoEncontrado {
         this.gestorBD_ = new GestorBDProducto();
         this.nInventario_ = new HashMap();
         inicializarLista();

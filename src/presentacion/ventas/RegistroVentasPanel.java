@@ -13,7 +13,9 @@ import negocio.administracion.GestorProductos;
 import negocio.entidades.ElementoNota;
 import negocio.entidades.Producto;
 import negocio.excepciones.ExcepcionElementoNoEncontrado;
+import negocio.excepciones.ExcepcionElementoYaExistente;
 import negocio.excepciones.ExcepcionExistenciasInsuficientes;
+import negocio.excepciones.ExcepcionListaVacia;
 import presentacion.dialogos.AutocompletadoCodigoProductoDialogo;
 import presentacion.utileria.ModeloPersonalizadoTabla;
 import presentacion.utileria.RestriccionNumeroDecimalCampo;
@@ -328,16 +330,40 @@ public class RegistroVentasPanel extends javax.swing.JPanel {
     }
 
     private void configurarEventos() {
-        busquedaCodigoProductoBoton.addActionListener(evento -> completarCodigoProducto());
-        agregarProductoBoton.addActionListener(evento -> agregarProductoVenta());
+        busquedaCodigoProductoBoton.addActionListener(evento -> {
+            try {
+                completarCodigoProducto();
+            } catch (ExcepcionListaVacia ex) {
+                Logger.getLogger(RegistroVentasPanel.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ExcepcionElementoYaExistente ex) {
+                Logger.getLogger(RegistroVentasPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        agregarProductoBoton.addActionListener(evento -> {
+            try {
+                agregarProductoVenta();
+            } catch (ExcepcionListaVacia ex) {
+                Logger.getLogger(RegistroVentasPanel.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ExcepcionElementoYaExistente ex) {
+                Logger.getLogger(RegistroVentasPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
         removerProductoBoton.addActionListener(evento -> removerProductoVenta());
         reiniciarCamposBoton.addActionListener(evento -> reiniciarDatosVenta());
-        cobroBoton.addActionListener(evento -> realizarCobro());
+        cobroBoton.addActionListener(evento -> {
+            try {
+                realizarCobro();
+            } catch (ExcepcionListaVacia ex) {
+                Logger.getLogger(RegistroVentasPanel.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ExcepcionElementoYaExistente ex) {
+                Logger.getLogger(RegistroVentasPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
         abonoBoton.addActionListener(evento -> realizarDeposito());
         retiroBoton.addActionListener(evento -> realizarRetiro());
     }
 
-    private void completarCodigoProducto() {
+    private void completarCodigoProducto() throws ExcepcionListaVacia, ExcepcionElementoYaExistente {
 
         final boolean MODO_DIALOGO = true;
         JFrame ventanaActiva = (JFrame) SwingUtilities.getWindowAncestor(this);
@@ -351,7 +377,7 @@ public class RegistroVentasPanel extends javax.swing.JPanel {
 
     }
 
-    private void agregarProductoVenta() {
+    private void agregarProductoVenta() throws ExcepcionListaVacia, ExcepcionElementoYaExistente {
         final boolean CORRECTO = true;
 
         boolean estadoValidacion = validarInformacionProducto();
@@ -416,7 +442,7 @@ public class RegistroVentasPanel extends javax.swing.JPanel {
         notaVenta_.clear();
     }
 
-    private void realizarCobro() {
+    private void realizarCobro() throws ExcepcionListaVacia, ExcepcionElementoYaExistente {
 
         boolean estaVacia = productosVentaActualTablaModelo.estaVacia();
         boolean esVentaValida = !estaVacia;

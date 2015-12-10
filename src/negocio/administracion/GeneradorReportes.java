@@ -37,16 +37,16 @@ public class GeneradorReportes {
         this.REPORTE_ = new Document();
         this.SEPARADOR_ = new Paragraph("\n");
         this.almacenador = new AlmacenadorDeArchivos();
+        this.nombreReporte_ = "ReporteVentas.pdf";
     }
     
     public void generarReporteVentas(
             Date fechaInicio,
             Date fechaFinalizacion,
-            String ubicacionDirectorio,
-            String nombreArchivo
+            String ubicacionDirectorio
     ) throws FileNotFoundException, DocumentException {
         
-        this.nombreReporte_ = nombreArchivo;
+        this.nombreReporte_ = formatearFechas(fechaInicio, fechaInicio);
         this.almacenador.establecerArchivo(ubicacionDirectorio, nombreReporte_);
         iniciarEdicion(ubicacionDirectorio);
         agregarTitulo(formatearFechas(fechaInicio, fechaFinalizacion));

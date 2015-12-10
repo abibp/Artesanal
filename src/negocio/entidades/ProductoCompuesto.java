@@ -32,19 +32,6 @@ public class ProductoCompuesto extends Producto {
         this.nIngredientes_ = new HashMap();
     }
 
-    public ProductoCompuesto(
-            String ID, 
-            String nombre, 
-            double costo, 
-            double precio, 
-            ArrayList<Ingrediente> ingredientes
-    )throws ExcepcionListaVacia, ExcepcionElementoYaExistente {
-        
-        super(ID, nombre, costo, precio);
-        this.nIngredientes_ = new HashMap();
-        agregarReceta(ingredientes);
-    }
-
     public Ingrediente obtenerIngrediente(String id) throws ExcepcionElementoNoEncontrado {
         
         if (nIngredientes_.containsKey(id)){
@@ -57,11 +44,15 @@ public class ProductoCompuesto extends Producto {
     }
 
     public void agregarIngrediente(Ingrediente ingrediente) throws ExcepcionElementoYaExistente {
-        
-        if(nIngredientes_.containsValue(ingrediente)){
+        System.out.println(ingrediente.obtenerID());
+        if(nIngredientes_.containsKey(ingrediente.obtenerID())){
             nIngredientes_.put(ingrediente.obtenerID(), ingrediente);
         }else{
             final String mensaje = "Este ingrediente ya se encuentra en la receta.";
+            System.out.println(nIngredientes_.size());
+            for (Entry<String, Ingrediente> entry : nIngredientes_.entrySet()) {
+                System.out.println(entry.getValue().obtenerID() + " -- " + entry.getValue().obtenerInsumo().obtenerNombre());
+            }
             throw new ExcepcionElementoYaExistente(mensaje);
         }
     }

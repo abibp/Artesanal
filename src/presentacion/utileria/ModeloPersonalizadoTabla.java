@@ -70,19 +70,20 @@ public class ModeloPersonalizadoTabla extends AbstractTableModel {
         
         ArrayList<ArrayList<Object>> resultado = new ArrayList<>();
         
-        for (int i = 0; i < getRowCount(); i++) {
-            ArrayList<Object> filaActual = obtenerFila(i);
+        for (int filaActual = 0; filaActual < getRowCount(); filaActual++) {
             
-            for (int j = 0; j < filaActual.size(); j++) {
+            ArrayList<Object> fila = obtenerFila(filaActual);  
+            for (int celdaActual = 0; celdaActual < fila.size(); celdaActual++) {
                 
-                if(filaActual.get(j).toString().contains(porBuscar)){
-                    resultado.add(filaActual);
+                String contenidoCelda = String.valueOf(fila.get(celdaActual));
+                if(contenidoCelda.contains(porBuscar)){
+                    resultado.add(fila);
                     break;
                 }
             }
         }
         
-        cargarContenidoFiltrado(resultado);
+        mostrarContenidoFiltrado(resultado);
 
     }
     
@@ -123,10 +124,13 @@ public class ModeloPersonalizadoTabla extends AbstractTableModel {
         fireTableCellUpdated(rowIndex, columnIndex);
     }
     
-    private void cargarContenidoFiltrado(ArrayList<ArrayList<Object>> lista){
+    private void mostrarContenidoFiltrado(ArrayList<ArrayList<Object>> lista){
+        
         reiniciarTabla();
+        
         for (ArrayList<Object> fila : lista) {
             agregarFila(fila);
         }
     }
+    
 }

@@ -12,6 +12,8 @@ import javax.swing.event.DocumentListener;
 import negocio.administracion.GestorProductos;
 import negocio.entidades.Producto;
 import negocio.excepciones.ExcepcionElementoNoEncontrado;
+import negocio.excepciones.ExcepcionElementoYaExistente;
+import negocio.excepciones.ExcepcionListaVacia;
 import presentacion.dialogos.AutocompletadoCodigoProductoDialogo;
 import presentacion.dialogos.RegistroUsoInsumoDialogo;
 import presentacion.utileria.ModeloPersonalizadoTabla;
@@ -35,7 +37,13 @@ public class FormularioModificacionProducto extends javax.swing.JPanel implement
 
     @Override
     public void insertUpdate(DocumentEvent e) {
-        completarInformacionProducto();
+        try {
+            completarInformacionProducto();
+        } catch (ExcepcionListaVacia ex) {
+            Logger.getLogger(FormularioModificacionProducto.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ExcepcionElementoYaExistente ex) {
+            Logger.getLogger(FormularioModificacionProducto.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
@@ -371,7 +379,15 @@ public class FormularioModificacionProducto extends javax.swing.JPanel implement
         agregarInsumoBoton.addActionListener(evento -> agregarUsoInsumo());
         removerInsumoBoton.addActionListener(evento -> removerUsoInsumo());
         reiniciarCamposBoton.addActionListener(evento -> reiniciarInformacionFormulario());
-        agregarProductoBoton.addActionListener(evento -> modificarProducto());
+        agregarProductoBoton.addActionListener(evento -> {
+            try {
+                modificarProducto();
+            } catch (ExcepcionListaVacia ex) {
+                Logger.getLogger(FormularioModificacionProducto.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ExcepcionElementoYaExistente ex) {
+                Logger.getLogger(FormularioModificacionProducto.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
         codigoCampo.getDocument().addDocumentListener(this);
 
     }
@@ -446,7 +462,7 @@ public class FormularioModificacionProducto extends javax.swing.JPanel implement
         return true;
     }
 
-    private void modificarProducto() {
+    private void modificarProducto() throws ExcepcionListaVacia, ExcepcionElementoYaExistente {
 
         final boolean CORRECTO = true;
 
@@ -513,7 +529,7 @@ public class FormularioModificacionProducto extends javax.swing.JPanel implement
         dialogoAutocompletado.mostrarEnPantalla();
     }
 
-    private void completarInformacionProducto() {
+    private void completarInformacionProducto() throws ExcepcionListaVacia, ExcepcionElementoYaExistente {
 
         String IDProducto = codigoCampo.getText();
         try {

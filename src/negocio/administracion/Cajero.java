@@ -12,7 +12,9 @@ import negocio.entidades.ElementoNota;
 import negocio.entidades.NotaDeVenta;
 import negocio.entidades.Producto;
 import negocio.excepciones.ExcepcionElementoNoEncontrado;
+import negocio.excepciones.ExcepcionElementoYaExistente;
 import negocio.excepciones.ExcepcionExistenciasInsuficientes;
+import negocio.excepciones.ExcepcionListaVacia;
 
 /**
  *
@@ -54,7 +56,7 @@ public class Cajero {
         try {
             Date fechaActual = new Date();
             GeneradorReportes generador = new GeneradorReportes();
-            generador.generarReporteVentas(fechaActual, fechaActual, directorio, nombreArchivo);
+            generador.generarReporteVentas(fechaActual, fechaActual, directorio);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Cajero.class.getName()).log(Level.SEVERE, null, ex);
         } catch (DocumentException ex) {
@@ -78,7 +80,7 @@ public class Cajero {
         return cajaHeladeria_.obtenerDineroInicial();
     }
 
-    public void realizarVenta(ArrayList<ElementoNota> productos, double pago) throws ExcepcionElementoNoEncontrado, ExcepcionExistenciasInsuficientes {
+    public void realizarVenta(ArrayList<ElementoNota> productos, double pago) throws ExcepcionElementoNoEncontrado, ExcepcionExistenciasInsuficientes, ExcepcionListaVacia, ExcepcionElementoYaExistente {
         
         if(hayExistencias(productos)){
             
@@ -110,7 +112,7 @@ public class Cajero {
         
     }
     
-    private void actualizarExistencias(ArrayList<ElementoNota> productos) throws ExcepcionElementoNoEncontrado, ExcepcionExistenciasInsuficientes{
+    private void actualizarExistencias(ArrayList<ElementoNota> productos) throws ExcepcionElementoNoEncontrado, ExcepcionExistenciasInsuficientes, ExcepcionListaVacia, ExcepcionElementoYaExistente{
         
         GestorProductos gestor = GestorProductos.obtenerInstancia();
         

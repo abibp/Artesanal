@@ -11,6 +11,8 @@ import negocio.administracion.GestorProductos;
 import negocio.entidades.Producto;
 import negocio.entidades.Proveedor;
 import negocio.excepciones.ExcepcionElementoNoEncontrado;
+import negocio.excepciones.ExcepcionElementoYaExistente;
+import negocio.excepciones.ExcepcionListaVacia;
 import presentacion.utileria.ModeloPersonalizadoTabla;
 
 /**
@@ -22,7 +24,7 @@ public class AutocompletadoCodigoProductoDialogo extends javax.swing.JDialog {
     private JTextField campoPorLlenar_;
     private ModeloPersonalizadoTabla productosTablaModelo_;
     
-    public AutocompletadoCodigoProductoDialogo(java.awt.Frame parent, boolean modal) {
+    public AutocompletadoCodigoProductoDialogo(java.awt.Frame parent, boolean modal) throws ExcepcionListaVacia, ExcepcionElementoYaExistente {
         super(parent, modal);
         initComponents();
       configurarComponentes();
@@ -155,7 +157,7 @@ public class AutocompletadoCodigoProductoDialogo extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
 
-    private void configurarComponentes() {
+    private void configurarComponentes() throws ExcepcionListaVacia, ExcepcionElementoYaExistente {
 
         String[] cabeceraTabla = {"ID producto", "Nombre", "Costo", "Precio","Existencia"};
         productosTablaModelo_ = new ModeloPersonalizadoTabla(cabeceraTabla);
@@ -164,7 +166,7 @@ public class AutocompletadoCodigoProductoDialogo extends javax.swing.JDialog {
         agregarEventoTabla();
     }
 
-    private void llenarTabla() {
+    private void llenarTabla() throws ExcepcionListaVacia, ExcepcionElementoYaExistente {
         try {
             List<Producto> productos = GestorProductos.obtenerInstancia().obtenerLista();
             for(Producto actual : productos){

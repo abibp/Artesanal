@@ -11,6 +11,7 @@ import negocio.administracion.GestorProductos;
 import negocio.entidades.Producto;
 import negocio.excepciones.ExcepcionElementoNoEncontrado;
 import negocio.excepciones.ExcepcionElementoYaExistente;
+import negocio.excepciones.ExcepcionListaVacia;
 import presentacion.dialogos.AutocompletadoCodigoProveedorDialogo;
 import presentacion.dialogos.RegistroUsoInsumoDialogo;
 import presentacion.utileria.ModeloPersonalizadoTabla;
@@ -342,7 +343,13 @@ public class FormularioRegistroProducto extends javax.swing.JPanel {
         agregarInsumoBoton.addActionListener(evento -> agregarUsoInsumo());
         removerInsumoBoton.addActionListener(evento -> removerUsoInsumo());
         reiniciarCamposBoton.addActionListener(evento -> reiniciarInformacionFormulario());
-        agregarProductoBoton.addActionListener(evento -> registrarProducto());
+        agregarProductoBoton.addActionListener(evento -> {
+            try {
+                registrarProducto();
+            } catch (ExcepcionListaVacia ex) {
+                Logger.getLogger(FormularioRegistroProducto.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
     }
 
 
@@ -415,7 +422,7 @@ public class FormularioRegistroProducto extends javax.swing.JPanel {
         return true;
     }
 
-    private void registrarProducto() {
+    private void registrarProducto() throws ExcepcionListaVacia {
 
         final boolean CORRECTO = true;
 

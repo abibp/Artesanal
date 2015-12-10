@@ -11,6 +11,8 @@ import javax.swing.event.DocumentListener;
 import negocio.administracion.GestorProductos;
 import negocio.entidades.Producto;
 import negocio.excepciones.ExcepcionElementoNoEncontrado;
+import negocio.excepciones.ExcepcionElementoYaExistente;
+import negocio.excepciones.ExcepcionListaVacia;
 import presentacion.dialogos.AutocompletadoCodigoProductoDialogo;
 import presentacion.utileria.ModeloPersonalizadoTabla;
 import presentacion.utileria.Informador;
@@ -31,7 +33,13 @@ public class FormularioEliminacionProducto extends javax.swing.JPanel implements
 
     @Override
     public void insertUpdate(DocumentEvent e) {
-        completarInformacionProducto();
+        try {
+            completarInformacionProducto();
+        } catch (ExcepcionListaVacia ex) {
+            Logger.getLogger(FormularioEliminacionProducto.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ExcepcionElementoYaExistente ex) {
+            Logger.getLogger(FormularioEliminacionProducto.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
@@ -321,7 +329,15 @@ public class FormularioEliminacionProducto extends javax.swing.JPanel implements
     private void configurarEventos() {
 
         completarCodigoProducto.addActionListener(evento -> autocompletarCodigoProducto());
-        eliminarProductoBoton.addActionListener(evento -> eliminarProducto());
+        eliminarProductoBoton.addActionListener(evento -> {
+            try {
+                eliminarProducto();
+            } catch (ExcepcionListaVacia ex) {
+                Logger.getLogger(FormularioEliminacionProducto.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ExcepcionElementoYaExistente ex) {
+                Logger.getLogger(FormularioEliminacionProducto.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
         codigoCampo.getDocument().addDocumentListener(this);
 
     }
@@ -362,7 +378,7 @@ public class FormularioEliminacionProducto extends javax.swing.JPanel implements
         return true;
     }
 
-    private void eliminarProducto() {
+    private void eliminarProducto() throws ExcepcionListaVacia, ExcepcionElementoYaExistente {
 
         final boolean CORRECTO = true;
 
@@ -415,7 +431,7 @@ public class FormularioEliminacionProducto extends javax.swing.JPanel implements
         dialogoAutocompletado.mostrarEnPantalla();
     }
 
-    private void completarInformacionProducto() {
+    private void completarInformacionProducto() throws ExcepcionListaVacia, ExcepcionElementoYaExistente {
 
         try {
             String IDProducto = codigoCampo.getText();
