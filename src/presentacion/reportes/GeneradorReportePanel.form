@@ -162,13 +162,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
-                              <Component id="criterioEtiqueta" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                              <Component id="criterioListaDesplegable" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                               <Component id="fechaInicioEtiqueta" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -178,6 +172,10 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="fechaFinalCampo" min="-2" pref="146" max="-2" attributes="0"/>
                           </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+                              <Component id="tituloPanel1" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace pref="40" max="32767" attributes="0"/>
                   </Group>
@@ -186,17 +184,12 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="criterioEtiqueta" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="criterioListaDesplegable" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+                      <Component id="tituloPanel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="fechaFinalEtiqueta" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="fechaInicioEtiqueta" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="fechaFinalEtiqueta" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="fechaInicioEtiqueta" min="-2" max="-2" attributes="0"/>
                           <Component id="fechaInicialCampo" min="-2" pref="24" max="-2" attributes="0"/>
                           <Component id="fechaFinalCampo" min="-2" pref="24" max="-2" attributes="0"/>
                       </Group>
@@ -222,14 +215,6 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="org.edisoncor.gui.label.LabelMetric" name="criterioEtiqueta">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Reporte de :"/>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Dialog" size="18" style="1"/>
-                </Property>
-              </Properties>
-            </Component>
             <Component class="com.toedter.calendar.JDateChooser" name="fechaInicialCampo">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -244,24 +229,11 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="criterioListaDesplegable">
+            <Component class="org.edisoncor.gui.label.LabelMetric" name="tituloPanel1">
               <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="99" type="rgb"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="Nuevo Reporte de Ventas"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Dialog" size="18" style="1"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
-                    <StringItem index="0" value="Productos"/>
-                    <StringItem index="1" value="Insumos"/>
-                    <StringItem index="2" value="Proveedores"/>
-                    <StringItem index="3" value="Ventas"/>
-                  </StringArray>
+                  <Font name="Dialog" size="36" style="1"/>
                 </Property>
               </Properties>
             </Component>

@@ -2,7 +2,17 @@ package presentacion.dialogos;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTextField;
+import negocio.administracion.GestorProductos;
+import negocio.entidades.Producto;
+import negocio.entidades.Proveedor;
+import negocio.excepciones.ExcepcionElementoNoEncontrado;
+import negocio.excepciones.ExcepcionElementoYaExistente;
+import negocio.excepciones.ExcepcionListaVacia;
 import presentacion.utileria.ModeloPersonalizadoTabla;
 
 /**
@@ -14,7 +24,7 @@ public class AutocompletadoCodigoProductoDialogo extends javax.swing.JDialog {
     private JTextField campoPorLlenar_;
     private ModeloPersonalizadoTabla productosTablaModelo_;
     
-    public AutocompletadoCodigoProductoDialogo(java.awt.Frame parent, boolean modal) {
+    public AutocompletadoCodigoProductoDialogo(java.awt.Frame parent, boolean modal) throws ExcepcionListaVacia, ExcepcionElementoYaExistente {
         super(parent, modal);
         initComponents();
       configurarComponentes();
@@ -147,17 +157,24 @@ public class AutocompletadoCodigoProductoDialogo extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
 
-    private void configurarComponentes() {
+    private void configurarComponentes() throws ExcepcionListaVacia, ExcepcionElementoYaExistente {
 
-        String[] cabeceraTabla = {"ID producto", "Nombre", "Costo", "Precio"};
+        String[] cabeceraTabla = {"ID producto", "Nombre", "Costo", "Precio","Existencia"};
         productosTablaModelo_ = new ModeloPersonalizadoTabla(cabeceraTabla);
         productosTabla.setModel(productosTablaModelo_);
         llenarTabla();
         agregarEventoTabla();
     }
 
-    private void llenarTabla() {
-        //TODO: Solicitar lista a gestor
+    private void llenarTabla() throws ExcepcionListaVacia, ExcepcionElementoYaExistente {
+        try {
+            List<Producto> productos = GestorProductos.obtenerInstancia().obtenerLista();
+            for(Producto actual : productos){
+                agregarFilaTabla(actual);
+            } 
+        } catch (ExcepcionElementoNoEncontrado ex) {
+            Logger.getLogger(AutocompletadoCodigoProductoDialogo.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
 
@@ -202,6 +219,21 @@ public class AutocompletadoCodigoProductoDialogo extends javax.swing.JDialog {
 
     private void cerrarVentana() {
         this.dispose();
+    }
+
+    private void agregarFilaTabla(Producto actual) {
+        
+        ArrayList fila = new ArrayList();
+        
+        fila.add(actual.obtenerID());
+        fila.add(actual.obtenerNombre());
+        fila.add(actual.obtenerCosto());
+        fila.add(actual.obtenerPrecio());
+        fila.add(actual.obtenerExistencia());
+        
+        productosTablaModelo_.agregarFila(fila);
+        
+    
     }
 
 }

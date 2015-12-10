@@ -1,11 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package negocio.excepciones;
 
-import usuario.Informador;
+import presentacion.utileria.Informador;
 
 /**
  *
@@ -13,8 +8,8 @@ import usuario.Informador;
  */
 public class ExcepcionElementoYaExistente extends Exception {
 
-    private final String MENSAJE_DE_ERROR_ = "Este elemento no se encuentra en "
-            + "la lista. ";
+    private final String MENSAJE_DE_ERROR_ = "Este elemento ya existe.  ";
+
     private final String INFORMACION_ADICIONAL_ = "Detalles: ";
     
     /**

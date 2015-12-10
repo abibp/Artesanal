@@ -1,9 +1,14 @@
 package presentacion.reportes;
 
+import com.itextpdf.text.DocumentException;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import presentacion.utileria.Informador;
+import negocio.administracion.GeneradorReportes;
 
 /**
  *
@@ -30,10 +35,9 @@ public class GeneradorReportePanel extends javax.swing.JPanel {
         formularioPanel = new javax.swing.JPanel();
         fechaFinalEtiqueta = new org.edisoncor.gui.label.LabelMetric();
         fechaInicioEtiqueta = new org.edisoncor.gui.label.LabelMetric();
-        criterioEtiqueta = new org.edisoncor.gui.label.LabelMetric();
         fechaInicialCampo = new com.toedter.calendar.JDateChooser();
         fechaFinalCampo = new com.toedter.calendar.JDateChooser();
-        criterioListaDesplegable = new javax.swing.JComboBox();
+        tituloPanel1 = new org.edisoncor.gui.label.LabelMetric();
         accionIconoEtiqueta = new javax.swing.JLabel();
 
         fondoPanel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/recursos/madera_fondo.jpg"))); // NOI18N
@@ -85,17 +89,12 @@ public class GeneradorReportePanel extends javax.swing.JPanel {
         fechaInicioEtiqueta.setText("Desde :");
         fechaInicioEtiqueta.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
 
-        criterioEtiqueta.setText("Reporte de :");
-        criterioEtiqueta.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-
         fechaInicialCampo.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
 
         fechaFinalCampo.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
 
-        criterioListaDesplegable.setBackground(new java.awt.Color(153, 0, 0));
-        criterioListaDesplegable.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        criterioListaDesplegable.setForeground(new java.awt.Color(255, 255, 255));
-        criterioListaDesplegable.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Productos", "Insumos", "Proveedores", "Ventas" }));
+        tituloPanel1.setText("Nuevo Reporte de Ventas");
+        tituloPanel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
 
         javax.swing.GroupLayout formularioPanelLayout = new javax.swing.GroupLayout(formularioPanel);
         formularioPanel.setLayout(formularioPanelLayout);
@@ -104,11 +103,6 @@ public class GeneradorReportePanel extends javax.swing.JPanel {
             .addGroup(formularioPanelLayout.createSequentialGroup()
                 .addGroup(formularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(formularioPanelLayout.createSequentialGroup()
-                        .addGap(107, 107, 107)
-                        .addComponent(criterioEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
-                        .addComponent(criterioListaDesplegable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(formularioPanelLayout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addComponent(fechaInicioEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -116,21 +110,21 @@ public class GeneradorReportePanel extends javax.swing.JPanel {
                         .addGap(38, 38, 38)
                         .addComponent(fechaFinalEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(fechaFinalCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(fechaFinalCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(formularioPanelLayout.createSequentialGroup()
+                        .addGap(61, 61, 61)
+                        .addComponent(tituloPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
         formularioPanelLayout.setVerticalGroup(
             formularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(formularioPanelLayout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addGroup(formularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(criterioEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(criterioListaDesplegable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(96, 96, 96)
+                .addGap(59, 59, 59)
+                .addComponent(tituloPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57)
                 .addGroup(formularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(formularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(fechaFinalEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(fechaInicioEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fechaFinalEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fechaInicioEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(fechaInicialCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(fechaFinalCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(188, Short.MAX_VALUE))
@@ -187,8 +181,6 @@ public class GeneradorReportePanel extends javax.swing.JPanel {
     private javax.swing.JLabel accionIconoEtiqueta;
     private javax.swing.JLabel clavoDerechoIconoEtiqueta;
     private javax.swing.JLabel clavoIzquierdoIconoEtiqueta;
-    private org.edisoncor.gui.label.LabelMetric criterioEtiqueta;
-    private javax.swing.JComboBox criterioListaDesplegable;
     private com.toedter.calendar.JDateChooser fechaFinalCampo;
     private org.edisoncor.gui.label.LabelMetric fechaFinalEtiqueta;
     private com.toedter.calendar.JDateChooser fechaInicialCampo;
@@ -198,6 +190,7 @@ public class GeneradorReportePanel extends javax.swing.JPanel {
     private javax.swing.JButton generacionReporteBoton;
     private org.edisoncor.gui.panel.PanelImage tituloFondoPanel;
     private org.edisoncor.gui.label.LabelMetric tituloPanel;
+    private org.edisoncor.gui.label.LabelMetric tituloPanel1;
     // End of variables declaration//GEN-END:variables
 
     private void configurarEvento() {
@@ -228,11 +221,21 @@ public class GeneradorReportePanel extends javax.swing.JPanel {
             if (esUbicacionValida) {
                 
                 String ubicacionDirectorioDestino = directorioElegido.getAbsolutePath();
-                System.out.println(ubicacionDirectorioDestino);
-                String criterioReporte = criterioListaDesplegable.getSelectedItem().toString();
                 Date fechaInicial = fechaInicialCampo.getDate();
                 Date fechaFinal = fechaFinalCampo.getDate();
-                //TODO: genera el reporte
+                GeneradorReportes generadorReporte = new GeneradorReportes();
+                try {
+                
+
+                    generadorReporte.generarReporteVentas(fechaInicial, fechaFinal, ubicacionDirectorioDestino);
+                    Informador.mostrarMensajeDeInformacion("Reporte generado con exito");
+                
+                } catch (DocumentException ex) {
+                    Logger.getLogger(GeneradorReportePanel.class.getName()).log(Level.SEVERE, null, ex);
+                    Informador.mostrarMensajeDeError("Valio madre este pex");
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(GeneradorReportePanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 
             }
             

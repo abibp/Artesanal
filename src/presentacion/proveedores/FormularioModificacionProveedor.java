@@ -1,21 +1,41 @@
 package presentacion.proveedores;
 
+import datos.excepciones.ExcepcionProveedorNoEncontrado;
 import java.awt.Component;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import negocio.administracion.GestorProveedores;
+import negocio.entidades.Proveedor;
+import negocio.excepciones.ExcepcionElementoNoEncontrado;
+import presentacion.dialogos.AutocompletadoCodigoProveedorDialogo;
 import presentacion.utileria.Informador;
-import presentacion.utileria.RestriccionNumeroEnteroCampo;
 
 /**
  *
  * @author PIX
  */
-public class RegistroProveedorFormularioPanel extends javax.swing.JPanel {
+public class FormularioModificacionProveedor extends javax.swing.JPanel implements DocumentListener {
 
-    public RegistroProveedorFormularioPanel() {
+    public FormularioModificacionProveedor() {
         initComponents();
-        configurarComponentes();
         configurarEventos();
     }
+
+    @Override
+    public void insertUpdate(DocumentEvent e) {
+        completarInformacionProveedor();
+    }
+
+    @Override
+    public void removeUpdate(DocumentEvent e) {}
+
+    @Override
+    public void changedUpdate(DocumentEvent e) {}
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -26,7 +46,7 @@ public class RegistroProveedorFormularioPanel extends javax.swing.JPanel {
         clavoIzquierdoIconoEtiqueta = new javax.swing.JLabel();
         clavoDerechoIconoEtiqueta = new javax.swing.JLabel();
         tituloPanel = new org.edisoncor.gui.label.LabelMetric();
-        registroProveedorBoton = new javax.swing.JButton();
+        modificacionProveedorBoton = new javax.swing.JButton();
         formularioPanel = new javax.swing.JPanel();
         telefonoCampo = new javax.swing.JTextField();
         costoEtiqueta = new org.edisoncor.gui.label.LabelMetric();
@@ -34,6 +54,9 @@ public class RegistroProveedorFormularioPanel extends javax.swing.JPanel {
         nombreEtiqueta = new org.edisoncor.gui.label.LabelMetric();
         direccionCampo = new javax.swing.JTextField();
         direccionEtiqueta = new org.edisoncor.gui.label.LabelMetric();
+        nombreEtiqueta1 = new org.edisoncor.gui.label.LabelMetric();
+        codigoCampo = new javax.swing.JTextField();
+        busquedaCodigoProveedorBoton = new javax.swing.JButton();
         accionIconoEtiqueta = new javax.swing.JLabel();
         reiniciarCamposBoton = new javax.swing.JButton();
 
@@ -45,7 +68,7 @@ public class RegistroProveedorFormularioPanel extends javax.swing.JPanel {
 
         clavoDerechoIconoEtiqueta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/recursos/clavo.png"))); // NOI18N
 
-        tituloPanel.setText("Registro de Proveedor");
+        tituloPanel.setText("Modificacion de Proveedor");
         tituloPanel.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
 
         javax.swing.GroupLayout tituloFondoPanelLayout = new javax.swing.GroupLayout(tituloFondoPanel);
@@ -72,11 +95,11 @@ public class RegistroProveedorFormularioPanel extends javax.swing.JPanel {
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
-        registroProveedorBoton.setBackground(new java.awt.Color(153, 0, 0));
-        registroProveedorBoton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        registroProveedorBoton.setForeground(new java.awt.Color(255, 255, 255));
-        registroProveedorBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/recursos/registrar.png"))); // NOI18N
-        registroProveedorBoton.setText("Registrar");
+        modificacionProveedorBoton.setBackground(new java.awt.Color(153, 0, 0));
+        modificacionProveedorBoton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        modificacionProveedorBoton.setForeground(new java.awt.Color(255, 255, 255));
+        modificacionProveedorBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/recursos/registrar.png"))); // NOI18N
+        modificacionProveedorBoton.setText("Registrar");
 
         formularioPanel.setBackground(new java.awt.Color(51, 0, 0));
 
@@ -95,6 +118,18 @@ public class RegistroProveedorFormularioPanel extends javax.swing.JPanel {
         direccionEtiqueta.setText("Cantidad Actual :");
         direccionEtiqueta.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
 
+        nombreEtiqueta1.setText("Codigo :");
+        nombreEtiqueta1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+
+        codigoCampo.setEditable(false);
+        codigoCampo.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+
+        busquedaCodigoProveedorBoton.setBackground(new java.awt.Color(102, 0, 0));
+        busquedaCodigoProveedorBoton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        busquedaCodigoProveedorBoton.setForeground(new java.awt.Color(255, 255, 255));
+        busquedaCodigoProveedorBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/recursos/buscar.png"))); // NOI18N
+        busquedaCodigoProveedorBoton.setText("Buscar");
+
         javax.swing.GroupLayout formularioPanelLayout = new javax.swing.GroupLayout(formularioPanel);
         formularioPanel.setLayout(formularioPanelLayout);
         formularioPanelLayout.setHorizontalGroup(
@@ -103,23 +138,38 @@ public class RegistroProveedorFormularioPanel extends javax.swing.JPanel {
                 .addGap(67, 67, 67)
                 .addGroup(formularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(formularioPanelLayout.createSequentialGroup()
-                        .addComponent(costoEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(telefonoCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(formularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(formularioPanelLayout.createSequentialGroup()
+                                .addComponent(costoEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(telefonoCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(formularioPanelLayout.createSequentialGroup()
+                                .addComponent(nombreEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(nombreCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(formularioPanelLayout.createSequentialGroup()
+                                .addComponent(direccionEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(direccionCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(81, Short.MAX_VALUE))
                     .addGroup(formularioPanelLayout.createSequentialGroup()
-                        .addComponent(nombreEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(nombreEtiqueta1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(nombreCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(formularioPanelLayout.createSequentialGroup()
-                        .addComponent(direccionEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(direccionCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(81, Short.MAX_VALUE))
+                        .addComponent(codigoCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(busquedaCodigoProveedorBoton)
+                        .addGap(53, 53, 53))))
         );
         formularioPanelLayout.setVerticalGroup(
             formularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(formularioPanelLayout.createSequentialGroup()
-                .addGap(77, 77, 77)
+                .addGap(29, 29, 29)
+                .addGroup(formularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nombreEtiqueta1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(codigoCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(busquedaCodigoProveedorBoton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(formularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombreEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nombreCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -149,7 +199,7 @@ public class RegistroProveedorFormularioPanel extends javax.swing.JPanel {
             .addComponent(tituloFondoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(fondoPanelLayout.createSequentialGroup()
                 .addGap(586, 586, 586)
-                .addComponent(registroProveedorBoton)
+                .addComponent(modificacionProveedorBoton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fondoPanelLayout.createSequentialGroup()
                 .addGap(186, 186, 186)
@@ -171,8 +221,8 @@ public class RegistroProveedorFormularioPanel extends javax.swing.JPanel {
                 .addGroup(fondoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(fondoPanelLayout.createSequentialGroup()
                         .addComponent(formularioPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
-                        .addComponent(registroProveedorBoton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                        .addComponent(modificacionProveedorBoton)
                         .addGap(30, 30, 30))
                     .addGroup(fondoPanelLayout.createSequentialGroup()
                         .addComponent(accionIconoEtiqueta)
@@ -196,32 +246,32 @@ public class RegistroProveedorFormularioPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel accionIconoEtiqueta;
+    private javax.swing.JButton busquedaCodigoProveedorBoton;
     private javax.swing.JLabel clavoDerechoIconoEtiqueta;
     private javax.swing.JLabel clavoIzquierdoIconoEtiqueta;
+    private javax.swing.JTextField codigoCampo;
     private org.edisoncor.gui.label.LabelMetric costoEtiqueta;
     private javax.swing.JTextField direccionCampo;
     private org.edisoncor.gui.label.LabelMetric direccionEtiqueta;
     private org.edisoncor.gui.panel.PanelImage fondoPanel;
     private javax.swing.JPanel formularioPanel;
+    private javax.swing.JButton modificacionProveedorBoton;
     private javax.swing.JTextField nombreCampo;
     private org.edisoncor.gui.label.LabelMetric nombreEtiqueta;
-    private javax.swing.JButton registroProveedorBoton;
+    private org.edisoncor.gui.label.LabelMetric nombreEtiqueta1;
     private javax.swing.JButton reiniciarCamposBoton;
     private javax.swing.JTextField telefonoCampo;
     private org.edisoncor.gui.panel.PanelImage tituloFondoPanel;
     private org.edisoncor.gui.label.LabelMetric tituloPanel;
     // End of variables declaration//GEN-END:variables
 
-    private void configurarComponentes() {
-
-        telefonoCampo.addKeyListener(new RestriccionNumeroEnteroCampo());
-        telefonoCampo.setTransferHandler(null);
-        
-    }
-
     private void configurarEventos() {
+
         reiniciarCamposBoton.addActionListener(evento -> reiniciarInformacionFormulario());
-        registroProveedorBoton.addActionListener(evento -> registrarProveedor());
+        modificacionProveedorBoton.addActionListener(evento -> modificarInformacionProveedor());
+        busquedaCodigoProveedorBoton.addActionListener(evento -> autocompletarCodigoProveedor());
+        codigoCampo.getDocument().addDocumentListener(this);
+
     }
 
     private void reiniciarInformacionFormulario() {
@@ -259,7 +309,7 @@ public class RegistroProveedorFormularioPanel extends javax.swing.JPanel {
         return true;
     }
 
-    private void registrarProveedor() {
+    private void modificarInformacionProveedor() {
 
         final boolean CORRECTO = true;
 
@@ -267,8 +317,17 @@ public class RegistroProveedorFormularioPanel extends javax.swing.JPanel {
 
         if (estadoValidacion == CORRECTO) {
 
-            crearProveedor();
-            //TODO: asignar el resultado del metodo a una variable producto y enviarla a negocio
+            try {
+                Proveedor proveedorCreado = crearProveedor();
+                GestorProveedores gestorProveedores = GestorProveedores.obtenerInstancia();
+                gestorProveedores.editarInformacion(proveedorCreado);
+
+                final String MENSAJE_EXITO = "Proveedor Modificado con exito";
+                Informador.mostrarMensajeDeInformacion(MENSAJE_EXITO);
+            } catch (ExcepcionElementoNoEncontrado ex) {
+                Logger.getLogger(FormularioModificacionProveedor.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         }
 
     }
@@ -281,8 +340,8 @@ public class RegistroProveedorFormularioPanel extends javax.swing.JPanel {
 
         } else {
 
-            final String MENSAJE_CAMPOS_INCOMPLETOS = 
-                    "¡Rellena todos los campos!";
+            final String MENSAJE_CAMPOS_INCOMPLETOS
+                    = "¡Rellena todos los campos!";
             Informador.mostrarMensajeDeError(MENSAJE_CAMPOS_INCOMPLETOS);
 
             return false;
@@ -290,12 +349,43 @@ public class RegistroProveedorFormularioPanel extends javax.swing.JPanel {
 
     }
 
-    private void crearProveedor() {
+    private Proveedor crearProveedor() {
 
+        String id = codigoCampo.getText();
         String nombre = nombreCampo.getText();
-        int telefono = Integer.parseInt(telefonoCampo.getText());
+        String telefono = telefonoCampo.getText();
         String direccion = direccionCampo.getText();
 
-        //TODO: Devolver una instancia de Producto
+        Proveedor proveedorCreado = new Proveedor(id, nombre, telefono, direccion);
+        return proveedorCreado;
+    }
+
+    private void autocompletarCodigoProveedor() {
+
+        final boolean MODO_DIALOGO = true;
+        JFrame ventanaActiva = (JFrame) SwingUtilities.getWindowAncestor(this);
+
+        AutocompletadoCodigoProveedorDialogo dialogoAutocompletado
+                = new AutocompletadoCodigoProveedorDialogo(ventanaActiva, MODO_DIALOGO);
+
+        dialogoAutocompletado.establecerCampoPorAutocompletar(codigoCampo);
+
+        dialogoAutocompletado.mostrarEnPantalla();
+    }
+
+    private void completarInformacionProveedor() {
+
+        try {
+            String IDProveedor = codigoCampo.getText();
+
+            GestorProveedores gestorProveedores = GestorProveedores.obtenerInstancia();
+            Proveedor proveedorObtenido = gestorProveedores.obtener(IDProveedor);
+            nombreCampo.setText(proveedorObtenido.obtenerNombre());
+            telefonoCampo.setText(proveedorObtenido.obtenerTelefono());
+            direccionCampo.setText(proveedorObtenido.obtenerDireccion());
+        } catch (ExcepcionElementoNoEncontrado ex) {
+            Logger.getLogger(FormularioModificacionProveedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 }

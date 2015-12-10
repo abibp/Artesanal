@@ -7,7 +7,7 @@ package negocio.entidades;
 public class Proveedor {
 
     private final String ID_;
-    
+   
     private String nombre_;
     private String direccion_;
     private String telefono_;

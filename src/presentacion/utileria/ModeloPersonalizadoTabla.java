@@ -62,6 +62,31 @@ public class ModeloPersonalizadoTabla extends AbstractTableModel {
         return datos.isEmpty();
     }
     
+    public ArrayList<Object> obtenerFila(int indiceFila){
+        return datos.get(indiceFila);
+    }
+    
+    public void filtrarContenido(String porBuscar){
+        
+        ArrayList<ArrayList<Object>> resultado = new ArrayList<>();
+        
+        for (int filaActual = 0; filaActual < getRowCount(); filaActual++) {
+            
+            ArrayList<Object> fila = obtenerFila(filaActual);  
+            for (int celdaActual = 0; celdaActual < fila.size(); celdaActual++) {
+                
+                String contenidoCelda = String.valueOf(fila.get(celdaActual));
+                if(contenidoCelda.contains(porBuscar)){
+                    resultado.add(fila);
+                    break;
+                }
+            }
+        }
+        
+        mostrarContenidoFiltrado(resultado);
+
+    }
+    
     @Override
     public String getColumnName(int columnIndex) {
         return cabecera[columnIndex];
@@ -97,6 +122,15 @@ public class ModeloPersonalizadoTabla extends AbstractTableModel {
     public void setValueAt(Object newValue, int rowIndex, int columnIndex) {
         datos.get(rowIndex).set(columnIndex, newValue);
         fireTableCellUpdated(rowIndex, columnIndex);
+    }
+    
+    private void mostrarContenidoFiltrado(ArrayList<ArrayList<Object>> lista){
+        
+        reiniciarTabla();
+        
+        for (ArrayList<Object> fila : lista) {
+            agregarFila(fila);
+        }
     }
     
 }

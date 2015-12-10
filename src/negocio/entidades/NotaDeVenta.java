@@ -1,5 +1,6 @@
 package negocio.entidades;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -7,21 +8,34 @@ import java.util.Date;
  *
  * @author PIX
  */
-public class NotaDeVenta {
-
-    private final int ID_;
+public final class NotaDeVenta {
+    
     private final Date FECHA_;
     private final ArrayList<ElementoNota> PRODUCTOS_VENDIDOS_;
+    private final double IMPORTE_TOTAL_;
+    private final double PAGO_;
+    private final double CAMBIO_;
     
-    private double importeTotal_;
+    private int ID_;
 
-    public NotaDeVenta(int id, Date fecha) {
+    public NotaDeVenta(ArrayList<ElementoNota> elementos, double importeTotal, double pago, double cambio, int id) {
+        
+        this.FECHA_ = new Date();
+        this.PRODUCTOS_VENDIDOS_ = elementos;
+        this.IMPORTE_TOTAL_ = calcularImporteTotal();
+        this.PAGO_ = pago;
+        this.CAMBIO_ = cambio;
         this.ID_ = id;
-        this.FECHA_ = fecha;
-        this.PRODUCTOS_VENDIDOS_ = new ArrayList();
-        this.importeTotal_ = 0.0;
     }
 
+    public NotaDeVenta(ArrayList<ElementoNota> elementos, double pago) {
+        this.FECHA_ = new Date();
+        this.PRODUCTOS_VENDIDOS_ = elementos;
+        this.IMPORTE_TOTAL_ = calcularImporteTotal();
+        this.PAGO_ = pago;
+        this.CAMBIO_ = pago - obtenerImporteTotal();
+    }
+    
     public int obtenerID() {
         return ID_;
     }
@@ -30,17 +44,20 @@ public class NotaDeVenta {
         return FECHA_;
     }
     
+    public String obtenerFechaConFormato() {
+        
+        final String FORMATO = "yyyy-MM-dd";
+        SimpleDateFormat formateador = new SimpleDateFormat(FORMATO);
+        String fecha = formateador.format(obtenerFecha());
+        return fecha;
+    }
+    
     public ArrayList<ElementoNota> obtenerElementos() {
         return PRODUCTOS_VENDIDOS_;
     }
 
     public double obtenerImporteTotal() {
-
-        boolean importeHaSidoCalculado = importeTotal_ > 0.0;
-
-        if (!importeHaSidoCalculado) importeTotal_ = calcularImporteTotal();
-
-        return importeTotal_;
+        return IMPORTE_TOTAL_;
     }
     
     public void agregarElemento(ElementoNota elementoVenta) {
@@ -52,6 +69,7 @@ public class NotaDeVenta {
     }
 
     private double calcularImporteTotal() {
+        
         double montoTotal = 0.0;
         for (ElementoNota elementoActual : PRODUCTOS_VENDIDOS_) {
             montoTotal += elementoActual.obtenerImporte();

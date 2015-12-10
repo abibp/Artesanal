@@ -52,17 +52,22 @@ public class ProductoCompuesto extends Producto {
         }else{
             final String mensaje = "Este producto no contiene dicho ingrediente"
                     + " o no existe el ingrediente.";
-            throw new ExcepcionElementoNoEncontrado(mensaje);
         }
+        
+        return null;
     }
 
     public void agregarIngrediente(Ingrediente ingrediente) throws ExcepcionElementoYaExistente {
-        
-        if(nIngredientes_.containsValue(ingrediente)){
+
+        if(nIngredientes_.containsKey(ingrediente.obtenerID())){
             nIngredientes_.put(ingrediente.obtenerID(), ingrediente);
         }else{
             final String mensaje = "Este ingrediente ya se encuentra en la receta.";
-            throw new ExcepcionElementoYaExistente(mensaje);
+            System.out.println(nIngredientes_.size());
+            for (Entry<String, Ingrediente> entry : nIngredientes_.entrySet()) {
+                System.out.println(entry.getValue().obtenerID() + " -- " + entry.getValue().obtenerInsumo().obtenerNombre());
+            }
+            
         }
     }
 
@@ -73,7 +78,7 @@ public class ProductoCompuesto extends Producto {
         } else {
             final String mensaje = "Este producto no contiene dicho ingrediente"
                     + " o no existe el ingrediente.";
-            throw new ExcepcionElementoNoEncontrado(mensaje);
+            
         }
     }
 
@@ -93,16 +98,12 @@ public class ProductoCompuesto extends Producto {
         return listaIngredientes;
     }
 
-    public void agregarReceta(ArrayList<Ingrediente> ingredientes) throws ExcepcionListaVacia, ExcepcionElementoYaExistente {
+    public void agregarReceta(ArrayList<Ingrediente> ingredientes) throws ExcepcionElementoYaExistente {
         
-        boolean listaVacia = ingredientes.isEmpty();
-        if (!listaVacia) {
-            for (Ingrediente ingrediente : ingredientes) {
-                agregarIngrediente(ingrediente);
-            }
-        }else{
-            throw new ExcepcionListaVacia();
+        for (Ingrediente ingrediente : ingredientes) {
+            nIngredientes_.put(ingrediente.obtenerID(), ingrediente);
         }
+        
     }
     
     public boolean tieneIngredientes(){

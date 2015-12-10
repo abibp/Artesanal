@@ -1,20 +1,35 @@
 package presentacion.productos;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import negocio.administracion.GestorProductos;
+import negocio.entidades.Producto;
+import negocio.excepciones.ExcepcionElementoNoEncontrado;
+import negocio.excepciones.ExcepcionElementoYaExistente;
+import negocio.excepciones.ExcepcionListaVacia;
 import presentacion.utileria.ModeloPersonalizadoTabla;
 
 /**
  *
  * @author PIX
  */
-public class InventarioProductosPanel extends javax.swing.JPanel{
+public class InventarioProductosPanel extends javax.swing.JPanel {
 
     private ModeloPersonalizadoTabla productosInventarioTablaModelo;
 
     public InventarioProductosPanel() {
-        initComponents();
-        configurarComponentes();
-        configurarEvento();
-        mostrarInformacionTodosLosProductos();
+        try {
+            initComponents();
+            configurarComponentes();
+            configurarEvento();
+            mostrarInformacionTodosLosProductos();
+        } catch (ExcepcionListaVacia ex) {
+            Logger.getLogger(InventarioProductosPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ExcepcionElementoYaExistente ex) {
+            Logger.getLogger(InventarioProductosPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -154,12 +169,11 @@ public class InventarioProductosPanel extends javax.swing.JPanel{
 
     private void configurarComponentes() {
 
-        String[] cabeceraTabla = {"ID Producto","Nombre","Precio","Costo", "Cantidad", "Estado"};
+        String[] cabeceraTabla = {"ID Producto", "Nombre", "Precio", "Costo", "Existencia"};
         productosInventarioTablaModelo = new ModeloPersonalizadoTabla(cabeceraTabla);
         productosInventarioTabla.setModel(productosInventarioTablaModelo);
 
     }
-
 
     private void configurarEvento() {
 
@@ -167,36 +181,57 @@ public class InventarioProductosPanel extends javax.swing.JPanel{
 
     }
 
-    private void mostrarInformacionTodosLosProductos() {
-        
-        productosInventarioTablaModelo.reiniciarTabla();
-        //TODO: pedir informacion al gestor productos
+    private void mostrarInformacionTodosLosProductos() throws ExcepcionListaVacia, ExcepcionElementoYaExistente {
+
+        try {
+            productosInventarioTablaModelo.reiniciarTabla();
+            
+            List<Producto> productos = GestorProductos.obtenerInstancia().obtenerLista();
+            for (Producto actual : productos) {
+                agregarFilaTabla(actual);
+            }
+        } catch (ExcepcionElementoNoEncontrado ex) {
+            Logger.getLogger(InventarioProductosPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     private void buscarProductos() {
-        
+
         String criterioBusqueda = criterioBusquedaProductoCampo.getText();
         boolean esVacioCriterioBusqueda = criterioBusqueda.isEmpty();
-        
-        if( ! esVacioCriterioBusqueda ){
-            
-            //TODO: pedir informacion al gestor productos
-            mostrarInformacionProductosBuscados();
-            
-        }else{
-            
-            mostrarInformacionTodosLosProductos();
-            
+
+        if (!esVacioCriterioBusqueda) {
+           mostrarInformacionProductosBuscados(criterioBusqueda);
+        } else {
+            try {
+                mostrarInformacionTodosLosProductos();
+            } catch (ExcepcionListaVacia ex) {
+                Logger.getLogger(InventarioProductosPanel.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ExcepcionElementoYaExistente ex) {
+                Logger.getLogger(InventarioProductosPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        
+
     }
 
-    private void mostrarInformacionProductosBuscados() {
+    private void mostrarInformacionProductosBuscados(String criterioBusqueda) {
         
-        productosInventarioTablaModelo.reiniciarTabla();
-        //TODO: recibir una lista de productos y actualizar la tabla
-        
+        productosInventarioTablaModelo.filtrarContenido(criterioBusqueda);
+
     }
 
+    private void agregarFilaTabla(Producto actual) {
 
+        ArrayList fila = new ArrayList();
+
+        fila.add(actual.obtenerID());
+        fila.add(actual.obtenerNombre());
+        fila.add(actual.obtenerCosto());
+        fila.add(actual.obtenerPrecio());
+        fila.add(actual.obtenerExistencia());
+
+        productosInventarioTablaModelo.agregarFila(fila);
+
+    }
 }
