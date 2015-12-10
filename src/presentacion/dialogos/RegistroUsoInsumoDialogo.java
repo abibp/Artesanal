@@ -3,6 +3,7 @@ package presentacion.dialogos;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -252,7 +253,7 @@ public class RegistroUsoInsumoDialogo extends javax.swing.JDialog {
 
     private void llenarTabla() {
         try {
-            ArrayList<Insumo> insumos = GestorInsumos.obtenerInstancia().obtenerLista();
+            List<Insumo> insumos = GestorInsumos.obtenerInstancia().obtenerLista();
             for(Insumo actual : insumos){
                 agregarFilaTabla(actual);
             }  

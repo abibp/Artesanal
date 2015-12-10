@@ -13,6 +13,7 @@ import negocio.administracion.GestorProductos;
 import negocio.entidades.ElementoNota;
 import negocio.entidades.Producto;
 import negocio.excepciones.ExcepcionElementoNoEncontrado;
+import negocio.excepciones.ExcepcionExistenciasInsuficientes;
 import presentacion.dialogos.AutocompletadoCodigoProductoDialogo;
 import presentacion.utileria.ModeloPersonalizadoTabla;
 import presentacion.utileria.RestriccionNumeroDecimalCampo;
@@ -363,9 +364,13 @@ public class RegistroVentasPanel extends javax.swing.JPanel {
                 GestorProductos gestorProducto = GestorProductos.obtenerInstancia();
                 Producto productoObtenido = gestorProducto.obtener(codigo);
 
-                totalVentaCampo.setText(String.valueOf(calcularTotalVenta()));
                 actualizarNotaVenta(productoObtenido);
                 agregarFila(productoObtenido);
+                totalVentaCampo.setText(String.valueOf(calcularTotalVenta()));
+
+                final String VACIO = "";
+                codigoProductoCampo.setText(VACIO);
+                cantidadProductoCampo.setText(VACIO);
 
             } catch (ExcepcionElementoNoEncontrado ex) {
                 Logger.getLogger(RegistroVentasPanel.class.getName()).log(Level.SEVERE, null, ex);
@@ -416,19 +421,21 @@ public class RegistroVentasPanel extends javax.swing.JPanel {
         boolean estaVacia = productosVentaActualTablaModelo.estaVacia();
         boolean esVentaValida = !estaVacia;
 
-        if ( esVentaValida ) {
+        if (esVentaValida) {
 
-            String pagoCliente = JOptionPane.showInputDialog("Ingresa la cantidad recibida");
-            boolean estadoValidacionPago = validarPagoCliente(pagoCliente);
+            double cantidadPagadaCliente = Double.parseDouble(pagoClienteCampo.getText());
+            boolean estadoValidacionPago = validarPagoCliente(cantidadPagadaCliente);
 
             boolean CORRECTO = true;
             if (estadoValidacionPago == CORRECTO) {
 
-                double cantidadPagadaCliente
-                        = Double.parseDouble(pagoCliente);
-                double importeTotalVenta = Double.parseDouble(pagoClienteCampo.getText());
+                double importeTotalVenta = Double.parseDouble(totalVentaCampo.getText());
 
-                cajeroActual.realizarVenta(notaVenta_, cantidadPagadaCliente);
+                try {
+                    cajeroActual.realizarVenta(notaVenta_, cantidadPagadaCliente);
+                } catch (ExcepcionElementoNoEncontrado | ExcepcionExistenciasInsuficientes ex) {
+                    Logger.getLogger(RegistroVentasPanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
                 mostrarImporteCambio(cantidadPagadaCliente, importeTotalVenta);
                 reiniciarDatosVenta();
@@ -509,10 +516,7 @@ public class RegistroVentasPanel extends javax.swing.JPanel {
 
     }
 
-    private boolean validarPagoCliente(String pagoCliente) {
-
-        double cantidadPagadaCliente
-                = Double.parseDouble(pagoCliente);
+    private boolean validarPagoCliente(double cantidadPagadaCliente) {
 
         double importeTotalVenta = Double.parseDouble(pagoClienteCampo.getText());
 
@@ -537,7 +541,7 @@ public class RegistroVentasPanel extends javax.swing.JPanel {
 
     private void mostrarImporteCambio(double cantidadPagadaCliente, double importeTotalVenta) {
 
-        double cambio = importeTotalVenta - cantidadPagadaCliente;
+        double cambio = cantidadPagadaCliente - importeTotalVenta;
 
         final String CAMBIO_MENSAJE = "Cambio : $ " + cambio;
 
@@ -546,18 +550,17 @@ public class RegistroVentasPanel extends javax.swing.JPanel {
 
     private void agregarFila(Producto producto) {
 
-        double cantidad = Double.parseDouble(cantidadProductoCampo.getText());
+        int cantidad = Integer.parseInt(cantidadProductoCampo.getText());
 
-        ArrayList fila = new ArrayList();
-        fila.add(producto.obtenerID());
-        fila.add(producto.obtenerNombre());
-        fila.add(producto.obtenerPrecio());
-        fila.add(cantidad);
+        int indiceProducto = indiceDeProductoEnTabla(producto);
+        boolean existeProductoEnTabla = indiceProducto != -1;
 
-        double importeIndividual = cantidad * producto.obtenerPrecio();
-        fila.add(importeIndividual);
+        if (existeProductoEnTabla) {
+            incrementarCantidadProductoEnTabla(indiceProducto, cantidad, producto);
+        } else {
 
-        productosVentaActualTablaModelo.agregarFila(fila);
+            agregarProductoTabla(producto, cantidad);
+        }
 
     }
 
@@ -565,17 +568,66 @@ public class RegistroVentasPanel extends javax.swing.JPanel {
 
         int cantidad = Integer.parseInt(cantidadProductoCampo.getText());
         ElementoNota elementoNota = new ElementoNota(cantidad, productoObtenido);
+        
+        int indiceProducto = indiceDeProductoEnTabla(productoObtenido);
+        boolean existeProductoEnTabla = indiceProducto != -1;
         notaVenta_.add(elementoNota);
     }
 
     private double calcularTotalVenta() {
-        
+
         double importeTotal = 0.0;
-        for(ElementoNota actual : notaVenta_){
+        for (ElementoNota actual : notaVenta_) {
             importeTotal += actual.obtenerImporte();
         }
         return importeTotal;
-        
+
     }
 
+    private int indiceDeProductoEnTabla(Producto productoVenta) {
+
+        final int INDICE_COLUMNA_ID = 0;
+        final int NO_ENCONTRADO = -1;
+
+        for (int indice = 0; indice < productosVentaActualTablaModelo.getRowCount(); indice++) {
+
+            String IDProductoActual = productosVentaActualTablaModelo.getValueAt(indice, INDICE_COLUMNA_ID).toString();
+            if (IDProductoActual.equals(productoVenta.obtenerID())) {
+                return indice;
+            }
+        }
+
+        return NO_ENCONTRADO;
+    }
+
+    private void incrementarCantidadProductoEnTabla(
+            int indiceProducto,
+            int cantidadAdicionalProductosVenta,
+            Producto productoVenta) {
+
+        final int INDICE_COLUMNA_CANTIDAD = 3;
+        final int INDICE_COLUMNA_MONTO = 4;
+
+        int cantidadProductosVenta
+                = ((Integer) productosVentaActualTablaModelo.getValueAt(indiceProducto, INDICE_COLUMNA_CANTIDAD));
+
+        int nuevaCantidadProductosVenta = cantidadProductosVenta + cantidadAdicionalProductosVenta;
+        productosVentaActualTablaModelo.setValueAt(nuevaCantidadProductosVenta, indiceProducto, INDICE_COLUMNA_CANTIDAD);
+
+        double montoParcialVenta = nuevaCantidadProductosVenta * productoVenta.obtenerPrecio();
+        productosVentaActualTablaModelo.setValueAt(montoParcialVenta, indiceProducto, INDICE_COLUMNA_MONTO);
+    }
+
+    private void agregarProductoTabla(Producto producto, int cantidad) {
+        
+        ArrayList fila = new ArrayList();
+        fila.add(producto.obtenerID());
+        fila.add(producto.obtenerNombre());
+        fila.add(producto.obtenerPrecio());
+        fila.add(cantidad);
+        double importeIndividual = cantidad * producto.obtenerPrecio();
+        fila.add(importeIndividual);
+
+        productosVentaActualTablaModelo.agregarFila(fila);
+    }
 }

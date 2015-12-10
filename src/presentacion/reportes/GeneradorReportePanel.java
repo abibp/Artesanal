@@ -7,8 +7,8 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
-import negocio.administracion.GeneradorReporte;
 import presentacion.utileria.Informador;
+import negocio.administracion.GeneradorReportes;
 
 /**
  *
@@ -223,13 +223,17 @@ public class GeneradorReportePanel extends javax.swing.JPanel {
                 String ubicacionDirectorioDestino = directorioElegido.getAbsolutePath();
                 Date fechaInicial = fechaInicialCampo.getDate();
                 Date fechaFinal = fechaFinalCampo.getDate();
-                GeneradorReporte generadorReporte = new GeneradorReporte();
+                GeneradorReportes generadorReporte = new GeneradorReportes();
                 try {
+                
                     generadorReporte.generarReporteVentas(fechaInicial, fechaFinal, ubicacionDirectorioDestino);
                     Informador.mostrarMensajeDeInformacion("Reporte generado con exito");
-                } catch (FileNotFoundException | DocumentException ex) {
+                
+                } catch (DocumentException ex) {
                     Logger.getLogger(GeneradorReportePanel.class.getName()).log(Level.SEVERE, null, ex);
                     Informador.mostrarMensajeDeError("Valio madre este pex");
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(GeneradorReportePanel.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
             }

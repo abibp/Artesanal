@@ -21,11 +21,11 @@ import negocio.excepciones.ExcepcionElementoYaExistente;
  *
  * @author MiguelAngel
  */
-public class GestorProductos implements Gestor<Producto>{
-    
+public class GestorProductos implements Gestor<Producto> {
+
     private final GestorBDProducto gestorBD_;
-    private final HashMap<String,Producto> nInventario_;
-    
+    private final HashMap<String, Producto> nInventario_;
+
     private static GestorProductos unicoGestor_;
 
     public synchronized static GestorProductos obtenerInstancia() throws ExcepcionElementoNoEncontrado {
@@ -37,16 +37,16 @@ public class GestorProductos implements Gestor<Producto>{
 
     @Override
     public void agregar(Producto nuevoProducto) throws ExcepcionElementoYaExistente {
-        
-        if(!nInventario_.containsKey(nuevoProducto.obtenerID())){
-            
+
+        if (!nInventario_.containsKey(nuevoProducto.obtenerID())) {
+
             nInventario_.put(nuevoProducto.obtenerID(), nuevoProducto);
             gestorBD_.agregar(nuevoProducto);
-            
-        }else{
+
+        } else {
             throw new ExcepcionElementoYaExistente();
         }
-        
+
     }
 
     @Override
@@ -62,14 +62,14 @@ public class GestorProductos implements Gestor<Producto>{
     }
 
     @Override
-    public Producto obtener(String id) throws ExcepcionElementoNoEncontrado{
-        if(nInventario_.containsKey(id)) {
+    public Producto obtener(String id) throws ExcepcionElementoNoEncontrado {
+        if (nInventario_.containsKey(id)) {
             return nInventario_.get(id);
-        }else{
+        } else {
             throw new ExcepcionElementoNoEncontrado();
         }
     }
-    
+
     @Override
     public List<Producto> obtenerLista() {
         return Collections.unmodifiableList(convertirCatalogoALista());
@@ -89,13 +89,13 @@ public class GestorProductos implements Gestor<Producto>{
         return listaProducto;
         
     }
-    
+
     private void inicializarLista() throws ExcepcionElementoNoEncontrado {
         try {
             ArrayList<Producto> listaProductos = gestorBD_.obtenerLista();
-            
+
             for (Producto producto : listaProductos) {
-                nInventario_.put(producto.obtenerID(), producto); 
+                nInventario_.put(producto.obtenerID(), producto);
             }
         } catch (ExcepcionProductoNoEncontrado ex) {
             throw new ExcepcionElementoNoEncontrado();
@@ -107,5 +107,5 @@ public class GestorProductos implements Gestor<Producto>{
         this.nInventario_ = new HashMap();
         inicializarLista();
     }
-    
+
 }

@@ -41,15 +41,14 @@ public class GeneradorReportes {
     public void generarReporteVentas(
             Date fechaInicio,
             Date fechaFinalizacion,
-            String ubicacionDirectorio,
-            ArrayList<NotaDeVenta> notasVenta
+            String ubicacionDirectorio
     ) throws FileNotFoundException, DocumentException {
         
         this.almacenador.establecerArchivo(ubicacionDirectorio, nombreReporte_);
         iniciarEdicion(ubicacionDirectorio);
         agregarTitulo(formatearFechas(fechaInicio, fechaFinalizacion));
        
-        //ArrayList<NotaDeVenta> notasVenta = new ArrayList<>();
+        ArrayList<NotaDeVenta> notasVenta = new ArrayList<>();
         //TODO: Jalar todos los datos del Gestor de Venta
         for (NotaDeVenta actual : notasVenta) {
             agregarSeccion(actual);

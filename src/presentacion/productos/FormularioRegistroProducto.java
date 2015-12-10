@@ -10,6 +10,7 @@ import javax.swing.SwingUtilities;
 import negocio.administracion.GestorProductos;
 import negocio.entidades.Producto;
 import negocio.excepciones.ExcepcionElementoNoEncontrado;
+import negocio.excepciones.ExcepcionElementoYaExistente;
 import presentacion.dialogos.AutocompletadoCodigoProveedorDialogo;
 import presentacion.dialogos.RegistroUsoInsumoDialogo;
 import presentacion.utileria.ModeloPersonalizadoTabla;
@@ -439,7 +440,7 @@ public class FormularioRegistroProducto extends javax.swing.JPanel {
                 final String MENSAJE_EXITO = "Producto Agregado";
                 Informador.mostrarMensajeDeInformacion(MENSAJE_EXITO);
                 
-            } catch (ExcepcionElementoNoEncontrado ex) {
+            } catch (ExcepcionElementoNoEncontrado | ExcepcionElementoYaExistente ex) {
                 Logger.getLogger(FormularioRegistroProducto.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
