@@ -62,7 +62,7 @@
                               <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                               <Component id="totalVentaEtiqueta" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="totalVentaCampo1" min="-2" pref="178" max="-2" attributes="0"/>
+                              <Component id="totalVentaCampo" min="-2" pref="178" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="pagoClienteEtiqueta" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -140,7 +140,7 @@
                                   <Component id="cobroBoton" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Group type="103" alignment="1" groupAlignment="3" attributes="0">
                                       <Component id="pagoClienteCampo" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="totalVentaCampo1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="totalVentaCampo" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="totalVentaEtiqueta" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -417,7 +417,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="totalVentaCampo1">
+        <Component class="javax.swing.JTextField" name="totalVentaCampo">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">

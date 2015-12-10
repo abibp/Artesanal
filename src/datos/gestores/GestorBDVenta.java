@@ -9,7 +9,7 @@ public class GestorBDVenta extends GestorBaseDatos {
     public void agregarVenta(ElementoNota nuevaVenta) {
 
         final String INSTRUCCION_INSERTAR
-                = "INSERT INTO venta VALUES(NOW(),\"%s\",%f,%f)";
+                = "INSERT INTO venta VALUES(NOW(),\"%s\",%d,%f)";
 
         String instruccionFinalInsertar
                 = String.format(
