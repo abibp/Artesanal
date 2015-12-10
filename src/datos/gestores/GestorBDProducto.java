@@ -12,8 +12,9 @@ import java.util.ArrayList;
 
 public class GestorBDProducto extends GestorBaseDatos {
     
-    public static String TABLA_PRODUCTO = "producto";
     private final GeneradorSentenciasProducto generadorSentencia;
+    
+    public static String TABLA_PRODUCTO = "producto";
 
     public GestorBDProducto() {
         generadorSentencia = new GeneradorSentenciasProducto(TABLA_PRODUCTO);

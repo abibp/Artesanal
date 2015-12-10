@@ -19,7 +19,7 @@ import negocio.entidades.Proveedor;
 public class GestorProductosCompuestos implements Gestor<ProductoCompuesto>{
     
     private final GestorBDProducto gestorBD_;
-    private final HashMap<String,ProductoCompuesto> nCatalogo_;
+    private final HashMap<String,ProductoCompuesto> nInventario_;
     
     private static GestorProductosCompuestos unicoGestor_;
 
@@ -32,32 +32,32 @@ public class GestorProductosCompuestos implements Gestor<ProductoCompuesto>{
 
     @Override
     public void agregar(ProductoCompuesto nuevoProducto) {
-        nCatalogo_.put(nuevoProducto.obtenerID(), nuevoProducto);
+        nInventario_.put(nuevoProducto.obtenerID(), nuevoProducto);
         gestorBD_.agregar(nuevoProducto);
     }
 
     @Override
     public void eliminar(String id) {
-        nCatalogo_.remove(id);
+        nInventario_.remove(id);
         gestorBD_.eliminar(id);
     }
 
     @Override
     public void editarInformacion(ProductoCompuesto actualizado) {
-        nCatalogo_.replace(actualizado.obtenerID(), actualizado);
+        nInventario_.replace(actualizado.obtenerID(), actualizado);
         gestorBD_.editarInformacion(actualizado.obtenerID(), actualizado);
     }
 
     @Override
     public ProductoCompuesto obtener(String id) {
-        return nCatalogo_.get(id);
+        return nInventario_.get(id);
     }
     
     @Override
     public ArrayList<ProductoCompuesto> obtenerLista() {
         
         ArrayList<ProductoCompuesto> listaProductosCompuestos = new ArrayList<>();
-        for (Map.Entry<String, ProductoCompuesto> entry : nCatalogo_.entrySet()) {
+        for (Map.Entry<String, ProductoCompuesto> entry : nInventario_.entrySet()) {
             ProductoCompuesto producto = entry.getValue();
             listaProductosCompuestos.add(producto);
         }
@@ -74,7 +74,7 @@ public class GestorProductosCompuestos implements Gestor<ProductoCompuesto>{
 
     private GestorProductosCompuestos() {
         this.gestorBD_ = new GestorBDProducto();
-        this.nCatalogo_ = new HashMap();
+        this.nInventario_ = new HashMap();
         inicializarLista();
     }
     

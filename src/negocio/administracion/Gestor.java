@@ -5,9 +5,10 @@
  */
 package negocio.administracion;
 
-import java.util.ArrayList;
+import java.util.List;
 import negocio.excepciones.ExcepcionElementoNoEncontrado;
 import negocio.excepciones.ExcepcionElementoYaExistente;
+import negocio.excepciones.ExcepcionListaVacia;
 
 
 /**
@@ -24,6 +25,6 @@ public interface Gestor<Entidad> {
     
     public Entidad obtener(String id) throws ExcepcionElementoNoEncontrado;
     
-    public ArrayList<Entidad> obtenerLista();
+    public List<Entidad> obtenerLista() throws ExcepcionListaVacia;
     
 }

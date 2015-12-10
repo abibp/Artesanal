@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import negocio.entidades.Producto;
 import negocio.excepciones.ExcepcionElementoNoEncontrado;
+import negocio.excepciones.ExcepcionElementoYaExistente;
 
 /**
  *
@@ -22,7 +23,7 @@ import negocio.excepciones.ExcepcionElementoNoEncontrado;
 public class GestorProductos implements Gestor<Producto>{
     
     private final GestorBDProducto gestorBD_;
-    private final HashMap<String,Producto> nProductos_;
+    private final HashMap<String,Producto> nInventario_;
     
     private static GestorProductos unicoGestor_;
 
@@ -34,27 +35,35 @@ public class GestorProductos implements Gestor<Producto>{
     }
 
     @Override
-    public void agregar(Producto nuevoProducto) {
-        nProductos_.put(nuevoProducto.obtenerID(), nuevoProducto);
-        gestorBD_.agregar(nuevoProducto);
+    public void agregar(Producto nuevoProducto) throws ExcepcionElementoYaExistente {
+        
+        if(!nInventario_.containsKey(nuevoProducto.obtenerID())){
+            
+            nInventario_.put(nuevoProducto.obtenerID(), nuevoProducto);
+            gestorBD_.agregar(nuevoProducto);
+            
+        }else{
+            throw new ExcepcionElementoYaExistente();
+        }
+        
     }
 
     @Override
     public void eliminar(String id) {
-        nProductos_.remove(id);
+        nInventario_.remove(id);
         gestorBD_.eliminar(id);
     }
 
     @Override
     public void editarInformacion(Producto actualizado) {
-        nProductos_.replace(actualizado.obtenerID(), actualizado);
+        nInventario_.replace(actualizado.obtenerID(), actualizado);
         gestorBD_.editarInformacion(actualizado.obtenerID(), actualizado);
     }
 
     @Override
     public Producto obtener(String id) throws ExcepcionElementoNoEncontrado{
-        if(nProductos_.containsKey(id)) {
-            return nProductos_.get(id);
+        if(nInventario_.containsKey(id)) {
+            return nInventario_.get(id);
         }else{
             throw new ExcepcionElementoNoEncontrado();
         }
@@ -64,7 +73,7 @@ public class GestorProductos implements Gestor<Producto>{
     public ArrayList<Producto> obtenerLista() {
         
         ArrayList<Producto> listaProductos = new ArrayList<>();
-        for (Entry<String, Producto> entry : nProductos_.entrySet()) {
+        for (Entry<String, Producto> entry : nInventario_.entrySet()) {
                 Producto producto = entry.getValue();
                 listaProductos.add(producto);
             }
@@ -76,7 +85,7 @@ public class GestorProductos implements Gestor<Producto>{
             ArrayList<Producto> listaProductos = gestorBD_.obtenerLista();
             
             for (Producto producto : listaProductos) {
-                nProductos_.put(producto.obtenerID(), producto); 
+                nInventario_.put(producto.obtenerID(), producto); 
             }
         } catch (ExcepcionProductoNoEncontrado ex) {
             throw new ExcepcionElementoNoEncontrado();
@@ -85,7 +94,7 @@ public class GestorProductos implements Gestor<Producto>{
 
     private GestorProductos() throws ExcepcionElementoNoEncontrado {
         this.gestorBD_ = new GestorBDProducto();
-        this.nProductos_ = new HashMap();
+        this.nInventario_ = new HashMap();
         inicializarLista();
     }
     
