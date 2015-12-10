@@ -36,7 +36,8 @@ public class Principal {
         try {
             GestorInsumos.obtenerInstancia();
             GestorProductosCompuestos.obtenerInstancia();
-        } catch (ExcepcionElementoNoEncontrado ex) {
+
+        } catch (ExcepcionElementoNoEncontrado ex){
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

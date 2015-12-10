@@ -20,18 +20,29 @@ public class GestorBDProducto extends GestorBaseDatos {
 
     public static String TABLA_PRODUCTO = "producto";
     private final GeneradorSentenciasProducto generadorSentencia;
+    private final GeneradorSentenciasUsa generadorSentenciaUsa;
 
     public GestorBDProducto() {
         generadorSentencia = new GeneradorSentenciasProducto(TABLA_PRODUCTO);
+        generadorSentenciaUsa = new GeneradorSentenciasUsa("usa");
     }
 
-    public void agregar(Producto nuevoProducto) {
+    public void agregar(Producto nuevoProducto) throws ExcepcionListaVacia {
+        
         String sentenciaInsertarProducto;
         sentenciaInsertarProducto = generadorSentencia.generarSentenciaInsertarProducto(nuevoProducto);
         obtenerEjecutorInstrucciones().ejecutarModificacion(sentenciaInsertarProducto);
+        
+        if((nuevoProducto instanceof ProductoCompuesto)){
+            String[] sentenciasInsertarUso;
+            sentenciasInsertarUso = generadorSentenciaUsa.generarSentenciaInsertarUso((ProductoCompuesto) nuevoProducto);
+            for (int i = 0; i < sentenciasInsertarUso.length; i++) {
+                obtenerEjecutorInstrucciones().ejecutarModificacion(sentenciasInsertarUso[i]);
+            }
+        }
 
     }
-
+    
     public void eliminar(String idProducto) {
 
         String sentenciaEliminarProducto;
@@ -163,12 +174,10 @@ public class GestorBDProducto extends GestorBaseDatos {
 
     private boolean usaInsumos(ResultSet resultadoConsulta) throws ExcepcionListaVacia, ExcepcionProductoNoEncontrado, ExcepcionElementoYaExistente {
         
-        GeneradorSentenciasUsa generador = new GeneradorSentenciasUsa("usa");
-        
         try {
             
             String id = resultadoConsulta.getString("id_producto");     
-            String sentenciaObtenerInsumosUsados = generador.generarSentenciaObtenerUsaPorId(id);
+            String sentenciaObtenerInsumosUsados = generadorSentenciaUsa.generarSentenciaObtenerUsaPorId(id);
             ResultSet resultado = obtenerEjecutorInstrucciones().ejecutarConsulta(sentenciaObtenerInsumosUsados);
             
             return resultado.first();

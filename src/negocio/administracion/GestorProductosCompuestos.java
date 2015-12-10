@@ -11,6 +11,8 @@ import datos.gestores.GestorBDProducto;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import negocio.entidades.ProductoCompuesto;
 import negocio.excepciones.ExcepcionElementoYaExistente;
 import negocio.excepciones.ExcepcionListaVacia;
@@ -39,7 +41,11 @@ public class GestorProductosCompuestos implements Gestor<ProductoCompuesto>{
     @Override
     public void agregar(ProductoCompuesto nuevoProducto) {
         nInventario_.put(nuevoProducto.obtenerID(), nuevoProducto);
-        gestorBD_.agregar(nuevoProducto);
+        try {
+            gestorBD_.agregar(nuevoProducto);
+        } catch (ExcepcionListaVacia ex) {
+            Logger.getLogger(GestorProductosCompuestos.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
