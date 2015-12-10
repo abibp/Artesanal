@@ -62,6 +62,10 @@ public class ModeloPersonalizadoTabla extends AbstractTableModel {
         return datos.isEmpty();
     }
     
+    public ArrayList<Object> obtenerFila(int indiceFila){
+        return datos.get(indiceFila);
+    }
+    
     @Override
     public String getColumnName(int columnIndex) {
         return cabecera[columnIndex];

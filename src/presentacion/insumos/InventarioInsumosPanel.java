@@ -160,7 +160,7 @@ public class InventarioInsumosPanel extends javax.swing.JPanel{
 
     private void configurarComponentes() {
 
-        String[] cabeceraTabla = {"ID Insumo","Nombre","Costo", "Cantidad"};
+        String[] cabeceraTabla = {"ID Insumo","Nombre","Costo", "Cantidad", "Unidad Medida"};
         insumosInventarioTablaModelo = new ModeloPersonalizadoTabla(cabeceraTabla);
         insumosInventarioTabla.setModel(insumosInventarioTablaModelo);
 
@@ -182,7 +182,6 @@ public class InventarioInsumosPanel extends javax.swing.JPanel{
             for(Insumo actual : insumos){
                 agregarInsumoTabla(actual);
             }
-//TODO: pedir informacion al gestor productos
         } catch (ExcepcionElementoNoEncontrado ex) {
             Logger.getLogger(InventarioInsumosPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -214,11 +213,14 @@ public class InventarioInsumosPanel extends javax.swing.JPanel{
     }
 
     private void agregarInsumoTabla(Insumo actual) {
+        
         ArrayList fila = new ArrayList();
+        
         fila.add(actual.obtenerID());
         fila.add(actual.obtenerNombre());
         fila.add(String.valueOf(actual.obtenerCosto()));
         fila.add(String.valueOf(actual.obtenerExistencia()));
+        fila.add(actual.obtenerUnidadMedida());
         
         insumosInventarioTablaModelo.agregarFila(fila);
         

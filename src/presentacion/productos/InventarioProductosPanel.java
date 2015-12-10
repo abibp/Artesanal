@@ -1,12 +1,18 @@
 package presentacion.productos;
 
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import negocio.administracion.GestorProductos;
+import negocio.entidades.Producto;
+import negocio.excepciones.ExcepcionElementoNoEncontrado;
 import presentacion.utileria.ModeloPersonalizadoTabla;
 
 /**
  *
  * @author PIX
  */
-public class InventarioProductosPanel extends javax.swing.JPanel{
+public class InventarioProductosPanel extends javax.swing.JPanel {
 
     private ModeloPersonalizadoTabla productosInventarioTablaModelo;
 
@@ -154,12 +160,11 @@ public class InventarioProductosPanel extends javax.swing.JPanel{
 
     private void configurarComponentes() {
 
-        String[] cabeceraTabla = {"ID Producto","Nombre","Precio","Costo", "Cantidad", "Estado"};
+        String[] cabeceraTabla = {"ID Producto", "Nombre", "Precio", "Costo", "Existencia"};
         productosInventarioTablaModelo = new ModeloPersonalizadoTabla(cabeceraTabla);
         productosInventarioTabla.setModel(productosInventarioTablaModelo);
 
     }
-
 
     private void configurarEvento() {
 
@@ -168,35 +173,56 @@ public class InventarioProductosPanel extends javax.swing.JPanel{
     }
 
     private void mostrarInformacionTodosLosProductos() {
-        
-        productosInventarioTablaModelo.reiniciarTabla();
-        //TODO: pedir informacion al gestor productos
+
+        try {
+            productosInventarioTablaModelo.reiniciarTabla();
+            
+            ArrayList<Producto> productos = GestorProductos.obtenerInstancia().obtenerLista();
+            for (Producto actual : productos) {
+                agregarFilaTabla(actual);
+            }
+        } catch (ExcepcionElementoNoEncontrado ex) {
+            Logger.getLogger(InventarioProductosPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     private void buscarProductos() {
-        
+
         String criterioBusqueda = criterioBusquedaProductoCampo.getText();
         boolean esVacioCriterioBusqueda = criterioBusqueda.isEmpty();
-        
-        if( ! esVacioCriterioBusqueda ){
-            
+
+        if (!esVacioCriterioBusqueda) {
+
             //TODO: pedir informacion al gestor productos
             mostrarInformacionProductosBuscados();
-            
-        }else{
-            
+
+        } else {
+
             mostrarInformacionTodosLosProductos();
-            
+
         }
-        
+
     }
 
     private void mostrarInformacionProductosBuscados() {
-        
+
         productosInventarioTablaModelo.reiniciarTabla();
         //TODO: recibir una lista de productos y actualizar la tabla
-        
+
     }
 
+    private void agregarFilaTabla(Producto actual) {
 
+        ArrayList fila = new ArrayList();
+
+        fila.add(actual.obtenerID());
+        fila.add(actual.obtenerNombre());
+        fila.add(actual.obtenerCosto());
+        fila.add(actual.obtenerPrecio());
+        fila.add(actual.obtenerExistencia());
+
+        productosInventarioTablaModelo.agregarFila(fila);
+
+    }
 }

@@ -285,10 +285,10 @@ public class FormularioRegistroProveedor extends javax.swing.JPanel {
                 GestorProveedores gestorProveedor = GestorProveedores.obtenerInstancia();
                 gestorProveedor.agregar(proveedorCreado);
                 reiniciarInformacionFormulario();
-                
+
                 final String MENSAJE_EXITO = "Proveedor Agregado";
                 Informador.mostrarMensajeDeInformacion(MENSAJE_EXITO);
-                
+
             } catch (ExcepcionElementoNoEncontrado ex) {
                 Logger.getLogger(FormularioRegistroProveedor.class.getName()).log(Level.SEVERE, null, ex);
             }

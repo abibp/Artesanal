@@ -32,14 +32,10 @@ public class FormularioModificacionProveedor extends javax.swing.JPanel implemen
     }
 
     @Override
-    public void removeUpdate(DocumentEvent e) {
-        completarInformacionProveedor();
-    }
+    public void removeUpdate(DocumentEvent e) {}
 
     @Override
-    public void changedUpdate(DocumentEvent e) {
-        completarInformacionProveedor();
-    }
+    public void changedUpdate(DocumentEvent e) {}
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -274,6 +270,7 @@ public class FormularioModificacionProveedor extends javax.swing.JPanel implemen
         reiniciarCamposBoton.addActionListener(evento -> reiniciarInformacionFormulario());
         modificacionProveedorBoton.addActionListener(evento -> modificarInformacionProveedor());
         busquedaCodigoProveedorBoton.addActionListener(evento -> autocompletarCodigoProveedor());
+        codigoCampo.getDocument().addDocumentListener(this);
 
     }
 
@@ -320,7 +317,6 @@ public class FormularioModificacionProveedor extends javax.swing.JPanel implemen
 
         if (estadoValidacion == CORRECTO) {
 
-
             try {
                 Proveedor proveedorCreado = crearProveedor();
                 GestorProveedores gestorProveedores = GestorProveedores.obtenerInstancia();
@@ -332,7 +328,6 @@ public class FormularioModificacionProveedor extends javax.swing.JPanel implemen
                 Logger.getLogger(FormularioModificacionProveedor.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            
         }
 
     }
@@ -382,7 +377,7 @@ public class FormularioModificacionProveedor extends javax.swing.JPanel implemen
 
         try {
             String IDProveedor = codigoCampo.getText();
-            
+
             GestorProveedores gestorProveedores = GestorProveedores.obtenerInstancia();
             Proveedor proveedorObtenido = gestorProveedores.obtener(IDProveedor);
             nombreCampo.setText(proveedorObtenido.obtenerNombre());

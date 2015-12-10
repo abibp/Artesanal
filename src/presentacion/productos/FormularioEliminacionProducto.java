@@ -1,11 +1,16 @@
 package presentacion.productos;
 
 import java.awt.Component;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import negocio.administracion.GestorProductos;
+import negocio.entidades.Producto;
+import negocio.excepciones.ExcepcionElementoNoEncontrado;
 import presentacion.dialogos.AutocompletadoCodigoProductoDialogo;
 import presentacion.utileria.ModeloPersonalizadoTabla;
 import presentacion.utileria.Informador;
@@ -14,7 +19,7 @@ import presentacion.utileria.Informador;
  *
  * @author PIX
  */
-public class FormularioEliminacionProducto extends javax.swing.JPanel implements DocumentListener{
+public class FormularioEliminacionProducto extends javax.swing.JPanel implements DocumentListener {
 
     private ModeloPersonalizadoTabla insumosUsadosTablaModelo;
 
@@ -23,20 +28,18 @@ public class FormularioEliminacionProducto extends javax.swing.JPanel implements
         configurarComponentes();
         configurarEventos();
     }
-    
-      @Override
+
+    @Override
     public void insertUpdate(DocumentEvent e) {
         completarInformacionProducto();
     }
 
     @Override
     public void removeUpdate(DocumentEvent e) {
-        completarInformacionProducto();
     }
 
     @Override
     public void changedUpdate(DocumentEvent e) {
-        completarInformacionProducto();
     }
 
     @SuppressWarnings("unchecked")
@@ -60,8 +63,6 @@ public class FormularioEliminacionProducto extends javax.swing.JPanel implements
         precioEtiqueta = new org.edisoncor.gui.label.LabelMetric();
         cantidadActualCampo = new javax.swing.JTextField();
         cantidadActualEtiqueta = new org.edisoncor.gui.label.LabelMetric();
-        proveedorCampo = new javax.swing.JTextField();
-        proveedorEtiqueta = new org.edisoncor.gui.label.LabelMetric();
         completarCodigoProducto = new javax.swing.JButton();
         barraDesplazamientoTabla = new javax.swing.JScrollPane();
         insumosUsadosTabla = new javax.swing.JTable();
@@ -143,12 +144,6 @@ public class FormularioEliminacionProducto extends javax.swing.JPanel implements
         cantidadActualEtiqueta.setText("Cantidad Actual :");
         cantidadActualEtiqueta.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
 
-        proveedorCampo.setEditable(false);
-        proveedorCampo.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-
-        proveedorEtiqueta.setText("Codigo Proveedor :");
-        proveedorEtiqueta.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-
         completarCodigoProducto.setBackground(new java.awt.Color(102, 0, 0));
         completarCodigoProducto.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         completarCodigoProducto.setForeground(new java.awt.Color(255, 255, 255));
@@ -161,37 +156,31 @@ public class FormularioEliminacionProducto extends javax.swing.JPanel implements
             formularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(formularioPanelLayout.createSequentialGroup()
                 .addGroup(formularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(formularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(formularioPanelLayout.createSequentialGroup()
-                            .addComponent(costoEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(costoCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, formularioPanelLayout.createSequentialGroup()
-                            .addGap(69, 69, 69)
-                            .addGroup(formularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(formularioPanelLayout.createSequentialGroup()
-                                    .addComponent(precioEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(precioCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(formularioPanelLayout.createSequentialGroup()
-                                    .addComponent(nombreEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(nombreCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(formularioPanelLayout.createSequentialGroup()
-                                    .addComponent(cantidadActualEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(cantidadActualCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(formularioPanelLayout.createSequentialGroup()
-                                    .addComponent(codigoEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(codigoCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(completarCodigoProducto)))))
                     .addGroup(formularioPanelLayout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(proveedorEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(costoEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(proveedorCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(costoCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, formularioPanelLayout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addGroup(formularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(formularioPanelLayout.createSequentialGroup()
+                                .addComponent(precioEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(precioCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(formularioPanelLayout.createSequentialGroup()
+                                .addComponent(nombreEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(nombreCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(formularioPanelLayout.createSequentialGroup()
+                                .addComponent(cantidadActualEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(cantidadActualCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(formularioPanelLayout.createSequentialGroup()
+                                .addComponent(codigoEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(codigoCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(completarCodigoProducto)))))
                 .addContainerGap(79, Short.MAX_VALUE))
         );
         formularioPanelLayout.setVerticalGroup(
@@ -218,10 +207,6 @@ public class FormularioEliminacionProducto extends javax.swing.JPanel implements
                 .addGroup(formularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cantidadActualEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cantidadActualCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(formularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(proveedorEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(proveedorCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -253,14 +238,14 @@ public class FormularioEliminacionProducto extends javax.swing.JPanel implements
                 .addComponent(eliminarProductoBoton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(fondoPanelLayout.createSequentialGroup()
-                .addGap(47, 47, 47)
+                .addGap(57, 57, 57)
                 .addComponent(formularioPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(fondoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(fondoPanelLayout.createSequentialGroup()
-                        .addGap(105, 105, 105)
+                        .addGap(95, 95, 95)
                         .addComponent(insumosUsadosEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(fondoPanelLayout.createSequentialGroup()
-                        .addGap(75, 75, 75)
+                        .addGap(65, 65, 65)
                         .addComponent(barraDesplazamientoTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
                 .addComponent(accionIconoEtiqueta)
@@ -269,9 +254,9 @@ public class FormularioEliminacionProducto extends javax.swing.JPanel implements
         fondoPanelLayout.setVerticalGroup(
             fondoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fondoPanelLayout.createSequentialGroup()
-                .addComponent(tituloFondoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(fondoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(fondoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(fondoPanelLayout.createSequentialGroup()
+                        .addComponent(tituloFondoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(53, 53, 53)
                         .addGroup(fondoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(fondoPanelLayout.createSequentialGroup()
@@ -280,14 +265,11 @@ public class FormularioEliminacionProducto extends javax.swing.JPanel implements
                             .addGroup(fondoPanelLayout.createSequentialGroup()
                                 .addComponent(insumosUsadosEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(barraDesplazamientoTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
-                        .addComponent(eliminarProductoBoton)
-                        .addGap(30, 30, 30))
-                    .addGroup(fondoPanelLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(formularioPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(barraDesplazamientoTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(formularioPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                .addComponent(eliminarProductoBoton)
+                .addGap(30, 30, 30))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -324,20 +306,17 @@ public class FormularioEliminacionProducto extends javax.swing.JPanel implements
     private org.edisoncor.gui.label.LabelMetric nombreEtiqueta;
     private javax.swing.JTextField precioCampo;
     private org.edisoncor.gui.label.LabelMetric precioEtiqueta;
-    private javax.swing.JTextField proveedorCampo;
-    private org.edisoncor.gui.label.LabelMetric proveedorEtiqueta;
     private org.edisoncor.gui.panel.PanelImage tituloFondoPanel;
     private org.edisoncor.gui.label.LabelMetric tituloPanel;
     // End of variables declaration//GEN-END:variables
 
     private void configurarComponentes() {
 
-        String[] cabeceraTabla = {"ID insumo", "Cantidad"};
+        String[] cabeceraTabla = {"ID insumo", "Nombre", "Cantidad", "Existencia", "UnidadMedida"};
         insumosUsadosTablaModelo = new ModeloPersonalizadoTabla(cabeceraTabla);
         insumosUsadosTabla.setModel(insumosUsadosTablaModelo);
 
     }
-
 
     private void configurarEventos() {
 
@@ -346,7 +325,23 @@ public class FormularioEliminacionProducto extends javax.swing.JPanel implements
 
     }
 
+     private void reiniciarInformacionFormulario() {
+        final String VACIO = "";
 
+        for (Component componente : formularioPanel.getComponents()) {
+
+            if (componente instanceof JTextField) {
+
+                JTextField campoTexto = (JTextField) componente;
+
+                campoTexto.setText(VACIO);
+
+            }
+        }
+
+        insumosUsadosTablaModelo.reiniciarTabla();
+    }
+    
     private boolean estaCompletaInformacionFormulario() {
 
         for (Component componente : formularioPanel.getComponents()) {
@@ -374,7 +369,17 @@ public class FormularioEliminacionProducto extends javax.swing.JPanel implements
 
         if (estadoValidacion == CORRECTO) {
 
-            //TODO: asignar el resultado del metodo a una variable producto y enviarla a negocio
+            try {
+                String IDProducto = codigoCampo.getText();
+
+                GestorProductos gestorProducto = GestorProductos.obtenerInstancia();
+                gestorProducto.eliminar(IDProducto);
+
+                reiniciarInformacionFormulario();
+                
+            } catch (ExcepcionElementoNoEncontrado ex) {
+                Logger.getLogger(FormularioEliminacionProducto.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
     }
@@ -387,8 +392,8 @@ public class FormularioEliminacionProducto extends javax.swing.JPanel implements
 
         } else {
 
-            final String NO_SELECCIONO_PRODUCTO_MENSAJE = 
-                    "¡No has seleccionado un producto!";
+            final String NO_SELECCIONO_PRODUCTO_MENSAJE
+                    = "¡No has seleccionado un producto!";
             Informador.mostrarMensajeDeError(NO_SELECCIONO_PRODUCTO_MENSAJE);
 
             return false;
@@ -396,34 +401,45 @@ public class FormularioEliminacionProducto extends javax.swing.JPanel implements
 
     }
 
-
     private void autocompletarCodigoProducto() {
 
         final boolean MODO_DIALOGO = true;
         JFrame ventanaActiva = (JFrame) SwingUtilities.getWindowAncestor(this);
 
-        AutocompletadoCodigoProductoDialogo dialogoAutocompletado = 
-                new AutocompletadoCodigoProductoDialogo(ventanaActiva, MODO_DIALOGO);
+        AutocompletadoCodigoProductoDialogo dialogoAutocompletado
+                = new AutocompletadoCodigoProductoDialogo(ventanaActiva, MODO_DIALOGO);
 
         dialogoAutocompletado.establecerCampoPorAutocompletar(codigoCampo);
-        
+
         dialogoAutocompletado.mostrarEnPantalla();
     }
 
     private void completarInformacionProducto() {
 
-        String IDProducto = codigoCampo.getText();
+        try {
+            String IDProducto = codigoCampo.getText();
 
-        //TODO: Buscar en BaseDatos toda la informacion
-        completarInformacionUsoInsumos();
-        
-        
+            Producto insumoSolicitado = GestorProductos.obtenerInstancia().obtener(IDProducto);
+            nombreCampo.setText(insumoSolicitado.obtenerNombre());
+            costoCampo.setText(String.valueOf(insumoSolicitado.obtenerCosto()));
+            precioCampo.setText(String.valueOf(insumoSolicitado.obtenerPrecio()));
+            cantidadActualCampo.setText(String.valueOf(insumoSolicitado.obtenerExistencia()));
+
+            boolean esProductoCompuesto = false;
+
+            if (esProductoCompuesto) {
+
+                completarInformacionUsoInsumos();
+
+            }
+        } catch (ExcepcionElementoNoEncontrado ex) {
+            Logger.getLogger(FormularioEliminacionProducto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
-    
+
     private void completarInformacionUsoInsumos() {
 
-        
         //TODO: Buscar informacion sobre uso insumos
-        
     }
 }

@@ -155,7 +155,7 @@ public class AutocompletadoCodigoInsumoDialogo extends javax.swing.JDialog {
 
     private void configurarComponentes() {
 
-        String[] cabeceraTabla = {"ID producto", "Nombre", "Costo"};
+        String[] cabeceraTabla = {"ID producto", "Nombre", "Costo","Existencia", "Unidad Medida"};
         insumosTablaModelo_ = new ModeloPersonalizadoTabla(cabeceraTabla);
         insumosTabla.setModel(insumosTablaModelo_);
         llenarTabla();
@@ -167,9 +167,7 @@ public class AutocompletadoCodigoInsumoDialogo extends javax.swing.JDialog {
             ArrayList<Insumo> insumos = GestorInsumos.obtenerInstancia().obtenerLista();
             for(Insumo actual : insumos){
                 agregarFilaTabla(actual);
-            }
-            
-            //TODO: Solicitar lista a gestor
+            }            
         } catch (ExcepcionElementoNoEncontrado ex) {
             Logger.getLogger(AutocompletadoCodigoInsumoDialogo.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -220,11 +218,15 @@ public class AutocompletadoCodigoInsumoDialogo extends javax.swing.JDialog {
     }
 
     private void agregarFilaTabla(Insumo actual) {
+        
         ArrayList fila = new ArrayList();
         fila.add(actual.obtenerID());
         fila.add(actual.obtenerNombre());
         fila.add(actual.obtenerCosto());
+        fila.add(actual.obtenerExistencia());
+        fila.add(actual.obtenerUnidadMedida());
         insumosTablaModelo_.agregarFila(fila);
+        
     }
 
 }

@@ -1,5 +1,12 @@
 package presentacion.proveedores;
 
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import negocio.administracion.GestorProveedores;
+import negocio.entidades.Proveedor;
+import negocio.excepciones.ExcepcionElementoNoEncontrado;
+import presentacion.dialogos.AutocompletadoCodigoProveedorDialogo;
 import presentacion.utileria.ModeloPersonalizadoTabla;
 
 /**
@@ -154,7 +161,7 @@ public class DirectorioProveedoresPanel extends javax.swing.JPanel{
 
     private void configurarComponentes() {
 
-        String[] cabeceraTabla = {"ID Insumo","Nombre","Costo", "Cantidad","Cantidad Minima", "Estado"};
+        String[] cabeceraTabla = {"ID Proveedor","Nombre","Telefono","Direccion"};
         directorioProveedoresTablaModelo = new ModeloPersonalizadoTabla(cabeceraTabla);
         directorioProveedoresTabla.setModel(directorioProveedoresTablaModelo);
 
@@ -170,7 +177,14 @@ public class DirectorioProveedoresPanel extends javax.swing.JPanel{
     private void mostrarInformacionTodosLosProveedores() {
         
         directorioProveedoresTablaModelo.reiniciarTabla();
-        //TODO: pedir informacion al gestor productos
+        try {
+            ArrayList<Proveedor> proveedores = GestorProveedores.obtenerInstancia().obtenerLista();
+            for(Proveedor actual : proveedores){
+                agregarFilaTabla(actual);
+            }
+        } catch (ExcepcionElementoNoEncontrado ex) {
+            Logger.getLogger(AutocompletadoCodigoProveedorDialogo.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private void buscarProveedores() {
@@ -198,5 +212,15 @@ public class DirectorioProveedoresPanel extends javax.swing.JPanel{
         
     }
 
+    private void agregarFilaTabla(Proveedor actual) {
+        
+        ArrayList fila = new ArrayList();
+        fila.add(actual.obtenerID());
+        fila.add(actual.obtenerNombre());
+        fila.add(actual.obtenerTelefono());
+        fila.add(actual.obtenerDireccion());
+        directorioProveedoresTablaModelo.agregarFila(fila);
+        
+    }
 
 }

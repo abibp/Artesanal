@@ -2,14 +2,20 @@ package presentacion.productos;
 
 import java.awt.Component;
 import java.awt.event.KeyListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import negocio.administracion.GestorProductos;
+import negocio.entidades.Producto;
+import negocio.excepciones.ExcepcionElementoNoEncontrado;
 import presentacion.dialogos.AutocompletadoCodigoProveedorDialogo;
 import presentacion.dialogos.RegistroUsoInsumoDialogo;
 import presentacion.utileria.ModeloPersonalizadoTabla;
 import presentacion.utileria.RestriccionNumeroDecimalCampo;
 import presentacion.utileria.Informador;
+import presentacion.utileria.RestriccionNumeroEnteroCampo;
 
 /**
  *
@@ -46,9 +52,6 @@ public class FormularioRegistroProducto extends javax.swing.JPanel {
         precioEtiqueta = new org.edisoncor.gui.label.LabelMetric();
         cantidadActualCampo = new javax.swing.JTextField();
         cantidadActualEtiqueta = new org.edisoncor.gui.label.LabelMetric();
-        proveedorCampo = new javax.swing.JTextField();
-        proveedorEtiqueta = new org.edisoncor.gui.label.LabelMetric();
-        autocompletarCodigoProveedorBoton = new javax.swing.JButton();
         barraDesplazamientoTabla = new javax.swing.JScrollPane();
         insumosUsadosTabla = new javax.swing.JTable();
         insumosUsadosEtiqueta = new org.edisoncor.gui.label.LabelMetric();
@@ -125,57 +128,37 @@ public class FormularioRegistroProducto extends javax.swing.JPanel {
         cantidadActualEtiqueta.setText("Cantidad Actual :");
         cantidadActualEtiqueta.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
 
-        proveedorCampo.setEditable(false);
-        proveedorCampo.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-
-        proveedorEtiqueta.setText("Codigo Proveedor :");
-        proveedorEtiqueta.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-
-        autocompletarCodigoProveedorBoton.setBackground(new java.awt.Color(102, 0, 0));
-        autocompletarCodigoProveedorBoton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        autocompletarCodigoProveedorBoton.setForeground(new java.awt.Color(255, 255, 255));
-        autocompletarCodigoProveedorBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/recursos/buscar.png"))); // NOI18N
-        autocompletarCodigoProveedorBoton.setText("Buscar");
-
         javax.swing.GroupLayout formularioPanelLayout = new javax.swing.GroupLayout(formularioPanel);
         formularioPanel.setLayout(formularioPanelLayout);
         formularioPanelLayout.setHorizontalGroup(
             formularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(formularioPanelLayout.createSequentialGroup()
-                .addGroup(formularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(formularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(formularioPanelLayout.createSequentialGroup()
-                        .addGap(53, 53, 53)
-                        .addComponent(proveedorEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(proveedorCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(autocompletarCodigoProveedorBoton))
-                    .addGroup(formularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(formularioPanelLayout.createSequentialGroup()
-                            .addComponent(costoEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(costoCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, formularioPanelLayout.createSequentialGroup()
-                            .addGap(66, 66, 66)
+                        .addComponent(costoEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(costoCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, formularioPanelLayout.createSequentialGroup()
+                        .addGap(66, 66, 66)
+                        .addGroup(formularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(formularioPanelLayout.createSequentialGroup()
+                                .addComponent(precioEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(precioCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(formularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(formularioPanelLayout.createSequentialGroup()
-                                    .addComponent(precioEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, formularioPanelLayout.createSequentialGroup()
+                                    .addComponent(nombreEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
-                                    .addComponent(precioCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(formularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, formularioPanelLayout.createSequentialGroup()
-                                        .addComponent(nombreEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(nombreCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(formularioPanelLayout.createSequentialGroup()
-                                        .addComponent(codigoEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(codigoCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(nombreCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(formularioPanelLayout.createSequentialGroup()
-                                    .addComponent(cantidadActualEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(codigoEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
-                                    .addComponent(cantidadActualCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(64, Short.MAX_VALUE))
+                                    .addComponent(codigoCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(formularioPanelLayout.createSequentialGroup()
+                                .addComponent(cantidadActualEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(cantidadActualCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
         formularioPanelLayout.setVerticalGroup(
             formularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,12 +183,7 @@ public class FormularioRegistroProducto extends javax.swing.JPanel {
                 .addGroup(formularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cantidadActualEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cantidadActualCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(formularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(proveedorEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(proveedorCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(autocompletarCodigoProveedorBoton))
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         insumosUsadosTabla.setModel(new javax.swing.table.DefaultTableModel(
@@ -254,20 +232,20 @@ public class FormularioRegistroProducto extends javax.swing.JPanel {
                 .addComponent(agregarProductoBoton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(fondoPanelLayout.createSequentialGroup()
-                .addGap(47, 47, 47)
+                .addGap(49, 49, 49)
                 .addComponent(formularioPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(fondoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(fondoPanelLayout.createSequentialGroup()
-                        .addGap(105, 105, 105)
+                        .addGap(103, 103, 103)
                         .addComponent(insumosUsadosEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(fondoPanelLayout.createSequentialGroup()
-                        .addGap(74, 74, 74)
+                        .addGap(72, 72, 72)
                         .addGroup(fondoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(agregarInsumoBoton)
                             .addGroup(fondoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(removerInsumoBoton)
                                 .addComponent(barraDesplazamientoTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1017, Short.MAX_VALUE)
                 .addGroup(fondoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fondoPanelLayout.createSequentialGroup()
                         .addComponent(accionIconoEtiqueta)
@@ -280,21 +258,22 @@ public class FormularioRegistroProducto extends javax.swing.JPanel {
             fondoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fondoPanelLayout.createSequentialGroup()
                 .addComponent(tituloFondoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(fondoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(formularioPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(fondoPanelLayout.createSequentialGroup()
-                        .addComponent(accionIconoEtiqueta)
-                        .addGap(40, 40, 40)
-                        .addComponent(reiniciarCamposBoton))
-                    .addGroup(fondoPanelLayout.createSequentialGroup()
-                        .addComponent(agregarInsumoBoton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(removerInsumoBoton)
-                        .addGap(18, 18, 18)
-                        .addComponent(insumosUsadosEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(barraDesplazamientoTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(59, 59, 59)
+                .addGroup(fondoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(fondoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(fondoPanelLayout.createSequentialGroup()
+                            .addComponent(accionIconoEtiqueta)
+                            .addGap(40, 40, 40)
+                            .addComponent(reiniciarCamposBoton))
+                        .addGroup(fondoPanelLayout.createSequentialGroup()
+                            .addComponent(agregarInsumoBoton)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(removerInsumoBoton)
+                            .addGap(18, 18, 18)
+                            .addComponent(insumosUsadosEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(barraDesplazamientoTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(formularioPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addComponent(agregarProductoBoton)
                 .addGap(30, 30, 30))
@@ -317,7 +296,6 @@ public class FormularioRegistroProducto extends javax.swing.JPanel {
     private javax.swing.JLabel accionIconoEtiqueta;
     private javax.swing.JButton agregarInsumoBoton;
     private javax.swing.JButton agregarProductoBoton;
-    private javax.swing.JButton autocompletarCodigoProveedorBoton;
     private javax.swing.JScrollPane barraDesplazamientoTabla;
     private javax.swing.JTextField cantidadActualCampo;
     private org.edisoncor.gui.label.LabelMetric cantidadActualEtiqueta;
@@ -335,8 +313,6 @@ public class FormularioRegistroProducto extends javax.swing.JPanel {
     private org.edisoncor.gui.label.LabelMetric nombreEtiqueta;
     private javax.swing.JTextField precioCampo;
     private org.edisoncor.gui.label.LabelMetric precioEtiqueta;
-    private javax.swing.JTextField proveedorCampo;
-    private org.edisoncor.gui.label.LabelMetric proveedorEtiqueta;
     private javax.swing.JButton reiniciarCamposBoton;
     private javax.swing.JButton removerInsumoBoton;
     private org.edisoncor.gui.panel.PanelImage tituloFondoPanel;
@@ -347,9 +323,9 @@ public class FormularioRegistroProducto extends javax.swing.JPanel {
 
         establecerRestriccionCampo(costoCampo, new RestriccionNumeroDecimalCampo());
         establecerRestriccionCampo(precioCampo, new RestriccionNumeroDecimalCampo());
-        establecerRestriccionCampo(cantidadActualCampo, new RestriccionNumeroDecimalCampo());
+        establecerRestriccionCampo(cantidadActualCampo, new RestriccionNumeroEnteroCampo());
 
-        String[] cabeceraTabla = {"ID insumo", "Cantidad"};
+        String[] cabeceraTabla = {"ID insumo","Nombre","Cantidad"};
         insumosUsadosTablaModelo = new ModeloPersonalizadoTabla(cabeceraTabla);
         insumosUsadosTabla.setModel(insumosUsadosTablaModelo);
 
@@ -361,26 +337,13 @@ public class FormularioRegistroProducto extends javax.swing.JPanel {
     }
 
     private void configurarEventos() {
-        autocompletarCodigoProveedorBoton.addActionListener(evento -> mostrarDialogoAutocompletadoProveedor());
+
         agregarInsumoBoton.addActionListener(evento -> agregarUsoInsumo());
         removerInsumoBoton.addActionListener(evento -> removerUsoInsumo());
         reiniciarCamposBoton.addActionListener(evento -> reiniciarInformacionFormulario());
         agregarProductoBoton.addActionListener(evento -> registrarProducto());
     }
 
-    private void mostrarDialogoAutocompletadoProveedor() {
-
-        final boolean MODO_DIALOGO = true;
-        JFrame ventanaActiva = (JFrame) SwingUtilities.getWindowAncestor(this);
-
-        AutocompletadoCodigoProveedorDialogo dialogoAutocompletado = 
-                new AutocompletadoCodigoProveedorDialogo(ventanaActiva, MODO_DIALOGO);
-
-        dialogoAutocompletado.establecerCampoPorAutocompletar(proveedorCampo);
-        
-        dialogoAutocompletado.mostrarEnPantalla();
-
-    }
 
     private void agregarUsoInsumo() {
         
@@ -459,8 +422,26 @@ public class FormularioRegistroProducto extends javax.swing.JPanel {
 
         if (estadoValidacion == CORRECTO) {
 
-            crearProducto();
-            //TODO: asignar el resultado del metodo a una variable producto y enviarla a negocio
+            try {
+                
+                Producto productoCreado = crearProducto();
+                GestorProductos gestorProducto = GestorProductos.obtenerInstancia();
+                gestorProducto.agregar(productoCreado);
+
+                boolean esProductoCompuesto = ! insumosUsadosTablaModelo.estaVacia();
+                
+                if( esProductoCompuesto ){
+                    registrarUsoInsumos();
+                }
+                
+                reiniciarInformacionFormulario();
+                
+                final String MENSAJE_EXITO = "Producto Agregado";
+                Informador.mostrarMensajeDeInformacion(MENSAJE_EXITO);
+                
+            } catch (ExcepcionElementoNoEncontrado ex) {
+                Logger.getLogger(FormularioRegistroProducto.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
     }
@@ -469,7 +450,7 @@ public class FormularioRegistroProducto extends javax.swing.JPanel {
 
         if (estaCompletaInformacionFormulario()) {
 
-            return validarCodigoProducto();
+            return true;
 
         } else {
 
@@ -482,39 +463,21 @@ public class FormularioRegistroProducto extends javax.swing.JPanel {
 
     }
 
-    private boolean validarCodigoProducto() {
-
-        if (!esCodigoRepetidoProducto()) {
-
-            return true;
-
-        } else {
-
-            final String MENSAJE_CODIGO_DUPLICADO = 
-                    "El codigo de producto ingresado ya existe";
-
-            Informador.mostrarMensajeDeError(MENSAJE_CODIGO_DUPLICADO);
-
-            return false;
-        }
-
-    }
-
-    private boolean esCodigoRepetidoProducto() {
-
-        String codigoProducto = codigoCampo.getText();
-        //TODO: Solicitar informacion al gestor producto
-        return false;
-    }
-
-    private void crearProducto() {
+    private Producto crearProducto() {
+        
         String codigo = codigoCampo.getText();
         String nombre = nombreCampo.getText();
         double costo = Double.parseDouble(costoCampo.getText());
         double precio = Double.parseDouble(precioCampo.getText());
-        double cantidadActual = Double.parseDouble(cantidadActualCampo.getText());
-        int codigoProveedor = Integer.parseInt(proveedorCampo.getText());
+        int cantidadActual = Integer.parseInt(cantidadActualCampo.getText());
 
-        //TODO: Devolver una instancia de Producto
+        Producto productoCreado = new Producto(codigo, nombre, costo, precio, cantidadActual);
+        return productoCreado;
+
     }
+
+    private void registrarUsoInsumos() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
