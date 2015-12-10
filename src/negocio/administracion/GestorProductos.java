@@ -12,6 +12,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import negocio.entidades.Insumo;
 import negocio.entidades.Producto;
 import negocio.excepciones.ExcepcionElementoNoEncontrado;
@@ -42,7 +44,11 @@ public class GestorProductos implements Gestor<Producto> {
         if (!nInventario_.containsKey(nuevoProducto.obtenerID())) {
 
             nInventario_.put(nuevoProducto.obtenerID(), nuevoProducto);
-            gestorBD_.agregar(nuevoProducto);
+            try {
+                gestorBD_.agregar(nuevoProducto);
+            } catch (ExcepcionListaVacia ex) {
+                Logger.getLogger(GestorProductos.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
         } else {
             throw new ExcepcionElementoYaExistente();
