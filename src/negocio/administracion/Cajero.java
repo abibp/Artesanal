@@ -63,46 +63,19 @@ public class Cajero {
         return cajaHeladeria_.obtenerDineroInicial();
     }
 
-    public double realizarVenta(ArrayList<ElementoNota> productos, double pago) throws ExcepcionElementoNoEncontrado, ExcepcionExistenciasInsuficientes {
-
-        if (hayExistencias(productos)) {
-
+    public void realizarVenta(ArrayList<ElementoNota> productos, double pago) throws ExcepcionElementoNoEncontrado, ExcepcionExistenciasInsuficientes {
+        
+        if(hayExistencias(productos)){
+            
             NotaDeVenta notaVenta = new NotaDeVenta(productos, pago);
             registrarVenta(notaVenta);
             actualizarExistencias(productos);
-
-            double cambio = pago - (notaVenta.obtenerImporteTotal());
-            return cambio;
-
-        } else {
-            throw new ExcepcionExistenciasInsuficientes();
+            
         }
-
+        
     }
 
-    private void registrarVenta(NotaDeVenta nota) {
-
-        gestorBDVenta_.agregarVenta(nota);
-
-    }
-
-    private void actualizarExistencias(ArrayList<ElementoNota> productos) throws ExcepcionElementoNoEncontrado, ExcepcionExistenciasInsuficientes {
-
-        GestorProductos gestor = GestorProductos.obtenerInstancia();
-
-        for (ElementoNota elemento : productos) {
-
-            Producto actual = elemento.obtenerProductoVendido();
-            int nuevaExistencia = actual.obtenerExistencia() - elemento.obtenerCantidadDeProducto();
-
-            actual.establecerExistencia(nuevaExistencia);
-            gestor.editarInformacion(actual);
-
-        }
-
-    }
-
-    private boolean hayExistencias(ArrayList<ElementoNota> elementos) {
+    private boolean hayExistencias(ArrayList<ElementoNota> elementos) throws ExcepcionExistenciasInsuficientes {
 
         for (ElementoNota elemento : elementos) {
 
@@ -111,17 +84,41 @@ public class Cajero {
             int cantidadAVender = elemento.obtenerCantidadDeProducto();
 
             if (existenciaActual < cantidadAVender) {
-                return false;
+                String mensaje = "Las existencias de " + actual.obtenerNombre() 
+                        + " son insuficientes";
+                throw new ExcepcionExistenciasInsuficientes(mensaje);
             }
 
         }
+        
         return true;
+        
     }
+    
+    private void actualizarExistencias(ArrayList<ElementoNota> productos) throws ExcepcionElementoNoEncontrado, ExcepcionExistenciasInsuficientes{
+        
+        GestorProductos gestor = GestorProductos.obtenerInstancia();
+        
+        for (ElementoNota elemento : productos) {
+            
+            Producto actual = elemento.obtenerProductoVendido();
+            int nuevaExistencia = actual.obtenerExistencia() - elemento.obtenerCantidadDeProducto();
+             
+            actual.establecerExistencia(nuevaExistencia);
+            gestor.editarInformacion(actual);
 
-    private ReporteVentas realizarCorte() {
+        }
+        
+    }
+    
+    
+    private void registrarVenta(NotaDeVenta nota) {      
+        gestorBDVenta_.agregarVenta(nota);    
+    }
+    
+    private void realizarCorte() {
         Date fechaActual = new Date();
         cerrar();
-        return null;
     }
 
     private double cerrar() {

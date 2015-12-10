@@ -8,8 +8,11 @@ package negocio.administracion;
 import datos.excepciones.ExcepcionProveedorNoEncontrado;
 import datos.gestores.GestorBDProveedor;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map.Entry;
+import negocio.entidades.Producto;
 import negocio.entidades.Proveedor;
 import negocio.excepciones.ExcepcionElementoNoEncontrado;
 import negocio.excepciones.ExcepcionElementoYaExistente;
@@ -64,14 +67,23 @@ public class GestorProveedores implements Gestor<Proveedor>{
     }
 
     @Override
-    public ArrayList<Proveedor> obtenerLista() {
-
-        ArrayList<Proveedor> listaProveedors = new ArrayList<>();
+    public List<Proveedor> obtenerLista() {
+        return Collections.unmodifiableList(convertirCatalogoALista());
+    }
+    
+    private ArrayList<Proveedor> convertirCatalogoALista(){
+        
+        ArrayList<Proveedor> listaProveedor = new ArrayList<>();
+        
         for (Entry<String, Proveedor> entry : nDirectorio_.entrySet()) {
+            
             Proveedor producto = entry.getValue();
-            listaProveedors.add(producto);
+            listaProveedor.add(producto);
+            
         }
-        return listaProveedors;
+        
+        return listaProveedor;
+        
     }
     
     private void inicializarLista() throws ExcepcionElementoNoEncontrado {

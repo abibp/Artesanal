@@ -5,12 +5,17 @@
  */
 package negocio.excepciones;
 
+import presentacion.utileria.Informador;
+
 /**
  *
  * @author MiguelAngel
  */
 public class ExcepcionExistenciasInsuficientes extends Exception {
 
+        private final String MENSAJE_DE_ERROR_ = "Existencia insuficientes para vender.  ";
+    private final String INFORMACION_ADICIONAL_ = "Detalles: ";
+    
     /**
      * Creates a new instance of <code>ExcepcionExistenciasInsuficientes</code>
      * without detail message.
@@ -22,9 +27,9 @@ public class ExcepcionExistenciasInsuficientes extends Exception {
      * Constructs an instance of <code>ExcepcionExistenciasInsuficientes</code>
      * with the specified detail message.
      *
-     * @param msg the detail message.
+     * @param mensaje the detail message.
      */
-    public ExcepcionExistenciasInsuficientes(String msg) {
-        super(msg);
+    public ExcepcionExistenciasInsuficientes(String mensaje) {
+        Informador.mostrarMensajeDeError(MENSAJE_DE_ERROR_ + INFORMACION_ADICIONAL_ + mensaje);
     }
 }

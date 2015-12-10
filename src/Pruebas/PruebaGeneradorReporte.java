@@ -48,6 +48,8 @@ public class PruebaGeneradorReporte {
         ArrayList<NotaDeVenta> notas = new ArrayList<>();
         notas.add(nota);
        // generador.generarReporteVentas(new Date(), new Date(), "src", notas);
+        //generador.generarReporteVentas(new Date(), new Date(), "src", notas);
+
     }
     
 }
