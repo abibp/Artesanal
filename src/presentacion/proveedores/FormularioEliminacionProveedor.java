@@ -1,11 +1,16 @@
 package presentacion.proveedores;
 
+import datos.excepciones.ExcepcionProveedorNoEncontrado;
 import java.awt.Component;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import negocio.entidades.Proveedor;
+import negocio.gestion.GestorProveedores;
 import presentacion.dialogos.AutocompletadoCodigoProveedorDialogo;
 import presentacion.utileria.Informador;
 
@@ -278,6 +283,22 @@ public class FormularioEliminacionProveedor extends javax.swing.JPanel implement
         return true;
     }
 
+        private void reiniciarInformacionFormulario() {
+        final String VACIO = "";
+
+        for (Component componente : formularioPanel.getComponents()) {
+
+            if (componente instanceof JTextField) {
+
+                JTextField campoTexto = (JTextField) componente;
+
+                campoTexto.setText(VACIO);
+
+            }
+        }
+
+    }
+    
     private void eliminarProveedor() {
 
         final boolean CORRECTO = true;
@@ -286,8 +307,19 @@ public class FormularioEliminacionProveedor extends javax.swing.JPanel implement
 
         if (estadoValidacion == CORRECTO) {
 
-            int IDProveedor = Integer.parseInt(codigoCampo.getText());
-            //TODO: eliminar el proveedor
+            try {
+                String IDProveedor = codigoCampo.getText();
+                
+                GestorProveedores gestorProveedores = GestorProveedores.obtenerInstancia();
+                gestorProveedores.eliminar(IDProveedor);
+                reiniciarInformacionFormulario();
+                
+                final String MENSAJE_EXITO = "Insumo Eliminado";
+                Informador.mostrarMensajeDeInformacion(MENSAJE_EXITO);
+                
+            } catch (ExcepcionProveedorNoEncontrado ex) {
+                Logger.getLogger(FormularioEliminacionProveedor.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
     }
@@ -324,11 +356,17 @@ public class FormularioEliminacionProveedor extends javax.swing.JPanel implement
 
     private void completarInformacionProveedor() {
 
-        int IDProveedor = Integer.parseInt(codigoCampo.getText());
-        
-        //TODO: jalar la informacion del proveedor 
-        nombreCampo.setText("");
-        telefonoCampo.setText("");
-        direccionCampo.setText("");
+        String IDProveedor = codigoCampo.getText();
+        try {
+
+            GestorProveedores gestorProveedores = GestorProveedores.obtenerInstancia();
+            Proveedor proveedorObtenido = gestorProveedores.obtener(IDProveedor);
+            nombreCampo.setText(proveedorObtenido.obtenerNombre());
+            telefonoCampo.setText(proveedorObtenido.obtenerTelefono());
+            direccionCampo.setText(proveedorObtenido.obtenerDireccion());
+
+        } catch (ExcepcionProveedorNoEncontrado ex) {
+            Logger.getLogger(FormularioModificacionProveedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

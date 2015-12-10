@@ -14,6 +14,9 @@ public class EjecutorInstrucciones {
     }
 
     public ResultSet ejecutarConsulta(String instruccionSQL) {
+        
+        System.out.println(instruccionSQL);
+        
         ResultSet resultadoConsulta = null;
 
         try {
@@ -29,6 +32,9 @@ public class EjecutorInstrucciones {
     }
 
     public int ejecutarModificacion(String instruccionSQL) {
+        
+        System.out.println(instruccionSQL);
+        
         int filasAfectadas = 0;
 
         try {

@@ -44,6 +44,8 @@ public class FormularioRegistroInsumo extends javax.swing.JPanel {
         nombreEtiqueta = new org.edisoncor.gui.label.LabelMetric();
         cantidadActualCampo = new javax.swing.JTextField();
         cantidadActualEtiqueta = new org.edisoncor.gui.label.LabelMetric();
+        unidadMedidaEtiqueta = new org.edisoncor.gui.label.LabelMetric();
+        unidadMedidaCampo = new javax.swing.JComboBox();
         accionIconoEtiqueta = new javax.swing.JLabel();
         reiniciarCamposBoton = new javax.swing.JButton();
 
@@ -110,6 +112,14 @@ public class FormularioRegistroInsumo extends javax.swing.JPanel {
         cantidadActualEtiqueta.setText("Cantidad Actual :");
         cantidadActualEtiqueta.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
 
+        unidadMedidaEtiqueta.setText("Unidad Medida :");
+        unidadMedidaEtiqueta.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+
+        unidadMedidaCampo.setBackground(new java.awt.Color(102, 0, 0));
+        unidadMedidaCampo.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        unidadMedidaCampo.setForeground(new java.awt.Color(255, 255, 255));
+        unidadMedidaCampo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "GR", "PIEZAS" }));
+
         javax.swing.GroupLayout formularioPanelLayout = new javax.swing.GroupLayout(formularioPanel);
         formularioPanel.setLayout(formularioPanelLayout);
         formularioPanelLayout.setHorizontalGroup(
@@ -133,9 +143,13 @@ public class FormularioRegistroInsumo extends javax.swing.JPanel {
                                     .addGap(18, 18, 18)
                                     .addComponent(codigoCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(formularioPanelLayout.createSequentialGroup()
-                                .addComponent(cantidadActualEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(formularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(unidadMedidaEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cantidadActualEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addComponent(cantidadActualCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGroup(formularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cantidadActualCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(unidadMedidaCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(81, Short.MAX_VALUE))
         );
         formularioPanelLayout.setVerticalGroup(
@@ -157,7 +171,11 @@ public class FormularioRegistroInsumo extends javax.swing.JPanel {
                 .addGroup(formularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cantidadActualEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cantidadActualCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(formularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(unidadMedidaEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(unidadMedidaCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         accionIconoEtiqueta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/recursos/agregar_main.png"))); // NOI18N
@@ -198,7 +216,7 @@ public class FormularioRegistroInsumo extends javax.swing.JPanel {
                     .addComponent(formularioPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(reiniciarCamposBoton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addComponent(registrarInsumoBoton)
                 .addGap(30, 30, 30))
         );
@@ -234,6 +252,8 @@ public class FormularioRegistroInsumo extends javax.swing.JPanel {
     private javax.swing.JButton reiniciarCamposBoton;
     private org.edisoncor.gui.panel.PanelImage tituloFondoPanel;
     private org.edisoncor.gui.label.LabelMetric tituloPanel;
+    private javax.swing.JComboBox unidadMedidaCampo;
+    private org.edisoncor.gui.label.LabelMetric unidadMedidaEtiqueta;
     // End of variables declaration//GEN-END:variables
 
     private void configurarComponentes() {
@@ -337,8 +357,9 @@ public class FormularioRegistroInsumo extends javax.swing.JPanel {
         String nombre = nombreCampo.getText();
         double costo = Double.parseDouble(costoCampo.getText());
         int cantidadActual = Integer.parseInt(cantidadActualCampo.getText());
+        String unidadMedida = unidadMedidaCampo.getSelectedItem().toString();
         
-        Insumo insumoCreado = new Insumo(codigo, nombre, costo, "KG", cantidadActual);
+        Insumo insumoCreado = new Insumo(codigo, nombre, costo, unidadMedida, cantidadActual);
         return insumoCreado;
     
     }

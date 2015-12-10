@@ -1,11 +1,16 @@
 package presentacion.proveedores;
 
+import datos.excepciones.ExcepcionProveedorNoEncontrado;
 import java.awt.Component;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import negocio.entidades.Proveedor;
+import negocio.gestion.GestorProveedores;
 import presentacion.dialogos.AutocompletadoCodigoProveedorDialogo;
 import presentacion.utileria.Informador;
 import presentacion.utileria.RestriccionNumeroEnteroCampo;
@@ -14,15 +19,14 @@ import presentacion.utileria.RestriccionNumeroEnteroCampo;
  *
  * @author PIX
  */
-public class FormularioModificacionProveedor extends javax.swing.JPanel implements DocumentListener{
+public class FormularioModificacionProveedor extends javax.swing.JPanel implements DocumentListener {
 
     public FormularioModificacionProveedor() {
         initComponents();
-        configurarComponentes();
         configurarEventos();
     }
 
-         @Override
+    @Override
     public void insertUpdate(DocumentEvent e) {
         completarInformacionProveedor();
     }
@@ -36,7 +40,7 @@ public class FormularioModificacionProveedor extends javax.swing.JPanel implemen
     public void changedUpdate(DocumentEvent e) {
         completarInformacionProveedor();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -265,17 +269,12 @@ public class FormularioModificacionProveedor extends javax.swing.JPanel implemen
     private org.edisoncor.gui.label.LabelMetric tituloPanel;
     // End of variables declaration//GEN-END:variables
 
-    private void configurarComponentes() {
-
-        telefonoCampo.addKeyListener(new RestriccionNumeroEnteroCampo());
-        telefonoCampo.setTransferHandler(null);
-        
-    }
-
     private void configurarEventos() {
+
         reiniciarCamposBoton.addActionListener(evento -> reiniciarInformacionFormulario());
-        modificacionProveedorBoton.addActionListener(evento -> registrarProveedor());
+        modificacionProveedorBoton.addActionListener(evento -> modificarInformacionProveedor());
         busquedaCodigoProveedorBoton.addActionListener(evento -> autocompletarCodigoProveedor());
+
     }
 
     private void reiniciarInformacionFormulario() {
@@ -313,7 +312,7 @@ public class FormularioModificacionProveedor extends javax.swing.JPanel implemen
         return true;
     }
 
-    private void registrarProveedor() {
+    private void modificarInformacionProveedor() {
 
         final boolean CORRECTO = true;
 
@@ -321,8 +320,18 @@ public class FormularioModificacionProveedor extends javax.swing.JPanel implemen
 
         if (estadoValidacion == CORRECTO) {
 
-            crearProveedor();
-            //TODO: asignar el resultado del metodo a una variable producto y enviarla a negocio
+            try {
+
+                Proveedor proveedorCreado = crearProveedor();
+                GestorProveedores gestorProveedores = GestorProveedores.obtenerInstancia();
+                gestorProveedores.editarInformacion(proveedorCreado);
+
+                final String MENSAJE_EXITO = "Proveedor Modificado con exito";
+                Informador.mostrarMensajeDeInformacion(MENSAJE_EXITO);
+
+            } catch (ExcepcionProveedorNoEncontrado ex) {
+                Logger.getLogger(FormularioModificacionProveedor.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
     }
@@ -335,8 +344,8 @@ public class FormularioModificacionProveedor extends javax.swing.JPanel implemen
 
         } else {
 
-            final String MENSAJE_CAMPOS_INCOMPLETOS = 
-                    "¡Rellena todos los campos!";
+            final String MENSAJE_CAMPOS_INCOMPLETOS
+                    = "¡Rellena todos los campos!";
             Informador.mostrarMensajeDeError(MENSAJE_CAMPOS_INCOMPLETOS);
 
             return false;
@@ -344,35 +353,43 @@ public class FormularioModificacionProveedor extends javax.swing.JPanel implemen
 
     }
 
-    private void crearProveedor() {
+    private Proveedor crearProveedor() {
 
+        String id = codigoCampo.getText();
         String nombre = nombreCampo.getText();
-        int telefono = Integer.parseInt(telefonoCampo.getText());
+        String telefono = telefonoCampo.getText();
         String direccion = direccionCampo.getText();
 
-        //TODO: Devolver una instancia de Producto
+        Proveedor proveedorCreado = new Proveedor(id, nombre, telefono, direccion);
+        return proveedorCreado;
     }
 
     private void autocompletarCodigoProveedor() {
 
-         final boolean MODO_DIALOGO = true;
+        final boolean MODO_DIALOGO = true;
         JFrame ventanaActiva = (JFrame) SwingUtilities.getWindowAncestor(this);
 
-        AutocompletadoCodigoProveedorDialogo dialogoAutocompletado = 
-                new AutocompletadoCodigoProveedorDialogo(ventanaActiva, MODO_DIALOGO);
+        AutocompletadoCodigoProveedorDialogo dialogoAutocompletado
+                = new AutocompletadoCodigoProveedorDialogo(ventanaActiva, MODO_DIALOGO);
 
         dialogoAutocompletado.establecerCampoPorAutocompletar(codigoCampo);
-        
+
         dialogoAutocompletado.mostrarEnPantalla();
     }
 
     private void completarInformacionProveedor() {
 
-        int IDProveedor = Integer.parseInt(codigoCampo.getText());
-        
-        //TODO: jalar la informacion del proveedor 
-        nombreCampo.setText("");
-        telefonoCampo.setText("");
-        direccionCampo.setText("");
+        String IDProveedor = codigoCampo.getText();
+        try {
+
+            GestorProveedores gestorProveedores = GestorProveedores.obtenerInstancia();
+            Proveedor proveedorObtenido = gestorProveedores.obtener(IDProveedor);
+            nombreCampo.setText(proveedorObtenido.obtenerNombre());
+            telefonoCampo.setText(proveedorObtenido.obtenerTelefono());
+            direccionCampo.setText(proveedorObtenido.obtenerDireccion());
+
+        } catch (ExcepcionProveedorNoEncontrado ex) {
+            Logger.getLogger(FormularioModificacionProveedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
