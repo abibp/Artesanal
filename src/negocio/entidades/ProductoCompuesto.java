@@ -59,7 +59,7 @@ public class ProductoCompuesto extends Producto {
 
     public void agregarIngrediente(Ingrediente ingrediente) throws ExcepcionElementoYaExistente {
         
-        if(nIngredientes_.containsValue(ingrediente)){
+        if(nIngredientes_.containsKey(ingrediente.obtenerID())){
             nIngredientes_.put(ingrediente.obtenerID(), ingrediente);
         }else{
             final String mensaje = "Este ingrediente ya se encuentra en la receta.";
@@ -94,16 +94,12 @@ public class ProductoCompuesto extends Producto {
         return listaIngredientes;
     }
 
-    public void agregarReceta(ArrayList<Ingrediente> ingredientes) throws ExcepcionListaVacia, ExcepcionElementoYaExistente {
+    public void agregarReceta(ArrayList<Ingrediente> ingredientes) throws ExcepcionElementoYaExistente {
         
-        boolean listaVacia = ingredientes.isEmpty();
-        if (!listaVacia) {
-            for (Ingrediente ingrediente : ingredientes) {
-                agregarIngrediente(ingrediente);
-            }
-        }else{
-            throw new ExcepcionListaVacia();
+        for (Ingrediente ingrediente : ingredientes) {
+            nIngredientes_.put(ingrediente.obtenerID(), ingrediente);
         }
+        
     }
     
     public boolean tieneIngredientes(){
