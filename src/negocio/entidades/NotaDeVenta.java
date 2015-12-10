@@ -14,7 +14,7 @@ public final class NotaDeVenta {
     private final ArrayList<ElementoNota> PRODUCTOS_VENDIDOS_;
     private final double IMPORTE_TOTAL_;
     private final double PAGO_;
-    private final double CAMBIO_; 
+    private final double CAMBIO_;
     
     private int ID_;
 

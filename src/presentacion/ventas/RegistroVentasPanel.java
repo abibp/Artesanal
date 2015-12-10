@@ -2,7 +2,6 @@ package presentacion.ventas;
 
 import java.awt.Component;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -26,8 +25,8 @@ import presentacion.utileria.Informador;
 public class RegistroVentasPanel extends javax.swing.JPanel {
 
     private ModeloPersonalizadoTabla productosVentaActualTablaModelo;
-    private LinkedList<ElementoNota> productosVentaActual;
-    private Cajero cajeroActual;
+    private ArrayList<ElementoNota> notaVenta_;
+    private final Cajero cajeroActual;
 
     public RegistroVentasPanel() {
         initComponents();
@@ -62,7 +61,7 @@ public class RegistroVentasPanel extends javax.swing.JPanel {
         totalVentaEtiqueta = new org.edisoncor.gui.label.LabelMetric();
         pagoClienteCampo = new javax.swing.JTextField();
         pagoClienteEtiqueta = new org.edisoncor.gui.label.LabelMetric();
-        totalVentaCampo1 = new javax.swing.JTextField();
+        totalVentaCampo = new javax.swing.JTextField();
 
         fondoPanel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/recursos/madera_fondo.jpg"))); // NOI18N
 
@@ -174,8 +173,8 @@ public class RegistroVentasPanel extends javax.swing.JPanel {
         pagoClienteEtiqueta.setText("Pago del Cliente :");
         pagoClienteEtiqueta.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
 
-        totalVentaCampo1.setEditable(false);
-        totalVentaCampo1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        totalVentaCampo.setEditable(false);
+        totalVentaCampo.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
 
         javax.swing.GroupLayout fondoPanelLayout = new javax.swing.GroupLayout(fondoPanel);
         fondoPanel.setLayout(fondoPanelLayout);
@@ -205,7 +204,7 @@ public class RegistroVentasPanel extends javax.swing.JPanel {
                             .addGap(60, 60, 60)
                             .addComponent(totalVentaEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
-                            .addComponent(totalVentaCampo1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(totalVentaCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(pagoClienteEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -265,7 +264,7 @@ public class RegistroVentasPanel extends javax.swing.JPanel {
                                 .addComponent(cobroBoton)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fondoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(pagoClienteCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(totalVentaCampo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(totalVentaCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(totalVentaEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fondoPanelLayout.createSequentialGroup()
                                 .addComponent(pagoClienteEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -308,7 +307,7 @@ public class RegistroVentasPanel extends javax.swing.JPanel {
     private javax.swing.JButton retiroBoton;
     private org.edisoncor.gui.panel.PanelImage tituloFondoPanel;
     private org.edisoncor.gui.label.LabelMetric tituloPanel;
-    private javax.swing.JTextField totalVentaCampo1;
+    private javax.swing.JTextField totalVentaCampo;
     private org.edisoncor.gui.label.LabelMetric totalVentaEtiqueta;
     // End of variables declaration//GEN-END:variables
 
@@ -319,9 +318,9 @@ public class RegistroVentasPanel extends javax.swing.JPanel {
         pagoClienteCampo.addKeyListener(new RestriccionNumeroDecimalCampo());
         pagoClienteCampo.setTransferHandler(null);
 
-        productosVentaActual = new LinkedList<>();
+        notaVenta_ = new ArrayList<>();
 
-        String[] cabeceraTabla = {"ID producto", "nombre","precio", "cantidad", "importe"};
+        String[] cabeceraTabla = {"ID producto", "nombre", "precio", "cantidad", "importe"};
         productosVentaActualTablaModelo = new ModeloPersonalizadoTabla(cabeceraTabla);
         productosVentaActualTabla.setModel(productosVentaActualTablaModelo);
 
@@ -333,7 +332,7 @@ public class RegistroVentasPanel extends javax.swing.JPanel {
         removerProductoBoton.addActionListener(evento -> removerProductoVenta());
         reiniciarCamposBoton.addActionListener(evento -> reiniciarDatosVenta());
         cobroBoton.addActionListener(evento -> realizarCobro());
-        abonoBoton.addActionListener(evento -> realizarAbono());
+        abonoBoton.addActionListener(evento -> realizarDeposito());
         retiroBoton.addActionListener(evento -> realizarRetiro());
     }
 
@@ -357,15 +356,17 @@ public class RegistroVentasPanel extends javax.swing.JPanel {
         boolean estadoValidacion = validarInformacionProducto();
 
         if (estadoValidacion == CORRECTO) {
-            
+
             try {
-                
+
                 String codigo = codigoProductoCampo.getText();
                 GestorProductos gestorProducto = GestorProductos.obtenerInstancia();
                 Producto productoObtenido = gestorProducto.obtener(codigo);
-                productosVentaActual.add(productoObtenido);
-                actualizarTablaVenta(productoObtenido);
-                
+
+                totalVentaCampo.setText(String.valueOf(calcularTotalVenta()));
+                actualizarNotaVenta(productoObtenido);
+                agregarFila(productoObtenido);
+
             } catch (ExcepcionElementoNoEncontrado ex) {
                 Logger.getLogger(RegistroVentasPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -380,7 +381,7 @@ public class RegistroVentasPanel extends javax.swing.JPanel {
 
             int indiceFilaSeleccionada = productosVentaActualTabla.getSelectedRow();
             productosVentaActualTablaModelo.eliminarFila(indiceFilaSeleccionada);
-            productosVentaActual.remove(indiceFilaSeleccionada);
+            notaVenta_.remove(indiceFilaSeleccionada);
 
         } else {
 
@@ -407,15 +408,15 @@ public class RegistroVentasPanel extends javax.swing.JPanel {
         }
 
         productosVentaActualTablaModelo.reiniciarTabla();
-        productosVentaActual.clear();
+        notaVenta_.clear();
     }
 
     private void realizarCobro() {
-   
-        boolean estaVacia = productosVentaActualTablaModelo.estaVacia();
-        boolean ventaValida = !estaVacia;
 
-        if (ventaValida) {
+        boolean estaVacia = productosVentaActualTablaModelo.estaVacia();
+        boolean esVentaValida = !estaVacia;
+
+        if ( esVentaValida ) {
 
             String pagoCliente = JOptionPane.showInputDialog("Ingresa la cantidad recibida");
             boolean estadoValidacionPago = validarPagoCliente(pagoCliente);
@@ -427,8 +428,8 @@ public class RegistroVentasPanel extends javax.swing.JPanel {
                         = Double.parseDouble(pagoCliente);
                 double importeTotalVenta = Double.parseDouble(pagoClienteCampo.getText());
 
-                //TODO: registrar la venta.
-                
+                cajeroActual.realizarVenta(notaVenta_, cantidadPagadaCliente);
+
                 mostrarImporteCambio(cantidadPagadaCliente, importeTotalVenta);
                 reiniciarDatosVenta();
             }
@@ -472,13 +473,13 @@ public class RegistroVentasPanel extends javax.swing.JPanel {
         }
     }
 
-    private void realizarAbono() {
+    private void realizarDeposito() {
 
-        String abono = JOptionPane.showInputDialog("Ingresa la cantidad a abonar");
+        String deposito = JOptionPane.showInputDialog("Ingresa la cantidad a abonar");
         try {
 
-            double cantidadPorAbonar = Double.parseDouble(abono);
-            //TODO: avisar al gestor caja
+            double cantidadPorDepositar = Double.parseDouble(deposito);
+            cajeroActual.despositar(cantidadPorDepositar);
 
         } catch (NumberFormatException excepcion) {
 
@@ -496,7 +497,7 @@ public class RegistroVentasPanel extends javax.swing.JPanel {
         try {
 
             double cantidadPorRetirar = Double.parseDouble(retiro);
-            //TODO: avisar al gestor caja
+            cajeroActual.retirar(cantidadPorRetirar);
 
         } catch (NumberFormatException excepcion) {
 
@@ -509,62 +510,71 @@ public class RegistroVentasPanel extends javax.swing.JPanel {
     }
 
     private boolean validarPagoCliente(String pagoCliente) {
-        try {
 
-            double cantidadPagadaCliente
-                    = Double.parseDouble(pagoCliente);
+        double cantidadPagadaCliente
+                = Double.parseDouble(pagoCliente);
 
-            double importeTotalVenta = Double.parseDouble(pagoClienteCampo.getText());
+        double importeTotalVenta = Double.parseDouble(pagoClienteCampo.getText());
 
-            if (cantidadPagadaCliente >= importeTotalVenta) {
+        if (cantidadPagadaCliente >= importeTotalVenta) {
 
-                return true;
+            return true;
 
-            } else {
+        } else {
 
-                double faltante = importeTotalVenta - cantidadPagadaCliente;
+            double faltante = importeTotalVenta - cantidadPagadaCliente;
 
-                final String FALTA_DINERO_MENSAJE = "Al cliente le falta "
-                        + faltante
-                        + " para cubrir el total de la venta.";
+            final String FALTA_DINERO_MENSAJE = "Al cliente le falta "
+                    + faltante
+                    + " para cubrir el total de la venta.";
 
-                Informador.mostrarMensajeDeInformacion(FALTA_DINERO_MENSAJE);
+            Informador.mostrarMensajeDeInformacion(FALTA_DINERO_MENSAJE);
 
-                return false;
-            }
-
-        } catch (NumberFormatException excepcion) {
-
-            final String CANTIDAD_NO_VALIDA_MENSAJE = "Ingresa una cantidad valida";
-
-            Informador.mostrarMensajeDeError(CANTIDAD_NO_VALIDA_MENSAJE);
             return false;
         }
+
     }
 
     private void mostrarImporteCambio(double cantidadPagadaCliente, double importeTotalVenta) {
-        
+
         double cambio = importeTotalVenta - cantidadPagadaCliente;
-        
+
         final String CAMBIO_MENSAJE = "Cambio : $ " + cambio;
-        
+
         Informador.mostrarMensajeDeInformacion(CAMBIO_MENSAJE);
     }
 
-    private void actualizarTablaVenta(Producto producto) {
-        
+    private void agregarFila(Producto producto) {
+
         double cantidad = Double.parseDouble(cantidadProductoCampo.getText());
-        
+
         ArrayList fila = new ArrayList();
         fila.add(producto.obtenerID());
         fila.add(producto.obtenerNombre());
         fila.add(producto.obtenerPrecio());
         fila.add(cantidad);
-        
+
         double importeIndividual = cantidad * producto.obtenerPrecio();
         fila.add(importeIndividual);
-        
+
         productosVentaActualTablaModelo.agregarFila(fila);
+
+    }
+
+    private void actualizarNotaVenta(Producto productoObtenido) {
+
+        int cantidad = Integer.parseInt(cantidadProductoCampo.getText());
+        ElementoNota elementoNota = new ElementoNota(cantidad, productoObtenido);
+        notaVenta_.add(elementoNota);
+    }
+
+    private double calcularTotalVenta() {
+        
+        double importeTotal = 0.0;
+        for(ElementoNota actual : notaVenta_){
+            importeTotal += actual.obtenerImporte();
+        }
+        return importeTotal;
         
     }
 

@@ -372,6 +372,7 @@ public class FormularioModificacionProducto extends javax.swing.JPanel implement
         removerInsumoBoton.addActionListener(evento -> removerUsoInsumo());
         reiniciarCamposBoton.addActionListener(evento -> reiniciarInformacionFormulario());
         agregarProductoBoton.addActionListener(evento -> modificarProducto());
+        codigoCampo.getDocument().addDocumentListener(this);
 
     }
 

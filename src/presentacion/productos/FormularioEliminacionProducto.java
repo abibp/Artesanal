@@ -322,6 +322,7 @@ public class FormularioEliminacionProducto extends javax.swing.JPanel implements
 
         completarCodigoProducto.addActionListener(evento -> autocompletarCodigoProducto());
         eliminarProductoBoton.addActionListener(evento -> eliminarProducto());
+        codigoCampo.getDocument().addDocumentListener(this);
 
     }
 

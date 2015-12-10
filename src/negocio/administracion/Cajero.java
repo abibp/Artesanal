@@ -14,10 +14,10 @@ import negocio.entidades.ReporteVenta;
  */
 public class Cajero {
 
-    private final GestorBDVenta gestorBD_;
-    
+    private final GestorBDVenta gestorBDVenta_;
+
     private static Cajero unicoGestor_;
-    
+
     private Caja cajaHeladeria_;
     private double entradaTotal;
     private double salidaTotal;
@@ -52,48 +52,54 @@ public class Cajero {
         return entradaTotal;
     }
 
-    public void establecerEntradaTotal(double entradaTotal) {
-        this.entradaTotal = entradaTotal;
-    }
-    
     public double obtenerSalidaTotal() {
         return salidaTotal;
     }
 
-    public void establecerSalidaTotal(double salidaTotal) {
-        this.salidaTotal = salidaTotal;
-    }
-
-    public double obtenerDineroInicial(){
+    public double obtenerDineroInicial() {
         return cajaHeladeria_.obtenerDineroInicial();
     }
-    
-    public double realizarVenta(ArrayList<ElementoNota> productos, double pago){
-        
-        NotaDeVenta nota = new NotaDeVenta(productos, pago);
-        registrarVenta(nota);
-        double cambio = pago - (nota.obtenerImporteTotal());
+
+    public double realizarVenta(ArrayList<ElementoNota> productos, double pago) {
+
+        NotaDeVenta notaVenta = new NotaDeVenta(productos, pago);
+        registrarVenta(notaVenta);
+        double cambio = pago - (notaVenta.obtenerImporteTotal());
         return cambio;
     }
-    
-    private void registrarVenta(NotaDeVenta nota){
-        gestorBD_.agregarVenta(null);
+
+    private void registrarVenta(NotaDeVenta nota) {
+        
+        for(ElementoNota actual : nota.obtenerElementos()){
+        
+            gestorBDVenta_.agregarVenta(actual);
+        
+        }
+        
     }
-    
+
     private ReporteVenta realizarCorte() {
         Date fechaActual = new Date();
         cerrar();
         return null;
     }
-    
+
     private double cerrar() {
         double cantidadFinalEfectivo = cajaHeladeria_.obtenerDineroActual();
         return cantidadFinalEfectivo;
     }
-    
+
     private Cajero() {
-        this.gestorBD_ = new GestorBDVenta();
+        this.gestorBDVenta_ = new GestorBDVenta();
         entradaTotal = 0.0;
         salidaTotal = 0.0;
+    }
+
+    private void establecerEntradaTotal(double entradaTotal) {
+        this.entradaTotal = entradaTotal;
+    }
+
+    private void establecerSalidaTotal(double salidaTotal) {
+        this.salidaTotal = salidaTotal;
     }
 }
