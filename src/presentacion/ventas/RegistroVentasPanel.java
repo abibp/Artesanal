@@ -432,13 +432,14 @@ public class RegistroVentasPanel extends javax.swing.JPanel {
                 double importeTotalVenta = Double.parseDouble(totalVentaCampo.getText());
 
                 try {
+
                     cajeroActual.realizarVenta(notaVenta_, cantidadPagadaCliente);
+                    mostrarImporteCambio(cantidadPagadaCliente, importeTotalVenta);
+                    reiniciarDatosVenta();
                 } catch (ExcepcionElementoNoEncontrado | ExcepcionExistenciasInsuficientes ex) {
                     Logger.getLogger(RegistroVentasPanel.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
-                mostrarImporteCambio(cantidadPagadaCliente, importeTotalVenta);
-                reiniciarDatosVenta();
             }
 
         } else {
@@ -568,7 +569,7 @@ public class RegistroVentasPanel extends javax.swing.JPanel {
 
         int cantidad = Integer.parseInt(cantidadProductoCampo.getText());
         ElementoNota elementoNota = new ElementoNota(cantidad, productoObtenido);
-        
+
         int indiceProducto = indiceDeProductoEnTabla(productoObtenido);
         boolean existeProductoEnTabla = indiceProducto != -1;
         notaVenta_.add(elementoNota);
@@ -619,7 +620,7 @@ public class RegistroVentasPanel extends javax.swing.JPanel {
     }
 
     private void agregarProductoTabla(Producto producto, int cantidad) {
-        
+
         ArrayList fila = new ArrayList();
         fila.add(producto.obtenerID());
         fila.add(producto.obtenerNombre());
