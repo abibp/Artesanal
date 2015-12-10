@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 import negocio.entidades.Producto;
 import negocio.excepciones.ExcepcionElementoNoEncontrado;
+import negocio.excepciones.ExcepcionElementoYaExistente;
 
 /**
  *
@@ -32,9 +33,13 @@ public class GestorProductos implements Gestor<Producto>{
     }
 
     @Override
-    public void agregar(Producto nuevoProducto) {
+    public void agregar(Producto nuevoProducto) throws ExcepcionElementoYaExistente {
+        if(!nProductos_.containsKey(nuevoProducto.obtenerID())){
         nProductos_.put(nuevoProducto.obtenerID(), nuevoProducto);
         gestorBD_.agregar(nuevoProducto);
+        }else{
+            throw new ExcepcionElementoYaExistente();
+        }
     }
 
     @Override

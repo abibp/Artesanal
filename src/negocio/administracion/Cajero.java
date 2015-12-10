@@ -69,13 +69,9 @@ public class Cajero {
     }
 
     private void registrarVenta(NotaDeVenta nota) {
-        
-        for(ElementoNota actual : nota.obtenerElementos()){
-        
-            gestorBDVenta_.agregarVenta(actual);
-        
-        }
-        
+
+        gestorBDVenta_.agregarVenta(nota);
+
     }
 
     private ReporteVenta realizarCorte() {
