@@ -5,7 +5,7 @@
  */
 package datos;
 
-import com.itextpdf.text.Document;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
 /**
@@ -14,10 +14,17 @@ import java.io.FileOutputStream;
  */
 public class AlmacenadorDeArchivos {
     
-    private FileOutputStream escritor;
+    private FileOutputStream archivo;
     
-    public void guardar(Document archivo, String directorio){
+    public void establecerArchivo(String directorio, String nombre) throws FileNotFoundException{
         
+        final String SEPARADOR = "\\";
+        this.archivo = new FileOutputStream(directorio + SEPARADOR + nombre);
+        
+    }
+    
+    public FileOutputStream obtenerArchivo(){
+        return archivo;
     }
     
 }

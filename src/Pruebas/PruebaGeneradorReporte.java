@@ -9,7 +9,7 @@ import com.itextpdf.text.DocumentException;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Date;
-import negocio.administracion.GeneradorReporte;
+import negocio.administracion.GeneradorReportes;
 import negocio.entidades.ElementoNota;
 import negocio.entidades.NotaDeVenta;
 import negocio.entidades.Producto;
@@ -26,7 +26,7 @@ public class PruebaGeneradorReporte {
     public static void main(String[] args) throws FileNotFoundException, DocumentException {
         // TODO code application logic here
         
-        GeneradorReporte generador = new GeneradorReporte();
+        GeneradorReportes generador = new GeneradorReportes();
         ArrayList<ElementoNota> elementos = new ArrayList<>();
         
         for (int i = 0; i < 3; i++) {
