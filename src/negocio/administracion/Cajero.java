@@ -6,7 +6,10 @@ import java.util.Date;
 import negocio.entidades.Caja;
 import negocio.entidades.ElementoNota;
 import negocio.entidades.NotaDeVenta;
-import negocio.entidades.ReporteVenta;
+import negocio.entidades.Producto;
+import negocio.entidades.ReporteVentas;
+import negocio.excepciones.ExcepcionElementoNoEncontrado;
+import negocio.excepciones.ExcepcionExistenciasInsuficientes;
 
 /**
  *
@@ -60,25 +63,61 @@ public class Cajero {
         return cajaHeladeria_.obtenerDineroInicial();
     }
 
-    public double realizarVenta(ArrayList<ElementoNota> productos, double pago) {
+    public double realizarVenta(ArrayList<ElementoNota> productos, double pago) throws ExcepcionElementoNoEncontrado, ExcepcionExistenciasInsuficientes {
+        
+        if(hayExistencias(productos)){
+            
+            NotaDeVenta notaVenta = new NotaDeVenta(productos, pago);
+            registrarVenta(notaVenta);
+            actualizarExistencias(productos);
 
-        NotaDeVenta notaVenta = new NotaDeVenta(productos, pago);
-        registrarVenta(notaVenta);
-        double cambio = pago - (notaVenta.obtenerImporteTotal());
-        return cambio;
-    }
-
-    private void registrarVenta(NotaDeVenta nota) {
-        
-        for(ElementoNota actual : nota.obtenerElementos()){
-        
-            gestorBDVenta_.agregarVenta(actual);
-        
+            double cambio = pago - (notaVenta.obtenerImporteTotal());
+            return cambio;
+            
+        }else{
+            throw new ExcepcionExistenciasInsuficientes();
         }
         
     }
 
-    private ReporteVenta realizarCorte() {
+    private void actualizarExistencias(ArrayList<ElementoNota> productos) throws ExcepcionElementoNoEncontrado, ExcepcionExistenciasInsuficientes{
+        
+        GestorProductos gestor = GestorProductos.obtenerInstancia();
+        
+        for (ElementoNota elemento : productos) {
+            
+            Producto actual = elemento.obtenerProductoVendido();
+            int nuevaExistencia = actual.obtenerExistencia() - elemento.obtenerCantidadDeProducto();
+             
+            actual.establecerExistencia(nuevaExistencia);
+            gestor.editarInformacion(actual);
+
+        }
+        
+    }
+    
+    
+    private void registrarVenta(NotaDeVenta nota) {      
+        gestorBDVenta_.agregarVenta(null);    
+    }
+
+    private boolean hayExistencias(ArrayList<ElementoNota> elementos){
+        
+        for (ElementoNota elemento : elementos) {
+            
+            Producto actual = elemento.obtenerProductoVendido();
+            int existenciaActual = actual.obtenerExistencia();
+            int cantidadAVender = elemento.obtenerCantidadDeProducto();
+            
+            if(existenciaActual < cantidadAVender){
+                return false;
+            }
+            
+        }
+        return true;
+    }
+    
+    private ReporteVentas realizarCorte() {
         Date fechaActual = new Date();
         cerrar();
         return null;

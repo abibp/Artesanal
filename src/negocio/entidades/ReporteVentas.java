@@ -6,14 +6,14 @@ import java.util.ArrayList;
  *
  * @author Astrid Briceño
  */
-public class ReporteVenta {
+public class ReporteVentas {
 
     private final int ID_;
     private final String DESCRIPCION_;
 
     private ArrayList<NotaDeVenta> nVentas_;
 
-    public ReporteVenta(int IDReporte, String descripcion, ArrayList<NotaDeVenta> ventas) {
+    public ReporteVentas(int IDReporte, String descripcion, ArrayList<NotaDeVenta> ventas) {
         this.ID_ = IDReporte;
         this.DESCRIPCION_ = descripcion;
         this.nVentas_ = ventas;
