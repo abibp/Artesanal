@@ -532,7 +532,6 @@ public class FormularioModificacionProducto extends javax.swing.JPanel implement
 
             }
 
-            reiniciarInformacionFormulario();
         } catch (ExcepcionElementoNoEncontrado ex) {
             Logger.getLogger(FormularioModificacionProducto.class.getName()).log(Level.SEVERE, null, ex);
         }

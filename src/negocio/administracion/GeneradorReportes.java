@@ -53,8 +53,7 @@ public class GeneradorReportes {
        
         GestorBDVenta gestor = new GestorBDVenta();
         
-        ArrayList<NotaDeVenta> notasVenta = new ArrayList<>();
-        //TODO: Jalar todos los datos del Gestor de Venta
+        ArrayList<NotaDeVenta> notasVenta = new GestorBDVenta().obtenerVentasRangoFecha(fechaInicio, fechaFinalizacion);
         for (NotaDeVenta actual : notasVenta) {
             agregarSeccion(actual);
         }
