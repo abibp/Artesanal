@@ -74,8 +74,9 @@ public class ModeloPersonalizadoTabla extends AbstractTableModel {
             ArrayList<Object> filaActual = obtenerFila(i);
             
             for (int j = 0; j < filaActual.size(); j++) {
-                
-                if(filaActual.get(j).toString().contains(porBuscar)){
+                String contenidoCelda = String.valueOf(filaActual.get(j));
+                if(contenidoCelda.contains(porBuscar)){
+                    System.out.println(filaActual.get(j).toString() + "Entre");
                     resultado.add(filaActual);
                     break;
                 }
@@ -125,6 +126,7 @@ public class ModeloPersonalizadoTabla extends AbstractTableModel {
     
     private void cargarContenidoFiltrado(ArrayList<ArrayList<Object>> lista){
         reiniciarTabla();
+        
         for (ArrayList<Object> fila : lista) {
             agregarFila(fila);
         }
