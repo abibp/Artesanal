@@ -1,13 +1,16 @@
 package negocio.administracion;
 
+import com.itextpdf.text.DocumentException;
 import datos.gestores.GestorBDVenta;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import negocio.entidades.Caja;
 import negocio.entidades.ElementoNota;
 import negocio.entidades.NotaDeVenta;
 import negocio.entidades.Producto;
-import negocio.entidades.ReporteVentas;
 import negocio.excepciones.ExcepcionElementoNoEncontrado;
 import negocio.excepciones.ExcepcionExistenciasInsuficientes;
 
@@ -47,6 +50,18 @@ public class Cajero {
         establecerSalidaTotal(obtenerSalidaTotal() + efectivo);
     }
 
+    public void realizarCorte(String directorio, String nombreArchivo) {
+        try {
+            Date fechaActual = new Date();
+            GeneradorReportes generador = new GeneradorReportes();
+            generador.generarReporteVentas(fechaActual, fechaActual, directorio, nombreArchivo);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Cajero.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (DocumentException ex) {
+            Logger.getLogger(Cajero.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public double obtenerDineroActual() {
         return cajaHeladeria_.obtenerDineroActual();
     }
@@ -74,7 +89,7 @@ public class Cajero {
         }
         
     }
-
+    
     private boolean hayExistencias(ArrayList<ElementoNota> elementos) throws ExcepcionExistenciasInsuficientes {
 
         for (ElementoNota elemento : elementos) {
@@ -114,15 +129,6 @@ public class Cajero {
     
     private void registrarVenta(NotaDeVenta nota) {      
         gestorBDVenta_.agregarVenta(nota);    
-    }
-    
-    private void realizarCorte() {
-        cerrar();
-    }
-
-    private double cerrar() {
-        double cantidadFinalEfectivo = cajaHeladeria_.obtenerDineroActual();
-        return cantidadFinalEfectivo;
     }
 
     private Cajero() {

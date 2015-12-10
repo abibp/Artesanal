@@ -11,6 +11,7 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import datos.AlmacenadorDeArchivos;
+import datos.gestores.GestorBDVenta;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
@@ -30,7 +31,7 @@ public class GeneradorReportes {
     private final Paragraph SEPARADOR_;
     
     private AlmacenadorDeArchivos almacenador;
-    private String nombreReporte_ = "reporte.pdf";
+    private String nombreReporte_;
    
     public GeneradorReportes() {
         this.REPORTE_ = new Document();
@@ -41,13 +42,17 @@ public class GeneradorReportes {
     public void generarReporteVentas(
             Date fechaInicio,
             Date fechaFinalizacion,
-            String ubicacionDirectorio
+            String ubicacionDirectorio,
+            String nombreArchivo
     ) throws FileNotFoundException, DocumentException {
         
+        this.nombreReporte_ = nombreArchivo;
         this.almacenador.establecerArchivo(ubicacionDirectorio, nombreReporte_);
         iniciarEdicion(ubicacionDirectorio);
         agregarTitulo(formatearFechas(fechaInicio, fechaFinalizacion));
        
+        GestorBDVenta gestor = new GestorBDVenta();
+        
         ArrayList<NotaDeVenta> notasVenta = new ArrayList<>();
         //TODO: Jalar todos los datos del Gestor de Venta
         for (NotaDeVenta actual : notasVenta) {
