@@ -70,14 +70,14 @@ public class ModeloPersonalizadoTabla extends AbstractTableModel {
         
         ArrayList<ArrayList<Object>> resultado = new ArrayList<>();
         
-        for (int i = 0; i < getRowCount(); i++) {
-            ArrayList<Object> filaActual = obtenerFila(i);
+        for (int filaActual = 0; filaActual < getRowCount(); filaActual++) {
             
-            for (int j = 0; j < filaActual.size(); j++) {
-                String contenidoCelda = String.valueOf(filaActual.get(j));
+            ArrayList<Object> fila = obtenerFila(filaActual);  
+            for (int celdaActual = 0; celdaActual < fila.size(); celdaActual++) {
+                
+                String contenidoCelda = String.valueOf(fila.get(celdaActual));
                 if(contenidoCelda.contains(porBuscar)){
-                    System.out.println(filaActual.get(j).toString() + "Entre");
-                    resultado.add(filaActual);
+                    resultado.add(fila);
                     break;
                 }
             }
