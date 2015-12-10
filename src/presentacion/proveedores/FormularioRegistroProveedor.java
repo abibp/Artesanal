@@ -1,12 +1,12 @@
 package presentacion.proveedores;
 
-import datos.excepciones.ExcepcionProveedorNoEncontrado;
 import java.awt.Component;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTextField;
+import negocio.administracion.GestorProveedores;
 import negocio.entidades.Proveedor;
-import negocio.gestion.GestorProveedores;
+import negocio.excepciones.ExcepcionElementoNoEncontrado;
 import presentacion.utileria.Informador;
 
 /**
@@ -281,18 +281,18 @@ public class FormularioRegistroProveedor extends javax.swing.JPanel {
         if (estadoValidacion == CORRECTO) {
 
             try {
-                
                 Proveedor proveedorCreado = crearProveedor();
                 GestorProveedores gestorProveedor = GestorProveedores.obtenerInstancia();
                 gestorProveedor.agregar(proveedorCreado);
                 reiniciarInformacionFormulario();
                 
-                final String MENSAJE_EXITO = "Insumo Agregado";
+                final String MENSAJE_EXITO = "Proveedor Agregado";
                 Informador.mostrarMensajeDeInformacion(MENSAJE_EXITO);
                 
-            } catch (ExcepcionProveedorNoEncontrado ex) {
+            } catch (ExcepcionElementoNoEncontrado ex) {
                 Logger.getLogger(FormularioRegistroProveedor.class.getName()).log(Level.SEVERE, null, ex);
             }
+
         }
 
     }
@@ -305,8 +305,8 @@ public class FormularioRegistroProveedor extends javax.swing.JPanel {
 
         } else {
 
-            final String MENSAJE_CAMPOS_INCOMPLETOS = 
-                    "¡Rellena todos los campos!";
+            final String MENSAJE_CAMPOS_INCOMPLETOS
+                    = "¡Rellena todos los campos!";
             Informador.mostrarMensajeDeError(MENSAJE_CAMPOS_INCOMPLETOS);
 
             return false;
@@ -321,7 +321,7 @@ public class FormularioRegistroProveedor extends javax.swing.JPanel {
         String telefono = telefonoCampo.getText();
         String direccion = direccionCampo.getText();
 
-        Proveedor proveedorCreado  = new Proveedor(id, nombre, telefono, direccion);
+        Proveedor proveedorCreado = new Proveedor(id, nombre, telefono, direccion);
         return proveedorCreado;
     }
 }

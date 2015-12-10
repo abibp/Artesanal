@@ -9,11 +9,11 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import negocio.administracion.GestorProveedores;
 import negocio.entidades.Proveedor;
-import negocio.gestion.GestorProveedores;
+import negocio.excepciones.ExcepcionElementoNoEncontrado;
 import presentacion.dialogos.AutocompletadoCodigoProveedorDialogo;
 import presentacion.utileria.Informador;
-import presentacion.utileria.RestriccionNumeroEnteroCampo;
 
 /**
  *
@@ -320,18 +320,19 @@ public class FormularioModificacionProveedor extends javax.swing.JPanel implemen
 
         if (estadoValidacion == CORRECTO) {
 
-            try {
 
+            try {
                 Proveedor proveedorCreado = crearProveedor();
                 GestorProveedores gestorProveedores = GestorProveedores.obtenerInstancia();
                 gestorProveedores.editarInformacion(proveedorCreado);
 
                 final String MENSAJE_EXITO = "Proveedor Modificado con exito";
                 Informador.mostrarMensajeDeInformacion(MENSAJE_EXITO);
-
-            } catch (ExcepcionProveedorNoEncontrado ex) {
+            } catch (ExcepcionElementoNoEncontrado ex) {
                 Logger.getLogger(FormularioModificacionProveedor.class.getName()).log(Level.SEVERE, null, ex);
             }
+
+            
         }
 
     }
@@ -379,17 +380,17 @@ public class FormularioModificacionProveedor extends javax.swing.JPanel implemen
 
     private void completarInformacionProveedor() {
 
-        String IDProveedor = codigoCampo.getText();
         try {
-
+            String IDProveedor = codigoCampo.getText();
+            
             GestorProveedores gestorProveedores = GestorProveedores.obtenerInstancia();
             Proveedor proveedorObtenido = gestorProveedores.obtener(IDProveedor);
             nombreCampo.setText(proveedorObtenido.obtenerNombre());
             telefonoCampo.setText(proveedorObtenido.obtenerTelefono());
             direccionCampo.setText(proveedorObtenido.obtenerDireccion());
-
-        } catch (ExcepcionProveedorNoEncontrado ex) {
+        } catch (ExcepcionElementoNoEncontrado ex) {
             Logger.getLogger(FormularioModificacionProveedor.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 }
