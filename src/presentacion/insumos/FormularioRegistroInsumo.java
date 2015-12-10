@@ -1,6 +1,5 @@
 package presentacion.insumos;
 
-import datos.excepciones.ExcepcionInsumoNoEncontrado;
 import java.awt.Component;
 import java.awt.event.KeyListener;
 import java.util.logging.Level;
@@ -298,7 +297,7 @@ public class FormularioRegistroInsumo extends javax.swing.JPanel {
 
                 JTextField campoTexto = (JTextField) componente;
 
-                if (campoTexto.getText().isEmpty()) {
+                if (campoTexto.getText().trim().isEmpty()) {
 
                     return false;
 

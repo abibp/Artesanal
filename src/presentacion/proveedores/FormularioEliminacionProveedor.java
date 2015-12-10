@@ -32,14 +32,10 @@ public class FormularioEliminacionProveedor extends javax.swing.JPanel implement
     }
 
     @Override
-    public void removeUpdate(DocumentEvent e) {
-        completarInformacionProveedor();
-    }
+    public void removeUpdate(DocumentEvent e) {}
 
     @Override
-    public void changedUpdate(DocumentEvent e) {
-        completarInformacionProveedor();
-    }
+    public void changedUpdate(DocumentEvent e) {}
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -261,6 +257,7 @@ public class FormularioEliminacionProveedor extends javax.swing.JPanel implement
 
         eliminacionProveedorBoton.addActionListener(evento -> eliminarProveedor());
         busquedaCodigoProveedorBoton.addActionListener(evento -> autocompletarCodigoProveedor());
+        codigoCampo.getDocument().addDocumentListener(this);
     }
 
     private boolean estaCompletaInformacionFormulario() {

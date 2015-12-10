@@ -3,7 +3,12 @@ package presentacion.dialogos;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import javax.swing.table.AbstractTableModel;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import negocio.administracion.GestorInsumos;
+import negocio.entidades.Insumo;
+import negocio.excepciones.ExcepcionElementoNoEncontrado;
 import presentacion.utileria.RestriccionNumeroDecimalCampo;
 import presentacion.utileria.Informador;
 import presentacion.utileria.ModeloPersonalizadoTabla;
@@ -238,7 +243,7 @@ public class RegistroUsoInsumoDialogo extends javax.swing.JDialog {
 
         agregarUsoInsumoBoton.addActionListener(evento -> registrarUsoInsumo());
 
-        String[] cabeceraTabla = {"ID insumo", "Nombre"};
+        String[] cabeceraTabla = {"ID insumo", "Nombre", "Costo", "Existencia", "Unidad Medida"};
         insumosDisponiblesTablaModelo_ = new ModeloPersonalizadoTabla(cabeceraTabla);
         insumosDisponiblesTabla.setModel(insumosDisponiblesTablaModelo_);
         llenarTabla();
@@ -246,7 +251,14 @@ public class RegistroUsoInsumoDialogo extends javax.swing.JDialog {
     }
 
     private void llenarTabla() {
-        //TODO: Solicitar lista a gestor
+        try {
+            ArrayList<Insumo> insumos = GestorInsumos.obtenerInstancia().obtenerLista();
+            for(Insumo actual : insumos){
+                agregarFilaTabla(actual);
+            }  
+        } catch (ExcepcionElementoNoEncontrado ex) {
+            Logger.getLogger(RegistroUsoInsumoDialogo.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private void agregarEventoTabla() {
@@ -293,7 +305,7 @@ public class RegistroUsoInsumoDialogo extends javax.swing.JDialog {
 
     private String obtenerIDInsumoSeleccionado() {
 
-        final int INDICE_ID_COLUMNA = 1;
+        final int INDICE_ID_COLUMNA = 0;
         int filaSeleccionada = insumosDisponiblesTabla.getSelectedRow();
 
         Object celdaNombre = insumosDisponiblesTabla.getValueAt(
@@ -321,17 +333,19 @@ public class RegistroUsoInsumoDialogo extends javax.swing.JDialog {
         } else {
 
             final String MENSAJE_CAMPOS_INCOMPLETOS = "¡Rellena todos los campos!";
-
             Informador.mostrarMensajeDeError(MENSAJE_CAMPOS_INCOMPLETOS);
+            
         }
     }
 
     private void agregarFilaUsoInsumo() {
+        
         String cantidadUsadaInsumo = cantidadUsoCampo.getText();
         String nombreInsumo = nombreInsumoCampo.getText();
         String IDInsumo = idInsumoCampo.getText();
 
         ArrayList fila = new ArrayList();
+        
         fila.add(IDInsumo);
         fila.add(nombreInsumo);
         fila.add(cantidadUsadaInsumo);
@@ -339,4 +353,15 @@ public class RegistroUsoInsumoDialogo extends javax.swing.JDialog {
         this.usoInsumosTablaModelo_.agregarFila(fila);
     }
 
+     private void agregarFilaTabla(Insumo actual) {
+        
+        ArrayList fila = new ArrayList();
+        fila.add(actual.obtenerID());
+        fila.add(actual.obtenerNombre());
+        fila.add(actual.obtenerCosto());
+        fila.add(actual.obtenerExistencia());
+        fila.add(actual.obtenerUnidadMedida());
+        insumosDisponiblesTablaModelo_.agregarFila(fila);
+        
+    }
 }
