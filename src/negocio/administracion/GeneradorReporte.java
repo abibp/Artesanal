@@ -19,11 +19,12 @@ import negocio.entidades.Producto;
  */
 public class GeneradorReporte {
 
-    private final Document reporte;
-    private final String nombreReporte = "ReporteVentas.pdf";
+    private final Document REPORTE_;
+    
+    private String nombreReporte_;
 
     public GeneradorReporte() {
-        reporte = new Document();
+        REPORTE_ = new Document();
     }
 
     public void generarReporteVentas(
@@ -85,7 +86,7 @@ public class GeneradorReporte {
     private void agregarTitulo() throws DocumentException {
 
         Paragraph titulo = new Paragraph("Reporte de ventas");
-        reporte.add(titulo);
+        REPORTE_.add(titulo);
     }
 
     private void agregarSeccion(NotaDeVenta actual) {
@@ -97,15 +98,15 @@ public class GeneradorReporte {
     }
 
     private void finalizarEdicion() {
-        reporte.close();
+        REPORTE_.close();
     }
 
     private void iniciarEdicion(String ubicacionDirectorio) throws FileNotFoundException, DocumentException {
 
         final String SEPARADOR = "\\";
-        FileOutputStream archivoPDF = new FileOutputStream(ubicacionDirectorio + SEPARADOR + nombreReporte);
-        PdfWriter.getInstance(reporte, archivoPDF);
-        reporte.open();
+        FileOutputStream archivoPDF = new FileOutputStream(ubicacionDirectorio + SEPARADOR + nombreReporte_);
+        PdfWriter.getInstance(REPORTE_, archivoPDF);
+        REPORTE_.open();
     }
 
 }
