@@ -1,4 +1,4 @@
-package negocio.gestion;
+package negocio.administracion;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -29,7 +29,8 @@ public class GeneradorReporte {
     public void generarReporteVentas(
             Date fechaInicio,
             Date fechaFinalizacion,
-            String ubicacionDirectorio) throws FileNotFoundException, DocumentException {
+            String ubicacionDirectorio
+    ) throws FileNotFoundException, DocumentException {
 
         iniciarEdicion(ubicacionDirectorio);
         agregarTitulo();

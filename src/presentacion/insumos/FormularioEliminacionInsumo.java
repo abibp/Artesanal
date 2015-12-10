@@ -1,6 +1,5 @@
 package presentacion.insumos;
 
-import datos.excepciones.ExcepcionInsumoNoEncontrado;
 import java.awt.Component;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -10,7 +9,9 @@ import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import negocio.entidades.Insumo;
-import negocio.gestion.GestorInsumos;
+import negocio.administracion.GestorInsumos;
+import negocio.excepciones.ExcepcionElementoNoEncontrado;
+
 import presentacion.dialogos.AutocompletadoCodigoInsumoDialogo;
 import presentacion.utileria.Informador;
 
@@ -327,7 +328,7 @@ public class FormularioEliminacionInsumo extends javax.swing.JPanel implements D
                 final String MENSAJE_EXITO = "Insumo Eliminado";
                 Informador.mostrarMensajeDeInformacion(MENSAJE_EXITO);
                 
-            } catch (ExcepcionInsumoNoEncontrado ex) {
+            } catch (ExcepcionElementoNoEncontrado ex) {
                 Logger.getLogger(FormularioEliminacionInsumo.class.getName()).log(Level.SEVERE, null, ex);
             }
                 
@@ -365,7 +366,7 @@ public class FormularioEliminacionInsumo extends javax.swing.JPanel implements D
             cantidadActualCampo.setText(String.valueOf(insumoSolicitado.obtenerExistencia()));
             unidadMedidaCampo.setSelectedItem(insumoSolicitado.obtenerUnidadMedida());
 
-        } catch (ExcepcionInsumoNoEncontrado ex) {
+        } catch (ExcepcionElementoNoEncontrado ex) {
             Logger.getLogger(FormularioEliminacionInsumo.class.getName()).log(Level.SEVERE, null, ex);
         }
 

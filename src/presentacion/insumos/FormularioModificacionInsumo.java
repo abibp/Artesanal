@@ -11,7 +11,8 @@ import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import negocio.entidades.Insumo;
-import negocio.gestion.GestorInsumos;
+import negocio.administracion.GestorInsumos;
+import negocio.excepciones.ExcepcionElementoNoEncontrado;
 import presentacion.dialogos.AutocompletadoCodigoInsumoDialogo;
 import presentacion.utileria.RestriccionNumeroDecimalCampo;
 import presentacion.utileria.Informador;
@@ -358,7 +359,7 @@ public class FormularioModificacionInsumo extends javax.swing.JPanel implements 
                 final String MENSAJE_EXITO = "Insumo Modificado";
                 Informador.mostrarMensajeDeInformacion(MENSAJE_EXITO);
                 
-            } catch (ExcepcionInsumoNoEncontrado ex) {
+            } catch (ExcepcionElementoNoEncontrado ex) {
                 Logger.getLogger(FormularioRegistroInsumo.class.getName()).log(Level.SEVERE, null, ex);
             }
             
@@ -407,7 +408,7 @@ public class FormularioModificacionInsumo extends javax.swing.JPanel implements 
             cantidadActualCampo.setText(String.valueOf(insumoSolicitado.obtenerExistencia()));
             unidadMedidaCampo.setSelectedItem(insumoSolicitado.obtenerUnidadMedida());
 
-        } catch (ExcepcionInsumoNoEncontrado ex) {
+        } catch (ExcepcionElementoNoEncontrado ex) {
             Logger.getLogger(FormularioEliminacionInsumo.class.getName()).log(Level.SEVERE, null, ex);
         }
         

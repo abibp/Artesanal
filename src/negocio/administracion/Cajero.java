@@ -1,4 +1,4 @@
-package negocio.gestion;
+package negocio.administracion;
 
 import datos.gestores.GestorBDVenta;
 import java.util.ArrayList;
@@ -80,6 +80,7 @@ public class Cajero {
     private void registrarVenta(NotaDeVenta nota){
         gestorBD_.agregarVenta(null);
     }
+    
     private ReporteVenta realizarCorte() {
         Date fechaActual = new Date();
         cerrar();

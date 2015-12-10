@@ -8,7 +8,8 @@ import java.util.logging.Logger;
 import javax.swing.JTextField;
 import negocio.entidades.Insumo;
 import negocio.excepciones.ExcepcionElementoYaExistente;
-import negocio.gestion.GestorInsumos;
+import negocio.administracion.GestorInsumos;
+import negocio.excepciones.ExcepcionElementoNoEncontrado;
 import presentacion.utileria.RestriccionNumeroDecimalCampo;
 import presentacion.utileria.Informador;
 import presentacion.utileria.RestriccionNumeroEnteroCampo;
@@ -327,7 +328,7 @@ public class FormularioRegistroInsumo extends javax.swing.JPanel {
                 final String MENSAJE_EXITO = "Insumo Agregado";
                 Informador.mostrarMensajeDeInformacion(MENSAJE_EXITO);
                 
-            } catch (ExcepcionInsumoNoEncontrado | ExcepcionElementoYaExistente ex) {
+            } catch (ExcepcionElementoNoEncontrado | ExcepcionElementoYaExistente ex) {
                 Logger.getLogger(FormularioRegistroInsumo.class.getName()).log(Level.SEVERE, null, ex);
             }
         }

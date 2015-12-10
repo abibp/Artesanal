@@ -1,4 +1,4 @@
-package negocio.gestion;
+package negocio.administracion;
 
 import java.util.HashMap;
 import negocio.entidades.ReporteVenta;

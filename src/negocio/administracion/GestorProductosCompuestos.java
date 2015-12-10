@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package negocio.gestion;
+package negocio.administracion;
 
 import datos.gestores.GestorBDProducto;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import negocio.entidades.ProductoCompuesto;
+import negocio.entidades.Proveedor;
 
 /**
  *
@@ -17,7 +19,7 @@ import negocio.entidades.ProductoCompuesto;
 public class GestorProductosCompuestos implements Gestor<ProductoCompuesto>{
     
     private final GestorBDProducto gestorBD_;
-    private final HashMap<String,ProductoCompuesto> nProductosCompuestos_;
+    private final HashMap<String,ProductoCompuesto> nCatalogo_;
     
     private static GestorProductosCompuestos unicoGestor_;
 
@@ -30,32 +32,38 @@ public class GestorProductosCompuestos implements Gestor<ProductoCompuesto>{
 
     @Override
     public void agregar(ProductoCompuesto nuevoProducto) {
-        nProductosCompuestos_.put(nuevoProducto.obtenerID(), nuevoProducto);
+        nCatalogo_.put(nuevoProducto.obtenerID(), nuevoProducto);
         gestorBD_.agregar(nuevoProducto);
     }
 
     @Override
     public void eliminar(String id) {
-        nProductosCompuestos_.remove(id);
+        nCatalogo_.remove(id);
         gestorBD_.eliminar(id);
     }
 
     @Override
     public void editarInformacion(ProductoCompuesto actualizado) {
-        nProductosCompuestos_.replace(actualizado.obtenerID(), actualizado);
+        nCatalogo_.replace(actualizado.obtenerID(), actualizado);
         gestorBD_.editarInformacion(actualizado.obtenerID(), actualizado);
     }
 
     @Override
     public ProductoCompuesto obtener(String id) {
-        return nProductosCompuestos_.get(id);
+        return nCatalogo_.get(id);
     }
     
     @Override
     public ArrayList<ProductoCompuesto> obtenerLista() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        ArrayList<ProductoCompuesto> listaProductosCompuestos = new ArrayList<>();
+        for (Map.Entry<String, ProductoCompuesto> entry : nCatalogo_.entrySet()) {
+            ProductoCompuesto producto = entry.getValue();
+            listaProductosCompuestos.add(producto);
+        }
+        return listaProductosCompuestos;
     }
-    
+
     private void inicializarLista() {
         
 //        ArrayList<ProductoCompuesto> listaProductos = gestorBD_.obtenerListaProductosCompuestos();
@@ -66,7 +74,7 @@ public class GestorProductosCompuestos implements Gestor<ProductoCompuesto>{
 
     private GestorProductosCompuestos() {
         this.gestorBD_ = new GestorBDProducto();
-        this.nProductosCompuestos_ = new HashMap();
+        this.nCatalogo_ = new HashMap();
         inicializarLista();
     }
     

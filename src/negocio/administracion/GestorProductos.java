@@ -3,13 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package negocio.gestion;
+package negocio.administracion;
 
 import datos.excepciones.ExcepcionProductoNoEncontrado;
 import datos.gestores.GestorBDProducto;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import negocio.entidades.Producto;
 import negocio.excepciones.ExcepcionElementoNoEncontrado;
 
@@ -24,7 +26,7 @@ public class GestorProductos implements Gestor<Producto>{
     
     private static GestorProductos unicoGestor_;
 
-    public synchronized static GestorProductos obtenerInstancia() throws ExcepcionProductoNoEncontrado {
+    public synchronized static GestorProductos obtenerInstancia() throws ExcepcionElementoNoEncontrado {
         if (unicoGestor_ == null) {
             unicoGestor_ = new GestorProductos();
         }
@@ -69,15 +71,19 @@ public class GestorProductos implements Gestor<Producto>{
         return listaProductos;
     }
     
-    private void inicializarLista() throws ExcepcionProductoNoEncontrado {
-        ArrayList<Producto> listaProductos = gestorBD_.obtenerLista();
-        
-        for (Producto producto : listaProductos) {
-            nProductos_.put(producto.obtenerID(), producto);
-        } 
+    private void inicializarLista() throws ExcepcionElementoNoEncontrado {
+        try {
+            ArrayList<Producto> listaProductos = gestorBD_.obtenerLista();
+            
+            for (Producto producto : listaProductos) {
+                nProductos_.put(producto.obtenerID(), producto); 
+            }
+        } catch (ExcepcionProductoNoEncontrado ex) {
+            throw new ExcepcionElementoNoEncontrado();
+        }
     }
 
-    private GestorProductos() throws ExcepcionProductoNoEncontrado {
+    private GestorProductos() throws ExcepcionElementoNoEncontrado {
         this.gestorBD_ = new GestorBDProducto();
         this.nProductos_ = new HashMap();
         inicializarLista();
