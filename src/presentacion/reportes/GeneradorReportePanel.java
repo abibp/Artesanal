@@ -226,7 +226,7 @@ public class GeneradorReportePanel extends javax.swing.JPanel {
                 GeneradorReportes generadorReporte = new GeneradorReportes();
                 try {
                 
-                    generadorReporte.generarReporteVentas(fechaInicial, fechaFinal, ubicacionDirectorioDestino);
+                    generadorReporte.generarReporteVentas(fechaInicial, fechaFinal, ubicacionDirectorioDestino,"");
                     Informador.mostrarMensajeDeInformacion("Reporte generado con exito");
                 
                 } catch (DocumentException ex) {

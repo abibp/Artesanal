@@ -194,8 +194,7 @@ public class InventarioProductosPanel extends javax.swing.JPanel {
         boolean esVacioCriterioBusqueda = criterioBusqueda.isEmpty();
 
         if (!esVacioCriterioBusqueda) {
-
-            //TODO: pedir informacion al gestor productos
+            productosInventarioTablaModelo.filtrarContenido(criterioBusqueda);
             mostrarInformacionProductosBuscados();
 
         } else {
