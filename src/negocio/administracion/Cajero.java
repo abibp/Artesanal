@@ -54,7 +54,7 @@ public class Cajero {
         try {
             Date fechaActual = new Date();
             GeneradorReportes generador = new GeneradorReportes();
-            generador.generarReporteVentas(fechaActual, fechaActual, directorio, nombreArchivo);
+            generador.generarReporteVentas(fechaActual, fechaActual, directorio);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Cajero.class.getName()).log(Level.SEVERE, null, ex);
         } catch (DocumentException ex) {
