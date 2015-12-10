@@ -36,11 +36,12 @@ public class ProductoCompuesto extends Producto {
             String ID, 
             String nombre, 
             double costo, 
-            double precio, 
+            double precio,
+            int existencia,
             ArrayList<Ingrediente> ingredientes
     )throws ExcepcionListaVacia, ExcepcionElementoYaExistente {
         
-        super(ID, nombre, costo, precio);
+        super(ID, nombre, costo, precio, existencia);
         this.nIngredientes_ = new HashMap();
         agregarReceta(ingredientes);
     }

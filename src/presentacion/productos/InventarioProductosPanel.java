@@ -202,7 +202,7 @@ public class InventarioProductosPanel extends javax.swing.JPanel {
     }
 
     private void mostrarInformacionProductosBuscados(String criterioBusqueda) {
-        mostrarInformacionTodosLosProductos();
+        
         productosInventarioTablaModelo.filtrarContenido(criterioBusqueda);
 
     }

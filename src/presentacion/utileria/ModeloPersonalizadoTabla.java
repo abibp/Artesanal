@@ -125,10 +125,12 @@ public class ModeloPersonalizadoTabla extends AbstractTableModel {
     }
     
     private void mostrarContenidoFiltrado(ArrayList<ArrayList<Object>> lista){
+        
         reiniciarTabla();
         
         for (ArrayList<Object> fila : lista) {
             agregarFila(fila);
         }
     }
+    
 }

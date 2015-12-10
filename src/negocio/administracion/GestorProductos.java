@@ -16,6 +16,7 @@ import negocio.entidades.Insumo;
 import negocio.entidades.Producto;
 import negocio.excepciones.ExcepcionElementoNoEncontrado;
 import negocio.excepciones.ExcepcionElementoYaExistente;
+import negocio.excepciones.ExcepcionListaVacia;
 
 /**
  *
@@ -28,7 +29,7 @@ public class GestorProductos implements Gestor<Producto> {
 
     private static GestorProductos unicoGestor_;
 
-    public synchronized static GestorProductos obtenerInstancia() throws ExcepcionElementoNoEncontrado {
+    public synchronized static GestorProductos obtenerInstancia() throws ExcepcionElementoNoEncontrado, ExcepcionListaVacia, ExcepcionElementoYaExistente {
         if (unicoGestor_ == null) {
             unicoGestor_ = new GestorProductos();
         }
@@ -90,7 +91,7 @@ public class GestorProductos implements Gestor<Producto> {
         
     }
 
-    private void inicializarLista() throws ExcepcionElementoNoEncontrado {
+    private void inicializarLista() throws ExcepcionElementoNoEncontrado, ExcepcionListaVacia, ExcepcionElementoYaExistente {
         try {
             ArrayList<Producto> listaProductos = gestorBD_.obtenerLista();
 
@@ -102,7 +103,7 @@ public class GestorProductos implements Gestor<Producto> {
         }
     }
 
-    private GestorProductos() throws ExcepcionElementoNoEncontrado {
+    private GestorProductos() throws ExcepcionElementoNoEncontrado, ExcepcionListaVacia, ExcepcionElementoYaExistente {
         this.gestorBD_ = new GestorBDProducto();
         this.nInventario_ = new HashMap();
         inicializarLista();
