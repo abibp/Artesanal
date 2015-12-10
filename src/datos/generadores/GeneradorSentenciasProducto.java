@@ -2,6 +2,7 @@
 package datos.generadores;
 
 import negocio.entidades.Producto;
+import negocio.entidades.ProductoCompuesto;
 
 /**
  *
@@ -9,14 +10,14 @@ import negocio.entidades.Producto;
  */
 
 public class GeneradorSentenciasProducto {
-    private final String nombreTabla;
+    private final String nombreTabla_;
 
     public GeneradorSentenciasProducto(String nombreTabla) {
-        this.nombreTabla = nombreTabla;
+        this.nombreTabla_ = nombreTabla;
     }
 
     public String generarSentenciaInsertarProducto(Producto nuevoProducto) {
-        final String INSTRUCCION_INSERTAR = "INSERT INTO " + nombreTabla + " VALUES (\"%s\", \"%s\", %f, %f, %d)";
+        final String INSTRUCCION_INSERTAR = "INSERT INTO " + nombreTabla_ + " VALUES (\"%s\", \"%s\", %f, %f, %d)";
         
         String sentenciaInsertarGenerada = 
                 String.format(
@@ -31,13 +32,23 @@ public class GeneradorSentenciasProducto {
         return sentenciaInsertarGenerada;
     }
     
-    public String generarSentenciaInsertarProductoCompuesto(ProductoCompuesto nuevoProductoCompuesto){
-        final String INSTRUCCION_INSERTAR_COMPUESTO = "INSERT INTO " + ;
+    private String generarSentenciaInsertarProductoCompuesto(ProductoCompuesto nuevoProductoCompuesto){
+        final String NOMBRE_TABLA = "usa";
+        final String INSTRUCCION_INSERTAR_COMPUESTO = 
+                "INSERT INTO " + NOMBRE_TABLA + " fp_id_producto = \"%s\", fi_id_insumo = \"%s\" ";
+        String sentenciaInsertarCompuestoGenerada = 
+                String.format(
+                        INSTRUCCION_INSERTAR_COMPUESTO,
+                        nuevoProductoCompuesto.obtenerID()
+                        //nuevoProductoCompuesto.
+                );
+        
+        return sentenciaInsertarCompuestoGenerada;
     }
 
     public String generarSentenciaEliminarProducto(String idProducto) {
         final String INSTRUCCION_ELIMINAR = 
-                "DELETE FROM " + nombreTabla + 
+                "DELETE FROM " + nombreTabla_ + 
                 " WHERE id_producto = \"%s\"";
         
         String sentenciaEliminarGenerada =
@@ -49,7 +60,7 @@ public class GeneradorSentenciasProducto {
     public String generarSentenciaActualizarProducto(Producto productoActualizado) {
         
         final String INSTRUCCION_ACTUALIZAR = 
-                "UPDATE " + nombreTabla + 
+                "UPDATE " + nombreTabla_ + 
                 " SET nombre = \"%s\", costo = %f, precio = %f, existencia = %d" +
                 " WHERE id_producto = \"%s\"";
         
@@ -69,7 +80,7 @@ public class GeneradorSentenciasProducto {
 
     public String generarSentenciaObtenerProductos(){
         
-        final String INSTRUCCION_OBTENER = "SELECT * FROM " + nombreTabla;
+        final String INSTRUCCION_OBTENER = "SELECT * FROM " + nombreTabla_;
         
         String sentenciaObtenerProductosGenerada = INSTRUCCION_OBTENER;
         
@@ -80,12 +91,29 @@ public class GeneradorSentenciasProducto {
     public String generarSentenciaObtenerProductoPorId(String idProducto){
         
         final String INSTRUCCION_OBTENER_POR_ID = 
-                "SELECT * FROM " + nombreTabla + " WHERE id_producto = \"%s\"";
+                "SELECT * FROM " + nombreTabla_ + " WHERE id_producto = \"%s\"";
         
         String sentenciaObtenerProductoPorIdGenerada =
                 String.format(INSTRUCCION_OBTENER_POR_ID, idProducto);
         
         return sentenciaObtenerProductoPorIdGenerada;
+    }
+    
+    private String generarSentenciaObtenerProductoCompuesto(ProductoCompuesto nuevoProductoCompuesto){
+        final String NOMBRE_TABLA = "usa";
+        final String INSTRUCCION_INSERTAR_COMPUESTO = 
+                "INSERT INTO " + NOMBRE_TABLA + " ";
+        String sentenciaInsertarCompuestoGenerada = 
+                String.format(
+                        INSTRUCCION_INSERTAR_COMPUESTO,
+                        nuevoProductoCompuesto.obtenerID(),
+                        nuevoProductoCompuesto.obtenerNombre(),
+                        nuevoProductoCompuesto.obtenerCosto(),
+                        nuevoProductoCompuesto.obtenerPrecio(),
+                        nuevoProductoCompuesto.obtenerExistencia()
+                );
+        
+        return sentenciaInsertarCompuestoGenerada;
     }
     
     

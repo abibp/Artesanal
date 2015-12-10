@@ -7,6 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import negocio.entidades.Producto;
 import datos.excepciones.ExcepcionProductoNoEncontrado;
+import negocio.entidades.ProductoCompuesto;
 
 
 public class GestorBDProducto extends GestorBaseDatos {
@@ -66,14 +67,14 @@ public class GestorBDProducto extends GestorBaseDatos {
         
     }
     
-    private ProductoCompuesto obtenerLista(String idProducto) throws ExceptionProductoNoEncontrado{
-        
-       String sentenciasObtenerProductosCompuestos;
-       sentenciaObtenerProductosCompuestos = generadorSentencia.generarSentenciaObtenerProductosCompuestos();
-       ResultSet resultadoConsulta = obtenerEjecutorInstrucciones().ejecutarConsulta(sentenciaObtenerProductosCompuestos);
-       
-       return extraerDeResultado(resultadoConsulta);
-    }
+//    private ProductoCompuesto obtenerListaCompuesto(String idProducto) throws ExcepcionProductoNoEncontrado{
+//        
+//       String sentenciaObtenerProductosCompuestos;
+//       sentenciaObtenerProductosCompuestos = generadorSentencia.generarSentenciaObtenerProductoCompuesto();
+//       ResultSet resultadoConsulta = obtenerEjecutorInstrucciones().ejecutarConsulta(sentenciaObtenerProductosCompuestos);
+//       
+//       return extraerDeResultado(resultadoConsulta);
+//    }
     
     
     private Producto extraerDeResultado(ResultSet resultadoConsulta) throws ExcepcionProductoNoEncontrado{
