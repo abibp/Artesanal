@@ -1,9 +1,13 @@
 package presentacion.proveedores;
 
 import java.awt.Component;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTextField;
+import negocio.administracion.GestorProveedores;
+import negocio.entidades.Proveedor;
+import negocio.excepciones.ExcepcionElementoNoEncontrado;
 import presentacion.utileria.Informador;
-import presentacion.utileria.RestriccionNumeroEnteroCampo;
 
 /**
  *
@@ -13,7 +17,6 @@ public class FormularioRegistroProveedor extends javax.swing.JPanel {
 
     public FormularioRegistroProveedor() {
         initComponents();
-        configurarComponentes();
         configurarEventos();
     }
 
@@ -34,6 +37,8 @@ public class FormularioRegistroProveedor extends javax.swing.JPanel {
         nombreEtiqueta = new org.edisoncor.gui.label.LabelMetric();
         direccionCampo = new javax.swing.JTextField();
         direccionEtiqueta = new org.edisoncor.gui.label.LabelMetric();
+        codigoEtiqueta = new org.edisoncor.gui.label.LabelMetric();
+        codigoCampo = new javax.swing.JTextField();
         accionIconoEtiqueta = new javax.swing.JLabel();
         reiniciarCamposBoton = new javax.swing.JButton();
 
@@ -95,6 +100,11 @@ public class FormularioRegistroProveedor extends javax.swing.JPanel {
         direccionEtiqueta.setText("Cantidad Actual :");
         direccionEtiqueta.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
 
+        codigoEtiqueta.setText("Codigo :");
+        codigoEtiqueta.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+
+        codigoCampo.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+
         javax.swing.GroupLayout formularioPanelLayout = new javax.swing.GroupLayout(formularioPanel);
         formularioPanel.setLayout(formularioPanelLayout);
         formularioPanelLayout.setHorizontalGroup(
@@ -102,6 +112,10 @@ public class FormularioRegistroProveedor extends javax.swing.JPanel {
             .addGroup(formularioPanelLayout.createSequentialGroup()
                 .addGap(67, 67, 67)
                 .addGroup(formularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(formularioPanelLayout.createSequentialGroup()
+                        .addComponent(codigoEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(codigoCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(formularioPanelLayout.createSequentialGroup()
                         .addComponent(costoEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -119,7 +133,11 @@ public class FormularioRegistroProveedor extends javax.swing.JPanel {
         formularioPanelLayout.setVerticalGroup(
             formularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(formularioPanelLayout.createSequentialGroup()
-                .addGap(77, 77, 77)
+                .addGap(29, 29, 29)
+                .addGroup(formularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(codigoEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(codigoCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(formularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombreEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nombreCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -198,6 +216,8 @@ public class FormularioRegistroProveedor extends javax.swing.JPanel {
     private javax.swing.JLabel accionIconoEtiqueta;
     private javax.swing.JLabel clavoDerechoIconoEtiqueta;
     private javax.swing.JLabel clavoIzquierdoIconoEtiqueta;
+    private javax.swing.JTextField codigoCampo;
+    private org.edisoncor.gui.label.LabelMetric codigoEtiqueta;
     private org.edisoncor.gui.label.LabelMetric costoEtiqueta;
     private javax.swing.JTextField direccionCampo;
     private org.edisoncor.gui.label.LabelMetric direccionEtiqueta;
@@ -211,13 +231,6 @@ public class FormularioRegistroProveedor extends javax.swing.JPanel {
     private org.edisoncor.gui.panel.PanelImage tituloFondoPanel;
     private org.edisoncor.gui.label.LabelMetric tituloPanel;
     // End of variables declaration//GEN-END:variables
-
-    private void configurarComponentes() {
-
-        telefonoCampo.addKeyListener(new RestriccionNumeroEnteroCampo());
-        telefonoCampo.setTransferHandler(null);
-        
-    }
 
     private void configurarEventos() {
         reiniciarCamposBoton.addActionListener(evento -> reiniciarInformacionFormulario());
@@ -267,8 +280,19 @@ public class FormularioRegistroProveedor extends javax.swing.JPanel {
 
         if (estadoValidacion == CORRECTO) {
 
-            crearProveedor();
-            //TODO: asignar el resultado del metodo a una variable producto y enviarla a negocio
+            try {
+                Proveedor proveedorCreado = crearProveedor();
+                GestorProveedores gestorProveedor = GestorProveedores.obtenerInstancia();
+                gestorProveedor.agregar(proveedorCreado);
+                reiniciarInformacionFormulario();
+                
+                final String MENSAJE_EXITO = "Proveedor Agregado";
+                Informador.mostrarMensajeDeInformacion(MENSAJE_EXITO);
+                
+            } catch (ExcepcionElementoNoEncontrado ex) {
+                Logger.getLogger(FormularioRegistroProveedor.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         }
 
     }
@@ -281,8 +305,8 @@ public class FormularioRegistroProveedor extends javax.swing.JPanel {
 
         } else {
 
-            final String MENSAJE_CAMPOS_INCOMPLETOS = 
-                    "¡Rellena todos los campos!";
+            final String MENSAJE_CAMPOS_INCOMPLETOS
+                    = "¡Rellena todos los campos!";
             Informador.mostrarMensajeDeError(MENSAJE_CAMPOS_INCOMPLETOS);
 
             return false;
@@ -290,12 +314,14 @@ public class FormularioRegistroProveedor extends javax.swing.JPanel {
 
     }
 
-    private void crearProveedor() {
+    private Proveedor crearProveedor() {
 
+        String id = codigoCampo.getText();
         String nombre = nombreCampo.getText();
-        int telefono = Integer.parseInt(telefonoCampo.getText());
+        String telefono = telefonoCampo.getText();
         String direccion = direccionCampo.getText();
 
-        //TODO: Devolver una instancia de Producto
+        Proveedor proveedorCreado = new Proveedor(id, nombre, telefono, direccion);
+        return proveedorCreado;
     }
 }

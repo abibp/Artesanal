@@ -1,6 +1,5 @@
 package presentacion.insumos;
 
-import datos.excepciones.ExcepcionInsumoNoEncontrado;
 import java.awt.Component;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -12,6 +11,7 @@ import javax.swing.event.DocumentListener;
 import negocio.entidades.Insumo;
 import negocio.administracion.GestorInsumos;
 import negocio.excepciones.ExcepcionElementoNoEncontrado;
+
 import presentacion.dialogos.AutocompletadoCodigoInsumoDialogo;
 import presentacion.utileria.Informador;
 
@@ -57,6 +57,8 @@ public class FormularioEliminacionInsumo extends javax.swing.JPanel implements D
         cantidadActualCampo = new javax.swing.JTextField();
         cantidadActualEtiqueta = new org.edisoncor.gui.label.LabelMetric();
         busquedaCodigoInsumoBoton = new javax.swing.JButton();
+        unidadMedidaEtiqueta = new org.edisoncor.gui.label.LabelMetric();
+        unidadMedidaCampo = new javax.swing.JComboBox();
         accionIconoEtiqueta = new javax.swing.JLabel();
 
         fondoPanel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/recursos/madera_fondo.jpg"))); // NOI18N
@@ -132,6 +134,14 @@ public class FormularioEliminacionInsumo extends javax.swing.JPanel implements D
         busquedaCodigoInsumoBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/recursos/buscar.png"))); // NOI18N
         busquedaCodigoInsumoBoton.setText("Buscar");
 
+        unidadMedidaEtiqueta.setText("Unidad Medida :");
+        unidadMedidaEtiqueta.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+
+        unidadMedidaCampo.setBackground(new java.awt.Color(102, 0, 0));
+        unidadMedidaCampo.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        unidadMedidaCampo.setForeground(new java.awt.Color(255, 255, 255));
+        unidadMedidaCampo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "GR", "PZA" }));
+
         javax.swing.GroupLayout formularioPanelLayout = new javax.swing.GroupLayout(formularioPanel);
         formularioPanel.setLayout(formularioPanelLayout);
         formularioPanelLayout.setHorizontalGroup(
@@ -148,9 +158,13 @@ public class FormularioEliminacionInsumo extends javax.swing.JPanel implements D
                         .addGap(18, 18, 18)
                         .addComponent(nombreCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formularioPanelLayout.createSequentialGroup()
-                        .addComponent(cantidadActualEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(formularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(unidadMedidaEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cantidadActualEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(cantidadActualCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(formularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cantidadActualCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(unidadMedidaCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(81, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formularioPanelLayout.createSequentialGroup()
                 .addGap(0, 142, Short.MAX_VALUE)
@@ -181,7 +195,11 @@ public class FormularioEliminacionInsumo extends javax.swing.JPanel implements D
                 .addGroup(formularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cantidadActualEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cantidadActualCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(formularioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(unidadMedidaEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(unidadMedidaCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         accionIconoEtiqueta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentacion/recursos/baja_main.png"))); // NOI18N
@@ -210,7 +228,7 @@ public class FormularioEliminacionInsumo extends javax.swing.JPanel implements D
                 .addGroup(fondoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(accionIconoEtiqueta)
                     .addComponent(formularioPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addComponent(eliminacionInsumoBoton)
                 .addGap(30, 30, 30))
         );
@@ -246,6 +264,8 @@ public class FormularioEliminacionInsumo extends javax.swing.JPanel implements D
     private org.edisoncor.gui.label.LabelMetric nombreEtiqueta;
     private org.edisoncor.gui.panel.PanelImage tituloFondoPanel;
     private org.edisoncor.gui.label.LabelMetric tituloPanel;
+    private javax.swing.JComboBox unidadMedidaCampo;
+    private org.edisoncor.gui.label.LabelMetric unidadMedidaEtiqueta;
     // End of variables declaration//GEN-END:variables
 
     private void configurarEventos() {
@@ -344,6 +364,7 @@ public class FormularioEliminacionInsumo extends javax.swing.JPanel implements D
             nombreCampo.setText(insumoSolicitado.obtenerNombre());
             costoCampo.setText(String.valueOf(insumoSolicitado.obtenerCosto()));
             cantidadActualCampo.setText(String.valueOf(insumoSolicitado.obtenerExistencia()));
+            unidadMedidaCampo.setSelectedItem(insumoSolicitado.obtenerUnidadMedida());
 
         } catch (ExcepcionElementoNoEncontrado ex) {
             Logger.getLogger(FormularioEliminacionInsumo.class.getName()).log(Level.SEVERE, null, ex);

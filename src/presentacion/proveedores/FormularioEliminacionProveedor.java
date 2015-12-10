@@ -1,11 +1,17 @@
 package presentacion.proveedores;
 
+import datos.excepciones.ExcepcionProveedorNoEncontrado;
 import java.awt.Component;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import negocio.administracion.GestorProveedores;
+import negocio.entidades.Proveedor;
+import negocio.excepciones.ExcepcionElementoNoEncontrado;
 import presentacion.dialogos.AutocompletadoCodigoProveedorDialogo;
 import presentacion.utileria.Informador;
 
@@ -13,14 +19,14 @@ import presentacion.utileria.Informador;
  *
  * @author PIX
  */
-public class FormularioEliminacionProveedor extends javax.swing.JPanel implements DocumentListener{
+public class FormularioEliminacionProveedor extends javax.swing.JPanel implements DocumentListener {
 
     public FormularioEliminacionProveedor() {
         initComponents();
         configurarEventos();
     }
 
-         @Override
+    @Override
     public void insertUpdate(DocumentEvent e) {
         completarInformacionProveedor();
     }
@@ -34,7 +40,7 @@ public class FormularioEliminacionProveedor extends javax.swing.JPanel implement
     public void changedUpdate(DocumentEvent e) {
         completarInformacionProveedor();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -251,13 +257,11 @@ public class FormularioEliminacionProveedor extends javax.swing.JPanel implement
     private org.edisoncor.gui.label.LabelMetric tituloPanel;
     // End of variables declaration//GEN-END:variables
 
-
     private void configurarEventos() {
 
         eliminacionProveedorBoton.addActionListener(evento -> eliminarProveedor());
         busquedaCodigoProveedorBoton.addActionListener(evento -> autocompletarCodigoProveedor());
     }
-
 
     private boolean estaCompletaInformacionFormulario() {
 
@@ -278,6 +282,22 @@ public class FormularioEliminacionProveedor extends javax.swing.JPanel implement
         return true;
     }
 
+    private void reiniciarInformacionFormulario() {
+        final String VACIO = "";
+
+        for (Component componente : formularioPanel.getComponents()) {
+
+            if (componente instanceof JTextField) {
+
+                JTextField campoTexto = (JTextField) componente;
+
+                campoTexto.setText(VACIO);
+
+            }
+        }
+
+    }
+
     private void eliminarProveedor() {
 
         final boolean CORRECTO = true;
@@ -286,8 +306,19 @@ public class FormularioEliminacionProveedor extends javax.swing.JPanel implement
 
         if (estadoValidacion == CORRECTO) {
 
-            int IDProveedor = Integer.parseInt(codigoCampo.getText());
-            //TODO: eliminar el proveedor
+            try {
+                String IDProveedor = codigoCampo.getText();
+
+                GestorProveedores gestorProveedores = GestorProveedores.obtenerInstancia();
+                gestorProveedores.eliminar(IDProveedor);
+                reiniciarInformacionFormulario();
+
+                final String MENSAJE_EXITO = "Insumo Eliminado";
+                Informador.mostrarMensajeDeInformacion(MENSAJE_EXITO);
+            } catch (ExcepcionElementoNoEncontrado ex) {
+                Logger.getLogger(FormularioEliminacionProveedor.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         }
 
     }
@@ -300,8 +331,8 @@ public class FormularioEliminacionProveedor extends javax.swing.JPanel implement
 
         } else {
 
-            final String MENSAJE_CAMPOS_INCOMPLETOS = 
-                    "¡Selecciona un proveedor a eliminar!";
+            final String MENSAJE_CAMPOS_INCOMPLETOS
+                    = "¡Selecciona un proveedor a eliminar!";
             Informador.mostrarMensajeDeError(MENSAJE_CAMPOS_INCOMPLETOS);
 
             return false;
@@ -311,24 +342,32 @@ public class FormularioEliminacionProveedor extends javax.swing.JPanel implement
 
     private void autocompletarCodigoProveedor() {
 
-         final boolean MODO_DIALOGO = true;
+        final boolean MODO_DIALOGO = true;
         JFrame ventanaActiva = (JFrame) SwingUtilities.getWindowAncestor(this);
 
-        AutocompletadoCodigoProveedorDialogo dialogoAutocompletado = 
-                new AutocompletadoCodigoProveedorDialogo(ventanaActiva, MODO_DIALOGO);
+        AutocompletadoCodigoProveedorDialogo dialogoAutocompletado
+                = new AutocompletadoCodigoProveedorDialogo(ventanaActiva, MODO_DIALOGO);
 
         dialogoAutocompletado.establecerCampoPorAutocompletar(codigoCampo);
-        
+
         dialogoAutocompletado.mostrarEnPantalla();
     }
 
     private void completarInformacionProveedor() {
 
-        int IDProveedor = Integer.parseInt(codigoCampo.getText());
-        
-        //TODO: jalar la informacion del proveedor 
-        nombreCampo.setText("");
-        telefonoCampo.setText("");
-        direccionCampo.setText("");
+         String IDProveedor = codigoCampo.getText();
+         
+        try {
+            
+            GestorProveedores gestorProveedores = GestorProveedores.obtenerInstancia();
+            Proveedor proveedorObtenido = gestorProveedores.obtener(IDProveedor);
+            nombreCampo.setText(proveedorObtenido.obtenerNombre());
+            telefonoCampo.setText(proveedorObtenido.obtenerTelefono());
+            direccionCampo.setText(proveedorObtenido.obtenerDireccion());
+            
+        } catch (ExcepcionElementoNoEncontrado ex) {
+            Logger.getLogger(FormularioEliminacionProveedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 }
