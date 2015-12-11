@@ -13,10 +13,12 @@ public class GeneradorSentenciasProveedor {
 
     private final String nombreTabla;
 
+    
     public GeneradorSentenciasProveedor(String nombreTabla) {
         this.nombreTabla = nombreTabla;
     }
 
+    
     public String generarSentenciaInsertarProveedor(Proveedor nuevoProveedor) {
         final String INSTRUCCION_INSERTAR = 
                 "INSERT INTO " + nombreTabla + 
@@ -35,6 +37,7 @@ public class GeneradorSentenciasProveedor {
         
     }
 
+    
     public String generarSentenciaEliminarProveedor(String idProveedor) {
         
         final String INSTRUCCION_ELIMINAR = 
@@ -48,6 +51,7 @@ public class GeneradorSentenciasProveedor {
         
     }
 
+    
     public String generarSentenciaActualizarProveedor(Proveedor insumoActualizado) {
         
         final String INSTRUCCION_ACTUALIZAR = 
@@ -68,6 +72,7 @@ public class GeneradorSentenciasProveedor {
         
     }
 
+    
     public String generarSentenciaObtenerProveedores(){
         
         final String INSTRUCCION_OBTENER = "SELECT * FROM " + nombreTabla;
@@ -77,6 +82,7 @@ public class GeneradorSentenciasProveedor {
         return sentenciaObtenerProveedorsGenerada;
         
     }
+    
     
     public String generarSentenciaObtenerProveedorPorId(String idProveedor){
         

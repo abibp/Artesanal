@@ -44,11 +44,7 @@ public class GestorProductos implements Gestor<Producto> {
         if (!nInventario_.containsKey(nuevoProducto.obtenerID())) {
 
             nInventario_.put(nuevoProducto.obtenerID(), nuevoProducto);
-            try {
-                gestorBD_.agregar(nuevoProducto);
-            } catch (ExcepcionListaVacia ex) {
-                Logger.getLogger(GestorProductos.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            gestorBD_.agregar(nuevoProducto);
 
         } else {
             throw new ExcepcionElementoYaExistente();

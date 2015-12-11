@@ -5,10 +5,14 @@
  */
 package negocio.gestion;
 
-import datos.GestorBDProducto;
+import datos.gestores.GestorBDProducto;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import negocio.administracion.Gestor;
 import negocio.entidades.ProductoCompuesto;
+import negocio.excepciones.ExcepcionElementoNoEncontrado;
+import negocio.excepciones.ExcepcionListaVacia;
 
 /**
  *
@@ -63,6 +67,16 @@ public class GestorProductosCompuestos implements Gestor<ProductoCompuesto>{
         this.gestorBD_ = new GestorBDProducto();
         this.nProductosCompuestos_ = new HashMap();
         inicializarLista();
+    }
+
+    @Override
+    public void editarInformacion(ProductoCompuesto objeto) throws ExcepcionElementoNoEncontrado {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<ProductoCompuesto> obtenerLista() throws ExcepcionListaVacia {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

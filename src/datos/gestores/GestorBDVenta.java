@@ -1,5 +1,6 @@
 package datos.gestores;
 
+import datos.generadores.GeneradorSentenciasVenta;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -12,46 +13,36 @@ import negocio.entidades.NotaDeVenta;
 import negocio.entidades.Producto;
 
 public class GestorBDVenta extends GestorBaseDatos {
+    
+    public static String TABLA_NOTA_VENTA = "nota_venta";
+    private final GeneradorSentenciasVenta generadorSentencia;
 
-    public void agregarVenta(NotaDeVenta nuevaVenta) {
+    
+    public GestorBDVenta() {
+        generadorSentencia = new GeneradorSentenciasVenta(TABLA_NOTA_VENTA);
+    }
+    
+    
+    public void registrar(NotaDeVenta nuevaVenta) {
 
-        final String INSTRUCCION_INSERTAR
-                = "INSERT INTO nota_venta(fecha_expedicion, importe_total) VALUES(NOW(),%f)";
-
-        String instruccionFinalInsertar
-                = String.format(
-                        INSTRUCCION_INSERTAR,
-                        nuevaVenta.obtenerImporteTotal()
-                );
-
-        obtenerEjecutorInstrucciones().
-                ejecutarModificacion(instruccionFinalInsertar);
+        String sentenciaInsertarNotaVenta;
+        sentenciaInsertarNotaVenta = generadorSentencia.generarSentenciaInsertarVenta(nuevaVenta);
+        obtenerEjecutorInstrucciones().ejecutarModificacion(sentenciaInsertarNotaVenta);
 
         for (ElementoNota actual : nuevaVenta.obtenerElementos()) {
-            agregarElementoVenta(actual);
+            agregarElemento(actual);
         }
     }
 
-    public ArrayList<NotaDeVenta> obtenerVentasRangoFecha(Date fechaInicio, Date fechaFin) {
-
-        SimpleDateFormat formateadorFecha = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    
+    public ArrayList<NotaDeVenta> obtenerPorRangoDeFecha(Date fechaInicio, Date fechaFin) {
 
         ArrayList<NotaDeVenta> notasVenta = new ArrayList();
-
-        String fechaInicioConFormato = formateadorFecha.format(fechaInicio);
-        String fechaFinConFormato = formateadorFecha.format(fechaFin);
-
-        final String INSTRUCCION_OBTENER_POR_FECHA
-                = "SELECT * FROM nota_venta WHERE fecha_expedicion >= \"%s\" AND fecha_expedicion <= \"%s\"";
-
-        String instruccionFinalObtener = String.format(
-                INSTRUCCION_OBTENER_POR_FECHA,
-                fechaInicioConFormato,
-                fechaFinConFormato);
-
-        ResultSet resultadoConsulta
-                = obtenerEjecutorInstrucciones().ejecutarConsulta(instruccionFinalObtener);
-
+        String sentenciaObtenerVentasPorRangoDeFecha;
+        sentenciaObtenerVentasPorRangoDeFecha = generadorSentencia.generarSentenciaObtenerVentasPorRangoDeFecha(fechaInicio, fechaFin);
+        ResultSet resultadoConsulta = obtenerEjecutorInstrucciones().ejecutarConsulta(sentenciaObtenerVentasPorRangoDeFecha);
+        
+        crearElementoVenta(resultadoConsulta);
         try {
             while (resultadoConsulta.next()) {
                 NotaDeVenta actual = crearNotaVenta(resultadoConsulta);
@@ -64,49 +55,46 @@ public class GestorBDVenta extends GestorBaseDatos {
         return notasVenta;
     }
 
-    private void agregarElementoVenta(ElementoNota nuevaVenta) {
+    
+    private void agregarElemento(ElementoNota nuevaVenta) {
 
         int idNotaVenta = obtenerUltimoID();
-
-        final String INSTRUCCION_INSERTAR
-                = "INSERT INTO tiene VALUES(\"%s\",%d,%d,%f)";
-
-        String instruccionFinalInsertar
-                = String.format(
-                        INSTRUCCION_INSERTAR,
-                        nuevaVenta.obtenerProductoVendido().obtenerID(),
-                        idNotaVenta,
-                        nuevaVenta.obtenerCantidadDeProducto(),
-                        nuevaVenta.obtenerImporte()
-                );
-
-        obtenerEjecutorInstrucciones().
-                ejecutarModificacion(instruccionFinalInsertar);
+        String sentenciaInsertarElementoVenta;
+        sentenciaInsertarElementoVenta = generadorSentencia.generarSentenciaInsertarElementoVenta(nuevaVenta, idNotaVenta);
+        obtenerEjecutorInstrucciones().ejecutarModificacion(sentenciaInsertarElementoVenta);
 
     }
 
+    
     private int obtenerUltimoID() {
-        int id = 0;
+        
+        int idObtenido = 0;
+        
         try {
-            final String INSTRUCCION_OBTENER_ULTIMO_ID
-                    = "SELECT * FROM nota_venta WHERE id_nota =(SELECT MAX(id_nota) FROM nota_venta)";
-
-            ResultSet resultadoUltimoID = obtenerEjecutorInstrucciones().ejecutarConsulta(INSTRUCCION_OBTENER_ULTIMO_ID);
+        
+            String sentenciaObtenerUltimoId = generadorSentencia.generarSentenciaObtenerUltimoID();
+            
+            ResultSet resultadoUltimoID;
+            resultadoUltimoID = obtenerEjecutorInstrucciones().ejecutarConsulta(sentenciaObtenerUltimoId);
             resultadoUltimoID.next();
-            id = resultadoUltimoID.getInt(1);
+            idObtenido = resultadoUltimoID.getInt(1);
+        
         } catch (SQLException ex) {
             Logger.getLogger(GestorBDVenta.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return id;
+        
+        return idObtenido;
+        
     }
 
+    
     private NotaDeVenta crearNotaVenta(ResultSet resultadoConsulta) {
 
         ArrayList<ElementoNota> elementos = new ArrayList();
+        
         try {
 
             int idNota = resultadoConsulta.getInt("id_nota");
-            Date fechaExpedicion = resultadoConsulta.getDate("fecha_expedicion");
             double importeTotal = resultadoConsulta.getDouble("importe_total");
 
             final String INSTRUCCION_OBTENER_ELEMENTO_VENTA
@@ -130,6 +118,7 @@ public class GestorBDVenta extends GestorBaseDatos {
         return null;
     }
 
+    
     private ElementoNota crearElementoVenta(ResultSet resultadoConsulta) {
 
         try {
@@ -156,4 +145,6 @@ public class GestorBDVenta extends GestorBaseDatos {
         }
         return null;
     }
+
+
 }

@@ -41,11 +41,7 @@ public class GestorProductosCompuestos implements Gestor<ProductoCompuesto>{
     @Override
     public void agregar(ProductoCompuesto nuevoProducto) {
         nInventario_.put(nuevoProducto.obtenerID(), nuevoProducto);
-        try {
-            gestorBD_.agregar(nuevoProducto);
-        } catch (ExcepcionListaVacia ex) {
-            Logger.getLogger(GestorProductosCompuestos.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        gestorBD_.agregar(nuevoProducto);
     }
 
     @Override

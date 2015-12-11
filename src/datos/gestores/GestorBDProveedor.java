@@ -15,13 +15,16 @@ import negocio.entidades.Proveedor;
  */
 public class GestorBDProveedor extends GestorBaseDatos {
 
+    
     public static String TABLA_PROVEEDOR = "proveedor";
     private final GeneradorSentenciasProveedor generadorSentencia;
 
+    
     public GestorBDProveedor() {
         generadorSentencia = new GeneradorSentenciasProveedor(TABLA_PROVEEDOR);
     }
 
+    
     public void agregar(Proveedor nuevoProveedor) {
 
         String sentenciaInsertarProveedor;
@@ -30,6 +33,7 @@ public class GestorBDProveedor extends GestorBaseDatos {
 
     }
 
+    
     public void eliminar(String idProveedor) {
 
         String sentenciaEliminarProveedor;
@@ -38,6 +42,7 @@ public class GestorBDProveedor extends GestorBaseDatos {
 
     }
 
+    
     public void editarInformacion(String id, Proveedor productoActualizado) {
 
         String sentenciaEditarInformacionProveedor;
@@ -46,6 +51,7 @@ public class GestorBDProveedor extends GestorBaseDatos {
 
     }
 
+    
     public ArrayList<Proveedor> obtenerLista() throws ExcepcionProveedorNoEncontrado {
 
         ArrayList<Proveedor> listaProveedors = new ArrayList<>();
@@ -65,6 +71,7 @@ public class GestorBDProveedor extends GestorBaseDatos {
         
     }
 
+    
     public Proveedor obtenerPorId(String idProveedor) throws ExcepcionProveedorNoEncontrado {
 
         String sentenciaObtenerProveedorPorId;
@@ -75,6 +82,7 @@ public class GestorBDProveedor extends GestorBaseDatos {
 
     }
 
+    
     private Proveedor extraerDeResultado(ResultSet resultadoConsulta) {
 
         Proveedor proveedor = null;
@@ -96,4 +104,5 @@ public class GestorBDProveedor extends GestorBaseDatos {
         
     }
 
+    
 }

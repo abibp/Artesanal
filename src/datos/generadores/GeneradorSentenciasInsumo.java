@@ -10,13 +10,16 @@ import negocio.entidades.Insumo;
 
 public class GeneradorSentenciasInsumo {
 
+    
     private final String nombreTabla;
     private final String VARIABLE_TEXTO = "\"%s\"";
 
+    
     public GeneradorSentenciasInsumo(String nombreTabla) {
         this.nombreTabla = nombreTabla;
     }
 
+    
     public String generarSentenciaInsertarInsumo(Insumo nuevoInsumo) {
         final String INSTRUCCION_INSERTAR = 
                 "INSERT INTO " + nombreTabla + 
@@ -35,6 +38,7 @@ public class GeneradorSentenciasInsumo {
         return sentenciaInsertarGenerada;
     }
 
+    
     public String generarSentenciaEliminarInsumo(String idInsumo) {
         final String INSTRUCCION_ELIMINAR = 
                 "DELETE FROM " + nombreTabla + 
@@ -46,6 +50,7 @@ public class GeneradorSentenciasInsumo {
         return sentenciaEliminarGenerada;
     }
 
+    
     public String generarSentenciaActualizarInsumo(Insumo insumoActualizado) {
         final String INSTRUCCION_ACTUALIZAR = 
                 "UPDATE " + nombreTabla + 
@@ -65,6 +70,7 @@ public class GeneradorSentenciasInsumo {
         return sentenciaActualizarGenerada;
     }
 
+    
     public String generarSentenciaObtenerInsumos(){
         final String INSTRUCCION_OBTENER = "SELECT * FROM " + nombreTabla;
         
@@ -72,6 +78,7 @@ public class GeneradorSentenciasInsumo {
         
         return sentenciaObtenerInsumosGenerada;
     }
+    
     
     public String generarSentenciaObtenerInsumoPorId(String idInsumo){
         String condicion = "id_insumo = " + idInsumo;

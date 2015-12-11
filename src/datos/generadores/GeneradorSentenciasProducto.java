@@ -10,12 +10,16 @@ import negocio.entidades.ProductoCompuesto;
  */
 
 public class GeneradorSentenciasProducto {
+    
+    
     private final String nombreTabla_;
 
+    
     public GeneradorSentenciasProducto(String nombreTabla) {
         this.nombreTabla_ = nombreTabla;
     }
 
+    
     public String generarSentenciaInsertarProducto(Producto nuevoProducto) {
         final String INSTRUCCION_INSERTAR = "INSERT INTO " + nombreTabla_ + " VALUES (\"%s\", \"%s\", %f, %f, %d)";
         
@@ -31,21 +35,8 @@ public class GeneradorSentenciasProducto {
         
         return sentenciaInsertarGenerada;
     }
-    
-    private String generarSentenciaInsertarProductoCompuesto(ProductoCompuesto nuevoProductoCompuesto){
-        final String NOMBRE_TABLA = "usa";
-        final String INSTRUCCION_INSERTAR_COMPUESTO = 
-                "INSERT INTO " + NOMBRE_TABLA + " fp_id_producto = \"%s\", fi_id_insumo = \"%s\" ";
-        String sentenciaInsertarCompuestoGenerada = 
-                String.format(
-                        INSTRUCCION_INSERTAR_COMPUESTO,
-                        nuevoProductoCompuesto.obtenerID()
-                        //nuevoProductoCompuesto.
-                );
-        
-        return sentenciaInsertarCompuestoGenerada;
-    }
 
+    
     public String generarSentenciaEliminarProducto(String idProducto) {
         final String INSTRUCCION_ELIMINAR = 
                 "DELETE FROM " + nombreTabla_ + 
@@ -57,6 +48,7 @@ public class GeneradorSentenciasProducto {
         return sentenciaEliminarGenerada;
     }
 
+    
     public String generarSentenciaActualizarProducto(Producto productoActualizado) {
         
         final String INSTRUCCION_ACTUALIZAR = 
@@ -78,6 +70,7 @@ public class GeneradorSentenciasProducto {
         
     }
 
+    
     public String generarSentenciaObtenerProductos(){
         
         final String INSTRUCCION_OBTENER = "SELECT * FROM " + nombreTabla_;
@@ -87,6 +80,7 @@ public class GeneradorSentenciasProducto {
         return sentenciaObtenerProductosGenerada;
         
     }
+    
     
     public String generarSentenciaObtenerProductoPorId(String idProducto){
         
@@ -98,6 +92,22 @@ public class GeneradorSentenciasProducto {
         
         return sentenciaObtenerProductoPorIdGenerada;
     }
+    
+    
+    private String generarSentenciaInsertarProductoCompuesto(ProductoCompuesto nuevoProductoCompuesto){
+        final String NOMBRE_TABLA = "usa";
+        final String INSTRUCCION_INSERTAR_COMPUESTO = 
+                "INSERT INTO " + NOMBRE_TABLA + " fp_id_producto = \"%s\", fi_id_insumo = \"%s\" ";
+        String sentenciaInsertarCompuestoGenerada = 
+                String.format(
+                        INSTRUCCION_INSERTAR_COMPUESTO,
+                        nuevoProductoCompuesto.obtenerID()
+                        //nuevoProductoCompuesto.
+                );
+        
+        return sentenciaInsertarCompuestoGenerada;
+    }
+    
     
     private String generarSentenciaObtenerProductoCompuesto(ProductoCompuesto nuevoProductoCompuesto){
         final String NOMBRE_TABLA = "usa";
