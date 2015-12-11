@@ -3,7 +3,6 @@ package datos.gestores;
 import datos.generadores.GeneradorSentenciasVenta;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
@@ -15,6 +14,7 @@ import negocio.entidades.Producto;
 public class GestorBDVenta extends GestorBaseDatos {
     
     public static String TABLA_NOTA_VENTA = "nota_venta";
+        
     private final GeneradorSentenciasVenta generadorSentencia;
 
     
@@ -38,9 +38,13 @@ public class GestorBDVenta extends GestorBaseDatos {
     public ArrayList<NotaDeVenta> obtenerPorRangoDeFecha(Date fechaInicio, Date fechaFin) {
 
         ArrayList<NotaDeVenta> notasVenta = new ArrayList();
+        
         String sentenciaObtenerVentasPorRangoDeFecha;
-        sentenciaObtenerVentasPorRangoDeFecha = generadorSentencia.generarSentenciaObtenerVentasPorRangoDeFecha(fechaInicio, fechaFin);
-        ResultSet resultadoConsulta = obtenerEjecutorInstrucciones().ejecutarConsulta(sentenciaObtenerVentasPorRangoDeFecha);
+        sentenciaObtenerVentasPorRangoDeFecha = 
+                generadorSentencia.generarSentenciaObtenerVentasPorRangoDeFecha(fechaInicio, fechaFin);
+        
+        ResultSet resultadoConsulta = 
+                obtenerEjecutorInstrucciones().ejecutarConsulta(sentenciaObtenerVentasPorRangoDeFecha);
         
         crearElementoVenta(resultadoConsulta);
         try {
@@ -59,8 +63,12 @@ public class GestorBDVenta extends GestorBaseDatos {
     private void agregarElemento(ElementoNota nuevaVenta) {
 
         int idNotaVenta = obtenerUltimoID();
+        
         String sentenciaInsertarElementoVenta;
-        sentenciaInsertarElementoVenta = generadorSentencia.generarSentenciaInsertarElementoVenta(nuevaVenta, idNotaVenta);
+        
+        sentenciaInsertarElementoVenta = 
+                generadorSentencia.generarSentenciaInsertarElementoVenta(nuevaVenta, idNotaVenta);
+        
         obtenerEjecutorInstrucciones().ejecutarModificacion(sentenciaInsertarElementoVenta);
 
     }
@@ -86,7 +94,9 @@ public class GestorBDVenta extends GestorBaseDatos {
         return idObtenido;
         
     }
-
+    
+    private final static String ENCABEZADO_ID_NOTA = "nota_venta";
+    private final static String ENCABEZADO_IMPORTE_TOTAL = "importe_total";
     
     private NotaDeVenta crearNotaVenta(ResultSet resultadoConsulta) {
 
@@ -94,17 +104,15 @@ public class GestorBDVenta extends GestorBaseDatos {
         
         try {
 
-            int idNota = resultadoConsulta.getInt("id_nota");
-            double importeTotal = resultadoConsulta.getDouble("importe_total");
-
-            final String INSTRUCCION_OBTENER_ELEMENTO_VENTA
-                    = "SELECT * FROM tiene JOIN producto ON tiene.fp_id_producto = producto.id_producto WHERE fnv_id_nota = %d";
-
-            String instruccionFinal = String.format(
-                    INSTRUCCION_OBTENER_ELEMENTO_VENTA,
-                    idNota
-            );
-            ResultSet resultadoConsultaElemento = obtenerEjecutorInstrucciones().ejecutarConsulta(instruccionFinal);
+            int idNota = resultadoConsulta.getInt(ENCABEZADO_ID_NOTA);
+            double importeTotal = resultadoConsulta.getDouble(ENCABEZADO_IMPORTE_TOTAL);
+      
+            String sentenciaObtenerElementoVenta;
+            sentenciaObtenerElementoVenta = generadorSentencia.generarSentenciaObtenerElementoVenta(idNota);
+            
+            ResultSet resultadoConsultaElemento = 
+                    obtenerEjecutorInstrucciones().ejecutarConsulta(sentenciaObtenerElementoVenta);
+            
             while (resultadoConsultaElemento.next()) {
                 ElementoNota elemento = crearElementoVenta(resultadoConsultaElemento);
                 elementos.add(elemento);
@@ -138,7 +146,7 @@ public class GestorBDVenta extends GestorBaseDatos {
                     existencia);
             
             ElementoNota elemento = new ElementoNota(cantidad, productoVendido);
-            System.out.println(":CCCCCC");
+            
             return elemento;
         } catch (SQLException ex) {
             Logger.getLogger(GestorBDVenta.class.getName()).log(Level.SEVERE, null, ex);

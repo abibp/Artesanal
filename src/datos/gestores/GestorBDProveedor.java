@@ -16,19 +16,20 @@ import negocio.entidades.Proveedor;
 public class GestorBDProveedor extends GestorBaseDatos {
 
     
-    public static String TABLA_PROVEEDOR = "proveedor";
+    public static String TABLA_PROVEEDOR_ = "proveedor";
     private final GeneradorSentenciasProveedor generadorSentencia;
 
     
     public GestorBDProveedor() {
-        generadorSentencia = new GeneradorSentenciasProveedor(TABLA_PROVEEDOR);
+        generadorSentencia = new GeneradorSentenciasProveedor(TABLA_PROVEEDOR_);
     }
 
     
     public void agregar(Proveedor nuevoProveedor) {
 
         String sentenciaInsertarProveedor;
-        sentenciaInsertarProveedor = generadorSentencia.generarSentenciaInsertarProveedor(nuevoProveedor);
+        sentenciaInsertarProveedor = 
+                generadorSentencia.generarSentenciaInsertarProveedor(nuevoProveedor);
         obtenerEjecutorInstrucciones().ejecutarModificacion(sentenciaInsertarProveedor);
 
     }
@@ -37,7 +38,8 @@ public class GestorBDProveedor extends GestorBaseDatos {
     public void eliminar(String idProveedor) {
 
         String sentenciaEliminarProveedor;
-        sentenciaEliminarProveedor = generadorSentencia.generarSentenciaEliminarProveedor(idProveedor);
+        sentenciaEliminarProveedor = 
+                generadorSentencia.generarSentenciaEliminarProveedor(idProveedor);
         obtenerEjecutorInstrucciones().ejecutarModificacion(sentenciaEliminarProveedor);
 
     }
@@ -46,7 +48,8 @@ public class GestorBDProveedor extends GestorBaseDatos {
     public void editarInformacion(String id, Proveedor productoActualizado) {
 
         String sentenciaEditarInformacionProveedor;
-        sentenciaEditarInformacionProveedor = generadorSentencia.generarSentenciaActualizarProveedor(productoActualizado);
+        sentenciaEditarInformacionProveedor = 
+                generadorSentencia.generarSentenciaActualizarProveedor(productoActualizado);
         obtenerEjecutorInstrucciones().ejecutarModificacion(sentenciaEditarInformacionProveedor);
 
     }
@@ -55,13 +58,17 @@ public class GestorBDProveedor extends GestorBaseDatos {
     public ArrayList<Proveedor> obtenerLista() throws ExcepcionProveedorNoEncontrado {
 
         ArrayList<Proveedor> listaProveedors = new ArrayList<>();
+        
         String sentenciaObtenerProveedores;
-        sentenciaObtenerProveedores = generadorSentencia.generarSentenciaObtenerProveedores();
-        ResultSet resultadoConsulta = obtenerEjecutorInstrucciones().ejecutarConsulta(sentenciaObtenerProveedores);
+        sentenciaObtenerProveedores = 
+                generadorSentencia.generarSentenciaObtenerProveedores();
+        
+        ResultSet resultadoConsulta = 
+                obtenerEjecutorInstrucciones().ejecutarConsulta(sentenciaObtenerProveedores);
 
         try {
             while (resultadoConsulta.next()) {
-                Proveedor actual = extraerDeResultado(resultadoConsulta);
+                Proveedor actual = crearProveedor(resultadoConsulta);
                 listaProveedors.add(actual);
             }
         } catch (SQLException ex) {
@@ -75,15 +82,17 @@ public class GestorBDProveedor extends GestorBaseDatos {
     public Proveedor obtenerPorId(String idProveedor) throws ExcepcionProveedorNoEncontrado {
 
         String sentenciaObtenerProveedorPorId;
-        sentenciaObtenerProveedorPorId = generadorSentencia.generarSentenciaObtenerProveedorPorId(idProveedor);
-        ResultSet resultadoConsulta = obtenerEjecutorInstrucciones().ejecutarConsulta(sentenciaObtenerProveedorPorId);
+        sentenciaObtenerProveedorPorId = 
+                generadorSentencia.generarSentenciaObtenerProveedorPorId(idProveedor);
+        ResultSet resultadoConsulta = 
+                obtenerEjecutorInstrucciones().ejecutarConsulta(sentenciaObtenerProveedorPorId);
 
-        return extraerDeResultado(resultadoConsulta);
+        return crearProveedor(resultadoConsulta);
 
     }
 
     
-    private Proveedor extraerDeResultado(ResultSet resultadoConsulta) {
+    private Proveedor crearProveedor(ResultSet resultadoConsulta) {
 
         Proveedor proveedor = null;
         try {

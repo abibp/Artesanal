@@ -1,14 +1,8 @@
 
 package datos.generadores;
 
-import datos.gestores.GestorBDVenta;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import negocio.entidades.ElementoNota;
 import negocio.entidades.NotaDeVenta;
 
@@ -38,6 +32,25 @@ public class GeneradorSentenciasVenta {
         
         return instruccionInsertarGenerada;
     }
+    
+    
+    public String generarSentenciaInsertarElementoVenta(ElementoNota nuevoElemento, int idNotaVenta){
+        
+        final String INSTRUCCION_INSERTAR
+                = "INSERT INTO tiene VALUES(\"%s\",%d,%d,%f)";
+
+        String sentenciaInsertarElementoGenerada
+                = String.format(
+                        INSTRUCCION_INSERTAR,
+                        nuevoElemento.obtenerProductoVendido().obtenerID(),
+                        idNotaVenta,
+                        nuevoElemento.obtenerCantidadDeProducto(),
+                        nuevoElemento.obtenerImporte()
+                );
+
+        return sentenciaInsertarElementoGenerada;
+        
+    }
         
     
     public String generarSentenciaObtenerVentasPorRangoDeFecha(Date fechaInicio, Date fechaFin){
@@ -60,23 +73,19 @@ public class GeneradorSentenciasVenta {
         
     }
     
-    
-    public String generarSentenciaInsertarElementoVenta(ElementoNota nuevoElemento, int idNotaVenta){
-        
-        final String INSTRUCCION_INSERTAR
-                = "INSERT INTO tiene VALUES(\"%s\",%d,%d,%f)";
 
-        String sentenciaInsertarElementoGenerada
-                = String.format(
-                        INSTRUCCION_INSERTAR,
-                        nuevoElemento.obtenerProductoVendido().obtenerID(),
-                        idNotaVenta,
-                        nuevoElemento.obtenerCantidadDeProducto(),
-                        nuevoElemento.obtenerImporte()
-                );
-
-        return sentenciaInsertarElementoGenerada;
+    public String generarSentenciaObtenerElementoVenta(int idNotaVenta){
         
+        final String INSTRUCCION_OBTENER_ELEMENTO_VENTA
+                    = "SELECT * FROM tiene JOIN producto ON tiene.fp_id_producto = producto.id_producto WHERE fnv_id_nota = %d";
+
+        String instruccionFinal = String.format(
+                INSTRUCCION_OBTENER_ELEMENTO_VENTA,
+                idNotaVenta
+        );
+            
+        return instruccionFinal;
+            
     }
     
     

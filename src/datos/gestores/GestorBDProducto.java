@@ -18,15 +18,18 @@ import negocio.excepciones.ExcepcionListaVacia;
 
 public class GestorBDProducto extends GestorBaseDatos {
 
-    public static String TABLA_PRODUCTO = "producto";
+    
+    public static String TABLA_PRODUCTO_ = "producto";
     private final GeneradorSentenciasProducto generadorSentencia;
     private final GeneradorSentenciasUsa generadorSentenciaUsa;
 
+    
     public GestorBDProducto() {
-        generadorSentencia = new GeneradorSentenciasProducto(TABLA_PRODUCTO);
+        generadorSentencia = new GeneradorSentenciasProducto(TABLA_PRODUCTO_);
         generadorSentenciaUsa = new GeneradorSentenciasUsa("usa");
     }
 
+    
     public void agregar(Producto nuevoProducto) throws ExcepcionListaVacia {
         
         String sentenciaInsertarProducto;
@@ -43,6 +46,7 @@ public class GestorBDProducto extends GestorBaseDatos {
 
     }
     
+    
     public void eliminar(String idProducto) {
 
         String sentenciaEliminarProducto;
@@ -51,6 +55,7 @@ public class GestorBDProducto extends GestorBaseDatos {
 
     }
 
+    
     public void editarInformacion(String id, Producto productoActualizado) {
 
         String sentenciaEditarInformacionProducto;
@@ -59,6 +64,7 @@ public class GestorBDProducto extends GestorBaseDatos {
 
     }
 
+    
     public ArrayList<Producto> obtenerLista() throws ExcepcionProductoNoEncontrado, ExcepcionListaVacia, ExcepcionElementoYaExistente {
 
         ArrayList<Producto> listaProductos = new ArrayList<>();
@@ -68,7 +74,7 @@ public class GestorBDProducto extends GestorBaseDatos {
 
         try {
             while (resultadoConsulta.next()) {
-                Producto actual = extraerDeResultado(resultadoConsulta);
+                Producto actual = crearProducto(resultadoConsulta);
                 listaProductos.add(actual);
             }
 
@@ -78,6 +84,7 @@ public class GestorBDProducto extends GestorBaseDatos {
         return listaProductos;
     }
 
+    
     public ArrayList<ProductoCompuesto> obtenerListaCompuestos() throws ExcepcionProductoNoEncontrado, ExcepcionListaVacia, ExcepcionElementoYaExistente, ExcepcionInsumoNoEncontrado {
 
         ArrayList<ProductoCompuesto> listaProductosCompuestos = new ArrayList<>();
@@ -99,17 +106,19 @@ public class GestorBDProducto extends GestorBaseDatos {
         return listaProductosCompuestos;
     }
     
+    
     public Producto obtenerPorId(String idProducto) throws ExcepcionProductoNoEncontrado, ExcepcionListaVacia, ExcepcionElementoYaExistente {
 
         String sentenciaObtenerProductoPorId;
         sentenciaObtenerProductoPorId = generadorSentencia.generarSentenciaObtenerProductoPorId(idProducto);
         ResultSet resultadoConsulta = obtenerEjecutorInstrucciones().ejecutarConsulta(sentenciaObtenerProductoPorId);
 
-        return extraerDeResultado(resultadoConsulta);
+        return crearProducto(resultadoConsulta);
 
     }
 
-    private Producto extraerDeResultado(ResultSet resultadoConsulta) throws ExcepcionProductoNoEncontrado, ExcepcionListaVacia, ExcepcionElementoYaExistente {
+    
+    private Producto crearProducto(ResultSet resultadoConsulta) throws ExcepcionProductoNoEncontrado, ExcepcionListaVacia, ExcepcionElementoYaExistente {
 
         try {
 
@@ -129,6 +138,7 @@ public class GestorBDProducto extends GestorBaseDatos {
 
         throw new ExcepcionProductoNoEncontrado();
     }
+    
     
     private ProductoCompuesto extraerCompuestoDeResultado(ResultSet resultadoConsulta) throws ExcepcionProductoNoEncontrado, ExcepcionListaVacia, ExcepcionElementoYaExistente, ExcepcionInsumoNoEncontrado {
 
@@ -172,6 +182,7 @@ public class GestorBDProducto extends GestorBaseDatos {
         throw new ExcepcionProductoNoEncontrado();
     }
 
+    
     private boolean usaInsumos(ResultSet resultadoConsulta) throws ExcepcionListaVacia, ExcepcionProductoNoEncontrado, ExcepcionElementoYaExistente {
         
         try {
@@ -188,4 +199,5 @@ public class GestorBDProducto extends GestorBaseDatos {
         return false;
     }
 
+    
 }

@@ -15,13 +15,16 @@ import negocio.entidades.Insumo;
  */
 public class GestorBDInsumo extends GestorBaseDatos {
 
-    public static String TABLA_INSUMO = "insumo";
+    
+    public static String TABLA_INSUMO_ = "insumo";
     private final GeneradorSentenciasInsumo generadorSentencia;
 
+    
     public GestorBDInsumo() {
-        generadorSentencia = new GeneradorSentenciasInsumo(TABLA_INSUMO);
+        generadorSentencia = new GeneradorSentenciasInsumo(TABLA_INSUMO_);
     }
 
+    
     public void agregar(Insumo nuevoInsumo) {
 
         String sentenciaInsertarInsumo;
@@ -30,6 +33,7 @@ public class GestorBDInsumo extends GestorBaseDatos {
 
     }
 
+    
     public void eliminar(String idInsumo) {
 
         String sentenciaEliminarInsumo;
@@ -38,6 +42,7 @@ public class GestorBDInsumo extends GestorBaseDatos {
 
     }
 
+    
     public void editarInformacion(String id, Insumo productoActualizado) {
 
         String sentenciaEditarInformacionInsumo;
@@ -46,6 +51,7 @@ public class GestorBDInsumo extends GestorBaseDatos {
 
     }
 
+    
     public ArrayList<Insumo> obtenerLista() throws ExcepcionInsumoNoEncontrado {
 
         ArrayList<Insumo> listaInsumos = new ArrayList<>();
@@ -55,7 +61,7 @@ public class GestorBDInsumo extends GestorBaseDatos {
 
         try {
             while (resultadoConsulta.next()) {
-                Insumo actual = extraerDeResultado(resultadoConsulta);
+                Insumo actual = crearInsumo(resultadoConsulta);
                 listaInsumos.add(actual);
             }
 
@@ -65,17 +71,19 @@ public class GestorBDInsumo extends GestorBaseDatos {
         return listaInsumos;
     }
 
+    
     public Insumo obtenerPorId(String idInsumo) throws ExcepcionInsumoNoEncontrado, SQLException {
 
         String sentenciaObtenerInsumoPorId;
         sentenciaObtenerInsumoPorId = generadorSentencia.generarSentenciaObtenerInsumoPorId(idInsumo);
         ResultSet resultadoConsulta = obtenerEjecutorInstrucciones().ejecutarConsulta(sentenciaObtenerInsumoPorId);
         resultadoConsulta.next();
-        return extraerDeResultado(resultadoConsulta);
+        return crearInsumo(resultadoConsulta);
 
     }
 
-    private Insumo extraerDeResultado(ResultSet resultadoConsulta) throws ExcepcionInsumoNoEncontrado {
+    
+    private Insumo crearInsumo(ResultSet resultadoConsulta) throws ExcepcionInsumoNoEncontrado {
 
         try {
 
@@ -95,4 +103,5 @@ public class GestorBDInsumo extends GestorBaseDatos {
         throw new ExcepcionInsumoNoEncontrado();
     }
 
+    
 }
